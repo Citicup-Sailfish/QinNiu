@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.percent.PercentRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#394264"
+    android:orientation="vertical">
+
+    <android.support.percent.PercentRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:background="#394264"
+        android:orientation="vertical"
+        app:layout_heightPercent="92.19%">
+        <!--动作条-->
+        <android.support.percent.PercentRelativeLayout
+            android:id="@+id/ExchangeActionBar"
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:background="#50597b"
+            app:layout_heightPercent="8.46%">
+
+            <Button
+                android:id="@+id/ExchangeActionBarMe"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_centerVertical="true"
+                android:background="@drawable/exchange_actionbar_me"
+                android:onClick="PersonButtonclick"
+                app:layout_heightPercent="58.33%"
+                app:layout_marginLeftPercent="3.33%"
+                app:layout_widthPercent="5.28%" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:text="实盘交易"
+                android:textColor="#ffffff"
+                android:textSize="18sp"
+                tools:ignore="HardcodedText" />
+
+            <Button
+                android:id="@+id/ExchangeActionBarSimulation"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:background="@drawable/exchange_actionbar_simulation"
+                android:onClick="SimulationButtonclick"
+                android:text="模拟交易"
+                android:textColor="#f2f2f2"
+                android:textSize="15sp"
+                app:layout_heightPercent="66.67%"
+                app:layout_marginRightPercent="3.33%"
+                app:layout_widthPercent="20.83%" />
+
+        </android.support.percent.PercentRelativeLayout>
+
+        <!--功能选项卡
+        被选中的选项卡使用 @style/ExchangeTabBarChecked
+        其他选项卡使用 @style/ExchangeTabBarDefault-->
+        <RadioGroup
+            android:id="@+id/ExchangeTabBar"
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:layout_below="@id/ExchangeActionBar"
+            android:orientation="horizontal"
+            app:layout_heightPercent="8.46%">
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="horizontal">
+
+                <!--持仓-->
+                <RadioButton
+                    android:id="@+id/ExchangeTabBarPosition"
+                    style="@style/ExchangeTabBar"
+                    android:checked="true"
+                    android:text="持仓" />
+
+                <!--买入-->
+                <RadioButton
+                    android:id="@+id/ExchangeTabBarBuy"
+                    style="@style/ExchangeTabBar"
+                    android:text="买入" />
+
+                <!--查询-->
+                <RadioButton
+                    android:id="@+id/ExchangeTabBarQuery"
+                    style="@style/ExchangeTabBar"
+                    android:text="查询" />
+
+                <!--转账-->
+                <RadioButton
+                    android:id="@+id/ExchangeTabBarTransfer"
+                    style="@style/ExchangeTabBar"
+                    android:text="转账" />
+
+            </LinearLayout>
+        </RadioGroup>
+
+        <!--用户名-->
+        <android.support.percent.PercentRelativeLayout
+            android:id="@+id/LoginUsernameBar"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_centerHorizontal="true"
+            app:layout_heightPercent="8.94%"
+            app:layout_marginTopPercent="19.83%"
+            app:layout_widthPercent="86.11%">
+
+            <View
+                android:id="@+id/LoginUsernameBarIcon"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_centerVertical="true"
+                android:background="@drawable/login_username"
+                app:layout_heightPercent="41.82%"
+                app:layout_marginLeftPercent="3.23%"
+                app:layout_widthPercent="6.45%" />
+
+            <View
+                android:id="@+id/LoginUsernameBarLeft"
+                android:layout_width="1dp"
+                android:layout_height="0dp"
+                android:layout_centerVertical="true"
+                android:layout_toEndOf="@id/LoginUsernameBarIcon"
+                android:layout_toRightOf="@id/LoginUsernameBarIcon"
+                android:background="#A5AECA"
+                app:layout_heightPercent="63.64%"
+                app:layout_marginLeftPercent="3.23%" />
+
+            <EditText
+                android:id="@+id/LoginUsernameBarInput"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/LoginUsernameBarLeft"
+                android:background="@null"
+                android:ems="10"
+                android:hint="用户名"
+                android:textColorHint="#727889"
+                android:textSize="18sp"
+                app:layout_marginLeftPercent="3.23%"
+                app:layout_widthPercent="77.42%" />
+
+            <View
+                android:id="@+id/LoginUsernameBarBottom"
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:layout_alignParentBottom="true"
+                android:background="#A5AECA" />
+        </android.support.percent.PercentRelativeLayout>
+
+    </android.support.percent.PercentRelativeLayout>
+
+    <!--选项卡-->
+    <TabHost
+        android:id="@android:id/tabhost"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_centerHorizontal="true"
+        app:layout_heightPercent="7.81%"
+        app:layout_marginTopPercent="92.19%">
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:background="#374362"
+            android:orientation="vertical">
+
+            <FrameLayout
+                android:id="@android:id/tabcontent"
+                android:layout_width="fill_parent"
+                android:layout_height="0.0dip"
+                android:layout_weight="1.0" />
+
+            <TabWidget
+                android:id="@android:id/tabs"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.0"
+                android:visibility="gone" />
+
+            <FrameLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content">
+
+                <RadioGroup
+                    android:id="@+id/main_tab_group"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:background="#505979"
+                    android:gravity="bottom"
+                    android:orientation="horizontal">
+
+                    <RadioButton
+                        android:id="@+id/TabHome"
+                        style="@style/MMTabButton"
+                        android:layout_weight="1.0"
+                        android:checked="true"
+                        android:drawableTop="@drawable/tab_home"
+                        android:text="首页"
+                        android:textSize="12sp" />
+
+                    <RadioButton
+                        android:id="@+id/TabHangqing"
+                        style="@style/MMTabButton"
+                        android:layout_weight="1.0"
+                        android:drawableTop="@drawable/tab_hangqing"
+                        android:text="行情"
+                        android:textSize="12sp" />
+
+                    <RadioButton
+                        android:id="@+id/TabQinniu"
+                        style="@style/MMTabButton"
+                        android:layout_weight="1.0"
+                        android:drawableTop="@drawable/tab_qinniu"
+                        android:text="擒牛"
+                        android:textSize="12sp" />
+
+                    <RadioButton
+                        android:id="@+id/TabJiaoyi"
+                        style="@style/MMTabButton"
+                        android:layout_weight="1.0"
+                        android:drawableTop="@drawable/tab_jiaoyi"
+                        android:text="交易"
+                        android:textSize="12sp" />
+
+                    <RadioButton
+                        android:id="@+id/main_zixun"
+                        style="@style/MMTabButton"
+                        android:layout_weight="1.0"
+                        android:drawableTop="@drawable/tab_zixun"
+                        android:text="资讯"
+                        android:textSize="12sp" />
+                </RadioGroup>
+            </FrameLayout>
+        </LinearLayout>
+    </TabHost>
+
+</android.support.percent.PercentRelativeLayout>

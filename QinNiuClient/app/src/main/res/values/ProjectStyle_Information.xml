@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="information_ExchangeTabBar">
+        <item name="android:background">@drawable/information_zhongjian_tab_background_exchange</item>
+        <item name="android:button">@null</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_weight">1.0</item>
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">fill_parent</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@drawable/information_zhongjian_tab_color_exchange</item>
+    </style>
+</resources>
