@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.percent.PercentRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#394264"
+    android:orientation="vertical">
+
+    <!--动作条-->
+    <android.support.percent.PercentRelativeLayout
+        android:id="@+id/RegisterActionBar"
+        android:layout_width="fill_parent"
+        android:layout_height="48dp"
+        android:background="#50597b">
+
+        <Button
+            android:id="@+id/RegisterActionBarBack"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_centerVertical="true"
+            android:background="@drawable/back"
+            android:onClick="logButtonclick"
+            app:layout_heightPercent="41.66%"
+            app:layout_marginLeftPercent="3.33%"
+            app:layout_widthPercent="2%" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:text="注册"
+            android:textColor="#ffffff"
+            android:textSize="18sp" />
+    </android.support.percent.PercentRelativeLayout>
+
+    <!--用户名-->
+    <android.support.percent.PercentRelativeLayout
+        android:id="@+id/RegisterUsernameBar"
+        android:layout_width="0dp"
+        android:layout_height="55dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="122dp"
+        app:layout_widthPercent="86.11%">
+
+        <View
+            android:id="@+id/RegisterUsernameBarIcon"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_centerVertical="true"
+            android:background="@drawable/login_username"
+            app:layout_heightPercent="41.82%"
+            app:layout_marginLeftPercent="3.23%"
+            app:layout_widthPercent="6.45%" />
+
+        <View
+            android:id="@+id/RegisterUsernameBarLeft"
+            android:layout_width="1dp"
+            android:layout_height="0dp"
+            android:layout_centerVertical="true"
+            android:layout_toEndOf="@id/RegisterUsernameBarIcon"
+            android:layout_toRightOf="@id/RegisterUsernameBarIcon"
+            android:background="#A5AECA"
+            app:layout_heightPercent="63.64%"
+            app:layout_marginLeftPercent="3.23%" />
+
+        <EditText
+            android:id="@+id/RegisterUsernameBarInput"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/RegisterUsernameBarLeft"
+            android:background="@null"
+            android:ems="10"
+            android:hint="用户名"
+            android:textColorHint="#727889"
+            android:textSize="18sp"
+            app:layout_marginLeftPercent="3.23%"
+            app:layout_widthPercent="77.42%" />
+
+        <View
+            android:id="@+id/RegisterUsernameBarBottom"
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:layout_alignParentBottom="true"
+            android:background="#A5AECA" />
+    </android.support.percent.PercentRelativeLayout>
+
+    <android.support.percent.PercentRelativeLayout
+        android:id="@+id/RegisterUsernameStyle"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/RegisterUsernameBar"
+        android:layout_marginTop="11dp"
+        app:layout_marginLeftPercent="8.06%"
+        app:layout_marginRightPercent="8.06%">
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:gravity="center"
+            android:text="4~15个字符长度的中文|字母|数字，请勿使用特殊符号"
+            android:textColor="#727889"
+            android:textSize="12sp" />
+    </android.support.percent.PercentRelativeLayout>
+
+    <!--密码-->
+    <android.support.percent.PercentRelativeLayout
+        android:id="@+id/RegisterPasswordBar"
+        android:layout_width="0dp"
+        android:layout_height="55dp"
+        android:layout_below="@id/RegisterUsernameStyle"
+        android:layout_centerHorizontal="true"
+        app:layout_widthPercent="86.11%">
+
+        <View
+            android:id="@+id/RegisterPasswordBarIcon"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_centerVertical="true"
+            android:background="@drawable/login_password"
+            app:layout_heightPercent="41.82%"
+            app:layout_marginLeftPercent="3.23%"
+            app:layout_widthPercent="6.45%" />
+
+        <View
+            android:id="@+id/RegisterPasswordBarLeft"
+            android:layout_width="1dp"
+            android:layout_height="0dp"
+            android:layout_centerVertical="true"
+            android:layout_toEndOf="@id/RegisterPasswordBarIcon"
+            android:layout_toRightOf="@id/RegisterPasswordBarIcon"
+            android:background="#A5AECA"
+            app:layout_heightPercent="63.64%"
+            app:layout_marginLeftPercent="3.23%" />
+
+        <EditText
+            android:id="@+id/RegisterPasswordBarInput"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/RegisterPasswordBarLeft"
+            android:background="@null"
+            android:ems="10"
+            android:hint="密码"
+            android:textColorHint="#727889"
+            android:textSize="18sp"
+            app:layout_marginLeftPercent="3.23%"
+            app:layout_widthPercent="77.42%" />
+
+        <View
+            android:id="@+id/RegisterPasswordBarBottom"
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:layout_alignParentBottom="true"
+            android:background="#A5AECA" />
+    </android.support.percent.PercentRelativeLayout>
+
+    <!--确认密码-->
+    <android.support.percent.PercentRelativeLayout
+        android:id="@+id/RegisterConfirmBar"
+        android:layout_width="0dp"
+        android:layout_height="55dp"
+        android:layout_below="@id/RegisterPasswordBar"
+        android:layout_centerHorizontal="true"
+        app:layout_widthPercent="86.11%">
+
+        <View
+            android:id="@+id/RegisterConfirmBarIcon"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_centerVertical="true"
+            android:background="@drawable/login_verification"
+            app:layout_heightPercent="41.82%"
+            app:layout_marginLeftPercent="3.23%"
+            app:layout_widthPercent="6.45%" />
+
+        <View
+            android:id="@+id/RegisterConfirmBarLeft"
+            android:layout_width="1dp"
+            android:layout_height="0dp"
+            android:layout_centerVertical="true"
+            android:layout_toEndOf="@id/RegisterConfirmBarIcon"
+            android:layout_toRightOf="@id/RegisterConfirmBarIcon"
+            android:background="#A5AECA"
+            app:layout_heightPercent="63.64%"
+            app:layout_marginLeftPercent="3.23%" />
+
+        <EditText
+            android:id="@+id/RegisterConfirmBarInput"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/RegisterConfirmBarLeft"
+            android:background="@null"
+            android:ems="10"
+            android:hint="确认密码"
+            android:textColorHint="#727889"
+            android:textSize="18sp"
+            app:layout_marginLeftPercent="3.23%"
+            app:layout_widthPercent="77.42%" />
+
+        <View
+            android:id="@+id/RegisterConfirmBarBottom"
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:layout_alignParentBottom="true"
+            android:background="#A5AECA" />
+    </android.support.percent.PercentRelativeLayout>
+
+    <!--按钮-->
+    <android.support.percent.PercentRelativeLayout
+        android:id="@+id/RegisterButtonBar"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_below="@id/RegisterConfirmBar"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="70dp"
+        app:layout_widthPercent="86.11%">
+
+        <Button
+            android:id="@+id/RegisterButtonBarLogin"
+            style="@style/LoginRegisterButton"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:text="注  册"
+            android:textSize="18dp" />
+    </android.support.percent.PercentRelativeLayout>
+</android.support.percent.PercentRelativeLayout>

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:background="#394264"
+        android:orientation="horizontal">
+        <!--股票名称 上海证券-->
+        <TextView
+            android:id="@+id/hangqing_zixuan_socket_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            android:layout_marginLeft="24dp"
+            android:layout_marginRight="6dp"
+            android:layout_marginTop="12dp"
+            android:text="@null"
+            android:textColor="#ffffff"
+            android:textSize="14sp" />
+        <!--股票代号 000000-->
+        <TextView
+            android:id="@+id/hangqing_zixuan_socket_code"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/hangqing_zixuan_socket_name"
+            android:layout_marginBottom="12dp"
+            android:layout_marginTop="12dp"
+            android:layout_toRightOf="@+id/hangqing_zixuan_socket_name"
+            android:text="@null"
+            android:textColor="#5fb7fa"
+            android:textSize="12sp" />
+        <!--最新价 1234.5-->
+        <TextView
+            android:id="@+id/hangqing_zixuan_zuixinjia"
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/hangqing_zixuan_deizhangfu"
+            android:layout_marginBottom="12dp"
+            android:layout_marginTop="12dp"
+            android:layout_toLeftOf="@+id/hangqing_zixuan_deizhangfu"
+            android:gravity="left|center_vertical"
+            android:text="@null"
+            android:textSize="14sp" />
+
+        <!--跌涨率 2.12%-->
+        <!--如果是跌，给字体设置红色 #e74e64 涨就给字体设置绿色 #10ab95-->
+        <TextView
+            android:id="@+id/hangqing_zixuan_deizhangfu"
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginBottom="12dp"
+            android:layout_marginTop="12dp"
+            android:background="#394264"
+            android:gravity="left|center_vertical"
+            android:text="@null"
+            android:textSize="14sp" />
+
+    </RelativeLayout>
+
+</LinearLayout>

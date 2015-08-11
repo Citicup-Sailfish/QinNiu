@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TabHost xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@android:id/tabhost"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#394264">
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical">
+
+        <TabWidget
+            android:id="@android:id/tabs"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.0"
+            android:visibility="gone" />
+        <!--来自谭潇模拟交易的选择卡，写Java时先问一下由一个人来写就好，避免重复-->
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!--动作条-->
+            <android.support.percent.PercentRelativeLayout
+                android:id="@+id/SimulationActionBar"
+                android:layout_width="fill_parent"
+                android:layout_height="48dp"
+                android:background="#50597b">
+
+                <Button
+                    android:id="@+id/SimulationActionBarMe"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_centerVertical="true"
+                    android:background="@drawable/exchange_actionbar_me"
+                    android:onClick="PersonButtonclick"
+                    app:layout_heightPercent="58.33%"
+                    app:layout_marginLeftPercent="3.33%"
+                    app:layout_widthPercent="5.28%" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:text="实盘交易"
+                    android:textColor="#ffffff"
+                    android:textSize="18sp" />
+
+                <Button
+                    android:id="@+id/ExchangeActionBarSimulation"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:background="@drawable/exchange_actionbar_simulation"
+                    android:onClick="SimulationButtonclick"
+                    android:text="模拟交易"
+                    android:textColor="#f2f2f2"
+                    android:textSize="15sp"
+                    app:layout_heightPercent="66.67%"
+                    app:layout_marginRightPercent="3.33%"
+                    app:layout_widthPercent="20.83%" />
+            </android.support.percent.PercentRelativeLayout>
+            <!--功能选项卡!-->
+            <RadioGroup
+                android:id="@+id/ExchangeTabBar"
+                android:layout_width="fill_parent"
+                android:layout_height="48dp"
+                android:orientation="horizontal">
+
+                <!--持仓-->
+                <RadioButton
+                    android:id="@+id/ExchangeTabBarPosition"
+                    style="@style/ExchangeTabBar"
+                    android:checked="true"
+                    android:text="持仓" />
+
+                <!--买入-->
+                <RadioButton
+                    android:id="@+id/ExchangeTabBarBuy"
+                    style="@style/ExchangeTabBar"
+                    android:text="买入" />
+
+                <!--查询-->
+                <RadioButton
+                    android:id="@+id/ExchangeTabBarQuery"
+                    style="@style/ExchangeTabBar"
+                    android:text="查询" />
+
+                <!--转账-->
+                <RadioButton
+                    android:id="@+id/ExchangeTabBarTransfer"
+                    style="@style/ExchangeTabBar"
+                    android:text="转账" />
+
+            </RadioGroup>
+        </LinearLayout>
+        <FrameLayout
+            android:id="@android:id/tabcontent"
+            android:layout_width="fill_parent"
+            android:layout_height="0.0dp"
+            android:layout_weight="1.0" />
+    </LinearLayout>
+</TabHost>

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#394264"
+    android:orientation="vertical">
+
+    <!--标题栏 名称 最新价， 跌涨幅-->
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="12dp"
+            android:layout_marginTop="10dp"
+            android:text="名称代码"
+            android:textColor="#ffffff"
+            android:textSize="14sp" />
+
+        <TextView
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/hangqing_zixuan_deizhangfu_item_name"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_toLeftOf="@+id/hangqing_zixuan_deizhangfu_item_name"
+            android:gravity="left|center_vertical"
+            android:text="最新价"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/hangqing_zixuan_deizhangfu_item_name"
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
+            android:background="#394264"
+            android:gravity="left|center_vertical"
+            android:text="跌涨幅"
+            android:textSize="14sp" />
+    </RelativeLayout>
+
+    <!--分割线-->
+    <ImageView
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:background="#d2d2d2" />
+
+    <ListView
+        android:id="@+id/hangqing_zixuan_Listview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:cacheColorHint="#00000000"
+        android:divider="@null"
+        android:listSelector="#00000000">
+        <!--list iteam 在activity_hangqing_zixuan_list_iteam-->
+    </ListView>
+</LinearLayout>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#394264"
+    android:orientation="vertical">
+    <!--用listView做新闻界面，想法是用listview来显示每天的新闻，就是把每天五条新闻当做一个list iteam-->
+    <!--listview 用法参考 http://www.iteye.com/topic/540423-->
+    <!--list iteam 布局文件名 activity_information_news_list_item-->
+    <ListView
+        android:id="@+id/Information_news_Listview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:cacheColorHint="#00000000"
+        android:divider="@null"
+        android:listSelector="#00000000">
+        <!--每一天的iteam用linear来做-->
+        <!--xml里有imagebutton的点击来跳转到新闻的详细介绍页面，虽然现在没有新闻介绍页面
+        看了百度后发现listiteam会有itemClick的点击事件，不过在这里需要被屏蔽掉，
+        理论上在item里设置了imagebutton后会自动屏蔽itemclick，但是不确定会不会，等调试时再看看
+        找到一篇关于这个问题的文章
+        http://blog.csdn.net/dalancon/article/details/17025339-->
+    </ListView>
+</LinearLayout>
