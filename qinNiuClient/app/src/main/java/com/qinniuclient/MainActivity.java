@@ -11,9 +11,8 @@ import android.widget.TabHost;
 
 import com.qinniuclient.information.InformationActivity;
 import com.qinniuclient.login.LoginActivity;
-import com.qinniuclient.register.RegisterActivity;
 import com.qinniuclient.price.PriceActivity;
-import com.qinniuclient.trade.ExchangeActivity;
+import com.qinniuclient.register.RegisterActivity;
 import com.qinniuclient.trade.SimulationActivity;
 
 public class MainActivity extends TabActivity {

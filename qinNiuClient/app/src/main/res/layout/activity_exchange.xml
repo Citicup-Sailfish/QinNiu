@@ -99,6 +99,7 @@
 
             </RadioGroup>
         </LinearLayout>
+
         <FrameLayout
             android:id="@android:id/tabcontent"
             android:layout_width="fill_parent"

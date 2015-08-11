@@ -5,13 +5,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.Window;
-import android.widget.RadioGroup;
-import android.widget.TabHost;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.Window;
 import android.widget.Button;
-import android.view.LayoutInflater;
+import android.widget.RadioGroup;
+import android.widget.TabHost;
 
 import com.qinniuclient.R;
 
@@ -25,7 +24,7 @@ public class SimulationActivity extends TabActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
-//        ÕâÀï¸ÄÒ³Ãæ
+//        è¿™é‡Œæ”¹é¡µé¢
         setContentView(R.layout.activity_simulation);
 
         Button button = (Button) this.findViewById(R.id.SimulationActionBarExchange);
@@ -33,7 +32,7 @@ public class SimulationActivity extends TabActivity {
             @Override
             public void onClick(View v) {
                 setContentView(R.layout.activity_exchange); // wrong method, need to change
-                // µã»÷buttonÇĞ»»µ½ÊµÅÌ½»Ò×Ò³ÃæÊ§°Ü£¬ÕâÀïĞèÒª²¹³ä
+                // ç‚¹å‡»buttonåˆ‡æ¢åˆ°å®ç›˜äº¤æ˜“é¡µé¢å¤±è´¥ï¼Œè¿™é‡Œéœ€è¦è¡¥å……
             }
         });
 
@@ -41,25 +40,25 @@ public class SimulationActivity extends TabActivity {
         TabHost.TabSpec spec;
         Intent intent;
 
-//        ÏÂÃæ¼¸ĞĞ×ÃÇéÔö¼Ó»òĞŞ¸Ä£¬ĞŞ¸Ä¾Í¸ÄxxxxActivityÎªËùĞèÒ³Ãæ
+//        ä¸‹é¢å‡ è¡Œé…Œæƒ…å¢åŠ æˆ–ä¿®æ”¹ï¼Œä¿®æ”¹å°±æ”¹xxxxActivityä¸ºæ‰€éœ€é¡µé¢
         intent = new Intent().setClass(this, SimulationTabPositionActivity.class);
-        spec = tabHost.newTabSpec("³Ö²Ö").setIndicator("³Ö²Ö")
+        spec = tabHost.newTabSpec("æŒä»“").setIndicator("æŒä»“")
                 .setContent(intent);
         tabHost.addTab(spec);
 
         intent = new Intent().setClass(this, SimulationTabBuyActivity.class);
-        spec = tabHost.newTabSpec("ÂòÈë").setIndicator("ÂòÈë")
+        spec = tabHost.newTabSpec("ä¹°å…¥").setIndicator("ä¹°å…¥")
                 .setContent(intent);
         tabHost.addTab(spec);
 
         intent = new Intent().setClass(this, SimulationTabQueryActivity.class);
-        spec = tabHost.newTabSpec("²éÑ¯").setIndicator("²éÑ¯")
+        spec = tabHost.newTabSpec("æŸ¥è¯¢").setIndicator("æŸ¥è¯¢")
                 .setContent(intent);
         tabHost.addTab(spec);
 
-        tabHost.setCurrentTabByTag("³Ö²Ö");
+        tabHost.setCurrentTabByTag("æŒä»“");
 
-//        Õâ¸öIDÊÇradioGroupµÄID£¬¶ÔÓÚ²»Í¬µÄgroupÉèÖÃ²»Í¬Öµ£¬·ñÔò»á±ÀÀ£
+//        è¿™ä¸ªIDæ˜¯radioGroupçš„IDï¼Œå¯¹äºä¸åŒçš„groupè®¾ç½®ä¸åŒå€¼ï¼Œå¦åˆ™ä¼šå´©æºƒ
         RadioGroup radioGroup = (RadioGroup) this
                 .findViewById(R.id.SimulationTabBar);
         radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
@@ -68,14 +67,14 @@ public class SimulationActivity extends TabActivity {
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 // TODO Auto-generated method stub
                 switch (checkedId) {
-                    case R.id.SimulationTabBarPosition:// ³Ö²Ö
-                        tabHost.setCurrentTabByTag("³Ö²Ö");
+                    case R.id.SimulationTabBarPosition:// æŒä»“
+                        tabHost.setCurrentTabByTag("æŒä»“");
                         break;
-                    case R.id.SimulationTabBarBuy:// ÂòÈë
-                        tabHost.setCurrentTabByTag("ÂòÈë");
+                    case R.id.SimulationTabBarBuy:// ä¹°å…¥
+                        tabHost.setCurrentTabByTag("ä¹°å…¥");
                         break;
-                    case R.id.SimulationTabBarQuery:// ²éÑ¯
-                        tabHost.setCurrentTabByTag("²éÑ¯");
+                    case R.id.SimulationTabBarQuery:// æŸ¥è¯¢
+                        tabHost.setCurrentTabByTag("æŸ¥è¯¢");
                         break;
                     default:
                         break;

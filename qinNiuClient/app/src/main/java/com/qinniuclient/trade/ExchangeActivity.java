@@ -5,12 +5,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.view.Window;
-import android.widget.Button;
 import android.widget.RadioGroup;
 import android.widget.TabHost;
-import android.view.View.OnClickListener;
 
 import com.qinniuclient.R;
 
@@ -24,37 +21,37 @@ public class ExchangeActivity extends TabActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
-//        ÕâÀï¸ÄÒ³Ãæ
+//        è¿™é‡Œæ”¹é¡µé¢
         setContentView(R.layout.activity_exchange);
 
         tabHost = this.getTabHost();
         TabHost.TabSpec spec;
         Intent intent;
 
-//        ÏÂÃæ¼¸ĞĞ×ÃÇéÔö¼Ó»òĞŞ¸Ä£¬ĞŞ¸Ä¾Í¸ÄxxxxActivityÎªËùĞèÒ³Ãæ
+//        ä¸‹é¢å‡ è¡Œé…Œæƒ…å¢åŠ æˆ–ä¿®æ”¹ï¼Œä¿®æ”¹å°±æ”¹xxxxActivityä¸ºæ‰€éœ€é¡µé¢
         intent = new Intent().setClass(this, ExchangeTabPositionActivity.class);
-        spec = tabHost.newTabSpec("³Ö²Ö").setIndicator("³Ö²Ö")
+        spec = tabHost.newTabSpec("æŒä»“").setIndicator("æŒä»“")
                 .setContent(intent);
         tabHost.addTab(spec);
 
         intent = new Intent().setClass(this, ExchangeTabBuyActivity.class);
-        spec = tabHost.newTabSpec("ÂòÈë").setIndicator("ÂòÈë")
+        spec = tabHost.newTabSpec("ä¹°å…¥").setIndicator("ä¹°å…¥")
                 .setContent(intent);
         tabHost.addTab(spec);
 
         intent = new Intent().setClass(this, ExchangeTabQueryActivity.class);
-        spec = tabHost.newTabSpec("²éÑ¯").setIndicator("²éÑ¯")
+        spec = tabHost.newTabSpec("æŸ¥è¯¢").setIndicator("æŸ¥è¯¢")
                 .setContent(intent);
         tabHost.addTab(spec);
 
         intent = new Intent().setClass(this, ExchangeTabTransferActivity.class);
-        spec = tabHost.newTabSpec("×ªÕË").setIndicator("×ªÕË")
+        spec = tabHost.newTabSpec("è½¬è´¦").setIndicator("è½¬è´¦")
                 .setContent(intent);
         tabHost.addTab(spec);
 
-        tabHost.setCurrentTabByTag("³Ö²Ö");
+        tabHost.setCurrentTabByTag("æŒä»“");
 
-//        Õâ¸öIDÊÇradioGroupµÄID£¬¶ÔÓÚ²»Í¬µÄgroupÉèÖÃ²»Í¬Öµ£¬·ñÔò»á±ÀÀ£
+//        è¿™ä¸ªIDæ˜¯radioGroupçš„IDï¼Œå¯¹äºä¸åŒçš„groupè®¾ç½®ä¸åŒå€¼ï¼Œå¦åˆ™ä¼šå´©æºƒ
         RadioGroup radioGroup = (RadioGroup) this
                 .findViewById(R.id.ExchangeTabBar);
         radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
@@ -63,17 +60,17 @@ public class ExchangeActivity extends TabActivity {
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 // TODO Auto-generated method stub
                 switch (checkedId) {
-                    case R.id.ExchangeTabBarPosition:// ³Ö²Ö
-                        tabHost.setCurrentTabByTag("³Ö²Ö");
+                    case R.id.ExchangeTabBarPosition:// æŒä»“
+                        tabHost.setCurrentTabByTag("æŒä»“");
                         break;
-                    case R.id.ExchangeTabBarBuy:// ÂòÈë
-                        tabHost.setCurrentTabByTag("ÂòÈë");
+                    case R.id.ExchangeTabBarBuy:// ä¹°å…¥
+                        tabHost.setCurrentTabByTag("ä¹°å…¥");
                         break;
-                    case R.id.ExchangeTabBarQuery:// ²éÑ¯
-                        tabHost.setCurrentTabByTag("²éÑ¯");
+                    case R.id.ExchangeTabBarQuery:// æŸ¥è¯¢
+                        tabHost.setCurrentTabByTag("æŸ¥è¯¢");
                         break;
-                    case R.id.ExchangeTabBarTransfer:// ×ªÕË
-                        tabHost.setCurrentTabByTag("×ªÕË");
+                    case R.id.ExchangeTabBarTransfer:// è½¬è´¦
+                        tabHost.setCurrentTabByTag("è½¬è´¦");
                         break;
                     default:
                         break;
