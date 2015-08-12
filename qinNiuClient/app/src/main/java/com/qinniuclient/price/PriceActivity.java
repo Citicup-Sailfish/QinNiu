@@ -5,7 +5,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.Window;
+import android.widget.Button;
 import android.widget.RadioGroup;
 import android.widget.TabHost;
 
@@ -62,6 +64,23 @@ public class PriceActivity extends TabActivity {
                 }
             }
         });
+
+        /*搜查button的跳转 子博*/
+        Button btn1 = (Button) findViewById(R.id.hangqing_ButtonSearch);
+        btn1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                //Intent是一种运行时绑定（run-time binding）机制，它能在程序运行过程中连接两个不同的组件。
+
+                //page1为先前已添加的类，并已在AndroidManifest.xml内添加活动事件(<activity android:name="page1"></activity>),在存放资源代码的文件夹下下，
+                Intent i = new Intent(PriceActivity.this, PriceSearch.class);
+
+                ////启动
+                startActivity(i);
+            }
+        });
+
     }
 
     @Override

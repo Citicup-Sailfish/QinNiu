@@ -1,12 +1,109 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    tools:context="com.qinniuclient.trade.SimulationTabBuyActivity">
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="match_parent"
+    android:background="#394264">
 
-    <TextView android:text="@string/hello_world" android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
 
-</RelativeLayout>
+        <!--信息栏-->
+        <RelativeLayout
+            android:id="@+id/SimulationBuyInfoBar"
+            android:layout_width="fill_parent"
+            android:layout_height="30dp"
+            android:layout_alignParentTop="true"
+            android:background="#49516f">
+
+            <!--可用资金-->
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="12dp"
+                android:layout_marginStart="12dp"
+                android:layout_centerVertical="true"
+                android:layout_alignParentLeft="true">
+
+                <TextView
+                    android:id="@+id/SimulationBuyInfoBarAvaliableTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="可用资金："
+                    android:textColor="#ffffff"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/SimulationBuyInfoBarAvaliableValue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@id/SimulationBuyInfoBarAvaliableTitle"
+                    android:text="637829.76元"
+                    android:textColor="#ffffff"
+                    android:textSize="12sp" />
+            </RelativeLayout>
+
+            <!--转账按钮-->
+            <Button
+                android:id="@+id/SimulationBuyInfoBarBuy"
+                android:layout_width="59dp"
+                android:layout_height="12dp"
+                android:text="现在买入"
+                android:textSize="12dp"
+                android:textColor="#d55858"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="12dp"
+                android:layout_centerVertical="true"
+                android:drawableRight="@drawable/simulation_buy_infobar_button"
+                android:background="@null"></Button>
+        </RelativeLayout>
+        <!--
+
+                &lt;!&ndash; 白线 &ndash;&gt;
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="1dp"
+                    android:layout_below="@id/SimulationInfoBar"
+                    android:layout_centerHorizontal="true"
+                    android:background="#d2d2d2" />
+        -->
+
+        <!--下部界面(内容)-->
+        <!--        <android.support.percent.PercentRelativeLayout
+                    android:id="@+id/SimulationContent"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_below="@id/SimulationInfoBar"
+                    android:layout_centerHorizontal="true">
+                    &lt;!&ndash;标题&ndash;&gt;
+                    <TextView
+                        android:id="@+id/SimulationContentTitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="5dp"
+                        android:layout_marginTop="15dp"
+                        android:text="我的持仓"
+                        app:layout_marginLeftPercent="3.33%" />
+                    &lt;!&ndash; 白线 &ndash;&gt;
+                    <View
+                        android:layout_width="fill_parent"
+                        android:layout_height="1dp"
+                        android:layout_below="@id/SimulationContentTitle"
+                        android:background="#d2d2d2"
+                        app:layout_marginTopPercent="1.66%" />
+                    &lt;!&ndash;股票信息 这里放listview&ndash;&gt;
+                    <ListView
+                        android:id="@+id/SimulationContentList"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_below="@id/SimulationContentTitle"
+                        android:layout_centerHorizontal="true"
+                        android:cacheColorHint="#00000000"
+                        android:divider="#d2d2d2"
+                        android:dividerHeight="0.5dp"
+
+                        app:layout_widthPercent="93.33%"></ListView>
+                </android.support.percent.PercentRelativeLayout>-->
+    </RelativeLayout>
+</ScrollView>

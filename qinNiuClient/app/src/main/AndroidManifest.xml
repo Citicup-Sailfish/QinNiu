@@ -35,6 +35,9 @@
             android:label="@string/title_activity_price" >
         </activity>
         <activity
+            android:name=".price.PriceSearch"
+            android:label="@string/title_activity_PriceSearch"></activity>
+        <activity
             android:name=".price.PricePriceActivity"
             android:label="@string/title_activity_price_price" >
         </activity>
