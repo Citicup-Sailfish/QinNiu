@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#394264"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="5dp"
+        android:background="#50597b"
+        android:baselineAligned="false"
+        android:orientation="horizontal">
+
+        <AutoCompleteTextView
+            android:id="@+id/search_autocomplete_zixuangu"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginLeft="24dp"
+            android:layout_marginRight="24dp"
+            android:background="@drawable/search_edit_zixuangu_border_shape"
+            android:completionThreshold="1"
+            android:focusable="true"
+            android:singleLine="true"
+            android:imeOptions="actionSearch"
+            android:hint="提示：请使用股票代号搜索"
+            android:maxLength="6"
+            android:numeric="decimal"
+            android:paddingLeft="30dp" />
+
+
+        <!-- <Button
+             android:id="@+id/search_edit_ButtonSearch"
+             android:layout_width="30dp"
+             android:layout_height="30dp"
+             android:layout_marginBottom="5dp"
+             android:layout_alignBaseline="@+id/search_autocomplete_zixuangu"
+             android:layout_alignParentEnd="true"
+             android:layout_alignParentRight="true"
+             android:layout_alignParentTop="true"
+             android:layout_gravity="right|center_vertical"
+             android:layout_marginRight="12dp"
+             android:background="@drawable/icon_search" />-->
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="24dp"
+        android:layout_marginRight="24dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="30sp"
+            android:id="@+id/hangqing_zixaun_search_queren"
+            android:visibility="gone"
+            android:background="#3469ae"
+            android:text="添加" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="24dp"
+            android:id="@+id/hangqing_search_result_text"
+            android:textSize="20sp"
+            android:visibility="gone"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+
+</LinearLayout>
