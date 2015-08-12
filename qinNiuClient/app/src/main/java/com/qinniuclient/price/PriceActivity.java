@@ -27,22 +27,22 @@ public class PriceActivity extends TabActivity {
         TabHost.TabSpec spec;
         Intent intent;
 
-//        ä¸‹é¢å‡ è¡Œé…Œæƒ…å¢åŠ æˆ–ä¿®æ”¹ï¼Œä¿®æ”¹å°±æ”¹xxxxActivityä¸ºæ‰€éœ€é¡µé¢
+//        ÏÂÃæ¼¸ĞĞ×ÃÇéÔö¼Ó»òĞŞ¸Ä£¬ĞŞ¸Ä¾Í¸ÄxxxxActivityÎªËùĞèÒ³Ãæ
 
         intent = new Intent().setClass(this, PricePriceActivity.class);
-        spec = tabHost.newTabSpec("è¡Œæƒ…").setIndicator("è¡Œæƒ…")
+        spec = tabHost.newTabSpec("ĞĞÇé").setIndicator("ĞĞÇé")
                 .setContent(intent);
         tabHost.addTab(spec);
 
         intent = new Intent().setClass(this, PriceOptionalActivity.class);
-        spec = tabHost.newTabSpec("è‡ªé€‰").setIndicator("è‡ªé€‰")
+        spec = tabHost.newTabSpec("×ÔÑ¡").setIndicator("×ÔÑ¡")
                 .setContent(intent);
         tabHost.addTab(spec);
 
-//        åƒæ•°ç»„ä¸‹æ ‡ä¸€æ ·ç”¨
-        tabHost.setCurrentTabByTag("è¡Œæƒ…");
+//        ÏñÊı×éÏÂ±êÒ»ÑùÓÃ
+        tabHost.setCurrentTabByTag("ĞĞÇé");
 
-//        è¿™ä¸ªIDæ˜¯radioGroupçš„IDï¼Œå¯¹äºä¸åŒçš„groupè®¾ç½®ä¸åŒå€¼ï¼Œå¦åˆ™ä¼šå´©æºƒ
+//        Õâ¸öIDÊÇradioGroupµÄID£¬¶ÔÓÚ²»Í¬µÄgroupÉèÖÃ²»Í¬Öµ£¬·ñÔò»á±ÀÀ£
         RadioGroup radioGroup = (RadioGroup) this
                 .findViewById(R.id.price_title_group);
         radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
@@ -51,11 +51,11 @@ public class PriceActivity extends TabActivity {
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 // TODO Auto-generated method stub
                 switch (checkedId) {
-                    case R.id.hangqing_ExchangeTabBar_hangqing:// è¡Œæƒ…
-                        tabHost.setCurrentTabByTag("è¡Œæƒ…");
+                    case R.id.hangqing_ExchangeTabBar_hangqing:// ĞĞÇé
+                        tabHost.setCurrentTabByTag("ĞĞÇé");
                         break;
-                    case R.id.hangqing_ExchangeTabBar_zixuan:// è‡ªé€‰
-                        tabHost.setCurrentTabByTag("è‡ªé€‰");
+                    case R.id.hangqing_ExchangeTabBar_zixuan:// ×ÔÑ¡
+                        tabHost.setCurrentTabByTag("×ÔÑ¡");
                         break;
                     default:
                         break;

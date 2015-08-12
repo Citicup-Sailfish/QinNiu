@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:state_checked="true" android:drawable="@drawable/exchange_shape_linearlayout_tab_corner"></item>
+    <item android:state_checked="false" android:drawable="@drawable/hangqing_shape_exchange_tab0"></item>
+
+</selector>

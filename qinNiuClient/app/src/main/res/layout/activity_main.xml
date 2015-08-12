@@ -38,7 +38,6 @@
                     android:id="@+id/main_tab_home"
                     style="@style/MMTabButton"
                     android:layout_weight="1.0"
-                    android:checked="true"
                     android:drawableTop="@drawable/tab_home"
                     android:text="首页" />
 
@@ -53,6 +52,7 @@
                     android:id="@+id/main_tab_qinniu"
                     style="@style/MMTabButton"
                     android:layout_weight="1.0"
+                    android:checked="true"
                     android:drawableTop="@drawable/tab_qinniu"
                     android:text="擒牛" />
 

@@ -69,7 +69,6 @@
                     android:background="@drawable/icon_search" />
 
             </RelativeLayout>
-
             <RadioGroup
                 android:id="@+id/information_ExchangeTabBar"
                 android:layout_width="fill_parent"

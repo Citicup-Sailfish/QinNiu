@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:paddingBottom="10dp"
+    android:paddingTop="12dp">
+    <!--股票名称&代码（空格隔开）-->
+    <TextView
+        android:id="@+id/ItemTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_marginBottom="10dp"
+        android:textColor="#d2d2d2" />
+
+    <!--现价-->
+    <LinearLayout
+        android:id="@+id/ItemPrice"
+        android:layout_width="125dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@id/ItemTitle"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="3.0"
+            android:text="现价"
+            android:textColor="#d2d2d2"
+            android:textSize="12dp" />
+
+        <TextView
+            android:id="@+id/ItemPriceValue"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="2.0"
+            android:textColor="#d2d2d2"
+            android:textSize="12dp" />
+    </LinearLayout>
+
+    <!--成本价-->
+    <LinearLayout
+        android:id="@+id/ItemCost"
+        android:layout_width="125dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@id/ItemPrice"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="3.0"
+            android:text="成本价"
+            android:textColor="#d2d2d2"
+            android:textSize="12dp" />
+
+        <TextView
+            android:id="@+id/ItemCostValue"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="2.0"
+            android:textColor="#d2d2d2"
+            android:textSize="12dp" />
+    </LinearLayout>
+
+    <!--盈亏-->
+    <LinearLayout
+        android:id="@+id/ItemRate"
+        android:layout_width="125dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@id/ItemCost"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="3.0"
+            android:text="盈亏"
+            android:textColor="#d2d2d2"
+            android:textSize="12dp" />
+
+        <TextView
+            android:id="@+id/ItemRateValue"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="2.0"
+            android:text="12.35元"
+            android:textColor="#d2d2d2"
+            android:textSize="12dp" />
+    </LinearLayout>
+
+    <!--最新市值-->
+    <LinearLayout
+        android:id="@+id/ItemLatest"
+        android:layout_width="135dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/ItemTitle"
+        android:layout_marginLeft="15dp"
+        android:layout_toRightOf="@id/ItemPrice"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="14.0"
+            android:text="最新市值"
+            android:textColor="#d2d2d2"
+            android:textSize="12dp" />
+
+        <TextView
+            android:id="@+id/ItemLatestValue"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="13.0"
+            android:textColor="#d2d2d2"
+            android:textSize="12dp" />
+    </LinearLayout>
+
+    <!--持仓数量-->
+    <LinearLayout
+        android:id="@+id/ItemPosition"
+        android:layout_width="135dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/ItemLatest"
+        android:layout_marginLeft="15dp"
+        android:layout_toRightOf="@id/ItemCost"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="14.0"
+            android:text="持仓数量"
+            android:textColor="#d2d2d2"
+            android:textSize="12dp" />
+
+        <TextView
+            android:id="@+id/ItemPositionValue"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="13.0"
+            android:textColor="#d2d2d2"
+            android:textSize="12dp" />
+    </LinearLayout>
+
+    <!--可卖数量-->
+    <LinearLayout
+        android:id="@+id/ItemAvaliable"
+        android:layout_width="135dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/ItemPosition"
+        android:layout_marginLeft="15dp"
+        android:layout_toRightOf="@id/ItemRate"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="14.0"
+            android:text="可卖数量"
+            android:textColor="#d2d2d2"
+            android:textSize="12dp" />
+
+        <TextView
+            android:id="@+id/ItemAvaliableValue"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="13.0"
+            android:textColor="#d2d2d2"
+            android:textSize="12dp" />
+    </LinearLayout>
+
+    <!--卖出按钮 id可能重复，卖出操作的话考虑在id末尾加上其他字符区分-->
+    <Button
+        android:id="@+id/ItemSaleButton"
+        android:layout_width="55dp"
+        android:layout_height="25dp"
+        android:layout_alignParentRight="true"
+        android:background="@drawable/simulation_content_button"
+        android:gravity="center"
+        android:onClick="ItemSaleButtonclick"
+        android:text="卖出"
+        android:textColor="#d2d2d2"
+        android:textSize="14dp" />
+</RelativeLayout>

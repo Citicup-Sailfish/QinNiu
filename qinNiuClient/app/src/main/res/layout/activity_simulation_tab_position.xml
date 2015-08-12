@@ -1,16 +1,314 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="fill_parent"
     android:layout_height="match_parent"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    tools:context="com.qinniuclient.trade.SimulationTabPositionActivity">
+    android:background="#394264">
 
-    <TextView
-        android:text="@string/hello_world"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+    <android.support.percent.PercentRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
 
-</RelativeLayout>
+        <!--信息栏-->
+        <android.support.percent.PercentRelativeLayout
+            android:id="@+id/SimulationInfoBar"
+            android:layout_width="0dp"
+            android:layout_height="170dp"
+            android:layout_centerHorizontal="true"
+            app:layout_widthPercent="93.33%">
+
+            <!--左半边-头像、按钮部分-->
+            <android.support.percent.PercentRelativeLayout
+                android:id="@+id/SimulationInfoBarUser"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                app:layout_widthPercent="33.33%">
+
+                <!--头像框+名字-->
+                <android.support.percent.PercentRelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_centerHorizontal="true"
+                    app:layout_heightPercent="50.59%"
+                    app:layout_marginTopPercent="14.70%"
+                    app:layout_widthPercent="50%">
+                    <!--头像-->
+                    <com.pkmmte.view.CircularImageView
+                        android:id="@+id/SimulationInfoBarUserIcon"
+                        android:layout_width="fill_parent"
+                        android:layout_height="0dp"
+                        android:src="@drawable/simulation_infobar_user_icon"
+                        app:layout_heightPercent="69.77%" />
+
+                    <!--用户名-->
+                    <TextView
+                        android:id="@+id/SimulationInfoBarUserName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_centerHorizontal="true"
+                        android:gravity="center"
+                        android:text="Luna"
+                        android:textColor="#ffffff"
+                        android:textSize="14sp" />
+                </android.support.percent.PercentRelativeLayout>
+
+                <!--按钮部分-->
+                <android.support.percent.PercentRelativeLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="0dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerHorizontal="true"
+                    app:layout_heightPercent="14.70%"
+                    app:layout_marginBottomPercent="8.23%">
+
+                    <!--切换按钮-->
+                    <Button
+                        android:id="@+id/SimulationInfoBarUserSwitch"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_alignParentLeft="true"
+                        android:background="@drawable/login_button"
+                        android:text="切换"
+                        android:textColor="#ffffff"
+                        android:textSize="14dp"
+                        app:layout_widthPercent="46.73%" />
+
+                    <!--退出按钮-->
+                    <Button
+                        android:id="@+id/SimulationInfoBarUserExit"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_alignParentRight="true"
+                        android:background="@drawable/login_button"
+                        android:text="退出"
+                        android:textColor="#ffffff"
+                        android:textSize="14dp"
+                        app:layout_widthPercent="46.73%" />
+                </android.support.percent.PercentRelativeLayout>
+            </android.support.percent.PercentRelativeLayout>
+
+            <!--右边信息部分-->
+            <android.support.percent.PercentRelativeLayout
+                android:id="@+id/SimulationInfoBarInfo"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_alignParentRight="true"
+                app:layout_widthPercent="66.66%">
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:orientation="vertical">
+
+                    <!--资产-->
+                    <RelativeLayout
+                        android:id="@+id/SimulationInfoBarInfoAsset"
+                        style="@style/SimulationInfoBar">
+
+                        <!--总资产-->
+                        <LinearLayout
+                            android:layout_width="110dp"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentLeft="true"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/SimulationInfoBarInfoAssetTotal"
+                                style="@style/SimulationInfoBarText"
+                                android:text="1074369.76元"
+                                android:textSize="14sp" />
+
+                            <TextView
+                                style="@style/SimulationInfoBarText"
+                                android:text="总资产"
+                                android:textSize="12sp" />
+                        </LinearLayout>
+
+                        <!--可用资金-->
+                        <LinearLayout
+                            android:layout_width="110dp"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/SimulationInfoBarInfoAssetAvaliable"
+                                style="@style/SimulationInfoBarText"
+                                android:text="1074369.76元"
+                                android:textSize="14sp" />
+
+                            <TextView
+                                style="@style/SimulationInfoBarText"
+                                android:text="可用资金"
+                                android:textSize="12sp" />
+                        </LinearLayout>
+
+                        <!--股票市值-->
+                        <LinearLayout
+                            android:layout_width="110dp"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentBottom="true"
+                            android:layout_alignParentLeft="true"
+                            android:layout_marginBottom="8dp"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/SimulationInfoBarInfoAssetStock"
+                                style="@style/SimulationInfoBarText"
+                                android:text="1074369.76元"
+                                android:textSize="14sp" />
+
+                            <TextView
+                                style="@style/SimulationInfoBarText"
+                                android:text="股票市值"
+                                android:textSize="12sp" />
+                        </LinearLayout>
+
+                        <!--银证转账-->
+                        <Button
+                            android:id="@+id/SimulationInfoBarInfoAssetButton"
+                            style="@style/SimulationInfoBarButton"
+                            android:layout_alignParentBottom="true"
+                            android:layout_alignParentRight="true"
+                            android:layout_marginBottom="8dp"
+                            android:text="银证转账"
+                            android:textSize="14sp" />
+
+                        <!-- 白线 -->
+                        <View
+                            android:layout_width="fill_parent"
+                            android:layout_height="1dp"
+                            android:layout_alignParentBottom="true"
+                            android:background="#d2d2d2" />
+                    </RelativeLayout>
+
+                    <!--收益-->
+                    <RelativeLayout
+                        android:id="@+id/SimulationInfoBarInfoIncome"
+                        style="@style/SimulationInfoBar">
+
+                        <!--总收益-->
+                        <LinearLayout
+                            android:layout_width="110dp"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentLeft="true"
+                            android:layout_marginBottom="8dp"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/SimulationInfoBarInfoIncomeTotal"
+                                style="@style/SimulationInfoBarText"
+                                android:text="1074369.76元"
+                                android:textSize="14sp" />
+
+                            <TextView
+                                style="@style/SimulationInfoBarText"
+                                android:text="总收益"
+                                android:textSize="12sp" />
+                        </LinearLayout>
+
+                        <!--今日收益-->
+                        <LinearLayout
+                            android:layout_width="110dp"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_marginBottom="8dp"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/SimulationInfoBarInfoIncomeToday"
+                                style="@style/SimulationInfoBarText"
+                                android:text="1074369.76元"
+                                android:textSize="14sp" />
+
+                            <TextView
+                                style="@style/SimulationInfoBarText"
+                                android:text="今日收益"
+                                android:textSize="12sp" />
+                        </LinearLayout>
+
+                        <!--今日收益率-->
+                        <LinearLayout
+                            android:layout_width="110dp"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentBottom="true"
+                            android:layout_alignParentLeft="true"
+                            android:layout_marginBottom="8dp"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/SimulationInfoBarInfoIncomeRate"
+                                style="@style/SimulationInfoBarText"
+                                android:text="1074369.76元"
+                                android:textSize="14sp" />
+
+                            <TextView
+                                style="@style/SimulationInfoBarText"
+                                android:text="今日收益率"
+                                android:textSize="12sp" />
+                        </LinearLayout>
+
+                        <!--收益信息-->
+                        <Button
+                            android:id="@+id/SimulationInfoBarInfoIncomeButton"
+                            style="@style/SimulationInfoBarButton"
+                            android:layout_alignParentBottom="true"
+                            android:layout_alignParentRight="true"
+                            android:layout_marginBottom="8dp"
+                            android:text="收益信息"
+                            android:textSize="14sp" />
+                    </RelativeLayout>
+                </LinearLayout>
+            </android.support.percent.PercentRelativeLayout>
+        </android.support.percent.PercentRelativeLayout>
+
+        <!-- 白线 -->
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:layout_below="@id/SimulationInfoBar"
+            android:layout_centerHorizontal="true"
+            android:background="#d2d2d2" />
+
+        <!--下部界面(内容)-->
+        <android.support.percent.PercentRelativeLayout
+            android:id="@+id/SimulationContent"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_below="@id/SimulationInfoBar"
+            android:layout_centerHorizontal="true">
+            <!--标题-->
+            <TextView
+                android:id="@+id/SimulationContentTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="15dp"
+                android:text="我的持仓"
+                app:layout_marginLeftPercent="3.33%" />
+            <!-- 白线 -->
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:layout_below="@id/SimulationContentTitle"
+                android:background="#d2d2d2"
+                app:layout_marginTopPercent="1.66%" />
+            <!--股票信息 这里放listview-->
+            <ListView
+                android:id="@+id/SimulationContentList"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_below="@id/SimulationContentTitle"
+                android:layout_centerHorizontal="true"
+                android:cacheColorHint="#00000000"
+                android:divider="#d2d2d2"
+                android:dividerHeight="0.5dp"
+
+                app:layout_widthPercent="93.33%"></ListView>
+        </android.support.percent.PercentRelativeLayout>
+    </android.support.percent.PercentRelativeLayout>
+</ScrollView>

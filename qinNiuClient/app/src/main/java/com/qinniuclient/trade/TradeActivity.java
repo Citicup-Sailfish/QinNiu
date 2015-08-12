@@ -5,16 +5,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.Window;
-import android.widget.Button;
 import android.widget.RadioGroup;
 import android.widget.TabHost;
 
 import com.qinniuclient.R;
 
-public class SimulationActivity extends TabActivity {
+public class TradeActivity extends TabActivity {
     /**
      * Called when the activity is first created.
      */
@@ -24,57 +21,41 @@ public class SimulationActivity extends TabActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
-//        这里改页面
-        setContentView(R.layout.activity_simulation);
-
-        Button button = (Button) this.findViewById(R.id.SimulationActionBarExchange);
-        button.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                setContentView(R.layout.activity_exchange); // wrong method, need to change
-                // 点击button切换到实盘交易页面失败，这里需要补充
-            }
-        });
+        setContentView(R.layout.activity_trade);
 
         tabHost = this.getTabHost();
         TabHost.TabSpec spec;
         Intent intent;
 
 //        下面几行酌情增加或修改，修改就改xxxxActivity为所需页面
-        intent = new Intent().setClass(this, SimulationTabPositionActivity.class);
-        spec = tabHost.newTabSpec("持仓").setIndicator("持仓")
+
+        intent = new Intent().setClass(this, TradeSimulationActivity.class);
+        spec = tabHost.newTabSpec("模拟交易").setIndicator("模拟交易")
                 .setContent(intent);
         tabHost.addTab(spec);
 
-        intent = new Intent().setClass(this, SimulationTabBuyActivity.class);
-        spec = tabHost.newTabSpec("买入").setIndicator("买入")
+        intent = new Intent().setClass(this, TradeExchangeActivity.class);
+        spec = tabHost.newTabSpec("实盘交易").setIndicator("实盘交易")
                 .setContent(intent);
         tabHost.addTab(spec);
 
-        intent = new Intent().setClass(this, SimulationTabQueryActivity.class);
-        spec = tabHost.newTabSpec("查询").setIndicator("查询")
-                .setContent(intent);
-        tabHost.addTab(spec);
-
-        tabHost.setCurrentTabByTag("持仓");
+//        像数组下标一样用
+        tabHost.setCurrentTabByTag("模拟交易");
 
 //        这个ID是radioGroup的ID，对于不同的group设置不同值，否则会崩溃
         RadioGroup radioGroup = (RadioGroup) this
-                .findViewById(R.id.SimulationTabBar);
+                .findViewById(R.id.trade_title_group);
         radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
 
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 // TODO Auto-generated method stub
                 switch (checkedId) {
-                    case R.id.SimulationTabBarPosition:// 持仓
-                        tabHost.setCurrentTabByTag("持仓");
+                    case R.id.trade_ExchangeTabBar_simulation:// 行情
+                        tabHost.setCurrentTabByTag("模拟交易");
                         break;
-                    case R.id.SimulationTabBarBuy:// 买入
-                        tabHost.setCurrentTabByTag("买入");
-                        break;
-                    case R.id.SimulationTabBarQuery:// 查询
-                        tabHost.setCurrentTabByTag("查询");
+                    case R.id.trade_ExchangeTabBar_exchange:// 自选
+                        tabHost.setCurrentTabByTag("实盘交易");
                         break;
                     default:
                         break;
@@ -86,7 +67,7 @@ public class SimulationActivity extends TabActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_simulation, menu);
+        getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
 
@@ -105,3 +86,46 @@ public class SimulationActivity extends TabActivity {
         return super.onOptionsItemSelected(item);
     }
 }
+
+
+/*
+package com.qinniuclient.trade;
+
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
+
+import com.qinniuclient.R;
+
+public class TradeActivity extends AppCompatActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_trade);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_trade, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_settings) {
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+}
+*/

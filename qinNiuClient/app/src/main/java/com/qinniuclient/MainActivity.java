@@ -13,7 +13,7 @@ import com.qinniuclient.information.InformationActivity;
 import com.qinniuclient.login.LoginActivity;
 import com.qinniuclient.price.PriceActivity;
 import com.qinniuclient.register.RegisterActivity;
-import com.qinniuclient.trade.SimulationActivity;
+import com.qinniuclient.trade.TradeActivity;
 
 public class MainActivity extends TabActivity {
     /**
@@ -47,7 +47,7 @@ public class MainActivity extends TabActivity {
                 .setContent(intent);
         tabHost.addTab(spec);
 
-        intent = new Intent().setClass(this, SimulationActivity.class);
+        intent = new Intent().setClass(this, TradeActivity.class);
         spec = tabHost.newTabSpec("交易").setIndicator("交易").setContent(intent);
         tabHost.addTab(spec);
 

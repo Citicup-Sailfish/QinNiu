@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TabHost xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@android:id/tabhost"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#394264">
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical">
+
+        <TabWidget
+            android:id="@android:id/tabs"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.0"
+            android:visibility="gone" />
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="48dp"
+            android:background="#50597b">
+
+            <Button
+                android:id="@+id/exchangeButton"
+                android:layout_width="27dp"
+                android:layout_height="27dp"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="12dp"
+                android:layout_marginStart="12dp"
+                android:background="@drawable/iconmyself" />
+
+            <RadioGroup
+                android:id="@+id/trade_title_group"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:background="@drawable/hangqing_shape_linearlayout_tab_corner"
+                android:orientation="horizontal">
+
+                <!--行情-->
+                <RadioButton
+                    android:id="@+id/trade_ExchangeTabBar_simulation"
+                    style="@style/hangqing_ExchangeTabBar"
+                    android:checked="true"
+                    android:gravity="center"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:text="模拟交易"
+                    android:textSize="18sp" />
+
+                <!--自选-->
+                <RadioButton
+                    android:id="@+id/trade_ExchangeTabBar_exchange"
+                    style="@style/hangqing_ExchangeTabBar"
+                    android:gravity="center"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:text="实盘交易"
+                    android:textSize="18sp" />
+            </RadioGroup>
+
+        </RelativeLayout>
+
+        <FrameLayout
+            android:id="@android:id/tabcontent"
+            android:layout_width="fill_parent"
+            android:layout_height="0.0dp"
+            android:layout_weight="1.0" />
+    </LinearLayout>
+</TabHost>

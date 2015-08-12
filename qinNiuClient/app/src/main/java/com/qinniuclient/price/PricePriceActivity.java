@@ -21,40 +21,40 @@ public class PricePriceActivity extends TabActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
-//        è¿™é‡Œæ”¹é¡µé¢
+//        ÕâÀï¸ÄÒ³Ãæ
         setContentView(R.layout.activity_price_price);
 
         tabHost = this.getTabHost();
         TabHost.TabSpec spec;
         Intent intent;
 
-//        ä¸‹é¢å‡ è¡Œé…Œæƒ…å¢åŠ æˆ–ä¿®æ”¹ï¼Œä¿®æ”¹å°±æ”¹xxxxActivityä¸ºæ‰€éœ€é¡µé¢
+//        ÏÂÃæ¼¸ĞĞ×ÃÇéÔö¼Ó»òĞŞ¸Ä£¬ĞŞ¸Ä¾Í¸ÄxxxxActivityÎªËùĞèÒ³Ãæ
         intent = new Intent().setClass(this, PriceTabIndexActivity.class);
-        spec = tabHost.newTabSpec("è‚¡æŒ‡").setIndicator("è‚¡æŒ‡")
+        spec = tabHost.newTabSpec("¹ÉÖ¸").setIndicator("¹ÉÖ¸")
                 .setContent(intent);
         tabHost.addTab(spec);
 
         intent = new Intent().setClass(this, PriceTabSHSZActivity.class);
-        spec = tabHost.newTabSpec("æ²ªæ·±").setIndicator("æ²ªæ·±")
+        spec = tabHost.newTabSpec("»¦Éî").setIndicator("»¦Éî")
                 .setContent(intent);
         tabHost.addTab(spec);
 
         intent = new Intent().setClass(this, PriceTabSelectorActivity.class);
-        spec = tabHost.newTabSpec("æ¿å—").setIndicator("æ¿å—")
+        spec = tabHost.newTabSpec("°å¿é").setIndicator("°å¿é")
                 .setContent(intent);
         tabHost.addTab(spec);
 
         intent = new Intent().setClass(this, PriceTabHKUSActivity.class);
-        spec = tabHost.newTabSpec("æ¸¯ç¾è‚¡").setIndicator("æ¸¯ç¾è‚¡").setContent(intent);
+        spec = tabHost.newTabSpec("¸ÛÃÀ¹É").setIndicator("¸ÛÃÀ¹É").setContent(intent);
         tabHost.addTab(spec);
 
         intent = new Intent().setClass(this, PriceTabOtherActivity.class);
-        spec = tabHost.newTabSpec("å…¶ä»–").setIndicator("å…¶ä»–").setContent(intent);
+        spec = tabHost.newTabSpec("ÆäËû").setIndicator("ÆäËû").setContent(intent);
         tabHost.addTab(spec);
 
-        tabHost.setCurrentTabByTag("è‚¡æŒ‡");
+        tabHost.setCurrentTabByTag("¹ÉÖ¸");
 
-//        è¿™ä¸ªIDæ˜¯radioGroupçš„IDï¼Œå¯¹äºä¸åŒçš„groupè®¾ç½®ä¸åŒå€¼ï¼Œå¦åˆ™ä¼šå´©æºƒ
+//        Õâ¸öIDÊÇradioGroupµÄID£¬¶ÔÓÚ²»Í¬µÄgroupÉèÖÃ²»Í¬Öµ£¬·ñÔò»á±ÀÀ£
         RadioGroup radioGroup = (RadioGroup) this
                 .findViewById(R.id.hangqing_ExchangeTabBar);
         radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
@@ -63,20 +63,20 @@ public class PricePriceActivity extends TabActivity {
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 // TODO Auto-generated method stub
                 switch (checkedId) {
-                    case R.id.hangqing_ExchangeTabBar_yaowen:// è‚¡æŒ‡
-                        tabHost.setCurrentTabByTag("è‚¡æŒ‡");
+                    case R.id.hangqing_ExchangeTabBar_yaowen:// ¹ÉÖ¸
+                        tabHost.setCurrentTabByTag("¹ÉÖ¸");
                         break;
-                    case R.id.hangqing_ExchangeTabBar_hundong:// æ²ªæ·±
-                        tabHost.setCurrentTabByTag("æ²ªæ·±");
+                    case R.id.hangqing_ExchangeTabBar_hundong:// »¦Éî
+                        tabHost.setCurrentTabByTag("»¦Éî");
                         break;
-                    case R.id.hangqing_ExchangeTabBar_jihui:// æ¿å—
-                        tabHost.setCurrentTabByTag("æ¿å—");
+                    case R.id.hangqing_ExchangeTabBar_jihui:// °å¿é
+                        tabHost.setCurrentTabByTag("°å¿é");
                         break;
-                    case R.id.hangqing_ExchangeTabBar_zixuangu:// æ¸¯ç¾è‚¡
-                        tabHost.setCurrentTabByTag("æ¸¯ç¾è‚¡");
+                    case R.id.hangqing_ExchangeTabBar_zixuangu:// ¸ÛÃÀ¹É
+                        tabHost.setCurrentTabByTag("¸ÛÃÀ¹É");
                         break;
-                    case R.id.hangqing_ExchangeTabBar_more:// å…¶ä»–
-                        tabHost.setCurrentTabByTag("å…¶ä»–");
+                    case R.id.hangqing_ExchangeTabBar_more:// ÆäËû
+                        tabHost.setCurrentTabByTag("ÆäËû");
                         break;
                     default:
                         break;
