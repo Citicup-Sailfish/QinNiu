@@ -21,40 +21,40 @@ public class InformationActivity extends TabActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
-//        ÕâÀï¸ÄÒ³Ãæ
+//        è¿™é‡Œæ”¹é¡µé¢
         setContentView(R.layout.activity_information);
 
         tabHost = this.getTabHost();
         TabHost.TabSpec spec;
         Intent intent;
 
-//        ÏÂÃæ¼¸ĞĞ×ÃÇéÔö¼Ó»òĞŞ¸Ä£¬ĞŞ¸Ä¾Í¸ÄxxxxActivityÎªËùĞèÒ³Ãæ
+//        ä¸‹é¢å‡ è¡Œé…Œæƒ…å¢åŠ æˆ–ä¿®æ”¹ï¼Œä¿®æ”¹å°±æ”¹xxxxActivityä¸ºæ‰€éœ€é¡µé¢
         intent = new Intent().setClass(this, InformationNewsActivity.class);
-        spec = tabHost.newTabSpec("ÒªÎÅ").setIndicator("ÒªÎÅ")
+        spec = tabHost.newTabSpec("è¦é—»").setIndicator("è¦é—»")
                 .setContent(intent);
         tabHost.addTab(spec);
 
         intent = new Intent().setClass(this, InformationScrollActivity.class);
-        spec = tabHost.newTabSpec("¹ö¶¯").setIndicator("¹ö¶¯")
+        spec = tabHost.newTabSpec("æ»šåŠ¨").setIndicator("æ»šåŠ¨")
                 .setContent(intent);
         tabHost.addTab(spec);
 
         intent = new Intent().setClass(this, InformationChanceActivity.class);
-        spec = tabHost.newTabSpec("»ú»á").setIndicator("»ú»á")
+        spec = tabHost.newTabSpec("æœºä¼š").setIndicator("æœºä¼š")
                 .setContent(intent);
         tabHost.addTab(spec);
 
         intent = new Intent().setClass(this, InformationOptionalActivity.class);
-        spec = tabHost.newTabSpec("×ÔÑ¡¹É").setIndicator("×ÔÑ¡¹É").setContent(intent);
+        spec = tabHost.newTabSpec("è‡ªé€‰è‚¡").setIndicator("è‡ªé€‰è‚¡").setContent(intent);
         tabHost.addTab(spec);
 
         intent = new Intent().setClass(this, InformationCourseActivity.class);
-        spec = tabHost.newTabSpec("¾«Æ·¿ÎÌÃ").setIndicator("¾«Æ·¿ÎÌÃ").setContent(intent);
+        spec = tabHost.newTabSpec("ç²¾å“è¯¾å ‚").setIndicator("ç²¾å“è¯¾å ‚").setContent(intent);
         tabHost.addTab(spec);
 
-        tabHost.setCurrentTabByTag("ÒªÎÅ");
+        tabHost.setCurrentTabByTag("è¦é—»");
 
-//        Õâ¸öIDÊÇradioGroupµÄID£¬¶ÔÓÚ²»Í¬µÄgroupÉèÖÃ²»Í¬Öµ£¬·ñÔò»á±ÀÀ£
+//        è¿™ä¸ªIDæ˜¯radioGroupçš„IDï¼Œå¯¹äºä¸åŒçš„groupè®¾ç½®ä¸åŒå€¼ï¼Œå¦åˆ™ä¼šå´©æºƒ
         RadioGroup radioGroup = (RadioGroup) this
                 .findViewById(R.id.information_ExchangeTabBar);
         radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
@@ -63,20 +63,20 @@ public class InformationActivity extends TabActivity {
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 // TODO Auto-generated method stub
                 switch (checkedId) {
-                    case R.id.information_ExchangeTabBar_yaowen:// ÒªÎÅ
-                        tabHost.setCurrentTabByTag("ÒªÎÅ");
+                    case R.id.information_ExchangeTabBar_yaowen:// è¦é—»
+                        tabHost.setCurrentTabByTag("è¦é—»");
                         break;
-                    case R.id.information_ExchangeTabBar_hundong:// ¹ö¶¯
-                        tabHost.setCurrentTabByTag("¹ö¶¯");
+                    case R.id.information_ExchangeTabBar_hundong:// æ»šåŠ¨
+                        tabHost.setCurrentTabByTag("æ»šåŠ¨");
                         break;
-                    case R.id.information_ExchangeTabBar_jihui:// »ú»á
-                        tabHost.setCurrentTabByTag("»ú»á");
+                    case R.id.information_ExchangeTabBar_jihui:// æœºä¼š
+                        tabHost.setCurrentTabByTag("æœºä¼š");
                         break;
-                    case R.id.information_ExchangeTabBar_zixuangu:// ×ÔÑ¡¹É
-                        tabHost.setCurrentTabByTag("×ÔÑ¡¹É");
+                    case R.id.information_ExchangeTabBar_zixuangu:// è‡ªé€‰è‚¡
+                        tabHost.setCurrentTabByTag("è‡ªé€‰è‚¡");
                         break;
-                    case R.id.information_ExchangeTabBar_more:// ¾«Æ·¿ÎÌÃ
-                        tabHost.setCurrentTabByTag("¾«Æ·¿ÎÌÃ");
+                    case R.id.information_ExchangeTabBar_more:// ç²¾å“è¯¾å ‚
+                        tabHost.setCurrentTabByTag("ç²¾å“è¯¾å ‚");
                         break;
                     default:
                         break;

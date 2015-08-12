@@ -33,26 +33,26 @@
                 <!--持仓-->
                 <RadioButton
                     android:id="@+id/ExchangeTabBarPosition"
-                    style="@style/ExchangeTabBar"
+                    style="@style/SimulationTabBar"
                     android:checked="true"
                     android:text="持仓" />
 
                 <!--买入-->
                 <RadioButton
                     android:id="@+id/ExchangeTabBarBuy"
-                    style="@style/ExchangeTabBar"
+                    style="@style/SimulationTabBar"
                     android:text="买入" />
 
                 <!--查询-->
                 <RadioButton
                     android:id="@+id/ExchangeTabBarQuery"
-                    style="@style/ExchangeTabBar"
+                    style="@style/SimulationTabBar"
                     android:text="查询" />
 
                 <!--转账-->
                 <RadioButton
                     android:id="@+id/ExchangeTabBarTransfer"
-                    style="@style/ExchangeTabBar"
+                    style="@style/SimulationTabBar"
                     android:text="转账" />
 
             </RadioGroup>

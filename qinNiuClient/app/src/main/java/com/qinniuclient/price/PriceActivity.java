@@ -29,22 +29,22 @@ public class PriceActivity extends TabActivity {
         TabHost.TabSpec spec;
         Intent intent;
 
-//        ÏÂÃæ¼¸ĞĞ×ÃÇéÔö¼Ó»òĞŞ¸Ä£¬ĞŞ¸Ä¾Í¸ÄxxxxActivityÎªËùĞèÒ³Ãæ
+//        ä¸‹é¢å‡ è¡Œé…Œæƒ…å¢åŠ æˆ–ä¿®æ”¹ï¼Œä¿®æ”¹å°±æ”¹xxxxActivityä¸ºæ‰€éœ€é¡µé¢
 
         intent = new Intent().setClass(this, PricePriceActivity.class);
-        spec = tabHost.newTabSpec("ĞĞÇé").setIndicator("ĞĞÇé")
+        spec = tabHost.newTabSpec("è¡Œæƒ…").setIndicator("è¡Œæƒ…")
                 .setContent(intent);
         tabHost.addTab(spec);
 
         intent = new Intent().setClass(this, PriceOptionalActivity.class);
-        spec = tabHost.newTabSpec("×ÔÑ¡").setIndicator("×ÔÑ¡")
+        spec = tabHost.newTabSpec("è‡ªé€‰").setIndicator("è‡ªé€‰")
                 .setContent(intent);
         tabHost.addTab(spec);
 
-//        ÏñÊı×éÏÂ±êÒ»ÑùÓÃ
-        tabHost.setCurrentTabByTag("ĞĞÇé");
+//        åƒæ•°ç»„ä¸‹æ ‡ä¸€æ ·ç”¨
+        tabHost.setCurrentTabByTag("è¡Œæƒ…");
 
-//        Õâ¸öIDÊÇradioGroupµÄID£¬¶ÔÓÚ²»Í¬µÄgroupÉèÖÃ²»Í¬Öµ£¬·ñÔò»á±ÀÀ£
+//        è¿™ä¸ªIDæ˜¯radioGroupçš„IDï¼Œå¯¹äºä¸åŒçš„groupè®¾ç½®ä¸åŒå€¼ï¼Œå¦åˆ™ä¼šå´©æºƒ
         RadioGroup radioGroup = (RadioGroup) this
                 .findViewById(R.id.price_title_group);
         radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
@@ -53,11 +53,11 @@ public class PriceActivity extends TabActivity {
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 // TODO Auto-generated method stub
                 switch (checkedId) {
-                    case R.id.hangqing_ExchangeTabBar_hangqing:// ĞĞÇé
-                        tabHost.setCurrentTabByTag("ĞĞÇé");
+                    case R.id.hangqing_ExchangeTabBar_hangqing:// è¡Œæƒ…
+                        tabHost.setCurrentTabByTag("è¡Œæƒ…");
                         break;
-                    case R.id.hangqing_ExchangeTabBar_zixuan:// ×ÔÑ¡
-                        tabHost.setCurrentTabByTag("×ÔÑ¡");
+                    case R.id.hangqing_ExchangeTabBar_zixuan:// è‡ªé€‰
+                        tabHost.setCurrentTabByTag("è‡ªé€‰");
                         break;
                     default:
                         break;
@@ -65,18 +65,18 @@ public class PriceActivity extends TabActivity {
             }
         });
 
-        /*ËÑ²ébuttonµÄÌø×ª ×Ó²©*/
+        /*æœæŸ¥buttonçš„è·³è½¬ å­åš*/
         Button btn1 = (Button) findViewById(R.id.hangqing_ButtonSearch);
         btn1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                //IntentÊÇÒ»ÖÖÔËĞĞÊ±°ó¶¨£¨run-time binding£©»úÖÆ£¬ËüÄÜÔÚ³ÌĞòÔËĞĞ¹ı³ÌÖĞÁ¬½ÓÁ½¸ö²»Í¬µÄ×é¼ş¡£
+                //Intentæ˜¯ä¸€ç§è¿è¡Œæ—¶ç»‘å®šï¼ˆrun-time bindingï¼‰æœºåˆ¶ï¼Œå®ƒèƒ½åœ¨ç¨‹åºè¿è¡Œè¿‡ç¨‹ä¸­è¿æ¥ä¸¤ä¸ªä¸åŒçš„ç»„ä»¶ã€‚
 
-                //page1ÎªÏÈÇ°ÒÑÌí¼ÓµÄÀà£¬²¢ÒÑÔÚAndroidManifest.xmlÄÚÌí¼Ó»î¶¯ÊÂ¼ş(<activity android:name="page1"></activity>),ÔÚ´æ·Å×ÊÔ´´úÂëµÄÎÄ¼ş¼ĞÏÂÏÂ£¬
+                //page1ä¸ºå…ˆå‰å·²æ·»åŠ çš„ç±»ï¼Œå¹¶å·²åœ¨AndroidManifest.xmlå†…æ·»åŠ æ´»åŠ¨äº‹ä»¶(<activity android:name="page1"></activity>),åœ¨å­˜æ”¾èµ„æºä»£ç çš„æ–‡ä»¶å¤¹ä¸‹ä¸‹ï¼Œ
                 Intent i = new Intent(PriceActivity.this, PriceSearch.class);
 
-                ////Æô¶¯
+                ////å¯åŠ¨
                 startActivity(i);
             }
         });

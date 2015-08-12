@@ -33,20 +33,20 @@
                 <!--持仓-->
                 <RadioButton
                     android:id="@+id/SimulationTabBarPosition"
-                    style="@style/ExchangeTabBar"
+                    style="@style/SimulationTabBar"
                     android:checked="true"
                     android:text="持仓" />
 
                 <!--买入-->
                 <RadioButton
                     android:id="@+id/SimulationTabBarBuy"
-                    style="@style/ExchangeTabBar"
+                    style="@style/SimulationTabBar"
                     android:text="买入" />
 
                 <!--查询-->
                 <RadioButton
                     android:id="@+id/SimulationTabBarQuery"
-                    style="@style/ExchangeTabBar"
+                    style="@style/SimulationTabBar"
                     android:text="查询" />
             </RadioGroup>
         </LinearLayout>
