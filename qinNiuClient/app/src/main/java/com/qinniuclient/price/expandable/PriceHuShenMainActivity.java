@@ -1,4 +1,4 @@
-package com.qinniuclient.price;
+package com.qinniuclient.price.expandable;
 /*这份代码来自网上模板，所以命名方式有些奇怪，我也不敢随意去改名字，怕造成bug*/
 import java.util.ArrayList;
 import java.util.List;
@@ -14,9 +14,6 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.AbsListView.LayoutParams;
-
-import com.qinniuclient.price.expandable.PriceItemGroup;
-import com.qinniuclient.price.expandable.PriceItemPeople;
 import com.qinniuclient.price.expandableui.PinnedHeaderExpandableListView;
 import com.qinniuclient.price.expandableui.StickyLayout;
 import com.qinniuclient.price.expandableui.PinnedHeaderExpandableListView.OnHeaderUpdateListener;
@@ -28,7 +25,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class PriceTabSHSZActivity extends Activity implements
+public class PriceHuShenMainActivity extends Activity implements
         ExpandableListView.OnChildClickListener,
         ExpandableListView.OnGroupClickListener,
         OnHeaderUpdateListener, OnGiveUpTouchEventListener {
