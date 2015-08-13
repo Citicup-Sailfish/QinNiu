@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/SimulationBuyPosition"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="5dp"
+    android:layout_marginTop="5dp"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <!--标题栏-->
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="25dp"
+        android:layout_gravity="center"
+        android:background="#49516f"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:paddingLeft="12dp"
+        android:paddingRight="12dp">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1.0"
+            android:gravity="center"
+            android:includeFontPadding="false"
+            android:text="最新市值"
+            android:textColor="#d2d2d2"
+            android:textSize="12sp" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1.0"
+            android:gravity="center"
+            android:includeFontPadding="false"
+            android:text="盈亏"
+            android:textColor="#d2d2d2"
+            android:textSize="12sp" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1.0"
+            android:gravity="center"
+            android:includeFontPadding="false"
+            android:text="持仓/可用"
+            android:textColor="#d2d2d2"
+            android:textSize="12sp" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1.0"
+            android:gravity="center"
+            android:includeFontPadding="false"
+            android:text="成本/现价"
+            android:textColor="#d2d2d2"
+            android:textSize="12sp" />
+    </LinearLayout>
+
+    <!--内容部分
+      内容的默认样式是android:textColor="#d2d2d2"
+      价格高于现价的样式是android:textColor="#e74e64"
+      低于现价的样式是android:textColor="#1ed75b"-->
+
+    <!--android:layout_marginTop="5dp"-->
+    <!--android:layout_marginBottom="5dp"-->
+    <!--内容第一行-->
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="18dp"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:paddingLeft="12dp"
+        android:paddingRight="12dp">
+
+        <!--股票名称-->
+        <TextView
+            android:id="@+id/SimulationBuyPositionStockName"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1.0"
+            android:gravity="center"
+            android:includeFontPadding="false"
+            android:text="浦发银行"
+            android:textColor="#d2d2d2"
+            android:textSize="12sp" />
+
+        <!--盈亏数额-->
+        <TextView
+            android:id="@+id/SimulationBuyPositionProfit"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1.0"
+            android:gravity="center"
+            android:includeFontPadding="false"
+            android:text="13.70"
+            android:textColor="#d2d2d2"
+            android:textSize="12sp" />
+
+        <!--持仓-->
+        <TextView
+            android:id="@+id/SimulationBuyPositionCurrentPosition"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1.0"
+            android:gravity="center"
+            android:includeFontPadding="false"
+            android:text="1000"
+            android:textColor="#d2d2d2"
+            android:textSize="12sp" />
+
+        <!--成本-->
+        <TextView
+            android:id="@+id/SimulationBuyPositionCurrentCost"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1.0"
+            android:gravity="center"
+            android:includeFontPadding="false"
+            android:text="15.316"
+            android:textColor="#d2d2d2"
+            android:textSize="12sp" />
+    </LinearLayout>
+
+    <!--内容第二行-->
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="18dp"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:paddingLeft="12dp"
+        android:paddingRight="12dp">
+
+        <!--股票市值-->
+        <TextView
+            android:id="@+id/SimulationBuyPositionTotalPrice"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1.0"
+            android:gravity="center"
+            android:includeFontPadding="false"
+            android:text="15330.00"
+            android:textColor="#d2d2d2"
+            android:textSize="12sp" />
+
+        <!--盈亏比例-->
+        <TextView
+            android:id="@+id/SimulationBuyPositionProfitRate"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1.0"
+            android:gravity="center"
+            android:includeFontPadding="false"
+            android:text="0.09%"
+            android:textColor="#d2d2d2"
+            android:textSize="12sp" />
+
+        <!--可用-->
+        <TextView
+            android:id="@+id/SimulationBuyPositionCurrentAvaliable"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1.0"
+            android:gravity="center"
+            android:includeFontPadding="false"
+            android:text="1000"
+            android:textColor="#d2d2d2"
+            android:textSize="12sp" />
+
+        <!--现价-->
+        <TextView
+            android:id="@+id/SimulationBuyPositionCurrentPrice"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1.0"
+            android:gravity="center"
+            android:includeFontPadding="false"
+            android:text="15.33"
+            android:textColor="#d2d2d2"
+            android:textSize="12sp" />
+    </LinearLayout>
+
+    <!--白线-->
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1px"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp"
+        android:background="#ffffff" />
+</LinearLayout>
