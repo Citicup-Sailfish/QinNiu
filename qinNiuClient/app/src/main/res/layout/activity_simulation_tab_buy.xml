@@ -20,10 +20,10 @@
             <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="12dp"
-                android:layout_marginStart="12dp"
+                android:layout_alignParentLeft="true"
                 android:layout_centerVertical="true"
-                android:layout_alignParentLeft="true">
+                android:layout_marginLeft="12dp"
+                android:layout_marginStart="12dp">
 
                 <TextView
                     android:id="@+id/SimulationBuyInfoBarAvaliableTitle"
@@ -48,62 +48,560 @@
                 android:id="@+id/SimulationBuyInfoBarBuy"
                 android:layout_width="59dp"
                 android:layout_height="12dp"
-                android:text="现在买入"
-                android:textSize="12dp"
-                android:textColor="#d55858"
                 android:layout_alignParentRight="true"
-                android:layout_marginRight="12dp"
                 android:layout_centerVertical="true"
+                android:layout_marginRight="12dp"
+                android:background="@null"
                 android:drawableRight="@drawable/simulation_buy_infobar_button"
-                android:background="@null"></Button>
+                android:gravity="center"
+                android:includeFontPadding="false"
+                android:text="进行转账"
+                android:textColor="#d55858"
+                android:textSize="12sp" />
         </RelativeLayout>
-        <!--
 
-                &lt;!&ndash; 白线 &ndash;&gt;
-                <View
+        <!--买入界面-->
+        <RelativeLayout
+            android:id="@+id/SimulationBuyContent"
+            android:layout_width="fill_parent"
+            android:layout_height="245dp"
+            android:layout_below="@id/SimulationBuyInfoBar"
+            android:layout_marginTop="20dp"
+            android:paddingLeft="12dp"
+            android:paddingRight="12dp">
+
+            <!--左边部分，输入框与按钮-->
+            <LinearLayout
+                android:id="@+id/SimulationBuyContentLeft"
+                android:layout_width="200dp"
+                android:layout_height="fill_parent"
+                android:orientation="vertical">
+
+                <!--股票代码-->
+                <AutoCompleteTextView
+                    android:id="@+id/SimulationBuyContentLeftStock"
                     android:layout_width="fill_parent"
-                    android:layout_height="1dp"
-                    android:layout_below="@id/SimulationInfoBar"
-                    android:layout_centerHorizontal="true"
-                    android:background="#d2d2d2" />
-        -->
+                    android:layout_height="40dp"
+                    android:background="@drawable/shape_trade_buy_input"
+                    android:completionThreshold="1"
+                    android:focusable="true"
+                    android:gravity="center"
+                    android:hint="股票代码/首字母"
+                    android:imeOptions="actionSearch"
+                    android:inputType="numberDecimal"
+                    android:maxLength="6"
+                    android:singleLine="true"
+                    android:textSize="14sp" />
 
-        <!--下部界面(内容)-->
-        <!--        <android.support.percent.PercentRelativeLayout
-                    android:id="@+id/SimulationContent"
+                <!--委托价格-->
+                <RelativeLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="58dp"
+                    android:layout_marginTop="10dp">
+
+                    <EditText
+                        android:id="@+id/SimulationBuyContentPrice"
+                        android:layout_width="fill_parent"
+                        android:layout_height="40dp"
+                        android:background="@drawable/shape_trade_buy_input"
+                        android:focusable="true"
+                        android:gravity="center"
+                        android:hint="委托价格"
+                        android:singleLine="true"
+                        android:textSize="14sp" />
+
+                    <!--减价按钮-->
+                    <Button
+                        android:id="@+id/SimulationBuyContentPriceDec"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true"
+                        android:background="@drawable/trade_buy_dec_button" />
+
+                    <!--跌停(因为内容只有跌停两个字和具体的数值，就不分开两个textview了，代码获取到string以后直接加吧。。。)-->
+                    <TextView
+                        android:id="@+id/SimulationBuyInfoBarDownLimit"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:layout_below="@id/SimulationBuyContentPriceDec"
+                        android:layout_marginTop="6dp"
+                        android:includeFontPadding="false"
+                        android:text="跌停--"
+                        android:textColor="#1ed75b"
+                        android:textSize="12sp" />
+
+                    <!--加价按钮-->
+                    <Button
+                        android:id="@+id/SimulationBuyContentPriceAdd"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignParentTop="true"
+                        android:background="@drawable/trade_buy_add_button" />
+
+                    <!--涨停(跌停同理)-->
+                    <TextView
+                        android:id="@+id/SimulationBuyInfoBarUpLimit"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_below="@id/SimulationBuyContentPriceAdd"
+                        android:layout_marginTop="6dp"
+                        android:includeFontPadding="false"
+                        android:text="涨停++"
+                        android:textColor="#d55858"
+                        android:textSize="12sp" />
+                </RelativeLayout>
+
+                <!--委托数量-->
+                <EditText
+                    android:id="@+id/SimulationBuyContentAmount"
+                    android:layout_width="fill_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="7dp"
+                    android:background="@drawable/shape_trade_buy_input"
+                    android:focusable="true"
+                    android:gravity="center"
+                    android:hint="委托数量"
+                    android:singleLine="true"
+                    android:textSize="14sp" />
+
+                <!--数量按钮
+                  这三个按钮目前是默认背景和字体颜色
+                  激活后的样式是
+                  android:background="@drawable/shape_trade_buy_button_amount"
+                  android:textColor="#d2d2d2"-->
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="35dp"
+                    android:layout_marginTop="10dp"
+                    android:divider="@drawable/spacer_medium"
+                    android:orientation="horizontal"
+                    android:showDividers="middle">
+
+                    <!--1/4按钮-->
+                    <Button
+                        android:id="@+id/SimulationBuyContentAmountQuarter"
+                        style="@style/SimulationBuyButtonDefault"
+                        android:background="@drawable/shape_trade_buy_button_default"
+                        android:text="1/4"
+                        android:textColor="#9497a2" />
+
+                    <Button
+                        android:id="@+id/SimulationBuyContentAmountHalf"
+                        style="@style/SimulationBuyButtonDefault"
+                        android:background="@drawable/shape_trade_buy_button_default"
+                        android:text="1/2"
+                        android:textColor="#9497a2" />
+
+                    <Button
+                        android:id="@+id/SimulationBuyContentAmountAll"
+                        style="@style/SimulationBuyButtonDefault"
+                        android:background="@drawable/shape_trade_buy_button_default"
+                        android:text="全部"
+                        android:textColor="#9497a2" />
+                </LinearLayout>
+
+                <!--买入按钮
+                  这两个按钮目前是默认背景和字体颜色
+                  激活后的样式是
+                  android:background="@drawable/shape_trade_buy_button_buy"
+                  android:textColor="#d2d2d2"-->
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="35dp"
+                    android:layout_marginTop="10dp"
+                    android:divider="@drawable/spacer_medium"
+                    android:orientation="horizontal"
+                    android:showDividers="middle">
+
+                    <!--1/4按钮-->
+                    <Button
+                        android:id="@+id/SimulationBuyContentBuy"
+                        style="@style/SimulationBuyButtonDefault"
+                        android:background="@drawable/shape_trade_buy_button_default"
+                        android:text="买入"
+                        android:textColor="#9497a2" />
+
+                    <Button
+                        android:id="@+id/SimulationBuyContentAmountMarcetBuy"
+                        style="@style/SimulationBuyButtonDefault"
+                        android:background="@drawable/shape_trade_buy_button_default"
+                        android:text="市价买入"
+                        android:textColor="#9497a2" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <!--右边部分
+              买入卖出文字的默认样式是android:textColor="#d2d2d2"
+              价格高于现价的样式是android:textColor="#e74e64"
+              低于现价的样式是android:textColor="#1ed75b"-->
+            <RelativeLayout
+                android:id="@+id/SimulationBuyContentRight"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginLeft="13dp"
+                android:layout_toRightOf="@id/SimulationBuyContentLeft"
+                android:gravity="center_horizontal">
+
+                <!--股票代码-->
+                <TextView
+                    android:id="@+id/SimulationBuyContentRightStock"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="5dp"
+                    android:gravity="center"
+                    android:includeFontPadding="false"
+                    android:maxLines="2"
+                    android:singleLine="true"
+                    android:text="股票名称/代码"
+                    android:textColor="#ffffff"
+                    android:textSize="12sp" />
+
+                <TableLayout
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"
-                    android:layout_below="@id/SimulationInfoBar"
-                    android:layout_centerHorizontal="true">
-                    &lt;!&ndash;标题&ndash;&gt;
-                    <TextView
-                        android:id="@+id/SimulationContentTitle"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="5dp"
-                        android:layout_marginTop="15dp"
-                        android:text="我的持仓"
-                        app:layout_marginLeftPercent="3.33%" />
-                    &lt;!&ndash; 白线 &ndash;&gt;
+                    android:layout_marginBottom="0dp">
+
+                    <!--卖5-->
+                    <TableRow
+                        android:layout_marginLeft="7dp"
+                        android:layout_marginRight="7dp">
+
+                        <TextView
+                            android:layout_width="25dp"
+                            android:layout_height="18dp"
+                            android:gravity="left|center_vertical"
+                            android:includeFontPadding="false"
+                            android:text="卖5"
+                            android:textColor="#ffffff"
+                            android:textSize="12sp" />
+
+                        <TextView
+                            android:id="@+id/SimulationBuyContentRightSale5Price"
+                            style="@style/SimulationBuyContentRightText"
+                            android:gravity="left|center_vertical"
+                            android:text="-"
+                            android:textColor="#d2d2d2" />
+
+                        <TextView
+                            android:id="@+id/SimulationBuyContentRightSale5Lots"
+                            style="@style/SimulationBuyContentRightText"
+                            android:gravity="right|center_vertical"
+                            android:text="-"
+                            android:textColor="#d2d2d2" />
+                    </TableRow>
+                    <!--卖4-->
+                    <TableRow
+                        android:layout_marginLeft="7dp"
+                        android:layout_marginRight="7dp">
+
+                        <TextView
+                            android:layout_width="25dp"
+                            android:layout_height="18dp"
+                            android:gravity="left|center_vertical"
+                            android:includeFontPadding="false"
+                            android:text="卖4"
+                            android:textColor="#ffffff"
+                            android:textSize="12sp" />
+
+                        <TextView
+                            android:id="@+id/SimulationBuyContentRightSale4Price"
+                            style="@style/SimulationBuyContentRightText"
+                            android:gravity="left|center_vertical"
+                            android:text="-"
+                            android:textColor="#d2d2d2" />
+
+                        <TextView
+                            android:id="@+id/SimulationBuyContentRightSale4Lots"
+                            style="@style/SimulationBuyContentRightText"
+                            android:gravity="right|center_vertical"
+                            android:text="-"
+                            android:textColor="#d2d2d2" />
+                    </TableRow>
+
+                    <!--卖3-->
+                    <TableRow
+                        android:layout_marginLeft="7dp"
+                        android:layout_marginRight="7dp">
+
+                        <TextView
+                            android:layout_width="25dp"
+                            android:layout_height="18dp"
+                            android:gravity="left|center_vertical"
+                            android:includeFontPadding="false"
+                            android:text="卖3"
+                            android:textColor="#ffffff"
+                            android:textSize="12sp" />
+
+                        <TextView
+                            android:id="@+id/SimulationBuyContentRightSale3Price"
+                            style="@style/SimulationBuyContentRightText"
+                            android:gravity="left|center_vertical"
+                            android:text="-"
+                            android:textColor="#d2d2d2" />
+
+                        <TextView
+                            android:id="@+id/SimulationBuyContentRightSale3Lots"
+                            style="@style/SimulationBuyContentRightText"
+                            android:gravity="right|center_vertical"
+                            android:text="-"
+                            android:textColor="#d2d2d2" />
+                    </TableRow>
+
+                    <!--卖2-->
+                    <TableRow
+                        android:layout_marginLeft="7dp"
+                        android:layout_marginRight="7dp">
+
+                        <TextView
+                            android:layout_width="25dp"
+                            android:layout_height="18dp"
+                            android:gravity="left|center_vertical"
+                            android:includeFontPadding="false"
+                            android:text="卖2"
+                            android:textColor="#ffffff"
+                            android:textSize="12sp" />
+
+                        <TextView
+                            android:id="@+id/SimulationBuyContentRightSale2Price"
+                            style="@style/SimulationBuyContentRightText"
+                            android:gravity="left|center_vertical"
+                            android:text="-"
+                            android:textColor="#d2d2d2" />
+
+                        <TextView
+                            android:id="@+id/SimulationBuyContentRightSale2Lots"
+                            style="@style/SimulationBuyContentRightText"
+                            android:gravity="right|center_vertical"
+                            android:text="-"
+                            android:textColor="#d2d2d2" />
+                    </TableRow>
+
+                    <!--卖1-->
+                    <TableRow
+                        android:layout_marginLeft="7dp"
+                        android:layout_marginRight="7dp">
+
+                        <TextView
+                            android:layout_width="25dp"
+                            android:layout_height="18dp"
+                            android:gravity="left|center_vertical"
+                            android:includeFontPadding="false"
+                            android:text="卖1"
+                            android:textColor="#ffffff"
+                            android:textSize="12sp" />
+
+                        <TextView
+                            android:id="@+id/SimulationBuyContentRightSale1Price"
+                            style="@style/SimulationBuyContentRightText"
+                            android:gravity="left|center_vertical"
+                            android:text="-"
+                            android:textColor="#d2d2d2" />
+
+                        <TextView
+                            android:id="@+id/SimulationBuyContentRightSale1Lots"
+                            style="@style/SimulationBuyContentRightText"
+                            android:gravity="right|center_vertical"
+                            android:text="-"
+                            android:textColor="#d2d2d2" />
+                    </TableRow>
+
+                    <!--白线-->
                     <View
                         android:layout_width="fill_parent"
-                        android:layout_height="1dp"
-                        android:layout_below="@id/SimulationContentTitle"
-                        android:background="#d2d2d2"
-                        app:layout_marginTopPercent="1.66%" />
-                    &lt;!&ndash;股票信息 这里放listview&ndash;&gt;
-                    <ListView
-                        android:id="@+id/SimulationContentList"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_below="@id/SimulationContentTitle"
-                        android:layout_centerHorizontal="true"
-                        android:cacheColorHint="#00000000"
-                        android:divider="#d2d2d2"
-                        android:dividerHeight="0.5dp"
+                        android:layout_height="1px"
+                        android:background="#ffffff" />
 
-                        app:layout_widthPercent="93.33%"></ListView>
-                </android.support.percent.PercentRelativeLayout>-->
+                    <!--白线-->
+                    <View
+                        android:layout_width="fill_parent"
+                        android:layout_height="1px"
+                        android:layout_marginTop="25dp"
+                        android:background="#ffffff" />
+
+                    <!--买1-->
+                    <TableRow
+                        android:layout_marginLeft="7dp"
+                        android:layout_marginRight="7dp">
+
+                        <TextView
+                            android:layout_width="25dp"
+                            android:layout_height="18dp"
+                            android:gravity="left|center_vertical"
+                            android:includeFontPadding="false"
+                            android:text="买1"
+                            android:textColor="#ffffff"
+                            android:textSize="12sp" />
+
+                        <TextView
+                            android:id="@+id/SimulationBuyContentRightBuy1Price"
+                            style="@style/SimulationBuyContentRightText"
+                            android:gravity="left|center_vertical"
+                            android:text="-"
+                            android:textColor="#d2d2d2" />
+
+                        <TextView
+                            android:id="@+id/SimulationBuyContentRightBuy1Lots"
+                            style="@style/SimulationBuyContentRightText"
+                            android:gravity="right|center_vertical"
+                            android:text="-"
+                            android:textColor="#d2d2d2" />
+                    </TableRow>
+
+                    <!--买2-->
+                    <TableRow
+                        android:layout_marginLeft="7dp"
+                        android:layout_marginRight="7dp">
+
+                        <TextView
+                            android:layout_width="25dp"
+                            android:layout_height="18dp"
+                            android:gravity="left|center_vertical"
+                            android:includeFontPadding="false"
+                            android:text="买2"
+                            android:textColor="#ffffff"
+                            android:textSize="12sp" />
+
+                        <TextView
+                            android:id="@+id/SimulationBuyContentRightBuy2Price"
+                            style="@style/SimulationBuyContentRightText"
+                            android:gravity="left|center_vertical"
+                            android:text="-"
+                            android:textColor="#d2d2d2" />
+
+                        <TextView
+                            android:id="@+id/SimulationBuyContentRightBuy2Lots"
+                            style="@style/SimulationBuyContentRightText"
+                            android:gravity="right|center_vertical"
+                            android:text="-"
+                            android:textColor="#d2d2d2" />
+                    </TableRow>
+
+                    <!--买3-->
+                    <TableRow
+                        android:layout_marginLeft="7dp"
+                        android:layout_marginRight="7dp">
+
+                        <TextView
+                            android:layout_width="25dp"
+                            android:layout_height="18dp"
+                            android:gravity="left|center_vertical"
+                            android:includeFontPadding="false"
+                            android:text="买3"
+                            android:textColor="#ffffff"
+                            android:textSize="12sp" />
+
+                        <TextView
+                            android:id="@+id/SimulationBuyContentRightBuy3Price"
+                            style="@style/SimulationBuyContentRightText"
+                            android:gravity="left|center_vertical"
+                            android:text="-"
+                            android:textColor="#d2d2d2" />
+
+                        <TextView
+                            android:id="@+id/SimulationBuyContentRightBuy3Lots"
+                            style="@style/SimulationBuyContentRightText"
+                            android:gravity="right|center_vertical"
+                            android:text="-"
+                            android:textColor="#d2d2d2" />
+                    </TableRow>
+
+                    <!--买4-->
+                    <TableRow
+                        android:layout_marginLeft="7dp"
+                        android:layout_marginRight="7dp">
+
+                        <TextView
+                            android:layout_width="25dp"
+                            android:layout_height="18dp"
+                            android:gravity="left|center_vertical"
+                            android:includeFontPadding="false"
+                            android:text="买4"
+                            android:textColor="#ffffff"
+                            android:textSize="12sp" />
+
+                        <TextView
+                            android:id="@+id/SimulationBuyContentRightBuy4Price"
+                            style="@style/SimulationBuyContentRightText"
+                            android:gravity="left|center_vertical"
+                            android:text="-"
+                            android:textColor="#d2d2d2" />
+
+                        <TextView
+                            android:id="@+id/SimulationBuyContentRightBuy4Lots"
+                            style="@style/SimulationBuyContentRightText"
+                            android:gravity="right|center_vertical"
+                            android:text="-"
+                            android:textColor="#d2d2d2" />
+                    </TableRow>
+
+                    <!--买5-->
+                    <TableRow
+                        android:layout_marginLeft="7dp"
+                        android:layout_marginRight="7dp">
+
+                        <TextView
+                            android:layout_width="25dp"
+                            android:layout_height="18dp"
+                            android:gravity="left|center_vertical"
+                            android:includeFontPadding="false"
+                            android:text="买5"
+                            android:textColor="#ffffff"
+                            android:textSize="12sp" />
+
+                        <TextView
+                            android:id="@+id/SimulationBuyContentRightBuy5Price"
+                            style="@style/SimulationBuyContentRightText"
+                            android:gravity="left|center_vertical"
+                            android:text="-"
+                            android:textColor="#d2d2d2" />
+
+                        <TextView
+                            android:id="@+id/SimulationBuyContentRightBuy5Lots"
+                            style="@style/SimulationBuyContentRightText"
+                            android:gravity="right|center_vertical"
+                            android:text="-"
+                            android:textColor="#d2d2d2" />
+                    </TableRow>
+                </TableLayout>
+            </RelativeLayout>
+        </RelativeLayout>
+
+        <!--持仓部分-->
+
+        <!--我的持仓-->
+        <TextView
+            android:id="@+id/SimulationBuyPositionTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/SimulationBuyContent"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:includeFontPadding="false"
+            android:text="我的持仓"
+            android:textColor="#d2d2d2"
+            android:textSize="14sp" />
+
+        <ListView
+            android:id="@+id/SimulationBuyPosition"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/SimulationBuyPositionTitle"
+            android:layout_gravity="center_horizontal"
+            android:cacheColorHint="#00000000"
+            android:divider="@null"
+            android:listSelector="#00000000" />
     </RelativeLayout>
 </ScrollView>
