@@ -173,10 +173,8 @@
                     android:textSize="14sp" />
 
                 <!--数量按钮
-                  这三个按钮目前是默认背景和字体颜色
-                  激活后的样式是
-                  android:background="@drawable/shape_trade_buy_button_amount"
-                  android:textColor="#d2d2d2"-->
+                  这三个按钮目前是未激活的 android:enabled="false"
+                  激活后改为true-->
                 <LinearLayout
                     android:layout_width="fill_parent"
                     android:layout_height="35dp"
@@ -187,25 +185,28 @@
 
                     <!--1/4按钮-->
                     <Button
+                        android:enabled="false"
                         android:id="@+id/SimulationBuyContentAmountQuarter"
                         style="@style/SimulationBuyButtonDefault"
-                        android:background="@drawable/shape_trade_buy_button_default"
+                        android:background="@drawable/selector_trade_buy_amount_button"
                         android:text="1/4"
-                        android:textColor="#9497a2" />
+                        android:textColor="@color/trade_buy_amount_button"/>
 
                     <Button
+                        android:enabled="false"
                         android:id="@+id/SimulationBuyContentAmountHalf"
                         style="@style/SimulationBuyButtonDefault"
-                        android:background="@drawable/shape_trade_buy_button_default"
+                        android:background="@drawable/selector_trade_buy_amount_button"
                         android:text="1/2"
-                        android:textColor="#9497a2" />
+                        android:textColor="@color/trade_buy_amount_button"/>
 
                     <Button
+                        android:enabled="false"
                         android:id="@+id/SimulationBuyContentAmountAll"
                         style="@style/SimulationBuyButtonDefault"
-                        android:background="@drawable/shape_trade_buy_button_default"
+                        android:background="@drawable/selector_trade_buy_amount_button"
                         android:text="全部"
-                        android:textColor="#9497a2" />
+                        android:textColor="@color/trade_buy_amount_button"/>
                 </LinearLayout>
 
                 <!--买入按钮
@@ -221,20 +222,21 @@
                     android:orientation="horizontal"
                     android:showDividers="middle">
 
-                    <!--1/4按钮-->
                     <Button
+                        android:enabled="false"
                         android:id="@+id/SimulationBuyContentBuy"
                         style="@style/SimulationBuyButtonDefault"
-                        android:background="@drawable/shape_trade_buy_button_default"
+                        android:background="@drawable/selector_trade_buy_action_button"
                         android:text="买入"
-                        android:textColor="#9497a2" />
+                        android:textColor="@color/trade_buy_action_button"/>
 
                     <Button
+                        android:enabled="false"
                         android:id="@+id/SimulationBuyContentAmountMarcetBuy"
                         style="@style/SimulationBuyButtonDefault"
-                        android:background="@drawable/shape_trade_buy_button_default"
+                        android:background="@drawable/selector_trade_buy_action_button"
                         android:text="市价买入"
-                        android:textColor="#9497a2" />
+                        android:textColor="@color/trade_buy_action_button"/>
                 </LinearLayout>
             </LinearLayout>
 

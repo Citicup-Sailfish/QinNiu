@@ -8,6 +8,8 @@
         <item name="android:layout_width">fill_parent</item>
         <item name="android:layout_height">fill_parent</item>
         <item name="android:textSize">18sp</item>
-        <item name="android:textColor">@drawable/information_zhongjian_tab_color_exchange</item>
+        <item name="android:textColor">
+            @color/information_zhongjian_tab_color_exchange
+        </item>
     </style>
 </resources>
