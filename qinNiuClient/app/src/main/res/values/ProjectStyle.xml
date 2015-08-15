@@ -10,7 +10,12 @@
         <item name="android:button">@null</item>
         <item name="android:textColor">#ffffff</item>
         <item name="android:layout_weight">1.0</item>
+<<<<<<< HEAD
         <item name="android:paddingBottom">1.5dip</item>
         <item name="android:paddingTop">1.5dip</item>
+=======
+        <item name="android:paddingBottom">5dip</item>
+        <item name="android:paddingTop">2.5dip</item>
+>>>>>>> 0012f9908b341730c226d29df3db2da4f8262524
     </style>
 </resources>

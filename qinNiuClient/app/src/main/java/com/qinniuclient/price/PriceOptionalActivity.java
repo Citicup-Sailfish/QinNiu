@@ -133,4 +133,13 @@ public class PriceOptionalActivity extends ActionBarActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+    @Override
+    protected void onResume() {
+        // TODO Auto-generated method stub
+        super.onResume();
+
+        PriceOptionalContentList = (ListView) findViewById(R.id.hangqing_zixuan_Listview);
+        new MyAsyncTask().execute();
+    }
 }

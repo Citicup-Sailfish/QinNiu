@@ -1,34 +1,5 @@
-package com.qinniuclient.price;
+package com.qinniuclient.price.expandable;
 /*这份代码来自网上模板，所以命名方式有些奇怪，我也不敢随意去改名字，怕造成bug*/
-<<<<<<< HEAD
-import android.app.Activity;
-import android.content.Context;
-import android.os.AsyncTask;
-import android.os.Bundle;
-import android.view.Gravity;
-import android.view.LayoutInflater;
-import android.view.MotionEvent;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.AbsListView.LayoutParams;
-import android.widget.BaseExpandableListAdapter;
-import android.widget.ExpandableListView;
-import android.widget.ImageView;
-import android.widget.TextView;
-import android.widget.Toast;
-
-import com.qinniuclient.R;
-import com.qinniuclient.price.expandable.PriceItemGroup;
-import com.qinniuclient.price.expandable.PriceItemPeople;
-import com.qinniuclient.price.expandableui.PinnedHeaderExpandableListView;
-import com.qinniuclient.price.expandableui.PinnedHeaderExpandableListView.OnHeaderUpdateListener;
-import com.qinniuclient.price.expandableui.StickyLayout;
-import com.qinniuclient.price.expandableui.StickyLayout.OnGiveUpTouchEventListener;
-import com.qinniuclient.util.HttpUtil;
-
-import java.util.ArrayList;
-import java.util.List;
-=======
 import java.util.ArrayList;
 import java.util.List;
 
@@ -43,9 +14,6 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.AbsListView.LayoutParams;
-
-import com.qinniuclient.price.expandable.PriceItemGroup;
-import com.qinniuclient.price.expandable.PriceItemPeople;
 import com.qinniuclient.price.expandableui.PinnedHeaderExpandableListView;
 import com.qinniuclient.price.expandableui.StickyLayout;
 import com.qinniuclient.price.expandableui.PinnedHeaderExpandableListView.OnHeaderUpdateListener;
@@ -56,9 +24,8 @@ import android.widget.ExpandableListView;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
->>>>>>> 0012f9908b341730c226d29df3db2da4f8262524
 
-public class PriceTabSHSZActivity extends Activity implements
+public class PriceHuShenMainActivity extends Activity implements
         ExpandableListView.OnChildClickListener,
         ExpandableListView.OnGroupClickListener,
         OnHeaderUpdateListener, OnGiveUpTouchEventListener {
@@ -75,20 +42,6 @@ public class PriceTabSHSZActivity extends Activity implements
         setContentView(R.layout.activity_price_hushen_main);
         expandableListView = (PinnedHeaderExpandableListView) findViewById(R.id.expandablelist);
         stickyLayout = (StickyLayout)findViewById(R.id.sticky_layout);
-<<<<<<< HEAD
-
-        groupList = new ArrayList<PriceItemGroup>();
-        PriceItemGroup group;
-        /*这个地方可以设定榜的名称，涨幅榜，跌幅榜*/
-        String[] titleName = {"沪A涨幅榜", "沪A跌幅榜", "深A涨幅榜", "深A跌幅榜"};
-        for (int i = 0; i < 4; i++) {
-            group = new PriceItemGroup();
-            group.setTitle(titleName[i]);
-            groupList.add(group);
-        }
-
-        new MyAsyncTask().execute();
-=======
         initData();
 
         adapter = new MyexpandableListAdapter(this);
@@ -104,94 +57,12 @@ public class PriceTabSHSZActivity extends Activity implements
         expandableListView.setOnGroupClickListener(this);
         stickyLayout.setOnGiveUpTouchEventListener(this);
 
->>>>>>> 0012f9908b341730c226d29df3db2da4f8262524
     }
 
     /***
      * InitData
      */
     /*初始化股票的数据，*/
-<<<<<<< HEAD
-    void initData(String result) {
-        childList = new ArrayList< List<PriceItemPeople>>();
-        String[] tarString = result.split("\\+");
-        for (int i = 0; i < groupList.size(); i++) {
-            ArrayList<PriceItemPeople> childTemp = null;
-            childTemp = new ArrayList<PriceItemPeople>();
-            String[] tarlist = tarString[i].split("\\|");
-            for (int j = 0; j < 5; j++) {
-                String[] tar = tarlist[j].split(";");
-                PriceItemPeople people = new PriceItemPeople();
-                people.setName(tar[0] + tar[1]);
-                people.setincrease(tar[2]);
-                people.setpercentage(tar[3]);
-                childTemp.add(people);
-            }
-            childList.add(childTemp);
-        }
-    }
-
-    /**
-     * 定义一个类，让其继承AsyncTask这个类,实现异步
-     * Params: String类型，表示传递给异步任务的参数类型是String，通常指定的是URL路径,这里用void
-     * Progress: Integer类型，进度条的单位通常都是Integer类型
-     * Result：boolean，是否登陆成功
-     */
-    public class MyAsyncTask extends AsyncTask<Void, Integer, String> {
-        @Override
-        protected void onPreExecute() {
-        }
-
-        @Override
-        protected String doInBackground(Void... arg0) {
-            return query();
-        }
-
-        @Override
-        protected void onProgressUpdate(Integer... values) {
-            super.onProgressUpdate(values);
-        }
-
-        @Override
-        protected void onPostExecute(String result) {
-            super.onPostExecute(result);
-            if (result != null && !result.equals("network anomaly") && !result.equals("")) {
-                initData(result);
-
-                adapter = new MyexpandableListAdapter(PriceTabSHSZActivity.this);
-                expandableListView.setAdapter(adapter);
-
-                // 展开所有group
-                for (int i = 0, count = expandableListView.getCount(); i < count; i++) {
-                    expandableListView.expandGroup(i);
-                }
-
-                expandableListView.setOnHeaderUpdateListener(PriceTabSHSZActivity.this);
-                expandableListView.setOnChildClickListener(PriceTabSHSZActivity.this);
-                expandableListView.setOnGroupClickListener(PriceTabSHSZActivity.this);
-                stickyLayout.setOnGiveUpTouchEventListener(PriceTabSHSZActivity.this);
-            } else if (result.equals("")) {
-                Toast toast = Toast.makeText(getApplicationContext(),
-                        "暂无数据", Toast.LENGTH_SHORT);
-                toast.setGravity(Gravity.CENTER, 0, 0);
-                toast.show();
-            } else {
-                Toast toast = Toast.makeText(getApplicationContext(),
-                        "网络异常", Toast.LENGTH_SHORT);
-                toast.setGravity(Gravity.CENTER, 0, 0);
-                toast.show();
-            }
-        }
-    }
-
-    private String query() {
-        String url1 = HttpUtil.BASE_URL + "ShanghaiAInfoServlet";
-        String url2 = HttpUtil.BASE_URL + "ShenzhenAInfoServlet";
-        return HttpUtil.queryStringForGet(url1) + "+" + HttpUtil.queryStringForGet(url2);
-    }
-
-
-=======
     void initData() {
         groupList = new ArrayList<PriceItemGroup>();
         PriceItemGroup group = null;
@@ -241,7 +112,6 @@ public class PriceTabSHSZActivity extends Activity implements
 
     }
 
->>>>>>> 0012f9908b341730c226d29df3db2da4f8262524
     /***
      * 数据源
      *
@@ -364,21 +234,12 @@ public class PriceTabSHSZActivity extends Activity implements
                     childPosition)).getName());
 
             String shzhstring = String.valueOf(((PriceItemPeople) getChild(
-<<<<<<< HEAD
-                    groupPosition, childPosition)).getincrease());
-
-            childHolder.textAge.setText(String.valueOf(((PriceItemPeople) getChild(
-                    groupPosition, childPosition)).getincrease()));
-            childHolder.textAddress.setText(((PriceItemPeople) getChild(groupPosition,
-                    childPosition)).getpercentage());
-=======
                     groupPosition, childPosition)).getAge());
 
             childHolder.textAge.setText(String.valueOf(((PriceItemPeople) getChild(
                     groupPosition, childPosition)).getAge()));
             childHolder.textAddress.setText(((PriceItemPeople) getChild(groupPosition,
                     childPosition)).getAddress());
->>>>>>> 0012f9908b341730c226d29df3db2da4f8262524
 
             return convertView;
         }
@@ -388,7 +249,6 @@ public class PriceTabSHSZActivity extends Activity implements
             return true;
         }
     }
-<<<<<<< HEAD
 
     @Override
     public boolean onGroupClick(final ExpandableListView parent, final View v,
@@ -429,48 +289,6 @@ public class PriceTabSHSZActivity extends Activity implements
     }
 
     @Override
-=======
-
-    @Override
-    public boolean onGroupClick(final ExpandableListView parent, final View v,
-                                int groupPosition, final long id) {
-
-        return false;
-    }
-
-    @Override
-    public boolean onChildClick(ExpandableListView parent, View v,
-                                int groupPosition, int childPosition, long id) {
-        /*Toast.makeText(MainActivity.this,
-                childList.get(groupPosition).get(childPosition).getName(), 1)
-                .show();*/
-
-        return false;
-    }
-
-    class GroupHolder {
-        TextView textView;
-        ImageView imageView;
-    }
-
-    class ChildHolder {
-        TextView textName;
-        TextView textAge;
-        TextView textAddress;
-        ImageView imageView;
-    }
-
-    @Override
-    public View getPinnedHeader() {
-        View headerView = (ViewGroup) getLayoutInflater().inflate(R.layout.activity_price_hushen_item_group, null);
-        headerView.setLayoutParams(new LayoutParams(
-                LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
-
-        return headerView;
-    }
-
-    @Override
->>>>>>> 0012f9908b341730c226d29df3db2da4f8262524
     public void updatePinnedHeader(View headerView, int firstVisibleGroupPos) {
         PriceItemGroup firstVisibleGroup = (PriceItemGroup) adapter.getGroup(firstVisibleGroupPos);
         TextView textView = (TextView) headerView.findViewById(R.id.price_shsz_group);
