@@ -1,193 +1,183 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.percent.PercentRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="#394264">
+    android:background="#394264"
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
 
-    <!--动作条-->
-    <android.support.percent.PercentRelativeLayout
-        android:id="@+id/LoginActionBar"
-        android:layout_width="fill_parent"
-        android:layout_height="48dp"
-        android:background="#50597b">
+    <!--图片（吉祥物）-->
+    <ImageView
+        android:id="@+id/SimulationLoginImage"
+        android:layout_width="90dp"
+        android:layout_height="95dp"
+        android:layout_marginTop="28dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/icon_mascot"/>
 
-        <Button
-            android:id="@+id/LoginActionBarBack"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:background="@drawable/back"
-            android:onClick="logButtonclick"
-            app:layout_heightPercent="41.66%"
-            app:layout_marginLeftPercent="3.33%"
-            app:layout_widthPercent="2%" />
+    <!--红字提示-->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:includeFontPadding="false"
+        android:text="首次登录赠送20万模拟初始资金！"
+        android:textColor="#e74e64"
+        android:textSize="14dp"/>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            android:text="登陆"
-            android:textColor="#ffffff"
-            android:textSize="18sp" />
-
-    </android.support.percent.PercentRelativeLayout>
     <!--用户名-->
-    <android.support.percent.PercentRelativeLayout
-        android:id="@+id/LoginUsernameBar"
-        android:layout_width="0dp"
-        android:layout_height="55dp"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="122dp"
-        app:layout_widthPercent="86.11%">
+    <RelativeLayout
+        android:id="@+id/SimulationLoginUsernameBar"
+        android:layout_width="310dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="30dp">
 
-        <View
-            android:id="@+id/LoginUsernameBarIcon"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
+        <ImageView
+            android:id="@+id/SimulationLoginUsernameBarIcon"
+            android:layout_width="20dp"
+            android:layout_height="23dp"
+            android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
-            android:background="@drawable/login_username"
-            app:layout_heightPercent="41.82%"
-            app:layout_marginLeftPercent="3.23%"
-            app:layout_widthPercent="6.45%" />
+            android:layout_marginLeft="10dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/login_username"/>
 
+        <!--竖分隔线-->
         <View
-            android:id="@+id/LoginUsernameBarLeft"
+            android:id="@+id/SimulationLoginUsernameBarLeft"
             android:layout_width="1dp"
-            android:layout_height="0dp"
+            android:layout_height="35dp"
             android:layout_centerVertical="true"
-            android:layout_toEndOf="@id/LoginUsernameBarIcon"
-            android:layout_toRightOf="@id/LoginUsernameBarIcon"
-            android:background="#A5AECA"
-            app:layout_heightPercent="63.64%"
-            app:layout_marginLeftPercent="3.23%" />
+            android:layout_marginLeft="10dp"
+            android:layout_toEndOf="@id/SimulationLoginUsernameBarIcon"
+            android:layout_toRightOf="@id/SimulationLoginUsernameBarIcon"
+            android:background="#A5AECA"/>
 
         <EditText
-            android:id="@+id/LoginUsernameBarInput"
-            android:layout_width="0dp"
+            android:id="@+id/SimulationLoginUsernameBarInput"
+            android:layout_width="match_parent"
             android:layout_height="fill_parent"
             android:layout_centerVertical="true"
-            android:layout_toRightOf="@+id/LoginUsernameBarLeft"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@id/SimulationLoginUsernameBarLeft"
             android:background="@null"
             android:ems="10"
             android:hint="用户名"
+            android:singleLine="true"
             android:textColorHint="#727889"
-            android:textSize="18sp"
-            app:layout_marginLeftPercent="3.23%"
-            app:layout_widthPercent="77.42%" />
+            android:textSize="16sp"/>
 
+        <!--底部白线-->
         <View
-            android:id="@+id/LoginUsernameBarBottom"
             android:layout_width="fill_parent"
             android:layout_height="1dp"
             android:layout_alignParentBottom="true"
-            android:background="#A5AECA" />
-    </android.support.percent.PercentRelativeLayout>
+            android:background="#A5AECA"/>
+    </RelativeLayout>
     <!--密码-->
-    <android.support.percent.PercentRelativeLayout
-        android:id="@+id/LoginPasswordBar"
-        android:layout_width="0dp"
-        android:layout_height="55dp"
-        android:layout_below="@id/LoginUsernameBar"
-        android:layout_centerHorizontal="true"
-        app:layout_widthPercent="86.11%">
+    <RelativeLayout
+        android:id="@+id/SimulationLoginPasswordBar"
+        android:layout_width="310dp"
+        android:layout_height="45dp">
 
-        <View
-            android:id="@+id/LoginPasswordBarIcon"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
+        <ImageView
+            android:id="@+id/SimulationLoginPasswordBarIcon"
+            android:layout_width="20dp"
+            android:layout_height="23dp"
+            android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
-            android:background="@drawable/login_password"
-            app:layout_heightPercent="41.82%"
-            app:layout_marginLeftPercent="3.23%"
-            app:layout_widthPercent="6.45%" />
+            android:layout_marginLeft="10dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/login_password"/>
 
+        <!--竖分隔线-->
         <View
-            android:id="@+id/LoginPasswordBarLeft"
+            android:id="@+id/SimulationLoginPasswordBarLeft"
             android:layout_width="1dp"
-            android:layout_height="0dp"
+            android:layout_height="35dp"
             android:layout_centerVertical="true"
-            android:layout_toEndOf="@id/LoginPasswordBarIcon"
-            android:layout_toRightOf="@id/LoginPasswordBarIcon"
-            android:background="#A5AECA"
-            app:layout_heightPercent="63.64%"
-            app:layout_marginLeftPercent="3.23%" />
+            android:layout_marginLeft="10dp"
+            android:layout_toEndOf="@id/SimulationLoginPasswordBarIcon"
+            android:layout_toRightOf="@id/SimulationLoginPasswordBarIcon"
+            android:background="#A5AECA"/>
 
         <EditText
-            android:id="@+id/LoginPasswordBarInput"
-            android:layout_width="0dp"
+            android:id="@+id/SimulationLoginPasswordBarInput"
+            android:layout_width="match_parent"
             android:layout_height="fill_parent"
             android:layout_centerVertical="true"
-            android:layout_toRightOf="@+id/LoginPasswordBarLeft"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@id/SimulationLoginPasswordBarLeft"
             android:background="@null"
             android:ems="10"
             android:hint="密码"
+            android:singleLine="true"
             android:textColorHint="#727889"
-            android:textSize="18sp"
-            app:layout_marginLeftPercent="3.23%"
-            app:layout_widthPercent="77.42%" />
+            android:textSize="16sp"/>
 
+        <!--底部白线-->
         <View
-            android:id="@+id/LoginPasswordBarBottom"
             android:layout_width="fill_parent"
             android:layout_height="1dp"
             android:layout_alignParentBottom="true"
-            android:background="#A5AECA" />
-    </android.support.percent.PercentRelativeLayout>
+            android:background="#A5AECA"/>
+    </RelativeLayout>
     <!--按钮集-->
-    <android.support.percent.PercentRelativeLayout
-        android:id="@+id/LoginButtonBar"
-        android:layout_width="0dp"
-        android:layout_height="175dp"
-        android:layout_below="@id/LoginPasswordBar"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="70dp"
-        app:layout_widthPercent="86.11%">
+    <RelativeLayout
+        android:id="@+id/SimulationLoginButtonBar"
+        android:layout_width="310dp"
+        android:layout_height="160dp"
+        android:layout_marginTop="50dp">
 
         <CheckBox
-            android:id="@+id/LoginButtonBarCheck"
+            android:id="@+id/SimulationLoginButtonBarCheck"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
-            android:buttonTint="#a5aeca"
+            android:buttonTint="#a6adcb"
+            android:includeFontPadding="false"
+            android:minHeight="22dp"
             android:text="记住我？"
-            android:textColor="#a5aeca"
-            android:textSize="14sp"
-            app:layout_marginLeftPercent="1.61%" />
+            android:textColor="#a6adcb"
+            android:textSize="14sp"/>
 
         <Button
-            android:id="@+id/LoginButtonBarLogin"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_below="@id/LoginButtonBarCheck"
+            android:id="@+id/SimulationLoginButtonBarLogin"
+            android:layout_width="fill_parent"
+            android:layout_height="45dp"
+            android:layout_below="@id/SimulationLoginButtonBarCheck"
+            android:layout_marginTop="40dp"
+            android:background="@drawable/selector_login_register_button"
             android:text="登  录"
-            android:textSize="18sp"
-            app:layout_heightPercent="30.30%"
-            app:layout_marginTopPercent="15%"
-            style="@style/LoginRegisterButton" />
+            android:textColor="@color/login_register_button"
+            android:textSize="18sp"/>
 
         <Button
-            android:id="@+id/LoginButtonBarForget"
+            android:id="@+id/SimulationLoginButtonBarForget"
             android:layout_width="wrap_content"
-            android:layout_height="0dp"
+            android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
             android:background="@null"
+            android:gravity="left|bottom"
+            android:minHeight="25dp"
             android:text="忘记密码？"
             android:textColor="#7a95bd"
-            android:textSize="18sp"
-            app:layout_heightPercent="18.18%" />
+            android:textSize="14sp"/>
 
         <Button
-            android:id="@+id/LoginButtonBarReg"
+            android:id="@+id/SimulationLoginButtonBarReg"
             android:layout_width="wrap_content"
-            android:layout_height="0dp"
+            android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_alignParentRight="true"
             android:background="@null"
+            android:gravity="right|bottom"
+            android:minHeight="25dp"
             android:text="免费注册"
             android:textColor="#7a95bd"
-            android:textSize="18sp"
-            app:layout_heightPercent="18.18%" />
-    </android.support.percent.PercentRelativeLayout>
-</android.support.percent.PercentRelativeLayout>
+            android:textSize="14sp"/>
+    </RelativeLayout>
+</LinearLayout>

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.percent.PercentRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:background="#394264"
-    android:orientation="vertical">
+                                               xmlns:app="http://schemas.android.com/apk/res-auto"
+                                               android:layout_width="fill_parent"
+                                               android:layout_height="fill_parent"
+                                               android:background="#394264"
+                                               android:orientation="vertical">
 
     <!--动作条-->
     <android.support.percent.PercentRelativeLayout
@@ -22,7 +22,7 @@
             android:onClick="logButtonclick"
             app:layout_heightPercent="41.66%"
             app:layout_marginLeftPercent="3.33%"
-            app:layout_widthPercent="2%" />
+            app:layout_widthPercent="2%"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -31,7 +31,7 @@
             android:layout_centerVertical="true"
             android:text="注册"
             android:textColor="#ffffff"
-            android:textSize="18sp" />
+            android:textSize="18sp"/>
     </android.support.percent.PercentRelativeLayout>
 
     <!--用户名-->
@@ -51,7 +51,7 @@
             android:background="@drawable/login_username"
             app:layout_heightPercent="41.82%"
             app:layout_marginLeftPercent="3.23%"
-            app:layout_widthPercent="6.45%" />
+            app:layout_widthPercent="6.45%"/>
 
         <View
             android:id="@+id/RegisterUsernameBarLeft"
@@ -62,7 +62,7 @@
             android:layout_toRightOf="@id/RegisterUsernameBarIcon"
             android:background="#A5AECA"
             app:layout_heightPercent="63.64%"
-            app:layout_marginLeftPercent="3.23%" />
+            app:layout_marginLeftPercent="3.23%"/>
 
         <EditText
             android:id="@+id/RegisterUsernameBarInput"
@@ -76,14 +76,14 @@
             android:textColorHint="#727889"
             android:textSize="18sp"
             app:layout_marginLeftPercent="3.23%"
-            app:layout_widthPercent="77.42%" />
+            app:layout_widthPercent="77.42%"/>
 
         <View
             android:id="@+id/RegisterUsernameBarBottom"
             android:layout_width="fill_parent"
             android:layout_height="1dp"
             android:layout_alignParentBottom="true"
-            android:background="#A5AECA" />
+            android:background="#A5AECA"/>
     </android.support.percent.PercentRelativeLayout>
 
     <android.support.percent.PercentRelativeLayout
@@ -102,7 +102,7 @@
             android:gravity="center"
             android:text="4~15个字符长度的中文|字母|数字，请勿使用特殊符号"
             android:textColor="#727889"
-            android:textSize="12sp" />
+            android:textSize="12sp"/>
     </android.support.percent.PercentRelativeLayout>
 
     <!--密码-->
@@ -122,7 +122,7 @@
             android:background="@drawable/login_password"
             app:layout_heightPercent="41.82%"
             app:layout_marginLeftPercent="3.23%"
-            app:layout_widthPercent="6.45%" />
+            app:layout_widthPercent="6.45%"/>
 
         <View
             android:id="@+id/RegisterPasswordBarLeft"
@@ -133,7 +133,7 @@
             android:layout_toRightOf="@id/RegisterPasswordBarIcon"
             android:background="#A5AECA"
             app:layout_heightPercent="63.64%"
-            app:layout_marginLeftPercent="3.23%" />
+            app:layout_marginLeftPercent="3.23%"/>
 
         <EditText
             android:id="@+id/RegisterPasswordBarInput"
@@ -147,14 +147,14 @@
             android:textColorHint="#727889"
             android:textSize="18sp"
             app:layout_marginLeftPercent="3.23%"
-            app:layout_widthPercent="77.42%" />
+            app:layout_widthPercent="77.42%"/>
 
         <View
             android:id="@+id/RegisterPasswordBarBottom"
             android:layout_width="fill_parent"
             android:layout_height="1dp"
             android:layout_alignParentBottom="true"
-            android:background="#A5AECA" />
+            android:background="#A5AECA"/>
     </android.support.percent.PercentRelativeLayout>
 
     <!--确认密码-->
@@ -174,7 +174,7 @@
             android:background="@drawable/login_verification"
             app:layout_heightPercent="41.82%"
             app:layout_marginLeftPercent="3.23%"
-            app:layout_widthPercent="6.45%" />
+            app:layout_widthPercent="6.45%"/>
 
         <View
             android:id="@+id/RegisterConfirmBarLeft"
@@ -185,7 +185,7 @@
             android:layout_toRightOf="@id/RegisterConfirmBarIcon"
             android:background="#A5AECA"
             app:layout_heightPercent="63.64%"
-            app:layout_marginLeftPercent="3.23%" />
+            app:layout_marginLeftPercent="3.23%"/>
 
         <EditText
             android:id="@+id/RegisterConfirmBarInput"
@@ -199,14 +199,14 @@
             android:textColorHint="#727889"
             android:textSize="18sp"
             app:layout_marginLeftPercent="3.23%"
-            app:layout_widthPercent="77.42%" />
+            app:layout_widthPercent="77.42%"/>
 
         <View
             android:id="@+id/RegisterConfirmBarBottom"
             android:layout_width="fill_parent"
             android:layout_height="1dp"
             android:layout_alignParentBottom="true"
-            android:background="#A5AECA" />
+            android:background="#A5AECA"/>
     </android.support.percent.PercentRelativeLayout>
 
     <!--按钮-->
@@ -221,10 +221,11 @@
 
         <Button
             android:id="@+id/RegisterButtonBarLogin"
-            style="@style/LoginRegisterButton"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
+            android:background="@drawable/selector_login_register_button"
             android:text="注  册"
-            android:textSize="18dp" />
+            android:textColor="@color/login_register_button"
+            android:textSize="18dp"/>
     </android.support.percent.PercentRelativeLayout>
 </android.support.percent.PercentRelativeLayout>
