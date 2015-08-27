@@ -154,7 +154,7 @@
         android:id="@+id/SimulationLoginButtonBar"
         android:layout_width="310dp"
         android:layout_height="160dp"
-        android:layout_marginTop="50dp">
+        android:layout_marginTop="25dp">
 
         <CheckBox
             android:id="@+id/SimulationLoginButtonBarCheck"

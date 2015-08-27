@@ -24,7 +24,7 @@
 
         <FrameLayout
             android:layout_width="fill_parent"
-            android:layout_height="48dp">
+            android:layout_height="52dp">
 
             <RadioGroup
                 android:id="@+id/main_tab_group"
@@ -40,7 +40,7 @@
                     android:layout_weight="1.0"
                     android:checked="true"
                     android:drawableTop="@drawable/tab_home"
-                    android:text="首页" />
+                    android:text="私塾" />
 
                 <RadioButton
                     android:id="@+id/main_tab_hangqing"

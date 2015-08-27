@@ -9,8 +9,8 @@ import android.view.Window;
 import android.widget.RadioGroup;
 import android.widget.TabHost;
 
+import com.qinniuclient.Course.CourseMainActivity;
 import com.qinniuclient.information.InformationActivity;
-import com.qinniuclient.login.LoginActivity;
 import com.qinniuclient.price.PriceActivity;
 import com.qinniuclient.register.RegisterActivity;
 import com.qinniuclient.trade.TradeActivity;
@@ -32,8 +32,8 @@ public class MainActivity extends TabActivity {
         Intent intent;
 
 //        下面几行酌情增加或修改，修改就改xxxxActivity为所需页面
-        intent = new Intent().setClass(this, LoginActivity.class);
-        spec = tabHost.newTabSpec("首页").setIndicator("首页")
+        intent = new Intent().setClass(this, CourseMainActivity.class);
+        spec = tabHost.newTabSpec("私塾").setIndicator("私塾")
                 .setContent(intent);
         tabHost.addTab(spec);
 
@@ -55,7 +55,7 @@ public class MainActivity extends TabActivity {
         spec = tabHost.newTabSpec("资讯").setIndicator("资讯").setContent(intent);
         tabHost.addTab(spec);
 
-        tabHost.setCurrentTabByTag("首页");
+        tabHost.setCurrentTabByTag("私塾");
 
 //        这个ID是radioGroup的ID，对于不同的group设置不同值，否则会崩溃
         RadioGroup radioGroup = (RadioGroup) this
@@ -67,7 +67,7 @@ public class MainActivity extends TabActivity {
                 // TODO Auto-generated method stub
                 switch (checkedId) {
                     case R.id.main_tab_home:// 首页
-                        tabHost.setCurrentTabByTag("首页");
+                        tabHost.setCurrentTabByTag("私塾");
                         break;
                     case R.id.main_tab_hangqing:// 行情
                         tabHost.setCurrentTabByTag("行情");

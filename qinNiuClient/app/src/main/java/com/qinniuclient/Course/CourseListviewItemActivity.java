@@ -1,4 +1,4 @@
-package com.qinniuclient.information;
+package com.qinniuclient.Course;
 
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -8,18 +8,18 @@ import android.view.MenuItem;
 import com.qinniuclient.R;
 
 
-public class InformationCourseActivity extends ActionBarActivity {
+public class CourseListviewItemActivity extends ActionBarActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_information_course);
+        setContentView(R.layout.activity_course_listview_item);
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_information_course, menu);
+        getMenuInflater().inflate(R.menu.menu_course_listview_item, menu);
         return true;
     }
 

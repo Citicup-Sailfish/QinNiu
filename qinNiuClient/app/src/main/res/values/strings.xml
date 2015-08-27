@@ -33,7 +33,7 @@
     <string name="title_activity_course_listview_item">CourseListviewItemActivity</string>
     <string name="title_activity_information">InformationActivity</string>
     <string name="title_activity_information_chance">InformationChanceActivity</string>
-    <string name="title_activity_information_course">InformationCourseActivity</string>
+    <string name="title_CourseMainActivity">InformationCourseActivity</string>
     <string name="title_activity_information_course_content">InformationCourseContentActivity
     </string>
     <string name="title_activity_information_news">InformationNewsActivity</string>
@@ -44,4 +44,5 @@
     <string name="title_activity_trade_simulation">TradeSimulationActivity</string>
     <string name="title_activity_simulation_tab_position_item">SimulationTabPositionItemActivity
     </string>
+    <string name="title_activity_weclome_page">WeclomePage</string>
 </resources>

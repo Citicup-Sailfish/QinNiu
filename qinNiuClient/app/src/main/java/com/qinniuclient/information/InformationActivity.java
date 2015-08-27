@@ -48,9 +48,6 @@ public class InformationActivity extends TabActivity {
         spec = tabHost.newTabSpec("自选股").setIndicator("自选股").setContent(intent);
         tabHost.addTab(spec);
 
-        intent = new Intent().setClass(this, InformationCourseActivity.class);
-        spec = tabHost.newTabSpec("精品课堂").setIndicator("精品课堂").setContent(intent);
-        tabHost.addTab(spec);
 
         tabHost.setCurrentTabByTag("要闻");
 
@@ -74,9 +71,6 @@ public class InformationActivity extends TabActivity {
                         break;
                     case R.id.information_ExchangeTabBar_zixuangu:// 自选股
                         tabHost.setCurrentTabByTag("自选股");
-                        break;
-                    case R.id.information_ExchangeTabBar_more:// 精品课堂
-                        tabHost.setCurrentTabByTag("精品课堂");
                         break;
                     default:
                         break;

@@ -52,12 +52,21 @@
 
     </RelativeLayout>
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="120dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
         android:layout_gravity="center_horizontal"
         android:orientation="vertical">
 
+        <include layout="@layout/activity_course_advertisement_banner"/>
 
     </LinearLayout>
 
@@ -81,5 +90,6 @@
 
 
     </ListView>
-
+    </LinearLayout>
+</ScrollView>
 </LinearLayout>

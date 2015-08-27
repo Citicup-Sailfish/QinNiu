@@ -63,7 +63,6 @@ public class PriceOptionalActivity extends ActionBarActivity {
                 int[] toIds = {R.id.hangqing_zixuan_socket_name, R.id.hangqing_zixuan_socket_code, R.id.hangqing_zixuan_zuixinjia, R.id.hangqing_zixuan_deizhangfu};
                 SimpleAdapter simpleAdapter = new SimpleAdapter(PriceOptionalActivity.this, getHoldPosInfo(result), R.layout.activity_price_optional_list_item, keySet, toIds);
                 PriceOptionalContentList.setAdapter(simpleAdapter);
-
             } else if (result.equals("")) {
                 Toast toast = Toast.makeText(getApplicationContext(),
                         "暂无数据", Toast.LENGTH_SHORT);

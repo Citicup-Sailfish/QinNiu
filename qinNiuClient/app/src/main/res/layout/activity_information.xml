@@ -100,11 +100,6 @@
                     style="@style/information_ExchangeTabBar"
                     android:text="自选股" />
 
-                <!--更多-->
-                <RadioButton
-                    android:id="@+id/information_ExchangeTabBar_more"
-                    style="@style/information_ExchangeTabBar"
-                    android:text="精品课堂" />
             </RadioGroup>
         </LinearLayout>
 

@@ -6,11 +6,11 @@
         <item name="android:gravity">center</item>
         <item name="android:background">@drawable/tab_background</item>
         <item name="android:layout_width">fill_parent</item>
-        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_height">fill_parent</item>
         <item name="android:button">@null</item>
         <item name="android:textColor">#ffffff</item>
         <item name="android:layout_weight">1.0</item>
-        <item name="android:paddingBottom">1.5dip</item>
-        <item name="android:paddingTop">1.5dip</item>
+        <!--<item name="android:paddingBottom">1.5dip</item>-->
+        <item name="android:paddingTop">6dp</item>
     </style>
 </resources>

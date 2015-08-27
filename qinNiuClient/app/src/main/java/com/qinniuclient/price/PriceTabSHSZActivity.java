@@ -3,6 +3,7 @@ package com.qinniuclient.price;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.Gravity;
@@ -266,7 +267,16 @@ public class PriceTabSHSZActivity extends Activity implements
 
             String shzhstring = String.valueOf(((PriceItemPeople) getChild(
                     groupPosition, childPosition)).getincrease());
-
+            /*设置涨为红，跌为绿*/
+            if (Integer.parseInt(String.valueOf(((PriceItemPeople) getChild(
+                    groupPosition, childPosition)).getincrease())) > 0) {
+                childHolder.textAge.setTextColor(Color.parseColor("#e74e64"));
+                childHolder.textAddress.setTextColor(Color.parseColor("#e74e64"));
+            } else if (Integer.parseInt(String.valueOf(((PriceItemPeople) getChild(
+                    groupPosition, childPosition)).getincrease())) < 0) {
+                childHolder.textAge.setTextColor(Color.parseColor("#10ab95"));
+                childHolder.textAddress.setTextColor(Color.parseColor("#10ab95"));
+            }
             childHolder.textAge.setText(String.valueOf(((PriceItemPeople) getChild(
                     groupPosition, childPosition)).getincrease()));
             childHolder.textAddress.setText(((PriceItemPeople) getChild(groupPosition,
