@@ -5,27 +5,36 @@
     android:background="#394264"
     android:orientation="vertical">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:background="#50597b"
+        android:orientation="horizontal">
+
+        <!--课程名称-->
+        <com.qinniuclient.Course.CourseContentMarqueeTextView
+            android:id="@+id/jingping_course_2_tittle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="8dp"
+            android:gravity="center"
+            android:singleLine="true"
+            android:ellipsize="marquee"
+            android:marqueeRepeatLimit="marquee_forever"
+            android:focusable="true"
+            android:textSize="18sp" />
+
+    </LinearLayout>
+
     <VideoView
         android:id="@+id/video"
         android:layout_width="match_parent"
         android:layout_gravity="center_horizontal"
         android:layout_height="wrap_content" />
-
-    <!--课程名称-->
-    <TextView
-        android:id="@+id/jingping_course_2_tittle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="40dp"
-        android:layout_marginLeft="36dp"
-        android:layout_marginRight="36dp"
-        android:layout_marginTop="35dp"
-        android:gravity="center"
-        android:lineSpacingExtra="7dp"
-        android:maxLines="3"
-        android:singleLine="false"
-        android:text="@null"
-        android:textSize="16sp" />
 
     <TextView
         android:layout_width="wrap_content"

@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.MediaController;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.VideoView;
 import android.media.MediaPlayer.OnCompletionListener;
@@ -29,10 +30,16 @@ public class InformationCourseContentActivity extends ActionBarActivity {
         setContentView(R.layout.activity_course_content);
         String flag = "   ";
 
+        /*根据课堂名称判断上一级界面是点击哪一个课堂*/
         Intent intent1 = this.getIntent();
-        flag = intent1.getStringExtra("flag");
+        flag = intent1.getStringExtra("text");
         Log.e("mytest1", flag);
 
+        /*设置标题的跑马灯*/
+        TextView coursetittle = (TextView) findViewById(R.id.jingping_course_2_tittle);
+        coursetittle.setText(flag);
+
+        /*视频代码*/
         Uri uri = Uri.parse("http://forum.ea3w.com/coll_ea3w/attach/2008_10/12237832415.3gp");
         uri = Uri.parse("http://g3.letv.cn/27/9/3/letv-uts/2522159-AVC-1610564-AAC-123276-2196960-489820604-1b165c6eec261a12e925f48f7ca35892-1366904195636.flv");
         VideoView videoView = (VideoView)this.findViewById(R.id.video);

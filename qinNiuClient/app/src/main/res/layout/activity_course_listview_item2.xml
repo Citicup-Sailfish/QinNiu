@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="15dp"
+    android:background="#394264"
+    android:orientation="vertical">
+    <!--报废代码，等以后再删除-->
+
+    <!--一条分割线-->
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp"
+        android:background="#ffffff" />
+
+
+    <!--课程-->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:paddingLeft="24dp"
+        android:paddingRight="24dp">
+        <!--课程的内容介绍-->
+        <TextView
+            android:id="@+id/jingping_course_1_introduce_text0"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_toEndOf="@+id/jingping_course_type"
+            android:layout_toRightOf="@+id/jingping_course_type"
+            android:ellipsize="end"
+            android:lines="2"
+            android:maxLength="30"
+            android:paddingBottom="10dp"
+            android:paddingLeft="12dp"
+            android:paddingTop="10dp"
+            android:text="@null"
+            android:textColor="#ffffff"
+            android:textSize="14sp" />
+        <!--浏览过该课程的人数-->
+        <TextView
+            android:id="@+id/jingping_course_1_time0"
+            android:layout_width="wrap_content"
+            android:drawableLeft="@drawable/jingping_course_eye_how_many_look"
+            android:drawablePadding="2dp"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/jingping_course_1_introduce_text0"
+            android:layout_alignBottom="@+id/jingping_course_1_introduce_text0"
+            android:layout_alignEnd="@+id/jingping_course_1_introduce_text0"
+            android:layout_alignRight="@+id/jingping_course_1_introduce_text0"
+            android:paddingBottom="1dp"
+            android:paddingLeft="12dp"
+            android:text="@null"
+            android:textColor="#aeb2b9"
+            android:textSize="12sp" />
+
+
+
+        <!--课程类型-->
+        <TextView
+            android:id="@+id/jingping_course_type"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:gravity="center"
+            android:textSize="14sp"
+            android:text="行为金融学"
+            android:textColor="#aeb2b9"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center_horizontal" />
+        <!--分割线-->
+        <ImageView
+            android:layout_width="fill_parent"
+            android:layout_height="0.5dp"
+            android:layout_alignParentBottom="true"
+            android:background="#ffffff" />
+
+    </RelativeLayout>
+
+
+</LinearLayout>

@@ -13,7 +13,7 @@ public class CourseListviewItemActivity extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_course_listview_item);
+        setContentView(R.layout.activity_course_listview_item2);
     }
 
     @Override

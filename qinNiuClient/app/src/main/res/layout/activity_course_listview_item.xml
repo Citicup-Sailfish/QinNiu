@@ -3,10 +3,46 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginTop="15dp"
+    android:paddingTop="20dp"
     android:background="#394264"
     android:orientation="vertical">
 
 
+    <!--显示课程类型-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp"
+        android:background="#555e7a"
+        android:orientation="horizontal">
+        <!--这个竖着的色带，在标注图里是不同的课堂类型颜色不同-->
+        <ImageView
+            android:layout_width="6dp"
+            android:layout_height="fill_parent"
+            android:layout_marginRight="4dp"
+            android:background="#e9aa5a" />
+        <!--课程类型，一共四种-->
+        <TextView
+            android:id="@+id/jingping_course_1_courseType"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:paddingBottom="3dp"
+            android:paddingTop="3dp"
+            android:text="@null"
+            android:textColor="#f9ea04"
+            android:textSize="18sp" />
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="right">
+            <!--一个更多按钮，要不要多做一个更多页面待定-->
+
+        </LinearLayout>
+
+    </LinearLayout>
     <!--一条分割线-->
     <ImageView
         android:id="@+id/imageView2"
@@ -16,8 +52,9 @@
         android:layout_marginRight="12dp"
         android:background="#ffffff" />
 
+    <!--五个relative，代表五条新闻-->
 
-    <!--课程-->
+    <!--第一个课程-->
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="60dp"
@@ -27,10 +64,12 @@
         <TextView
             android:id="@+id/jingping_course_1_introduce_text0"
             android:layout_width="match_parent"
+            android:clickable="true"
+            android:focusable="true"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
-            android:layout_toEndOf="@+id/jingping_course_type"
-            android:layout_toRightOf="@+id/jingping_course_type"
+            android:layout_toEndOf="@+id/jingping_course_1_image0"
+            android:layout_toRightOf="@+id/jingping_course_1_image0"
             android:ellipsize="end"
             android:lines="2"
             android:maxLength="30"
@@ -42,7 +81,7 @@
             android:textSize="14sp" />
         <!--浏览过该课程的人数-->
         <TextView
-            android:id="@+id/jingping_course_1_time0"
+            android:id="@+id/jingping_course_1_number0"
             android:layout_width="wrap_content"
             android:drawableLeft="@drawable/jingping_course_eye_how_many_look"
             android:drawablePadding="2dp"
@@ -59,15 +98,11 @@
 
 
 
-        <!--课程类型-->
-        <TextView
-            android:id="@+id/jingping_course_type"
+        <!--课程图片-->
+        <ImageView
+            android:id="@+id/jingping_course_1_image0"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:gravity="center"
-            android:textSize="14sp"
-            android:text="行为金融学"
-            android:textColor="#aeb2b9"
             android:layout_centerVertical="true"
             android:layout_gravity="center_horizontal" />
         <!--分割线-->
@@ -79,5 +114,123 @@
 
     </RelativeLayout>
 
+
+    <!--第二个课程-->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:paddingLeft="24dp"
+        android:paddingRight="24dp">
+        <!--课程的内容介绍-->
+        <TextView
+            android:id="@+id/jingping_course_1_introduce_text1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:focusable="true"
+            android:layout_alignParentTop="true"
+            android:layout_toEndOf="@+id/jingping_course_1_image1"
+            android:layout_toRightOf="@+id/jingping_course_1_image1"
+            android:ellipsize="end"
+            android:lines="2"
+            android:maxLength="30"
+            android:paddingBottom="10dp"
+            android:paddingLeft="12dp"
+            android:paddingTop="10dp"
+            android:text="@null"
+            android:textColor="#ffffff"
+            android:textSize="14sp" />
+        <!--浏览过改课程的人数-->
+        <TextView
+            android:id="@+id/jingping_course_1_number1"
+            android:layout_width="wrap_content"
+            android:drawableLeft="@drawable/jingping_course_eye_how_many_look"
+            android:drawablePadding="2dp"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/jingping_course_1_introduce_text1"
+            android:layout_alignBottom="@+id/jingping_course_1_introduce_text1"
+            android:layout_alignEnd="@+id/jingping_course_1_introduce_text1"
+            android:layout_alignRight="@+id/jingping_course_1_introduce_text1"
+            android:paddingBottom="1dp"
+            android:paddingLeft="12dp"
+            android:text="@null"
+            android:textColor="#aeb2b9"
+            android:textSize="12sp" />
+
+
+        <!--课程的图片-->
+        <ImageView
+            android:id="@+id/jingping_course_1_image1"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center_horizontal" />
+        <!--分割线-->
+        <ImageView
+            android:layout_width="fill_parent"
+            android:layout_height="0.5dp"
+            android:layout_alignParentBottom="true"
+            android:background="#ffffff" />
+
+    </RelativeLayout>
+
+    <!--第三个课程-->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:paddingLeft="24dp"
+        android:paddingRight="24dp">
+        <!--课程的内容-->
+        <TextView
+            android:id="@+id/jingping_course_1_introduce_text2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:focusable="true"
+            android:layout_alignParentTop="true"
+            android:layout_toEndOf="@+id/jingping_course_1_image2"
+            android:layout_toRightOf="@+id/jingping_course_1_image2"
+            android:ellipsize="end"
+            android:lines="2"
+            android:maxLength="30"
+            android:paddingBottom="10dp"
+            android:paddingLeft="12dp"
+            android:paddingTop="10dp"
+            android:text="@null"
+            android:textColor="#ffffff"
+            android:textSize="14sp" />
+        <!--浏览过该课程的人数-->
+        <TextView
+            android:id="@+id/jingping_course_1_number2"
+            android:layout_width="wrap_content"
+            android:drawableLeft="@drawable/jingping_course_eye_how_many_look"
+            android:drawablePadding="2dp"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/jingping_course_1_introduce_text2"
+            android:layout_alignBottom="@+id/jingping_course_1_introduce_text2"
+            android:layout_alignEnd="@+id/jingping_course_1_introduce_text2"
+            android:layout_alignRight="@+id/jingping_course_1_introduce_text2"
+            android:paddingBottom="1dp"
+            android:paddingLeft="12dp"
+            android:text="@null"
+            android:textColor="#aeb2b9"
+            android:textSize="12sp" />
+
+
+        <!--课程图片-->
+        <ImageView
+            android:id="@+id/jingping_course_1_image2"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center_horizontal" />
+        <!--分割线-->
+        <ImageView
+            android:layout_width="fill_parent"
+            android:layout_height="0.5dp"
+            android:layout_alignParentBottom="true"
+            android:background="#ffffff" />
+
+    </RelativeLayout>
 
 </LinearLayout>

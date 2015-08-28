@@ -121,6 +121,10 @@
             android:name=".information.InformationChanceActivity"
             android:label="@string/title_activity_information_chance" >
         </activity>
+        <!--<activity
+            android:name=".Course.CourseMainActivity2"
+            android:label="@string/title_CourseMainActivity" >
+        </activity>-->
         <activity
             android:name=".Course.CourseMainActivity"
             android:label="@string/title_CourseMainActivity" >

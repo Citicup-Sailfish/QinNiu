@@ -72,7 +72,7 @@
 
     <!--用listView做课程界面，想法是用listview来显示每一个类型的课程，就是把三个课程当做一个list iteam-->
     <!--listview 用法参考 http://www.iteye.com/topic/540423-->
-    <!--list iteam 布局文件名 activity_course_listview_item-->
+    <!--list iteam 布局文件名 activity_course_listview_item2-->
     <ListView
         android:id="@+id/jingping_course_listview"
         android:layout_width="match_parent"
@@ -80,6 +80,8 @@
         android:layout_gravity="center_horizontal"
         android:cacheColorHint="#00000000"
         android:divider="@null"
+        android:focusable="false"
+        android:clickable="false"
         android:listSelector="#00000000">
         <!--每一天的iteam用linear来做-->
         <!--xml里有imagebutton的点击来跳转到精品课程的详细介绍页面，就是activity_course_2
