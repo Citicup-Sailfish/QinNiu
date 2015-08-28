@@ -285,7 +285,7 @@ public class CourseMainActivity extends Activity {
     private List<HashMap<String, Object>> mytest(String result) {
         mylist = new ArrayList<HashMap<String, Object>>();
         HashMap<String, Object> map;
-        for (int i = 0; i < 9; i++) {
+        for (int i = 0; i < 6; i++) {
             /*String image = "精品课堂" + Integer.toString(i);*/
             String name = "罗双平：现代人力资源管理之岗位工资设计技术" + Integer.toString(i);
             String number = "1";
@@ -301,34 +301,22 @@ public class CourseMainActivity extends Activity {
             map.put("jingping_course_1_introduce_number2", number);
             switch (i) {
                 case 0:
-                    map.put("jingping_course_1_courseType", "炒股基础课程");
+                    map.put("jingping_course_1_courseType", "炒股基础");
                     break;
                 case 1:
-                    map.put("jingping_course_1_courseType", "道氏理论");
-                    break;
-                case 2:
                     map.put("jingping_course_1_courseType", "文本挖掘");
                     break;
+                case 2:
+                    map.put("jingping_course_1_courseType", "金融市场");
+                    break;
                 case 3:
-                    map.put("jingping_course_1_courseType", "行为金融学");
+                    map.put("jingping_course_1_courseType", "商场荐读");
                     break;
                 case 4:
-                    map.put("jingping_course_1_courseType", "投资风险评估与管理");
-                    break;
-                case 5:
-                    map.put("jingping_course_1_courseType", "人力资源管理");
-                    break;
-                case 6:
-                    map.put("jingping_course_1_courseType", "市场营销");
-                    break;
-                case 7:
                     map.put("jingping_course_1_courseType", "国学讲堂");
                     break;
-                case 8:
+                case 5:
                     map.put("jingping_course_1_courseType", "生活点滴");
-                    break;
-                case 9:
-                    map.put("jingping_course_1_courseType", "宏观经济");
                     break;
             }
             mylist.add(map);
