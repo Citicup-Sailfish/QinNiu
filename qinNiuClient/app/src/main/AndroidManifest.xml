@@ -50,16 +50,8 @@
             android:label="@string/title_activity_price_optional" >
         </activity>
         <activity
-            android:name=".price.PriceTabHKUSActivity"
-            android:label="@string/title_activity_price_tab_hkus" >
-        </activity>
-        <activity
             android:name=".price.PriceTabIndexActivity"
             android:label="@string/title_activity_price_tab_index" >
-        </activity>
-        <activity
-            android:name=".price.PriceTabOtherActivity"
-            android:label="@string/title_activity_price_tab_other" >
         </activity>
         <activity
             android:name=".price.PriceTabSelectorActivity"

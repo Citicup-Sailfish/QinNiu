@@ -1,12 +1,186 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    tools:context="com.qinniuclient.trade.ExchangeTabQueryActivity">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:gravity="center_horizontal"
+              android:orientation="vertical">
 
-    <TextView android:text="@string/hello_world" android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+    <!--吉祥物-->
+    <ImageView
+        android:id="@+id/ExchangeQueryMascot"
+        android:layout_width="125dp"
+        android:layout_height="92dp"
+        android:layout_marginTop="42dp"
+        android:background="@drawable/simulation_query_mascot"/>
 
-</RelativeLayout>
+    <RelativeLayout
+        android:layout_width="268dp"
+        android:layout_height="225dp"
+        android:layout_marginTop="24dp">
+
+        <LinearLayout
+            android:id="@+id/ExchangeQueryTodayCommissionButton"
+            android:layout_width="60dp"
+            android:layout_height="84dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:src="@drawable/simulation_query_today_commission_button"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:includeFontPadding="false"
+                android:text="今日委托"
+                android:textSize="14sp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ExchangeQueryTodayDealButton"
+            android:layout_width="60dp"
+            android:layout_height="84dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:src="@drawable/simulation_query_today_deal_button"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:includeFontPadding="false"
+                android:text="今日成交"
+                android:textSize="14sp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ExchangeQueryCancelButton"
+            android:layout_width="60dp"
+            android:layout_height="84dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:src="@drawable/simulation_query_cancel_button"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:includeFontPadding="false"
+                android:text="委托撤单"
+                android:textSize="14sp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ExchangeQueryHistoryCommissionButton"
+            android:layout_width="60dp"
+            android:layout_height="84dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:src="@drawable/simulation_query_history_commission_button"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:includeFontPadding="false"
+                android:text="历史委托"
+                android:textSize="14sp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ExchangeQueryHistoryDealButton"
+            android:layout_width="60dp"
+            android:layout_height="84dp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:src="@drawable/simulation_query_history_deal_button"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:includeFontPadding="false"
+                android:text="历史成交"
+                android:textSize="14sp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ExchangeQueryBlotterButton"
+            android:layout_width="60dp"
+            android:layout_height="84dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:src="@drawable/simulation_query_blotter_button"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:includeFontPadding="false"
+                android:text="资金流水"
+                android:textSize="14sp"/>
+        </LinearLayout>
+
+        <!--水平分隔-->
+        <View
+            android:layout_width="250dp"
+            android:layout_height="1dp"
+            android:layout_centerInParent="true"
+            android:background="#ffffff"/>
+
+        <!--竖直分隔-->
+        <View
+            android:layout_width="1px"
+            android:layout_height="fill_parent"
+            android:layout_marginLeft="22dp"
+            android:layout_toRightOf="@id/ExchangeQueryTodayCommissionButton"
+            android:background="@drawable/simulation_query_dot_line"/>
+
+        <View
+            android:layout_width="1px"
+            android:layout_height="fill_parent"
+            android:layout_marginLeft="22dp"
+            android:layout_toRightOf="@id/ExchangeQueryTodayDealButton"
+            android:background="@drawable/simulation_query_dot_line"/>
+    </RelativeLayout>
+</LinearLayout>

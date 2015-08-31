@@ -44,14 +44,6 @@ public class PricePriceActivity extends TabActivity {
                 .setContent(intent);
         tabHost.addTab(spec);
 
-        intent = new Intent().setClass(this, PriceTabHKUSActivity.class);
-        spec = tabHost.newTabSpec("港美股").setIndicator("港美股").setContent(intent);
-        tabHost.addTab(spec);
-
-        intent = new Intent().setClass(this, PriceTabOtherActivity.class);
-        spec = tabHost.newTabSpec("其他").setIndicator("其他").setContent(intent);
-        tabHost.addTab(spec);
-
         tabHost.setCurrentTabByTag("股指");
 
 //        这个ID是radioGroup的ID，对于不同的group设置不同值，否则会崩溃
@@ -71,12 +63,6 @@ public class PricePriceActivity extends TabActivity {
                         break;
                     case R.id.hangqing_ExchangeTabBar_jihui:// 板块
                         tabHost.setCurrentTabByTag("板块");
-                        break;
-                    case R.id.hangqing_ExchangeTabBar_zixuangu:// 港美股
-                        tabHost.setCurrentTabByTag("港美股");
-                        break;
-                    case R.id.hangqing_ExchangeTabBar_more:// 其他
-                        tabHost.setCurrentTabByTag("其他");
                         break;
                     default:
                         break;

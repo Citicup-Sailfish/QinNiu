@@ -1,17 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#394264"
-    android:orientation="vertical">
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="#394264"
+              android:orientation="vertical">
 
     <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="48dp"
         android:background="#50597b"
-        android:baselineAligned="false"
-        android:orientation="horizontal">
+        android:baselineAligned="false">
 
         <Button
             android:id="@+id/CourseButton"
@@ -22,7 +20,7 @@
             android:layout_marginBottom="10dp"
             android:layout_marginLeft="12dp"
             android:layout_marginTop="10dp"
-            android:background="@drawable/iconmyself" />
+            android:background="@drawable/iconmyself"/>
 
         <TextView
             android:id="@+id/textView2"
@@ -35,7 +33,7 @@
             android:text="精品课堂"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:textColor="#ffffff"
-            android:textSize="18sp" />
+            android:textSize="18sp"/>
 
         <Button
             android:id="@+id/CourseButtonSearch"
@@ -48,50 +46,51 @@
             android:layout_marginBottom="10dp"
             android:layout_marginRight="12dp"
             android:layout_marginTop="10dp"
-            android:background="@drawable/icon_search" />
+            android:background="@drawable/icon_search"/>
 
     </RelativeLayout>
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="150dp"
-        android:layout_gravity="center_horizontal"
-        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-        <include layout="@layout/activity_course_advertisement_banner"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:layout_gravity="center_horizontal"
+                android:orientation="vertical">
 
-    </LinearLayout>
+                <include layout="@layout/activity_course_advertisement_banner"/>
 
-    <!--用listView做课程界面，想法是用listview来显示每一个类型的课程，就是把三个课程当做一个list iteam-->
-    <!--listview 用法参考 http://www.iteye.com/topic/540423-->
-    <!--list iteam 布局文件名 activity_course_listview_item2-->
-    <ListView
-        android:id="@+id/jingping_course_listview"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:cacheColorHint="#00000000"
-        android:divider="@null"
-        android:focusable="false"
-        android:clickable="false"
-        android:listSelector="#00000000">
-        <!--每一天的iteam用linear来做-->
-        <!--xml里有imagebutton的点击来跳转到精品课程的详细介绍页面，就是activity_course_2
-        看了百度后发现listiteam会有itemClick的点击事件，不过在这里需要被屏蔽掉，
-        理论上在item里设置了imagebutton后会自动屏蔽itemclick，但是不确定会不会，等调试时再看看
-        找到一篇关于这个问题的文章
-        http://blog.csdn.net/dalancon/article/details/17025339-->
+            </LinearLayout>
+
+            <!--用listView做课程界面，想法是用listview来显示每一个类型的课程，就是把三个课程当做一个list iteam-->
+            <!--listview 用法参考 http://www.iteye.com/topic/540423-->
+            <!--list iteam 布局文件名 activity_course_listview_item2-->
+            <ListView
+                android:id="@+id/jingping_course_listview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:cacheColorHint="#00000000"
+                android:clickable="false"
+                android:divider="@null"
+                android:focusable="false"
+                android:listSelector="#00000000">
+                <!--每一天的iteam用linear来做-->
+                <!--xml里有imagebutton的点击来跳转到精品课程的详细介绍页面，就是activity_course_2
+                看了百度后发现listiteam会有itemClick的点击事件，不过在这里需要被屏蔽掉，
+                理论上在item里设置了imagebutton后会自动屏蔽itemclick，但是不确定会不会，等调试时再看看
+                找到一篇关于这个问题的文章
+                http://blog.csdn.net/dalancon/article/details/17025339-->
 
 
-    </ListView>
-    </LinearLayout>
-</ScrollView>
+            </ListView>
+        </LinearLayout>
+    </ScrollView>
 </LinearLayout>

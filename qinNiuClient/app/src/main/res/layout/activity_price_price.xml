@@ -47,18 +47,6 @@
                     android:id="@+id/hangqing_ExchangeTabBar_jihui"
                     style="@style/information_ExchangeTabBar"
                     android:text="板块" />
-
-                <!--港美股-->
-                <RadioButton
-                    android:id="@+id/hangqing_ExchangeTabBar_zixuangu"
-                    style="@style/information_ExchangeTabBar"
-                    android:text="港美股" />
-
-                <!--其他-->
-                <RadioButton
-                    android:id="@+id/hangqing_ExchangeTabBar_more"
-                    style="@style/information_ExchangeTabBar"
-                    android:text="其他" />
             </RadioGroup>
         </LinearLayout>
 

@@ -1,12 +1,609 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    tools:context="com.qinniuclient.trade.ExchangeTabBuyActivity">
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent"
+            android:background="#394264">
 
-    <TextView android:text="@string/hello_world" android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content">
 
-</RelativeLayout>
+        <!--信息栏-->
+        <RelativeLayout
+            android:id="@+id/ExchangeBuyInfoBar"
+            android:layout_width="fill_parent"
+            android:layout_height="30dp"
+            android:layout_alignParentTop="true"
+            android:background="#49516f">
+
+            <!--可用资金-->
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="12dp"
+                android:layout_marginStart="12dp">
+
+                <TextView
+                    android:id="@+id/ExchangeBuyInfoBarAvaliableTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="可用资金："
+                    android:textColor="#ffffff"
+                    android:textSize="12sp"/>
+
+                <TextView
+                    android:id="@+id/ExchangeBuyInfoBarAvaliableValue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@id/ExchangeBuyInfoBarAvaliableTitle"
+                    android:text="637829.76元"
+                    android:textColor="#ffffff"
+                    android:textSize="12sp"/>
+            </RelativeLayout>
+
+            <!--转账按钮-->
+            <Button
+                android:id="@+id/ExchangeBuyInfoBarBuy"
+                android:layout_width="59dp"
+                android:layout_height="12dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="12dp"
+                android:background="@null"
+                android:drawableRight="@drawable/simulation_buy_infobar_button"
+                android:gravity="center"
+                android:includeFontPadding="false"
+                android:text="进行转账"
+                android:textColor="#d55858"
+                android:textSize="12sp"/>
+        </RelativeLayout>
+
+        <!--买入界面-->
+        <RelativeLayout
+            android:id="@+id/ExchangeBuyContent"
+            android:layout_width="fill_parent"
+            android:layout_height="245dp"
+            android:layout_below="@id/ExchangeBuyInfoBar"
+            android:layout_marginTop="20dp"
+            android:paddingLeft="12dp"
+            android:paddingRight="12dp">
+
+            <!--左边部分，输入框与按钮-->
+            <LinearLayout
+                android:id="@+id/ExchangeBuyContentLeft"
+                android:layout_width="200dp"
+                android:layout_height="fill_parent"
+                android:orientation="vertical">
+
+                <!--股票代码-->
+                <AutoCompleteTextView
+                    android:id="@+id/ExchangeBuyContentLeftStock"
+                    android:layout_width="fill_parent"
+                    android:layout_height="40dp"
+                    android:background="@drawable/shape_trade_buy_input"
+                    android:completionThreshold="1"
+                    android:focusable="true"
+                    android:gravity="center"
+                    android:hint="股票代码/首字母"
+                    android:imeOptions="actionSearch"
+                    android:inputType="numberDecimal"
+                    android:maxLength="6"
+                    android:singleLine="true"
+                    android:textSize="14sp"/>
+
+                <!--委托价格-->
+                <RelativeLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="58dp"
+                    android:layout_marginTop="10dp">
+
+                    <EditText
+                        android:id="@+id/ExchangeBuyContentPrice"
+                        android:layout_width="fill_parent"
+                        android:layout_height="40dp"
+                        android:background="@drawable/shape_trade_buy_input"
+                        android:focusable="true"
+                        android:gravity="center"
+                        android:hint="委托价格"
+                        android:singleLine="true"
+                        android:textSize="14sp"/>
+
+                    <!--减价按钮-->
+                    <Button
+                        android:id="@+id/ExchangeBuyContentPriceDec"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true"
+                        android:background="@drawable/trade_buy_dec_button"/>
+
+                    <!--跌停(因为内容只有跌停两个字和具体的数值，就不分开两个textview了，代码获取到string以后直接加吧。。。)-->
+                    <TextView
+                        android:id="@+id/ExchangeBuyInfoBarDownLimit"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:layout_below="@id/ExchangeBuyContentPriceDec"
+                        android:layout_marginTop="6dp"
+                        android:includeFontPadding="false"
+                        android:text="跌停--"
+                        android:textColor="#1ed75b"
+                        android:textSize="12sp"/>
+
+                    <!--加价按钮-->
+                    <Button
+                        android:id="@+id/ExchangeBuyContentPriceAdd"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignParentTop="true"
+                        android:background="@drawable/trade_buy_add_button"/>
+
+                    <!--涨停(跌停同理)-->
+                    <TextView
+                        android:id="@+id/ExchangeBuyInfoBarUpLimit"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_below="@id/ExchangeBuyContentPriceAdd"
+                        android:layout_marginTop="6dp"
+                        android:includeFontPadding="false"
+                        android:text="涨停++"
+                        android:textColor="#d55858"
+                        android:textSize="12sp"/>
+                </RelativeLayout>
+
+                <!--委托数量-->
+                <EditText
+                    android:id="@+id/ExchangeBuyContentAmount"
+                    android:layout_width="fill_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="7dp"
+                    android:background="@drawable/shape_trade_buy_input"
+                    android:focusable="true"
+                    android:gravity="center"
+                    android:hint="委托数量"
+                    android:singleLine="true"
+                    android:textSize="14sp"/>
+
+                <!--数量按钮
+                  这三个按钮目前是未激活的 android:enabled="false"
+                  激活后改为true-->
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="35dp"
+                    android:layout_marginTop="10dp"
+                    android:divider="@drawable/spacer_medium"
+                    android:orientation="horizontal"
+                    android:showDividers="middle">
+
+                    <!--1/4按钮-->
+                    <Button
+                        android:enabled="false"
+                        android:id="@+id/ExchangeBuyContentAmountQuarter"
+                        style="@style/SimulationBuyButtonDefault"
+                        android:background="@drawable/selector_trade_buy_amount_button"
+                        android:text="1/4"
+                        android:textColor="@color/trade_buy_amount_button"/>
+
+                    <Button
+                        android:enabled="false"
+                        android:id="@+id/ExchangeBuyContentAmountHalf"
+                        style="@style/SimulationBuyButtonDefault"
+                        android:background="@drawable/selector_trade_buy_amount_button"
+                        android:text="1/2"
+                        android:textColor="@color/trade_buy_amount_button"/>
+
+                    <Button
+                        android:enabled="false"
+                        android:id="@+id/ExchangeBuyContentAmountAll"
+                        style="@style/SimulationBuyButtonDefault"
+                        android:background="@drawable/selector_trade_buy_amount_button"
+                        android:text="全部"
+                        android:textColor="@color/trade_buy_amount_button"/>
+                </LinearLayout>
+
+                <!--买入按钮
+                  这两个按钮目前是默认背景和字体颜色
+                  激活后的样式是
+                  android:background="@drawable/shape_trade_buy_button_buy"
+                  android:textColor="#d2d2d2"-->
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="35dp"
+                    android:layout_marginTop="10dp"
+                    android:divider="@drawable/spacer_medium"
+                    android:orientation="horizontal"
+                    android:showDividers="middle">
+
+                    <Button
+                        android:enabled="false"
+                        android:id="@+id/ExchangeBuyContentBuy"
+                        style="@style/SimulationBuyButtonDefault"
+                        android:background="@drawable/selector_trade_buy_action_button"
+                        android:text="买入"
+                        android:textColor="@color/trade_buy_action_button"/>
+
+                    <Button
+                        android:enabled="false"
+                        android:id="@+id/ExchangeBuyContentAmountMarcetBuy"
+                        style="@style/SimulationBuyButtonDefault"
+                        android:background="@drawable/selector_trade_buy_action_button"
+                        android:text="市价买入"
+                        android:textColor="@color/trade_buy_action_button"/>
+                </LinearLayout>
+            </LinearLayout>
+
+            <!--右边部分
+              买入卖出文字的默认样式是android:textColor="#d2d2d2"
+              价格高于现价的样式是android:textColor="#e74e64"
+              低于现价的样式是android:textColor="#1ed75b"-->
+            <RelativeLayout
+                android:id="@+id/ExchangeBuyContentRight"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginLeft="13dp"
+                android:layout_toRightOf="@id/ExchangeBuyContentLeft"
+                android:gravity="center_horizontal">
+
+                <!--股票代码-->
+                <TextView
+                    android:id="@+id/ExchangeBuyContentRightStock"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="5dp"
+                    android:gravity="center"
+                    android:includeFontPadding="false"
+                    android:maxLines="2"
+                    android:singleLine="true"
+                    android:text="股票名称/代码"
+                    android:textColor="#ffffff"
+                    android:textSize="12sp"/>
+
+                <TableLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginBottom="0dp">
+
+                    <!--卖5-->
+                    <TableRow
+                        android:layout_marginLeft="7dp"
+                        android:layout_marginRight="7dp">
+
+                        <TextView
+                            android:layout_width="25dp"
+                            android:layout_height="18dp"
+                            android:gravity="left|center_vertical"
+                            android:includeFontPadding="false"
+                            android:text="卖5"
+                            android:textColor="#ffffff"
+                            android:textSize="12sp"/>
+
+                        <TextView
+                            android:id="@+id/ExchangeBuyContentRightSale5Price"
+                            style="@style/SimulationBuyContentRightText"
+                            android:gravity="left|center_vertical"
+                            android:text="-"
+                            android:textColor="#d2d2d2"/>
+
+                        <TextView
+                            android:id="@+id/ExchangeBuyContentRightSale5Lots"
+                            style="@style/SimulationBuyContentRightText"
+                            android:gravity="right|center_vertical"
+                            android:text="-"
+                            android:textColor="#d2d2d2"/>
+                    </TableRow>
+                    <!--卖4-->
+                    <TableRow
+                        android:layout_marginLeft="7dp"
+                        android:layout_marginRight="7dp">
+
+                        <TextView
+                            android:layout_width="25dp"
+                            android:layout_height="18dp"
+                            android:gravity="left|center_vertical"
+                            android:includeFontPadding="false"
+                            android:text="卖4"
+                            android:textColor="#ffffff"
+                            android:textSize="12sp"/>
+
+                        <TextView
+                            android:id="@+id/ExchangeBuyContentRightSale4Price"
+                            style="@style/SimulationBuyContentRightText"
+                            android:gravity="left|center_vertical"
+                            android:text="-"
+                            android:textColor="#d2d2d2"/>
+
+                        <TextView
+                            android:id="@+id/ExchangeBuyContentRightSale4Lots"
+                            style="@style/SimulationBuyContentRightText"
+                            android:gravity="right|center_vertical"
+                            android:text="-"
+                            android:textColor="#d2d2d2"/>
+                    </TableRow>
+
+                    <!--卖3-->
+                    <TableRow
+                        android:layout_marginLeft="7dp"
+                        android:layout_marginRight="7dp">
+
+                        <TextView
+                            android:layout_width="25dp"
+                            android:layout_height="18dp"
+                            android:gravity="left|center_vertical"
+                            android:includeFontPadding="false"
+                            android:text="卖3"
+                            android:textColor="#ffffff"
+                            android:textSize="12sp"/>
+
+                        <TextView
+                            android:id="@+id/ExchangeBuyContentRightSale3Price"
+                            style="@style/SimulationBuyContentRightText"
+                            android:gravity="left|center_vertical"
+                            android:text="-"
+                            android:textColor="#d2d2d2"/>
+
+                        <TextView
+                            android:id="@+id/ExchangeBuyContentRightSale3Lots"
+                            style="@style/SimulationBuyContentRightText"
+                            android:gravity="right|center_vertical"
+                            android:text="-"
+                            android:textColor="#d2d2d2"/>
+                    </TableRow>
+
+                    <!--卖2-->
+                    <TableRow
+                        android:layout_marginLeft="7dp"
+                        android:layout_marginRight="7dp">
+
+                        <TextView
+                            android:layout_width="25dp"
+                            android:layout_height="18dp"
+                            android:gravity="left|center_vertical"
+                            android:includeFontPadding="false"
+                            android:text="卖2"
+                            android:textColor="#ffffff"
+                            android:textSize="12sp"/>
+
+                        <TextView
+                            android:id="@+id/ExchangeBuyContentRightSale2Price"
+                            style="@style/SimulationBuyContentRightText"
+                            android:gravity="left|center_vertical"
+                            android:text="-"
+                            android:textColor="#d2d2d2"/>
+
+                        <TextView
+                            android:id="@+id/ExchangeBuyContentRightSale2Lots"
+                            style="@style/SimulationBuyContentRightText"
+                            android:gravity="right|center_vertical"
+                            android:text="-"
+                            android:textColor="#d2d2d2"/>
+                    </TableRow>
+
+                    <!--卖1-->
+                    <TableRow
+                        android:layout_marginLeft="7dp"
+                        android:layout_marginRight="7dp">
+
+                        <TextView
+                            android:layout_width="25dp"
+                            android:layout_height="18dp"
+                            android:gravity="left|center_vertical"
+                            android:includeFontPadding="false"
+                            android:text="卖1"
+                            android:textColor="#ffffff"
+                            android:textSize="12sp"/>
+
+                        <TextView
+                            android:id="@+id/ExchangeBuyContentRightSale1Price"
+                            style="@style/SimulationBuyContentRightText"
+                            android:gravity="left|center_vertical"
+                            android:text="-"
+                            android:textColor="#d2d2d2"/>
+
+                        <TextView
+                            android:id="@+id/ExchangeBuyContentRightSale1Lots"
+                            style="@style/SimulationBuyContentRightText"
+                            android:gravity="right|center_vertical"
+                            android:text="-"
+                            android:textColor="#d2d2d2"/>
+                    </TableRow>
+
+                    <!--白线-->
+                    <View
+                        android:layout_width="fill_parent"
+                        android:layout_height="1px"
+                        android:background="#ffffff"/>
+
+                    <!--白线-->
+                    <View
+                        android:layout_width="fill_parent"
+                        android:layout_height="1px"
+                        android:layout_marginTop="25dp"
+                        android:background="#ffffff"/>
+
+                    <!--买1-->
+                    <TableRow
+                        android:layout_marginLeft="7dp"
+                        android:layout_marginRight="7dp">
+
+                        <TextView
+                            android:layout_width="25dp"
+                            android:layout_height="18dp"
+                            android:gravity="left|center_vertical"
+                            android:includeFontPadding="false"
+                            android:text="买1"
+                            android:textColor="#ffffff"
+                            android:textSize="12sp"/>
+
+                        <TextView
+                            android:id="@+id/ExchangeBuyContentRightBuy1Price"
+                            style="@style/SimulationBuyContentRightText"
+                            android:gravity="left|center_vertical"
+                            android:text="-"
+                            android:textColor="#d2d2d2"/>
+
+                        <TextView
+                            android:id="@+id/ExchangeBuyContentRightBuy1Lots"
+                            style="@style/SimulationBuyContentRightText"
+                            android:gravity="right|center_vertical"
+                            android:text="-"
+                            android:textColor="#d2d2d2"/>
+                    </TableRow>
+
+                    <!--买2-->
+                    <TableRow
+                        android:layout_marginLeft="7dp"
+                        android:layout_marginRight="7dp">
+
+                        <TextView
+                            android:layout_width="25dp"
+                            android:layout_height="18dp"
+                            android:gravity="left|center_vertical"
+                            android:includeFontPadding="false"
+                            android:text="买2"
+                            android:textColor="#ffffff"
+                            android:textSize="12sp"/>
+
+                        <TextView
+                            android:id="@+id/ExchangeBuyContentRightBuy2Price"
+                            style="@style/SimulationBuyContentRightText"
+                            android:gravity="left|center_vertical"
+                            android:text="-"
+                            android:textColor="#d2d2d2"/>
+
+                        <TextView
+                            android:id="@+id/ExchangeBuyContentRightBuy2Lots"
+                            style="@style/SimulationBuyContentRightText"
+                            android:gravity="right|center_vertical"
+                            android:text="-"
+                            android:textColor="#d2d2d2"/>
+                    </TableRow>
+
+                    <!--买3-->
+                    <TableRow
+                        android:layout_marginLeft="7dp"
+                        android:layout_marginRight="7dp">
+
+                        <TextView
+                            android:layout_width="25dp"
+                            android:layout_height="18dp"
+                            android:gravity="left|center_vertical"
+                            android:includeFontPadding="false"
+                            android:text="买3"
+                            android:textColor="#ffffff"
+                            android:textSize="12sp"/>
+
+                        <TextView
+                            android:id="@+id/ExchangeBuyContentRightBuy3Price"
+                            style="@style/SimulationBuyContentRightText"
+                            android:gravity="left|center_vertical"
+                            android:text="-"
+                            android:textColor="#d2d2d2"/>
+
+                        <TextView
+                            android:id="@+id/ExchangeBuyContentRightBuy3Lots"
+                            style="@style/SimulationBuyContentRightText"
+                            android:gravity="right|center_vertical"
+                            android:text="-"
+                            android:textColor="#d2d2d2"/>
+                    </TableRow>
+
+                    <!--买4-->
+                    <TableRow
+                        android:layout_marginLeft="7dp"
+                        android:layout_marginRight="7dp">
+
+                        <TextView
+                            android:layout_width="25dp"
+                            android:layout_height="18dp"
+                            android:gravity="left|center_vertical"
+                            android:includeFontPadding="false"
+                            android:text="买4"
+                            android:textColor="#ffffff"
+                            android:textSize="12sp"/>
+
+                        <TextView
+                            android:id="@+id/ExchangeBuyContentRightBuy4Price"
+                            style="@style/SimulationBuyContentRightText"
+                            android:gravity="left|center_vertical"
+                            android:text="-"
+                            android:textColor="#d2d2d2"/>
+
+                        <TextView
+                            android:id="@+id/ExchangeBuyContentRightBuy4Lots"
+                            style="@style/SimulationBuyContentRightText"
+                            android:gravity="right|center_vertical"
+                            android:text="-"
+                            android:textColor="#d2d2d2"/>
+                    </TableRow>
+
+                    <!--买5-->
+                    <TableRow
+                        android:layout_marginLeft="7dp"
+                        android:layout_marginRight="7dp">
+
+                        <TextView
+                            android:layout_width="25dp"
+                            android:layout_height="18dp"
+                            android:gravity="left|center_vertical"
+                            android:includeFontPadding="false"
+                            android:text="买5"
+                            android:textColor="#ffffff"
+                            android:textSize="12sp"/>
+
+                        <TextView
+                            android:id="@+id/ExchangeBuyContentRightBuy5Price"
+                            style="@style/SimulationBuyContentRightText"
+                            android:gravity="left|center_vertical"
+                            android:text="-"
+                            android:textColor="#d2d2d2"/>
+
+                        <TextView
+                            android:id="@+id/ExchangeBuyContentRightBuy5Lots"
+                            style="@style/SimulationBuyContentRightText"
+                            android:gravity="right|center_vertical"
+                            android:text="-"
+                            android:textColor="#d2d2d2"/>
+                    </TableRow>
+                </TableLayout>
+            </RelativeLayout>
+        </RelativeLayout>
+
+        <!--持仓部分-->
+
+        <!--我的持仓-->
+        <TextView
+            android:id="@+id/ExchangeBuyPositionTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/ExchangeBuyContent"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:includeFontPadding="false"
+            android:text="我的持仓"
+            android:textColor="#d2d2d2"
+            android:textSize="14sp"/>
+
+        <ListView
+            android:id="@+id/ExchangeBuyPosition"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/ExchangeBuyPositionTitle"
+            android:layout_gravity="center_horizontal"
+            android:cacheColorHint="#00000000"
+            android:divider="@null"
+            android:listSelector="#00000000"/>
+    </RelativeLayout>
+</ScrollView>
