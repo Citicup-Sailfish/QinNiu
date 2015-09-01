@@ -2,15 +2,6 @@ package com.qinniuclient.Course;
 
 /*这个类使用了网络上的一个图片轮播demo，所以代码有点长，但是关于listview部分的大多参看行情自选的网路数据传输方式*/
 
-import java.io.File;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
-
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -22,11 +13,11 @@ import android.os.Parcelable;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ImageView.ScaleType;
 import android.widget.ListAdapter;
@@ -44,6 +35,16 @@ import com.nostra13.universalimageloader.core.assist.ImageScaleType;
 import com.nostra13.universalimageloader.core.assist.QueueProcessingType;
 import com.qinniuclient.R;
 import com.qinniuclient.util.HttpUtil;
+import com.qinniuclient.util.UserButtonOnClickListener;
+
+import java.io.File;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 
 public class CourseMainActivity extends Activity {
@@ -80,9 +81,10 @@ public class CourseMainActivity extends Activity {
     private Handler handler = new Handler() {
         public void handleMessage(android.os.Message msg) {
             adViewPager.setCurrentItem(currentItem);
-        };
-    };
+        }
 
+        ;
+    };
 
 
     //listview部分
@@ -111,11 +113,22 @@ public class CourseMainActivity extends Activity {
         //listview部分
         mycourselist = (ListView) findViewById(R.id.jingping_course_listview);
         new MyAsyncTask().execute();
+
+        /*登录button的跳转 TX*/
+        Button userButton = (Button) findViewById(R.id.UserButton);
+        userButton.setOnClickListener(new UserButtonOnClickListener() {
+            @Override
+            public void onClick(View v) {
+                super.onClick(v);
+            }
+        });
     }
 
     //网上搜的listview与scrollview一起滚动冲突解决方法，设定listview高度解决
     public static void setListViewHeightBasedOnChildren(ListView listView) {
-        if(listView == null) return;
+        if (listView == null) {
+            return;
+        }
         ListAdapter listAdapter = listView.getAdapter();
         if (listAdapter == null) {
             // pre-condition
@@ -128,7 +141,8 @@ public class CourseMainActivity extends Activity {
             totalHeight += listItem.getMeasuredHeight();
         }
         ViewGroup.LayoutParams params = listView.getLayoutParams();
-        params.height = totalHeight + (listView.getDividerHeight() * (listAdapter.getCount() - 1));
+        params.height = totalHeight + (listView.getDividerHeight() *
+                                       (listAdapter.getCount() - 1));
         listView.setLayoutParams(params);
     }
 
@@ -143,6 +157,7 @@ public class CourseMainActivity extends Activity {
         private TextView textnum1;
         private TextView textnum2;
         private List<? extends Map<String, ?>> mData;
+
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
             // TODO Auto-generated method stub
@@ -152,27 +167,39 @@ public class CourseMainActivity extends Activity {
             final int myposition;
             myposition = position;
 
-            textnum0 = (TextView) v.findViewById(R.id.jingping_course_1_number0);
-            textnum1 = (TextView) v.findViewById(R.id.jingping_course_1_number1);
-            textnum2 = (TextView) v.findViewById(R.id.jingping_course_1_number2);
+            textnum0 = (TextView) v
+                    .findViewById(R.id.jingping_course_1_number0);
+            textnum1 = (TextView) v
+                    .findViewById(R.id.jingping_course_1_number1);
+            textnum2 = (TextView) v
+                    .findViewById(R.id.jingping_course_1_number2);
             textnum0.setTag(position);
             textnum1.setTag(position);
             textnum2.setTag(position);
 
-            text0 = (TextView) v.findViewById(R.id.jingping_course_1_introduce_text0);
+            text0 = (TextView) v
+                    .findViewById(R.id.jingping_course_1_introduce_text0);
 
-            text1 = (TextView) v.findViewById(R.id.jingping_course_1_introduce_text1);
+            text1 = (TextView) v
+                    .findViewById(R.id.jingping_course_1_introduce_text1);
 
-            text0 = (TextView) v.findViewById(R.id.jingping_course_1_introduce_text0);
+            text0 = (TextView) v
+                    .findViewById(R.id.jingping_course_1_introduce_text0);
             text0.setTag(position);
             text0.setOnClickListener(new OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     /*点击时浏览次数加一，需要服务器支持*/
-                    textnum0.setText(Integer.toString(Integer.valueOf(mData.get(myposition).get("jingping_course_1_introduce_number0").toString()) + 1));
-                    Intent intent = new Intent(CourseMainActivity.this, InformationCourseContentActivity.class);
+                    textnum0.setText(Integer.toString(Integer.valueOf(
+                            mData.get(myposition)
+                                 .get("jingping_course_1_introduce_number0")
+                                 .toString()) + 1));
+                    Intent intent = new Intent(CourseMainActivity.this,
+                                               InformationCourseContentActivity.class);
                     /*获取课程名称，传给下一个界面，在下一个界面以课程名称来确定由哪一个界面跳转过来*/
-                    String flag = mData.get(myposition).get("jingping_course_1_introduce_text0").toString();
+                    String flag = mData.get(myposition)
+                                       .get("jingping_course_1_introduce_text0")
+                                       .toString();
                     intent.putExtra("text", flag);
                     /*Log.e("text0", text0.getText().toString());
                     Log.e("position", Integer.valueOf(myposition).toString());*/
@@ -180,31 +207,45 @@ public class CourseMainActivity extends Activity {
                 }
             });
 
-            text1 = (TextView) v.findViewById(R.id.jingping_course_1_introduce_text1);
+            text1 = (TextView) v
+                    .findViewById(R.id.jingping_course_1_introduce_text1);
             text1.setTag(position);
             text1.setOnClickListener(new OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     /*点击时浏览次数加一*/
-                    textnum1.setText(Integer.toString(Integer.valueOf(mData.get(myposition).get("jingping_course_1_introduce_number1").toString()) + 1));
+                    textnum1.setText(Integer.toString(Integer.valueOf(
+                            mData.get(myposition)
+                                 .get("jingping_course_1_introduce_number1")
+                                 .toString()) + 1));
                     /*获取课程名称，传给下一个界面，在下一个界面以课程名称来确定由哪一个界面跳转过来*/
-                    Intent intent = new Intent(CourseMainActivity.this, InformationCourseContentActivity.class);
-                    String flag = mData.get(myposition).get("jingping_course_1_introduce_text1").toString();
+                    Intent intent = new Intent(CourseMainActivity.this,
+                                               InformationCourseContentActivity.class);
+                    String flag = mData.get(myposition)
+                                       .get("jingping_course_1_introduce_text1")
+                                       .toString();
                     intent.putExtra("text", flag);
                     startActivity(intent);
                 }
             });
 
-            text2 = (TextView) v.findViewById(R.id.jingping_course_1_introduce_text2);
+            text2 = (TextView) v
+                    .findViewById(R.id.jingping_course_1_introduce_text2);
             text2.setTag(position);
             text2.setOnClickListener(new OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     /*点击时浏览次数加一*/
-                    textnum2.setText(Integer.toString(Integer.valueOf(mData.get(myposition).get("jingping_course_1_introduce_number2").toString()) + 1));
+                    textnum2.setText(Integer.toString(Integer.valueOf(
+                            mData.get(myposition)
+                                 .get("jingping_course_1_introduce_number2")
+                                 .toString()) + 1));
                     /*获取课程名称，传给下一个界面，在下一个界面以课程名称来确定由哪一个界面跳转过来*/
-                    Intent intent = new Intent(CourseMainActivity.this, InformationCourseContentActivity.class);
-                    String flag = mData.get(myposition).get("jingping_course_1_introduce_text2").toString();
+                    Intent intent = new Intent(CourseMainActivity.this,
+                                               InformationCourseContentActivity.class);
+                    String flag = mData.get(myposition)
+                                       .get("jingping_course_1_introduce_text2")
+                                       .toString();
                     intent.putExtra("text", flag);
                     startActivity(intent);
                 }
@@ -213,13 +254,14 @@ public class CourseMainActivity extends Activity {
             return v;
         }
 
-        public MySimpleAdapter(Context context, List<? extends Map<String, ?>> data, int resource, String[] from, int[] to) {
+        public MySimpleAdapter(Context context,
+                               List<? extends Map<String, ?>> data,
+                               int resource, String[] from, int[] to) {
             super(context, data, resource, from, to);
             this.mData = data;
             // TODO Auto-generated constructor stub
         }
     }
-
 
 
     //listitem的数据来源 服务器
@@ -242,39 +284,68 @@ public class CourseMainActivity extends Activity {
         @Override
         protected void onPostExecute(String result) {
             super.onPostExecute(result);
-            if (result != null && !result.equals("network anomaly") && !result.equals("")) {
+            if (result != null && !result.equals("network anomaly") &&
+                !result.equals("")) {
                 //课堂类型 课堂名称
-                String[] keySet = {"jingping_course_1_courseType", "jingping_course_1_image0", "jingping_course_1_introduce_text0",
-                        "jingping_course_1_introduce_number0", "jingping_course_1_image1", "jingping_course_1_introduce_text1",
-                        "jingping_course_1_introduce_number1", "jingping_course_1_image2", "jingping_course_1_introduce_text2",
-                        "jingping_course_1_introduce_number2"};
-                int[] toIds = {R.id.jingping_course_1_courseType, R.id.jingping_course_1_image0, R.id.jingping_course_1_introduce_text0
-                        , R.id.jingping_course_1_number0, R.id.jingping_course_1_image1, R.id.jingping_course_1_introduce_text1
-                        , R.id.jingping_course_1_number1, R.id.jingping_course_1_image2, R.id.jingping_course_1_introduce_text2
+                String[] keySet = {"jingping_course_1_courseType",
+                                   "jingping_course_1_image0",
+                                   "jingping_course_1_introduce_text0",
+                                   "jingping_course_1_introduce_number0",
+                                   "jingping_course_1_image1",
+                                   "jingping_course_1_introduce_text1",
+                                   "jingping_course_1_introduce_number1",
+                                   "jingping_course_1_image2",
+                                   "jingping_course_1_introduce_text2",
+                                   "jingping_course_1_introduce_number2"};
+                int[] toIds = {R.id.jingping_course_1_courseType,
+                               R.id.jingping_course_1_image0,
+                               R.id.jingping_course_1_introduce_text0
+                        , R.id.jingping_course_1_number0,
+                               R.id.jingping_course_1_image1,
+                               R.id.jingping_course_1_introduce_text1
+                        , R.id.jingping_course_1_number1,
+                               R.id.jingping_course_1_image2,
+                               R.id.jingping_course_1_introduce_text2
                         , R.id.jingping_course_1_number2};
-                MySimpleAdapter simpleAdapter = new MySimpleAdapter(CourseMainActivity.this, getHoldPosInfo(result), R.layout.activity_course_listview_item, keySet, toIds);
+                MySimpleAdapter simpleAdapter = new MySimpleAdapter(
+                        CourseMainActivity.this, getHoldPosInfo(result),
+                        R.layout.activity_course_listview_item, keySet, toIds);
                 mycourselist.setAdapter(simpleAdapter);
                 setListViewHeightBasedOnChildren(mycourselist);
             } else if (result.equals("")) {
                 Toast toast = Toast.makeText(getApplicationContext(),
-                        "暂无数据", Toast.LENGTH_SHORT);
+                                             "暂无数据", Toast.LENGTH_SHORT);
                 toast.setGravity(Gravity.CENTER, 0, 0);
                 toast.show();
             } else {
                 /*无网络时的测试用数据*/
-                String[] keySet = {"jingping_course_1_courseType", "jingping_course_1_image0", "jingping_course_1_introduce_text0",
-                        "jingping_course_1_introduce_number0", "jingping_course_1_image1", "jingping_course_1_introduce_text1",
-                        "jingping_course_1_introduce_number1", "jingping_course_1_image2", "jingping_course_1_introduce_text2",
-                        "jingping_course_1_introduce_number2"};
-                int[] toIds = {R.id.jingping_course_1_courseType, R.id.jingping_course_1_image0, R.id.jingping_course_1_introduce_text0
-                        , R.id.jingping_course_1_number0, R.id.jingping_course_1_image1, R.id.jingping_course_1_introduce_text1
-                        , R.id.jingping_course_1_number1, R.id.jingping_course_1_image2, R.id.jingping_course_1_introduce_text2
+                String[] keySet = {"jingping_course_1_courseType",
+                                   "jingping_course_1_image0",
+                                   "jingping_course_1_introduce_text0",
+                                   "jingping_course_1_introduce_number0",
+                                   "jingping_course_1_image1",
+                                   "jingping_course_1_introduce_text1",
+                                   "jingping_course_1_introduce_number1",
+                                   "jingping_course_1_image2",
+                                   "jingping_course_1_introduce_text2",
+                                   "jingping_course_1_introduce_number2"};
+                int[] toIds = {R.id.jingping_course_1_courseType,
+                               R.id.jingping_course_1_image0,
+                               R.id.jingping_course_1_introduce_text0
+                        , R.id.jingping_course_1_number0,
+                               R.id.jingping_course_1_image1,
+                               R.id.jingping_course_1_introduce_text1
+                        , R.id.jingping_course_1_number1,
+                               R.id.jingping_course_1_image2,
+                               R.id.jingping_course_1_introduce_text2
                         , R.id.jingping_course_1_number2};
-                MySimpleAdapter simpleAdapter = new MySimpleAdapter(CourseMainActivity.this, mytest("te"), R.layout.activity_course_listview_item, keySet, toIds);
+                MySimpleAdapter simpleAdapter = new MySimpleAdapter(
+                        CourseMainActivity.this, mytest("te"),
+                        R.layout.activity_course_listview_item, keySet, toIds);
                 mycourselist.setAdapter(simpleAdapter);
                 setListViewHeightBasedOnChildren(mycourselist);
                 Toast toast = Toast.makeText(getApplicationContext(),
-                        "网络异常", Toast.LENGTH_SHORT);
+                                             "网络异常", Toast.LENGTH_SHORT);
                 toast.setGravity(Gravity.CENTER, 0, 0);
                 toast.show();
             }
@@ -290,13 +361,16 @@ public class CourseMainActivity extends Activity {
             String name = "罗双平：现代人力资源管理之岗位工资设计技术" + Integer.toString(i);
             String number = "1";
             map = new HashMap<String, Object>();
-            map.put("jingping_course_1_image0", R.drawable.simulation_infobar_user_icon);
+            map.put("jingping_course_1_image0",
+                    R.drawable.simulation_infobar_user_icon);
             map.put("jingping_course_1_introduce_text0", name);
             map.put("jingping_course_1_introduce_number0", number);
-            map.put("jingping_course_1_image1", R.drawable.simulation_infobar_user_icon);
+            map.put("jingping_course_1_image1",
+                    R.drawable.simulation_infobar_user_icon);
             map.put("jingping_course_1_introduce_text1", name);
             map.put("jingping_course_1_introduce_number1", number);
-            map.put("jingping_course_1_image2", R.drawable.simulation_infobar_user_icon);
+            map.put("jingping_course_1_image2",
+                    R.drawable.simulation_infobar_user_icon);
             map.put("jingping_course_1_introduce_text2", name);
             map.put("jingping_course_1_introduce_number2", number);
             switch (i) {
@@ -335,7 +409,8 @@ public class CourseMainActivity extends Activity {
     //服务器部分需要改
     private String query(String username) {
         String queryString = "username=" + username;
-        String url = HttpUtil.BASE_URL + "GetUserSelfSelectServlet?" + queryString;
+        String url = HttpUtil.BASE_URL + "GetUserSelfSelectServlet?" +
+                     queryString;
         return HttpUtil.queryStringForGet(url);
     }
 
@@ -359,44 +434,22 @@ public class CourseMainActivity extends Activity {
     }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     private void initImageLoader() {
         File cacheDir = com.nostra13.universalimageloader.utils.StorageUtils
                 .getOwnCacheDirectory(getApplicationContext(),
-                        IMAGE_CACHE_PATH);
+                                      IMAGE_CACHE_PATH);
 
         DisplayImageOptions defaultOptions = new DisplayImageOptions.Builder()
                 .cacheInMemory(true).cacheOnDisc(true).build();
 
         ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(
                 this).defaultDisplayImageOptions(defaultOptions)
-                .memoryCache(new LruMemoryCache(12 * 1024 * 1024))
-                .memoryCacheSize(12 * 1024 * 1024)
-                .discCacheSize(32 * 1024 * 1024).discCacheFileCount(100)
-                .discCache(new UnlimitedDiscCache(cacheDir))
-                .threadPriority(Thread.NORM_PRIORITY - 2)
-                .tasksProcessingOrder(QueueProcessingType.LIFO).build();
+                     .memoryCache(new LruMemoryCache(12 * 1024 * 1024))
+                     .memoryCacheSize(12 * 1024 * 1024)
+                     .discCacheSize(32 * 1024 * 1024).discCacheFileCount(100)
+                     .discCache(new UnlimitedDiscCache(cacheDir))
+                     .threadPriority(Thread.NORM_PRIORITY - 2)
+                     .tasksProcessingOrder(QueueProcessingType.LIFO).build();
 
         ImageLoader.getInstance().init(config);
     }
@@ -420,9 +473,9 @@ public class CourseMainActivity extends Activity {
         dots.add(dot2);
         dots.add(dot3);
         dots.add(dot4);
-		
+
 		/*tv_date = (TextView) findViewById(R.id.tv_date);
-		tv_title = (TextView) findViewById(R.id.tv_title);
+        tv_title = (TextView) findViewById(R.id.tv_title);
 		tv_topic_from = (TextView) findViewById(R.id.tv_topic_from);
 		tv_topic = (TextView) findViewById(R.id.tv_topic);*/
 
@@ -440,7 +493,7 @@ public class CourseMainActivity extends Activity {
             ImageView imageView = new ImageView(this);
             // 异步加载图片
             mImageLoader.displayImage(adList.get(i).getImgUrl(), imageView,
-                    options);
+                                      options);
             imageView.setScaleType(ScaleType.CENTER_CROP);
             imageViews.add(imageView);
             dots.get(i).setVisibility(View.VISIBLE);
@@ -457,7 +510,7 @@ public class CourseMainActivity extends Activity {
         scheduledExecutorService = Executors.newSingleThreadScheduledExecutor();
         // 当Activity显示出来后，每两秒切换一次图片显示
         scheduledExecutorService.scheduleAtFixedRate(new ScrollTask(), 1, 2,
-                TimeUnit.SECONDS);
+                                                     TimeUnit.SECONDS);
     }
 
     private class ScrollTask implements Runnable {
@@ -500,8 +553,10 @@ public class CourseMainActivity extends Activity {
 			tv_date.setText(adDomain.getDate());
 			tv_topic_from.setText(adDomain.getTopicFrom());
 			tv_topic.setText(adDomain.getTopic());*/
-            dots.get(oldPosition).setBackgroundResource(R.drawable.activity_course_advertisement_dot_normal);
-            dots.get(position).setBackgroundResource(R.drawable.activity_course_advertisement_dot_focused);
+            dots.get(oldPosition).setBackgroundResource(
+                    R.drawable.activity_course_advertisement_dot_normal);
+            dots.get(position).setBackgroundResource(
+                    R.drawable.activity_course_advertisement_dot_focused);
             oldPosition = position;
         }
     }
@@ -575,7 +630,8 @@ public class CourseMainActivity extends Activity {
 		adDomain.setTitle("我和令计划只是同姓");*/
 		/*adDomain.setTopicFrom("阿宅");
 		adDomain.setTopic("我想知道令狐安和令计划有什么关系？");*/
-        adDomain.setImgUrl("http://g.hiphotos.baidu.com/image/w%3D310/sign=bb99d6add2c8a786be2a4c0f5708c9c7/d50735fae6cd7b8900d74cd40c2442a7d9330e29.jpg");
+        adDomain.setImgUrl(
+                "http://g.hiphotos.baidu.com/image/w%3D310/sign=bb99d6add2c8a786be2a4c0f5708c9c7/d50735fae6cd7b8900d74cd40c2442a7d9330e29.jpg");
         adDomain.setAd(false);
         adList.add(adDomain);
 
@@ -586,7 +642,8 @@ public class CourseMainActivity extends Activity {
 		/*adDomain2.setTopicFrom("小巫");
 		adDomain2.setTopic("“我想知道令狐安和令计划有什么关系？”");*/
         adDomain2
-                .setImgUrl("http://g.hiphotos.baidu.com/image/w%3D310/sign=7cbcd7da78f40ad115e4c1e2672e1151/eaf81a4c510fd9f9a1edb58b262dd42a2934a45e.jpg");
+                .setImgUrl(
+                        "http://g.hiphotos.baidu.com/image/w%3D310/sign=7cbcd7da78f40ad115e4c1e2672e1151/eaf81a4c510fd9f9a1edb58b262dd42a2934a45e.jpg");
         adDomain2.setAd(false);
         adList.add(adDomain2);
 
@@ -597,7 +654,8 @@ public class CourseMainActivity extends Activity {
 		/*adDomain3.setTopicFrom("旭东");
 		adDomain3.setTopic("“我想知道令狐安和令计划有什么关系？”");*/
         adDomain3
-                .setImgUrl("http://e.hiphotos.baidu.com/image/w%3D310/sign=392ce7f779899e51788e3c1572a6d990/8718367adab44aed22a58aeeb11c8701a08bfbd4.jpg");
+                .setImgUrl(
+                        "http://e.hiphotos.baidu.com/image/w%3D310/sign=392ce7f779899e51788e3c1572a6d990/8718367adab44aed22a58aeeb11c8701a08bfbd4.jpg");
         adDomain3.setAd(false);
         adList.add(adDomain3);
 
@@ -608,7 +666,8 @@ public class CourseMainActivity extends Activity {
 		/*adDomain4.setTopicFrom("小软");
 		adDomain4.setTopic("“我想知道令狐安和令计划有什么关系？”");*/
         adDomain4
-                .setImgUrl("http://d.hiphotos.baidu.com/image/w%3D310/sign=54884c82b78f8c54e3d3c32e0a282dee/a686c9177f3e670932e4cf9338c79f3df9dc55f2.jpg");
+                .setImgUrl(
+                        "http://d.hiphotos.baidu.com/image/w%3D310/sign=54884c82b78f8c54e3d3c32e0a282dee/a686c9177f3e670932e4cf9338c79f3df9dc55f2.jpg");
         adDomain4.setAd(false);
         adList.add(adDomain4);
 
@@ -619,7 +678,8 @@ public class CourseMainActivity extends Activity {
 		/*adDomain5.setTopicFrom("大熊");
 		adDomain5.setTopic("“我想知道令狐安和令计划有什么关系？”");*/
         adDomain5
-                .setImgUrl("http://e.hiphotos.baidu.com/image/w%3D310/sign=66270b4fe8c4b7453494b117fffd1e78/0bd162d9f2d3572c7dad11ba8913632762d0c30d.jpg");
+                .setImgUrl(
+                        "http://e.hiphotos.baidu.com/image/w%3D310/sign=66270b4fe8c4b7453494b117fffd1e78/0bd162d9f2d3572c7dad11ba8913632762d0c30d.jpg");
         adDomain5.setAd(true); // 代表是广告
         adList.add(adDomain5);
 

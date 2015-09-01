@@ -12,7 +12,7 @@
         android:baselineAligned="false">
 
         <Button
-            android:id="@+id/CourseButton"
+            android:id="@+id/UserButton"
             android:layout_width="27dp"
             android:layout_height="27dp"
             android:layout_alignParentLeft="true"
@@ -36,7 +36,7 @@
             android:textSize="18sp"/>
 
         <Button
-            android:id="@+id/CourseButtonSearch"
+            android:id="@+id/UserButtonSearch"
             android:layout_width="27dp"
             android:layout_height="27dp"
             android:layout_alignParentEnd="true"

@@ -12,6 +12,7 @@ import android.widget.RadioGroup;
 import android.widget.TabHost;
 
 import com.qinniuclient.R;
+import com.qinniuclient.util.UserButtonOnClickListener;
 
 public class PriceActivity extends TabActivity {
     /**
@@ -33,12 +34,12 @@ public class PriceActivity extends TabActivity {
 
         intent = new Intent().setClass(this, PricePriceActivity.class);
         spec = tabHost.newTabSpec("行情").setIndicator("行情")
-                .setContent(intent);
+                      .setContent(intent);
         tabHost.addTab(spec);
 
         intent = new Intent().setClass(this, PriceOptionalActivity.class);
         spec = tabHost.newTabSpec("自选").setIndicator("自选")
-                .setContent(intent);
+                      .setContent(intent);
         tabHost.addTab(spec);
 
 //        像数组下标一样用
@@ -47,23 +48,25 @@ public class PriceActivity extends TabActivity {
 //        这个ID是radioGroup的ID，对于不同的group设置不同值，否则会崩溃
         RadioGroup radioGroup = (RadioGroup) this
                 .findViewById(R.id.price_title_group);
-        radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+        radioGroup.setOnCheckedChangeListener(
+                new RadioGroup.OnCheckedChangeListener() {
 
-            @Override
-            public void onCheckedChanged(RadioGroup group, int checkedId) {
-                // TODO Auto-generated method stub
-                switch (checkedId) {
-                    case R.id.hangqing_ExchangeTabBar_hangqing:// 行情
-                        tabHost.setCurrentTabByTag("行情");
-                        break;
-                    case R.id.hangqing_ExchangeTabBar_zixuan:// 自选
-                        tabHost.setCurrentTabByTag("自选");
-                        break;
-                    default:
-                        break;
-                }
-            }
-        });
+                    @Override
+                    public void onCheckedChanged(RadioGroup group,
+                                                 int checkedId) {
+                        // TODO Auto-generated method stub
+                        switch (checkedId) {
+                            case R.id.hangqing_ExchangeTabBar_hangqing:// 行情
+                                tabHost.setCurrentTabByTag("行情");
+                                break;
+                            case R.id.hangqing_ExchangeTabBar_zixuan:// 自选
+                                tabHost.setCurrentTabByTag("自选");
+                                break;
+                            default:
+                                break;
+                        }
+                    }
+                });
 
         /*搜查button的跳转 子博*/
         Button btn1 = (Button) findViewById(R.id.hangqing_ButtonSearch);
@@ -73,14 +76,26 @@ public class PriceActivity extends TabActivity {
 
                 //Intent是一种运行时绑定（run-time binding）机制，它能在程序运行过程中连接两个不同的组件。
 
-                //page1为先前已添加的类，并已在AndroidManifest.xml内添加活动事件(<activity android:name="page1"></activity>),在存放资源代码的文件夹下下，
+                /*
+                * page1为先前已添加的类，并已在AndroidManifest.xml内添加活动事件
+                * (<activity android:name="page1"></activity>),
+                * 在存放资源代码的文件夹下下
+                */
                 Intent i = new Intent(PriceActivity.this, PriceSearch.class);
 
-                ////启动
+                // 启动
                 startActivity(i);
             }
         });
 
+        /*登录button的跳转 TX*/
+        Button userButton = (Button) findViewById(R.id.UserButton);
+        userButton.setOnClickListener(new UserButtonOnClickListener() {
+            @Override
+            public void onClick(View v) {
+                super.onClick(v);
+            }
+        });
     }
 
     @Override

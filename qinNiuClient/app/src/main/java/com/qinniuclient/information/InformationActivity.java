@@ -5,11 +5,14 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.Window;
+import android.widget.Button;
 import android.widget.RadioGroup;
 import android.widget.TabHost;
 
 import com.qinniuclient.R;
+import com.qinniuclient.util.UserButtonOnClickListener;
 
 public class InformationActivity extends TabActivity {
     /**
@@ -31,17 +34,17 @@ public class InformationActivity extends TabActivity {
 //        下面几行酌情增加或修改，修改就改xxxxActivity为所需页面
         intent = new Intent().setClass(this, InformationNewsActivity.class);
         spec = tabHost.newTabSpec("要闻").setIndicator("要闻")
-                .setContent(intent);
+                      .setContent(intent);
         tabHost.addTab(spec);
 
         intent = new Intent().setClass(this, InformationScrollActivity.class);
         spec = tabHost.newTabSpec("滚动").setIndicator("滚动")
-                .setContent(intent);
+                      .setContent(intent);
         tabHost.addTab(spec);
 
         intent = new Intent().setClass(this, InformationChanceActivity.class);
         spec = tabHost.newTabSpec("机会").setIndicator("机会")
-                .setContent(intent);
+                      .setContent(intent);
         tabHost.addTab(spec);
 
         intent = new Intent().setClass(this, InformationOptionalActivity.class);
@@ -54,27 +57,38 @@ public class InformationActivity extends TabActivity {
 //        这个ID是radioGroup的ID，对于不同的group设置不同值，否则会崩溃
         RadioGroup radioGroup = (RadioGroup) this
                 .findViewById(R.id.information_ExchangeTabBar);
-        radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+        radioGroup.setOnCheckedChangeListener(
+                new RadioGroup.OnCheckedChangeListener() {
 
+                    @Override
+                    public void onCheckedChanged(RadioGroup group,
+                                                 int checkedId) {
+                        // TODO Auto-generated method stub
+                        switch (checkedId) {
+                            case R.id.information_ExchangeTabBar_yaowen:// 要闻
+                                tabHost.setCurrentTabByTag("要闻");
+                                break;
+                            case R.id.information_ExchangeTabBar_hundong:// 滚动
+                                tabHost.setCurrentTabByTag("滚动");
+                                break;
+                            case R.id.information_ExchangeTabBar_jihui:// 机会
+                                tabHost.setCurrentTabByTag("机会");
+                                break;
+                            case R.id.information_ExchangeTabBar_zixuangu:// 自选股
+                                tabHost.setCurrentTabByTag("自选股");
+                                break;
+                            default:
+                                break;
+                        }
+                    }
+                });
+
+        /*登录button的跳转 TX*/
+        Button userButton = (Button) findViewById(R.id.UserButton);
+        userButton.setOnClickListener(new UserButtonOnClickListener() {
             @Override
-            public void onCheckedChanged(RadioGroup group, int checkedId) {
-                // TODO Auto-generated method stub
-                switch (checkedId) {
-                    case R.id.information_ExchangeTabBar_yaowen:// 要闻
-                        tabHost.setCurrentTabByTag("要闻");
-                        break;
-                    case R.id.information_ExchangeTabBar_hundong:// 滚动
-                        tabHost.setCurrentTabByTag("滚动");
-                        break;
-                    case R.id.information_ExchangeTabBar_jihui:// 机会
-                        tabHost.setCurrentTabByTag("机会");
-                        break;
-                    case R.id.information_ExchangeTabBar_zixuangu:// 自选股
-                        tabHost.setCurrentTabByTag("自选股");
-                        break;
-                    default:
-                        break;
-                }
+            public void onClick(View v) {
+                super.onClick(v);
             }
         });
     }
