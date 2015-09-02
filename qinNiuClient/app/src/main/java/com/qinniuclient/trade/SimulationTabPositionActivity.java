@@ -1,5 +1,8 @@
 package com.qinniuclient.trade;
 
+import android.app.Activity;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
@@ -11,9 +14,11 @@ import android.view.ViewGroup;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.qinniuclient.R;
+import com.qinniuclient.login.LoginActivity;
 import com.qinniuclient.util.HttpUtil;
 
 import java.util.ArrayList;
@@ -29,9 +34,40 @@ public class SimulationTabPositionActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_simulation_tab_position);
 
-        SimulationContentList = (ListView)findViewById(R.id.SimulationContentList);
-        new MyAsyncTask().execute();
+        SharedPreferences sp = getSharedPreferences("userInfo",
+                                                    Activity.MODE_PRIVATE);
+        if (sp.getBoolean("loginState", false)) {
+            TextView userName = (TextView) findViewById(
+                    R.id.SimulationInfoBarUserName);
+            userName.setText(sp.getString("USERNAME", "Error"));
+        }
+        sp.registerOnSharedPreferenceChangeListener(
+                new SharedPreferences.OnSharedPreferenceChangeListener() {
+                    @Override
+                    public void onSharedPreferenceChanged(
+                            SharedPreferences sharedPreferences,
+                            String key) {
+                        TextView userName = (TextView) findViewById(
+                                R.id.SimulationInfoBarUserName);
+                        if (!sharedPreferences
+                                .getBoolean("loginState", false)) {
+                            Intent i = new Intent(
+                                    SimulationTabPositionActivity.this,
+                                    LoginActivity.class);
+                            // 启动
+                            startActivity(i);
+                            userName.setText("unLogin");
+                        } else {
+                            userName.setText(sharedPreferences
+                                                     .getString("USERNAME",
+                                                                "Error"));
+                        }
+                    }
+                });
 
+        SimulationContentList = (ListView) findViewById(
+                R.id.SimulationContentList);
+        new MyAsyncTask().execute();
     }
 
     /**
@@ -59,23 +95,34 @@ public class SimulationTabPositionActivity extends ActionBarActivity {
         @Override
         protected void onPostExecute(String result) {
             super.onPostExecute(result);
-            if (result != null && !result.equals("network anomaly") && !result.equals("")) {
+            if (result != null && !result.equals("network anomaly") &&
+                !"".equals(result)) {
                 //股票名称&代码 + 现价 + 成本价 + 盈亏 + 最新市值 + 持仓数量 + 可卖数量
-                String[] keySet = {"ItemTitle","ItemPriceValue", "ItemCostValue","ItemRateValue", "ItemLatestValue", "ItemPositionValue", "ItemAvaliableValue"};
-                int[] toIds = {R.id.ItemTitle, R.id.ItemPriceValue, R.id.ItemCostValue, R.id.ItemRateValue, R.id.ItemLatestValue, R.id.ItemPositionValue, R.id.ItemAvaliableValue};
+                String[] keySet = {"ItemTitle", "ItemPriceValue",
+                                   "ItemCostValue", "ItemRateValue",
+                                   "ItemLatestValue", "ItemPositionValue",
+                                   "ItemAvaliableValue"};
+                int[] toIds = {R.id.ItemTitle, R.id.ItemPriceValue,
+                               R.id.ItemCostValue, R.id.ItemRateValue,
+                               R.id.ItemLatestValue, R.id.ItemPositionValue,
+                               R.id.ItemAvaliableValue};
                 //----the firt para "MainActivity.this" should be repair!------------------
-                SimpleAdapter simpleAdapter = new SimpleAdapter(SimulationTabPositionActivity.this, getHoldPosInfo(result), R.layout.activity_simulation_tab_position_item, keySet, toIds);
+                SimpleAdapter simpleAdapter = new SimpleAdapter(
+                        SimulationTabPositionActivity.this,
+                        getHoldPosInfo(result),
+                        R.layout.activity_simulation_tab_position_item, keySet,
+                        toIds);
                 SimulationContentList.setAdapter(simpleAdapter);
                 ///---
                 setListViewHeightBasedOnChildren(SimulationContentList);
-            } else if (result.equals("")) {
+            } else if ("".equals(result)) {
                 Toast toast = Toast.makeText(getApplicationContext(),
-                        "暂无数据", Toast.LENGTH_SHORT);
+                                             "暂无数据", Toast.LENGTH_SHORT);
                 toast.setGravity(Gravity.CENTER, 0, 0);
                 toast.show();
             } else {
                 Toast toast = Toast.makeText(getApplicationContext(),
-                        "网络异常", Toast.LENGTH_SHORT);
+                                             "网络异常", Toast.LENGTH_SHORT);
                 toast.setGravity(Gravity.CENTER, 0, 0);
                 toast.show();
             }
@@ -99,13 +146,14 @@ public class SimulationTabPositionActivity extends ActionBarActivity {
         //for test
         System.out.println(result);
 
-        ArrayList<HashMap<String, Object> > list = new ArrayList<HashMap<String, Object> >();
+        ArrayList<HashMap<String, Object>> list
+                = new ArrayList<HashMap<String, Object>>();
         HashMap<String, Object> map;
 
         String[] tar = result.split("\\|");
         int itemNum = tar.length;
-        for (int i = 0; i < itemNum; i++) {
-            String[] infoOfStock = tar[i].split(";");
+        for (String aTar : tar) {
+            String[] infoOfStock = aTar.split(";");
             map = new HashMap<String, Object>();
             map.put("ItemTitle", infoOfStock[1]);
             map.put("ItemPriceValue", infoOfStock[2]);
@@ -137,7 +185,9 @@ public class SimulationTabPositionActivity extends ActionBarActivity {
         }
 
         ViewGroup.LayoutParams params = SimulationContentList.getLayoutParams();
-        params.height = totalHeight+ (SimulationContentList.getDividerHeight() * (listAdapter.getCount() - 1));
+        params.height = totalHeight +
+                        (SimulationContentList.getDividerHeight() *
+                         (listAdapter.getCount() - 1));
         // listView.getDividerHeight()获取子项间分隔符占用的高度
         // params.height最后得到整个ListView完整显示需要的高度
         SimulationContentList.setLayoutParams(params);
@@ -156,9 +206,6 @@ public class SimulationTabPositionActivity extends ActionBarActivity {
         alert.show();
     }
 */
-
-
-
 
 
     @Override
