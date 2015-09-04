@@ -42,11 +42,6 @@ public class InformationActivity extends TabActivity {
                       .setContent(intent);
         tabHost.addTab(spec);
 
-        intent = new Intent().setClass(this, InformationChanceActivity.class);
-        spec = tabHost.newTabSpec("机会").setIndicator("机会")
-                      .setContent(intent);
-        tabHost.addTab(spec);
-
         intent = new Intent().setClass(this, InformationOptionalActivity.class);
         spec = tabHost.newTabSpec("自选股").setIndicator("自选股").setContent(intent);
         tabHost.addTab(spec);
@@ -70,9 +65,6 @@ public class InformationActivity extends TabActivity {
                                 break;
                             case R.id.information_ExchangeTabBar_hundong:// 滚动
                                 tabHost.setCurrentTabByTag("滚动");
-                                break;
-                            case R.id.information_ExchangeTabBar_jihui:// 机会
-                                tabHost.setCurrentTabByTag("机会");
                                 break;
                             case R.id.information_ExchangeTabBar_zixuangu:// 自选股
                                 tabHost.setCurrentTabByTag("自选股");

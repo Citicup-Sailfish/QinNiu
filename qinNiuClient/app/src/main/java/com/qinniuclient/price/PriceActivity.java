@@ -32,41 +32,39 @@ public class PriceActivity extends TabActivity {
 
 //        下面几行酌情增加或修改，修改就改xxxxActivity为所需页面
 
-        intent = new Intent().setClass(this, PricePriceActivity.class);
+        intent = new Intent().setClass(this, PricePriceActivity.class)
+                .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         spec = tabHost.newTabSpec("行情").setIndicator("行情")
-                      .setContent(intent);
+                .setContent(intent);
         tabHost.addTab(spec);
 
-        intent = new Intent().setClass(this, PriceOptionalActivity.class);
+        intent = new Intent().setClass(this, PriceOptionalActivity.class)
+                .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         spec = tabHost.newTabSpec("自选").setIndicator("自选")
-                      .setContent(intent);
+                .setContent(intent);
         tabHost.addTab(spec);
 
 //        像数组下标一样用
         tabHost.setCurrentTabByTag("行情");
 
 //        这个ID是radioGroup的ID，对于不同的group设置不同值，否则会崩溃
-        RadioGroup radioGroup = (RadioGroup) this
-                .findViewById(R.id.price_title_group);
-        radioGroup.setOnCheckedChangeListener(
-                new RadioGroup.OnCheckedChangeListener() {
-
-                    @Override
-                    public void onCheckedChanged(RadioGroup group,
-                                                 int checkedId) {
-                        // TODO Auto-generated method stub
-                        switch (checkedId) {
-                            case R.id.hangqing_ExchangeTabBar_hangqing:// 行情
-                                tabHost.setCurrentTabByTag("行情");
-                                break;
-                            case R.id.hangqing_ExchangeTabBar_zixuan:// 自选
-                                tabHost.setCurrentTabByTag("自选");
-                                break;
-                            default:
-                                break;
-                        }
-                    }
-                });
+        RadioGroup radioGroup = (RadioGroup) this.findViewById(R.id.price_title_group);
+        radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                // TODO Auto-generated method stub
+                switch (checkedId) {
+                    case R.id.hangqing_ExchangeTabBar_hangqing:// 行情
+                        tabHost.setCurrentTabByTag("行情");
+                        break;
+                    case R.id.hangqing_ExchangeTabBar_zixuan:// 自选
+                        tabHost.setCurrentTabByTag("自选");
+                        break;
+                    default:
+                        break;
+                }
+            }
+        });
 
         /*搜查button的跳转 子博*/
         Button btn1 = (Button) findViewById(R.id.hangqing_ButtonSearch);

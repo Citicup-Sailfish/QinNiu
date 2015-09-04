@@ -1,5 +1,8 @@
 package com.qinniuclient.price;
 
+import android.app.Activity;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
@@ -11,15 +14,15 @@ import android.widget.SimpleAdapter;
 import android.widget.Toast;
 
 import com.qinniuclient.R;
+import com.qinniuclient.login.LoginActivity;
 import com.qinniuclient.util.HttpUtil;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-
 public class PriceOptionalActivity extends ActionBarActivity {
-
+    private SharedPreferences sp;
     private ListView PriceOptionalContentList;
 
     @Override
@@ -27,9 +30,25 @@ public class PriceOptionalActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_price_optional);
 
+        sp = getSharedPreferences("userInfo", Activity.MODE_PRIVATE);
+    }
+
+    @Override
+    protected void onResume() {
+        // TODO Auto-generated method stub
+        super.onResume();
+        // my code
+        if (sp == null) {
+            return;
+        }
+        if (!sp.getBoolean("loginState", false)) {
+            Intent i = new Intent(PriceOptionalActivity.this,
+                    LoginActivity.class);
+            // 启动
+            startActivity(i);
+        }
         PriceOptionalContentList = (ListView) findViewById(R.id.hangqing_zixuan_Listview);
         new MyAsyncTask().execute();
-
     }
 
     /**
@@ -46,7 +65,10 @@ public class PriceOptionalActivity extends ActionBarActivity {
         @Override
         protected String doInBackground(Void... arg0) {
             //-------to be improved------------------
-            return query("tx");
+            if (sp != null) {
+                return query(sp.getString("USERNAME", "Error"));
+            }
+            return null;
         }
 
         @Override
@@ -59,11 +81,15 @@ public class PriceOptionalActivity extends ActionBarActivity {
             super.onPostExecute(result);
             if (result != null && !result.equals("network anomaly") && !result.equals("")) {
                 //股票名称 + 代码 + 现价 + 跌涨率
-                String[] keySet = {"hangqing_zixuan_socket_name", "hangqing_zixuan_socket_code", "hangqing_zixuan_zuixinjia", "hangqing_zixuan_deizhangfu"};
-                int[] toIds = {R.id.hangqing_zixuan_socket_name, R.id.hangqing_zixuan_socket_code, R.id.hangqing_zixuan_zuixinjia, R.id.hangqing_zixuan_deizhangfu};
-                SimpleAdapter simpleAdapter = new SimpleAdapter(PriceOptionalActivity.this, getHoldPosInfo(result), R.layout.activity_price_optional_list_item, keySet, toIds);
+                String[] keySet = {"hangqing_zixuan_socket_name", "hangqing_zixuan_socket_code",
+                        "hangqing_zixuan_zuixinjia", "hangqing_zixuan_deizhangfu"};
+                int[] toIds = {R.id.hangqing_zixuan_socket_name, R.id.hangqing_zixuan_socket_code,
+                        R.id.hangqing_zixuan_zuixinjia, R.id.hangqing_zixuan_deizhangfu};
+                SimpleAdapter simpleAdapter =
+                        new SimpleAdapter(PriceOptionalActivity.this, getHoldPosInfo(result),
+                                R.layout.activity_price_optional_list_item, keySet, toIds);
                 PriceOptionalContentList.setAdapter(simpleAdapter);
-            } else if (result.equals("")) {
+            } else if ("".equals(result)) {
                 Toast toast = Toast.makeText(getApplicationContext(),
                         "暂无数据", Toast.LENGTH_SHORT);
                 toast.setGravity(Gravity.CENTER, 0, 0);
@@ -131,14 +157,5 @@ public class PriceOptionalActivity extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
-    }
-
-    @Override
-    protected void onResume() {
-        // TODO Auto-generated method stub
-        super.onResume();
-
-        PriceOptionalContentList = (ListView) findViewById(R.id.hangqing_zixuan_Listview);
-        new MyAsyncTask().execute();
     }
 }

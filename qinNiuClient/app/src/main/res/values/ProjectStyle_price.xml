@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="hangqing_ExchangeTabBar">
+
+    <style name="price_TitleTabBar">
         <item name="android:background">@drawable/hangqing_exchange_tab_background</item>
         <item name="android:button">@null</item>
         <item name="android:gravity">center</item>
@@ -8,5 +9,17 @@
         <item name="android:layout_width">fill_parent</item>
         <item name="android:layout_height">fill_parent</item>
         <item name="android:textColor">@drawable/hangqing_top_tab_color_radiobutton</item>
+    </style>
+
+    <style name="price_ExchangeTabBar">
+        <item name="android:background">@drawable/price_zhongjian_tab_background_exchange
+        </item>
+        <item name="android:button">@null</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_weight">1.0</item>
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">fill_parent</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/price_zhongjian_tab_color_exchange</item>
     </style>
 </resources>

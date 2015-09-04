@@ -1,9 +1,12 @@
 package com.qinniuclient;
 
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.DatePicker;
 
 
 public class QinniuActivity extends ActionBarActivity {
@@ -12,6 +15,13 @@ public class QinniuActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_qinniu);
+
+        DatePicker dp = (DatePicker) findViewById(R.id.datePicker);
+        if (dp != null) {
+            // 最后一个getChildAt中，0表示年，1表示月，2表示日
+            ((ViewGroup) ((ViewGroup) dp.getChildAt(0)).getChildAt(0)).getChildAt(2)
+                    .setVisibility(View.GONE);
+        }
     }
 
     @Override

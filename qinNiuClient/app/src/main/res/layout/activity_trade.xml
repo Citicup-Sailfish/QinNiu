@@ -45,7 +45,7 @@
                 <!--行情-->
                 <RadioButton
                     android:id="@+id/trade_ExchangeTabBar_simulation"
-                    style="@style/hangqing_ExchangeTabBar"
+                    style="@style/price_TitleTabBar"
                     android:checked="true"
                     android:gravity="center"
                     android:paddingLeft="10dp"
@@ -56,7 +56,7 @@
                 <!--自选-->
                 <RadioButton
                     android:id="@+id/trade_ExchangeTabBar_exchange"
-                    style="@style/hangqing_ExchangeTabBar"
+                    style="@style/price_TitleTabBar"
                     android:gravity="center"
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp"

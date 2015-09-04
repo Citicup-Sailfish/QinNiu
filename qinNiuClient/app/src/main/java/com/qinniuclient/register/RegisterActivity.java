@@ -1,9 +1,11 @@
 package com.qinniuclient.register;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
@@ -90,7 +92,9 @@ public class RegisterActivity extends ActionBarActivity {
             progressDialog.dismiss();
             if (result) {
                 showDialog("注册成功！");
-
+                // 成功后自动登录
+                SharedPreferences sp = getSharedPreferences("userInfo", Activity.MODE_PRIVATE);
+                sp.edit().putBoolean("loginState", true);
 //                启动activity
                 Intent intent = new Intent(RegisterActivity.this,
                                            RegisterTurnActivity.class);

@@ -88,18 +88,11 @@
                     style="@style/information_ExchangeTabBar"
                     android:text="滚动"/>
 
-                <!--查询-->
-                <RadioButton
-                    android:id="@+id/information_ExchangeTabBar_jihui"
-                    style="@style/information_ExchangeTabBar"
-                    android:text="机会"/>
-
                 <!--自选股-->
                 <RadioButton
                     android:id="@+id/information_ExchangeTabBar_zixuangu"
                     style="@style/information_ExchangeTabBar"
                     android:text="自选股"/>
-
             </RadioGroup>
         </LinearLayout>
 

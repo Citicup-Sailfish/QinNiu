@@ -32,20 +32,20 @@
                 <!--由于这里的滑动栏跟资讯一样，所以使用同一个style属性，因此命名为information-->
                 <RadioButton
                     android:id="@+id/hangqing_ExchangeTabBar_yaowen"
-                    style="@style/information_ExchangeTabBar"
+                    style="@style/price_ExchangeTabBar"
                     android:checked="true"
                     android:text="股指" />
 
                 <!--沪深-->
                 <RadioButton
                     android:id="@+id/hangqing_ExchangeTabBar_hundong"
-                    style="@style/information_ExchangeTabBar"
+                    style="@style/price_ExchangeTabBar"
                     android:text="沪深" />
 
                 <!--板块-->
                 <RadioButton
                     android:id="@+id/hangqing_ExchangeTabBar_jihui"
-                    style="@style/information_ExchangeTabBar"
+                    style="@style/price_ExchangeTabBar"
                     android:text="板块" />
             </RadioGroup>
         </LinearLayout>
