@@ -75,7 +75,7 @@ public class PriceTabSHSZActivity extends Activity implements
             for (int j = 0; j < 5; j++) {
                 String[] tar = tarlist[j].split(";");
                 PriceItemPeople people = new PriceItemPeople();
-                people.setName(tar[0] + tar[1]);
+                people.setName(tar[0] + "\n" + tar[1]);
                 people.setincrease(tar[2]);
                 people.setpercentage(tar[3]);
                 childTemp.add(people);
