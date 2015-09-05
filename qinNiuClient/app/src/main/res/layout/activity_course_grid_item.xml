@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:background="#fdfafa">
+
+    <!--图-->
+    <ImageView
+        android:id="@+id/GridItemImage"
+        android:layout_width="fill_parent"
+        android:layout_height="90dp"/>
+
+    <!--标题-->
+    <TextView
+        android:id="@+id/GridItemName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/GridItemImage"
+        android:layout_marginLeft="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="5dp"
+        android:text=":test"
+        android:textColor="#111111"
+        android:textSize="14sp"/>
+
+    <RelativeLayout
+        android:id="@+id/GridItemBrowse"
+        android:layout_width="wrap_content"
+        android:layout_height="16dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="10dp">
+
+        <!--浏览图标-->
+        <ImageView
+            android:id="@+id/GridItemBrowseIcon"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:scaleType="centerInside"
+            android:src="@drawable/course_grid_item_browse_icon"/>
+
+        <!--浏览次数-->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_marginLeft="3dp"
+            android:layout_toRightOf="@id/GridItemBrowseIcon"
+            android:gravity="center"
+            android:textColor="#adacac"
+            android:textSize="14sp"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/GridItemCommit"
+        android:layout_width="wrap_content"
+        android:layout_height="16dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="10dp"
+        android:layout_toRightOf="@id/GridItemBrowse">
+
+        <!--评论-->
+        <ImageView
+            android:id="@+id/GridItemCommitIcon"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:scaleType="centerInside"
+            android:src="@drawable/course_grid_item_commit_icon"/>
+
+        <!--评论次数-->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_marginLeft="2dp"
+            android:layout_toRightOf="@id/GridItemCommitIcon"
+            android:gravity="center"
+            android:textColor="#adacac"
+            android:textSize="14sp"/>
+    </RelativeLayout>
+</RelativeLayout>

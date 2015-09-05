@@ -109,18 +109,12 @@
             android:name=".information.InformationActivity"
             android:label="@string/title_activity_information" >
         </activity>
-        <!--<activity
+        <!--
+        <activity
             android:name=".Course.CourseMainActivity2"
             android:label="@string/title_CourseMainActivity" >
-        </activity>-->
-        <activity
-            android:name=".Course.CourseMainActivity"
-            android:label="@string/title_CourseMainActivity" >
         </activity>
-        <activity
-            android:name=".Course.InformationCourseContentActivity"
-            android:label="@string/title_activity_information_course_content" >
-        </activity>
+        -->
         <activity
             android:name=".information.InformationNewsActivity"
             android:label="@string/title_activity_information_news" >
@@ -144,6 +138,22 @@
         <activity
             android:name=".trade.TradeSimulationActivity"
             android:label="@string/title_activity_trade_simulation" >
+        </activity>
+        <activity
+            android:name=".Course.CourseMainActivity"
+            android:label="@string/title_activity_course_main">
+        </activity>
+        <activity
+            android:name=".Course.CourseBaseActivity"
+            android:label="@string/title_activity_course_base">
+        </activity>
+        <activity
+            android:name=".Course.CourseExtendActivity"
+            android:label="@string/title_activity_course_extend">
+        </activity>
+        <activity
+            android:name=".Course.InformationCourseContentActivity"
+            android:label="@string/title_activity_information_course_content">
         </activity>
     </application>
 
