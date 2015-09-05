@@ -17,6 +17,7 @@ import android.view.Gravity;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.ImageView.ScaleType;
 import android.widget.ListAdapter;
@@ -81,7 +82,7 @@ public class CourseBaseActivity extends Activity {
 
 
     //listview部分
-    private ListView mycourselist;
+    private GridView mycourselist;
     private ArrayList<HashMap<String, Object>> mylist;
 
 
@@ -105,42 +106,16 @@ public class CourseBaseActivity extends Activity {
         startAd();
 
         //listview部分
-        mycourselist = (ListView) findViewById(R.id.jingping_course_listview);
+        mycourselist = (GridView) findViewById(R.id.CourseBaseGridview);
         new MyAsyncTask().execute();
     }
-
-    //网上搜的listview与scrollview一起滚动冲突解决方法，设定listview高度解决
-    public static void setListViewHeightBasedOnChildren(ListView listView) {
-        if (listView == null) {
-            return;
-        }
-        ListAdapter listAdapter = listView.getAdapter();
-        if (listAdapter == null) {
-            // pre-condition
-            return;
-        }
-        int totalHeight = 0;
-        for (int i = 0; i < listAdapter.getCount(); i++) {
-            View listItem = listAdapter.getView(i, null, listView);
-            listItem.measure(0, 0);
-            totalHeight += listItem.getMeasuredHeight();
-        }
-        ViewGroup.LayoutParams params = listView.getLayoutParams();
-        params.height = totalHeight + (listView.getDividerHeight() *
-                (listAdapter.getCount() - 1));
-        listView.setLayoutParams(params);
-    }
-
 
     /*重写SimpleAdapter，实现课程的点击跳转，及浏览次数*/
     private class MySimpleAdapter extends SimpleAdapter {
 
-        private TextView text2;
-        private TextView text0;
-        private TextView text1;
-        private TextView textnum0;
-        private TextView textnum1;
-        private TextView textnum2;
+        private TextView GridItemName;
+        private TextView GridItemBrowseNum;
+        private TextView GridItemCommitNum;
         private List<? extends Map<String, ?>> mData;
 
         @Override
@@ -152,89 +127,21 @@ public class CourseBaseActivity extends Activity {
             final int myposition;
             myposition = position;
 
-            textnum0 = (TextView) v
-                    .findViewById(R.id.jingping_course_1_number0);
-            textnum1 = (TextView) v
-                    .findViewById(R.id.jingping_course_1_number1);
-            textnum2 = (TextView) v
-                    .findViewById(R.id.jingping_course_1_number2);
-            textnum0.setTag(position);
-            textnum1.setTag(position);
-            textnum2.setTag(position);
 
-            text0 = (TextView) v
-                    .findViewById(R.id.jingping_course_1_introduce_text0);
+            GridItemName.setTag(position);
+            GridItemBrowseNum.setTag(position);
+            GridItemCommitNum.setTag(position);
 
-            text1 = (TextView) v
-                    .findViewById(R.id.jingping_course_1_introduce_text1);
+            GridItemName = (TextView) v
+                    .findViewById(R.id.GridItemBrowseNum);
 
-            text0 = (TextView) v
-                    .findViewById(R.id.jingping_course_1_introduce_text0);
-            text0.setTag(position);
-            text0.setOnClickListener(new OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    /*点击时浏览次数加一，需要服务器支持*/
-                    textnum0.setText(Integer.toString(Integer.valueOf(
-                            mData.get(myposition)
-                                    .get("jingping_course_1_introduce_number0")
-                                    .toString()) + 1));
-                    Intent intent = new Intent(CourseBaseActivity.this,
-                            InformationCourseContentActivity.class);
-                    /*获取课程名称，传给下一个界面，在下一个界面以课程名称来确定由哪一个界面跳转过来*/
-                    String flag = mData.get(myposition)
-                            .get("jingping_course_1_introduce_text0")
-                            .toString();
-                    intent.putExtra("text", flag);
-                    /*Log.e("text0", text0.getText().toString());
-                    Log.e("position", Integer.valueOf(myposition).toString());*/
-                    startActivity(intent);
-                }
-            });
+            GridItemBrowseNum = (TextView) v
+                    .findViewById(R.id.GridItemBrowseNum);
 
-            text1 = (TextView) v
-                    .findViewById(R.id.jingping_course_1_introduce_text1);
-            text1.setTag(position);
-            text1.setOnClickListener(new OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    /*点击时浏览次数加一*/
-                    textnum1.setText(Integer.toString(Integer.valueOf(
-                            mData.get(myposition)
-                                    .get("jingping_course_1_introduce_number1")
-                                    .toString()) + 1));
-                    /*获取课程名称，传给下一个界面，在下一个界面以课程名称来确定由哪一个界面跳转过来*/
-                    Intent intent = new Intent(CourseBaseActivity.this,
-                            InformationCourseContentActivity.class);
-                    String flag = mData.get(myposition)
-                            .get("jingping_course_1_introduce_text1")
-                            .toString();
-                    intent.putExtra("text", flag);
-                    startActivity(intent);
-                }
-            });
+            GridItemCommitNum = (TextView) v
+                    .findViewById(R.id.GridItemCommitNum);
 
-            text2 = (TextView) v
-                    .findViewById(R.id.jingping_course_1_introduce_text2);
-            text2.setTag(position);
-            text2.setOnClickListener(new OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    /*点击时浏览次数加一*/
-                    textnum2.setText(Integer.toString(Integer.valueOf(
-                            mData.get(myposition)
-                                    .get("jingping_course_1_introduce_number2")
-                                    .toString()) + 1));
-                    /*获取课程名称，传给下一个界面，在下一个界面以课程名称来确定由哪一个界面跳转过来*/
-                    Intent intent = new Intent(CourseBaseActivity.this,
-                            InformationCourseContentActivity.class);
-                    String flag = mData.get(myposition)
-                            .get("jingping_course_1_introduce_text2")
-                            .toString();
-                    intent.putExtra("text", flag);
-                    startActivity(intent);
-                }
-            });
+
 
             return v;
         }
@@ -272,31 +179,19 @@ public class CourseBaseActivity extends Activity {
             if (result != null && !result.equals("network anomaly") &&
                     !result.equals("")) {
                 //课堂类型 课堂名称
-                String[] keySet = {"jingping_course_1_courseType",
-                        "jingping_course_1_image0",
-                        "jingping_course_1_introduce_text0",
-                        "jingping_course_1_introduce_number0",
-                        "jingping_course_1_image1",
-                        "jingping_course_1_introduce_text1",
-                        "jingping_course_1_introduce_number1",
-                        "jingping_course_1_image2",
-                        "jingping_course_1_introduce_text2",
-                        "jingping_course_1_introduce_number2"};
-                int[] toIds = {R.id.jingping_course_1_courseType,
-                        R.id.jingping_course_1_image0,
-                        R.id.jingping_course_1_introduce_text0
-                        , R.id.jingping_course_1_number0,
-                        R.id.jingping_course_1_image1,
-                        R.id.jingping_course_1_introduce_text1
-                        , R.id.jingping_course_1_number1,
-                        R.id.jingping_course_1_image2,
-                        R.id.jingping_course_1_introduce_text2
-                        , R.id.jingping_course_1_number2};
+                String[] keySet = {"GridItemName",
+                        "GridItemBrowseNum",
+                        "GridItemCommitNum",
+                        "GridItemImage"};
+                int[] toIds = {R.id.GridItemName,
+                        R.id.GridItemBrowseNum,
+                        R.id.GridItemCommitNum
+                        , R.id.GridItemImage};
                 MySimpleAdapter simpleAdapter = new MySimpleAdapter(
                         CourseBaseActivity.this, getHoldPosInfo(result),
-                        R.layout.activity_course_listview_item, keySet, toIds);
+                        R.layout.activity_course_grid_item, keySet, toIds);
                 mycourselist.setAdapter(simpleAdapter);
-                setListViewHeightBasedOnChildren(mycourselist);
+                /*setListViewHeightBasedOnChildren(mycourselist);*/
             } else if (result.equals("")) {
                 Toast toast = Toast.makeText(getApplicationContext(),
                         "暂无数据", Toast.LENGTH_SHORT);
@@ -304,31 +199,19 @@ public class CourseBaseActivity extends Activity {
                 toast.show();
             } else {
                 /*无网络时的测试用数据*/
-                String[] keySet = {"jingping_course_1_courseType",
-                        "jingping_course_1_image0",
-                        "jingping_course_1_introduce_text0",
-                        "jingping_course_1_introduce_number0",
-                        "jingping_course_1_image1",
-                        "jingping_course_1_introduce_text1",
-                        "jingping_course_1_introduce_number1",
-                        "jingping_course_1_image2",
-                        "jingping_course_1_introduce_text2",
-                        "jingping_course_1_introduce_number2"};
-                int[] toIds = {R.id.jingping_course_1_courseType,
-                        R.id.jingping_course_1_image0,
-                        R.id.jingping_course_1_introduce_text0
-                        , R.id.jingping_course_1_number0,
-                        R.id.jingping_course_1_image1,
-                        R.id.jingping_course_1_introduce_text1
-                        , R.id.jingping_course_1_number1,
-                        R.id.jingping_course_1_image2,
-                        R.id.jingping_course_1_introduce_text2
-                        , R.id.jingping_course_1_number2};
-                MySimpleAdapter simpleAdapter = new MySimpleAdapter(
+                String[] keySet = {"GridItemName",
+                        "GridItemBrowseNum",
+                        "GridItemCommitNum",
+                        "GridItemImage"};
+                int[] toIds = {R.id.GridItemName,
+                        R.id.GridItemBrowseNum,
+                        R.id.GridItemCommitNum
+                        , R.id.GridItemImage};
+                SimpleAdapter simpleAdapter = new SimpleAdapter(
                         CourseBaseActivity.this, mytest("te"),
-                        R.layout.activity_course_listview_item, keySet, toIds);
+                        R.layout.activity_course_grid_item, keySet, toIds);
                 mycourselist.setAdapter(simpleAdapter);
-                setListViewHeightBasedOnChildren(mycourselist);
+                /*setListViewHeightBasedOnChildren(mycourselist);*/
                 Toast toast = Toast.makeText(getApplicationContext(),
                         "网络异常", Toast.LENGTH_SHORT);
                 toast.setGravity(Gravity.CENTER, 0, 0);
@@ -345,39 +228,13 @@ public class CourseBaseActivity extends Activity {
             /*String image = "精品课堂" + Integer.toString(i);*/
             String name = "罗双平：现代人力资源管理之岗位工资设计技术" + Integer.toString(i);
             String number = "1";
+            String CommitNum = "1";
             map = new HashMap<String, Object>();
-            map.put("jingping_course_1_image0",
+            map.put("GridItemImage",
                     R.drawable.simulation_infobar_user_icon);
-            map.put("jingping_course_1_introduce_text0", name);
-            map.put("jingping_course_1_introduce_number0", number);
-            map.put("jingping_course_1_image1",
-                    R.drawable.simulation_infobar_user_icon);
-            map.put("jingping_course_1_introduce_text1", name);
-            map.put("jingping_course_1_introduce_number1", number);
-            map.put("jingping_course_1_image2",
-                    R.drawable.simulation_infobar_user_icon);
-            map.put("jingping_course_1_introduce_text2", name);
-            map.put("jingping_course_1_introduce_number2", number);
-            switch (i) {
-                case 0:
-                    map.put("jingping_course_1_courseType", "炒股基础");
-                    break;
-                case 1:
-                    map.put("jingping_course_1_courseType", "文本挖掘");
-                    break;
-                case 2:
-                    map.put("jingping_course_1_courseType", "金融市场");
-                    break;
-                case 3:
-                    map.put("jingping_course_1_courseType", "商场荐读");
-                    break;
-                case 4:
-                    map.put("jingping_course_1_courseType", "国学讲堂");
-                    break;
-                case 5:
-                    map.put("jingping_course_1_courseType", "生活点滴");
-                    break;
-            }
+            map.put("GridItemName", name);
+            map.put("GridItemBrowseNum", number);
+            map.put("GridItemCommitNum", CommitNum);
             mylist.add(map);
         }
         return mylist;
@@ -411,8 +268,9 @@ public class CourseBaseActivity extends Activity {
         for (int i = 0; i < itemNum; i++) {
             String[] infoOfStock = tar[i].split(";");
             map = new HashMap<String, Object>();
-            map.put("course_type", infoOfStock[0]);
-            map.put("course_name", infoOfStock[1]);
+            map.put("GridItemBrowseNum", infoOfStock[0]);
+            map.put("GridItemBrowseNum", infoOfStock[1]);
+            map.put("GridItemCommitNum", infoOfStock[2]);
             mylist.add(map);
         }
         return mylist;

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="match_parent"
-                android:layout_height="150dp"
+    android:layout_height="160dp"
                 android:background="#fdfafa">
 
     <!--图-->
@@ -41,13 +41,16 @@
 
         <!--浏览次数-->
         <TextView
+            android:id="@+id/GridItemBrowseNum"
             android:layout_width="wrap_content"
+            android:layout_alignBaseline="@+id/GridItemBrowseIcon"
             android:layout_height="fill_parent"
-            android:layout_marginLeft="3dp"
+            android:layout_marginLeft="4dp"
             android:layout_toRightOf="@id/GridItemBrowseIcon"
             android:gravity="center"
             android:textColor="#adacac"
-            android:textSize="14sp"/>
+            android:text="0"
+            android:textSize="16sp" />
     </RelativeLayout>
 
     <RelativeLayout
@@ -55,7 +58,7 @@
         android:layout_width="wrap_content"
         android:layout_height="16dp"
         android:layout_alignParentBottom="true"
-        android:layout_marginLeft="10dp"
+        android:layout_marginLeft="30dp"
         android:layout_toRightOf="@id/GridItemBrowse">
 
         <!--评论-->
@@ -68,12 +71,15 @@
 
         <!--评论次数-->
         <TextView
+            android:id="@+id/GridItemCommitNum"
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
-            android:layout_marginLeft="2dp"
+            android:layout_alignBaseline="@+id/GridItemCommitIcon"
+            android:layout_marginLeft="4dp"
             android:layout_toRightOf="@id/GridItemCommitIcon"
             android:gravity="center"
+            android:text="0"
             android:textColor="#adacac"
-            android:textSize="14sp"/>
+            android:textSize="16sp" />
     </RelativeLayout>
 </RelativeLayout>
