@@ -11,9 +11,13 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListAdapter;
+import android.widget.ListView;
 import android.widget.MediaController;
+import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.VideoView;
@@ -24,7 +28,10 @@ import com.qinniuclient.util.HttpUtil;
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 
@@ -33,6 +40,9 @@ public class InformationCourseContentActivity extends ActionBarActivity {
     private VideoView video;
     private Button commentBtn;
     private EditText commentContentEditText;
+    private ArrayList<HashMap<String, Object>> mycommentlist;
+    private ListView mycommentlistview;
+    private TextView commentnum;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,6 +73,7 @@ public class InformationCourseContentActivity extends ActionBarActivity {
         //videoView.start();
         videoView.requestFocus();
 
+        mycommentlistview = (ListView) findViewById(R.id.jingping_course_2_comment_list);
         commentBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -75,7 +86,7 @@ public class InformationCourseContentActivity extends ActionBarActivity {
             }
         });
 
-        //new MyAsyncTask().execute();
+        new MyAsyncTask().execute();
     }
 
     @Override
@@ -135,25 +146,36 @@ public class InformationCourseContentActivity extends ActionBarActivity {
                 //--------------------------for test------------
                 System.out.println(result);
                 //---------------------------------------------
-                String[] tar = result.split("|--|");
+                String[] tar = result.split("\\+");
                 int commentNum = tar.length;
-                String[] userName = new String[commentNum];
-                String[] comment = new String[commentNum];
+                commentnum = (TextView) findViewById(R.id.jingping_course_2_comment_number);
+                commentnum.setText("全部评论 (" + Integer.valueOf(commentNum).toString() + ")");
+                System.out.println("comment-length: " + commentNum);
+                mycommentlist = new ArrayList<HashMap<String, Object>>();
                 for (int i = 0; i < commentNum; i++) {
-                    userName[i] = tar[i].split("@")[0];
-                    comment[i] = tar[i].split("@")[1];
+                    HashMap<String, Object> mycommentmap = new HashMap<String, Object>();
+                    mycommentmap.put("name", tar[i].split("@")[0]);
+                    mycommentmap.put("time", tar[i].split("@")[1]);
+                    mycommentmap.put("comment", tar[i].split("@")[2]);
+                    mycommentlist.add(mycommentmap);
                 }
-                //-----------------for filling the list view--------
-                // ---------to be implement------------------------
-                /*
-                *
-                * */
-                //--------------------------------------------------
 
+                String[] keySet = {"name",
+                        "time",
+                        "comment"};
+                int[] toIds = {R.id.jingping_course_2_commet_listitem_username,
+                        R.id.jingping_course_2_commet_listitem_time,
+                        R.id.jingping_course_2_commet_listitem_comment_edit};
+                SimpleAdapter simpleAdapter = new SimpleAdapter(
+                        InformationCourseContentActivity.this, mycommentlist,
+                        R.layout.activity_course_content_comment_listitem, keySet, toIds);
+                mycommentlistview.setAdapter(simpleAdapter);
+                setListViewHeightBasedOnChildren(mycommentlistview);
             } else {
                 Toast.makeText(InformationCourseContentActivity.this, "提交失败，请重试",
                         Toast.LENGTH_SHORT).show();
             }
+            commentContentEditText.setText("");
         }
     }
 
@@ -164,7 +186,7 @@ public class InformationCourseContentActivity extends ActionBarActivity {
 
         @Override
         protected String doInBackground(Void... arg0) {
-            String resourceName = "to be completed!!";
+            String resourceName = "fund_video_01";
             return query(resourceName);
         }
 
@@ -181,21 +203,31 @@ public class InformationCourseContentActivity extends ActionBarActivity {
                 //--------------------------for test------------
                 System.out.println(result);
                 //---------------------------------------------
-                String[] tar = result.split("|--|");
+                String[] tar = result.split("\\+");
                 int commentNum = tar.length;
-                String[] userName = new String[commentNum];
-                String[] comment = new String[commentNum];
+                commentnum = (TextView) findViewById(R.id.jingping_course_2_comment_number);
+                commentnum.setText("全部评论 (" + Integer.valueOf(commentNum).toString() + ")");
+                System.out.println("comment-length: " + commentNum);
+                mycommentlist = new ArrayList<HashMap<String, Object>>();
                 for (int i = 0; i < commentNum; i++) {
-                    userName[i] = tar[i].split("@")[0];
-                    comment[i] = tar[i].split("@")[1];
+                    HashMap<String, Object> mycommentmap = new HashMap<String, Object>();
+                    mycommentmap.put("name", tar[i].split("@")[0]);
+                    mycommentmap.put("time", tar[i].split("@")[1]);
+                    mycommentmap.put("comment", tar[i].split("@")[2]);
+                    mycommentlist.add(mycommentmap);
                 }
-                //-----------------for filling the list view--------
-                // ---------to be implement------------------------
-                /*
-                *
-                * */
-                //--------------------------------------------------
 
+                String[] keySet = {"name",
+                        "time",
+                        "comment"};
+                int[] toIds = {R.id.jingping_course_2_commet_listitem_username,
+                        R.id.jingping_course_2_commet_listitem_time,
+                        R.id.jingping_course_2_commet_listitem_comment_edit};
+                SimpleAdapter simpleAdapter = new SimpleAdapter(
+                        InformationCourseContentActivity.this, mycommentlist,
+                        R.layout.activity_course_content_comment_listitem, keySet, toIds);
+                mycommentlistview.setAdapter(simpleAdapter);
+                setListViewHeightBasedOnChildren(mycommentlistview);
             } else if ("".equals(result)) {
                 Toast.makeText(InformationCourseContentActivity.this, "暂无数据",
                         Toast.LENGTH_SHORT).show();
@@ -203,12 +235,13 @@ public class InformationCourseContentActivity extends ActionBarActivity {
                 Toast.makeText(InformationCourseContentActivity.this, "网络异常",
                         Toast.LENGTH_SHORT).show();
             }
+
         }
     }
 
     private String commentUp() {
         String usrname = getCurrentUserName();
-        String resourceName = "to be improve";
+        String resourceName = "fund_video_01";
         String commentContent = commentContentEditText.getText().toString().trim();
         return queryForUpload(resourceName, usrname, commentContent);
     }
@@ -222,10 +255,13 @@ public class InformationCourseContentActivity extends ActionBarActivity {
                 usrname);
         NameValuePair paraCommentContent = new BasicNameValuePair("commentContent",
                 commentContent);
+        Date date = new Date();
+        String dateStr = new SimpleDateFormat("yy-MM-dd HH:mm").format(date);
         List<NameValuePair> para = new ArrayList<NameValuePair>();
         para.add(paraResourceName);
         para.add(paraUsrname);
         para.add(paraCommentContent);
+        para.add(new BasicNameValuePair("createTime", dateStr));
         return HttpUtil.queryStringForPost(url, para);
     }
 
@@ -234,6 +270,32 @@ public class InformationCourseContentActivity extends ActionBarActivity {
         String queryString = "resourceName=" + resourceName;
         String url = HttpUtil.BASE_URL + "GetCommentServlet?" + queryString;
         return HttpUtil.queryStringForGet(url);
+    }
+
+    public void setListViewHeightBasedOnChildren(ListView listView) {
+        // 获取ListView对应的Adapter
+        ListAdapter listAdapter = mycommentlistview.getAdapter();
+        if (listAdapter == null) {
+            return;
+        }
+
+        int totalHeight = 0;
+        for (int i = 0, len = listAdapter.getCount(); i < len; i++) {
+            // listAdapter.getCount()返回数据项的数目
+            View listItem = listAdapter.getView(i, null, mycommentlistview);
+            // 计算子项View 的宽高
+            listItem.measure(0, 0);
+            // 统计所有子项的总高度
+            totalHeight += listItem.getMeasuredHeight();
+        }
+
+        ViewGroup.LayoutParams params = mycommentlistview.getLayoutParams();
+        params.height = totalHeight +
+                (mycommentlistview.getDividerHeight() *
+                        (listAdapter.getCount() - 1));
+        // listView.getDividerHeight()获取子项间分隔符占用的高度
+        // params.height最后得到整个ListView完整显示需要的高度
+        mycommentlistview.setLayoutParams(params);
     }
 
 }

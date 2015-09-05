@@ -60,6 +60,10 @@ public class HttpUtil {
     //通过url 发送post 请求，返回请求结果
     public static String queryStringForPost(String url, List<NameValuePair> para) {
         HttpPost request = HttpUtil.getHttpPost(url);
+        ///----------
+        request.setHeader("Content-Type", "application/x-www-form-urlencoded; charset=utf-8");
+        ;
+        //--------------
         String result = null;
         try {
             request.setEntity(new UrlEncodedFormEntity(para, HTTP.UTF_8));

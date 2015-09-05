@@ -75,7 +75,7 @@ public class PriceTabSHSZActivity extends Activity implements
             for (int j = 0; j < 5; j++) {
                 String[] tar = tarlist[j].split(";");
                 PriceItemPeople people = new PriceItemPeople();
-                people.setName(tar[0] + "\n" + tar[1]);
+                people.setName(tar[0] + '\n' + tar[1]);
                 people.setincrease(tar[2]);
                 people.setpercentage(tar[3]);
                 childTemp.add(people);
@@ -123,7 +123,7 @@ public class PriceTabSHSZActivity extends Activity implements
                 expandableListView.setOnChildClickListener(PriceTabSHSZActivity.this);
                 expandableListView.setOnGroupClickListener(PriceTabSHSZActivity.this);
                 stickyLayout.setOnGiveUpTouchEventListener(PriceTabSHSZActivity.this);
-            } else if (result.equals("")) {
+            } else if ("".equals(result)) {
                 Toast toast = Toast.makeText(getApplicationContext(),
                         "暂无数据", Toast.LENGTH_SHORT);
                 toast.setGravity(Gravity.CENTER, 0, 0);
