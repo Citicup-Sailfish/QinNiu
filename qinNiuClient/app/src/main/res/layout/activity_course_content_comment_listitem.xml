@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_marginTop="10dp"
+    android:layout_marginBottom="10dp"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#394264">
+
+        <ImageView
+            android:id="@+id/jingping_course_2_commet_listitem_icon"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:background="@drawable/simulation_infobar_user_icon" />
+
+        <TextView
+            android:id="@+id/jingping_course_2_commet_listitem_username"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_toRightOf="@+id/jingping_course_2_commet_listitem_icon"
+            android:text="我我我我我"
+            android:textColor="#e9aa5a"
+            android:textSize="16dp" />
+
+        <TextView
+            android:id="@+id/jingping_course_2_commet_listitem_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@+id/jingping_course_2_commet_listitem_username"
+            android:text="12-12 10:12"
+            android:textSize="16dp" />
+
+        <TextView
+            android:id="@+id/jingping_course_2_commet_listitem_comment_edit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/jingping_course_2_commet_listitem_username"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="5dp"
+            android:layout_toRightOf="@+id/jingping_course_2_commet_listitem_icon"
+            android:text="求介绍女朋友，要求：只有能看上我就好
+            求介绍女朋友，要求：只有能看上我就好"
+            android:textSize="16dp" />
+
+    </RelativeLayout>
+
+</LinearLayout>
