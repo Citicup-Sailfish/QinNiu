@@ -1,16 +1,21 @@
 package com.qinniuclient.price;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.qinniuclient.R;
@@ -20,6 +25,7 @@ import com.qinniuclient.util.HttpUtil;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class PriceOptionalActivity extends ActionBarActivity {
     private SharedPreferences sp;
@@ -85,8 +91,8 @@ public class PriceOptionalActivity extends ActionBarActivity {
                         "hangqing_zixuan_zuixinjia", "hangqing_zixuan_deizhangfu"};
                 int[] toIds = {R.id.hangqing_zixuan_socket_name, R.id.hangqing_zixuan_socket_code,
                         R.id.hangqing_zixuan_zuixinjia, R.id.hangqing_zixuan_deizhangfu};
-                SimpleAdapter simpleAdapter =
-                        new SimpleAdapter(PriceOptionalActivity.this, getHoldPosInfo(result),
+                MySimpleAdapter simpleAdapter =
+                        new MySimpleAdapter(PriceOptionalActivity.this, getHoldPosInfo(result),
                                 R.layout.activity_price_optional_list_item, keySet, toIds);
                 PriceOptionalContentList.setAdapter(simpleAdapter);
             } else if ("".equals(result)) {
@@ -102,6 +108,50 @@ public class PriceOptionalActivity extends ActionBarActivity {
             }
         }
     }
+
+    private class MySimpleAdapter extends SimpleAdapter {
+
+        private TextView text1;
+        private TextView text0;
+        private List<? extends Map<String, ?>> mData;
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+            // TODO Auto-generated method stub
+            View v = super.getView(position, convertView, parent);
+
+
+            final int myposition;
+            myposition = position;
+
+            text0 = (TextView) v
+                    .findViewById(R.id.hangqing_zixuan_zuixinjia);
+            text0.setTag(position);
+
+            text1 = (TextView) v
+                    .findViewById(R.id.hangqing_zixuan_deizhangfu);
+            text1.setTag(position);
+
+            if (text1.getText().toString().charAt(0) == '-') {
+                text0.setTextColor(Color.parseColor("#10ab95"));
+                text1.setTextColor(Color.parseColor("#10ab95"));
+            } else {
+                text0.setTextColor(Color.parseColor("#e74e64"));
+                text1.setTextColor(Color.parseColor("#e74e64"));
+            }
+
+            return v;
+        }
+
+        public MySimpleAdapter(Context context,
+                               List<? extends Map<String, ?>> data,
+                               int resource, String[] from, int[] to) {
+            super(context, data, resource, from, to);
+            this.mData = data;
+            // TODO Auto-generated constructor stub
+        }
+    }
+
 
     /*send request to server and
     *get the response(may be null)

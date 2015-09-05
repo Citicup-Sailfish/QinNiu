@@ -267,20 +267,23 @@ public class PriceTabSHSZActivity extends Activity implements
 
             String shzhstring = String.valueOf(((PriceItemPeople) getChild(
                     groupPosition, childPosition)).getincrease());
-            /*设置涨为红，跌为绿*/
-            if (Integer.parseInt(String.valueOf(((PriceItemPeople) getChild(
-                    groupPosition, childPosition)).getincrease())) > 0) {
+
+            if (groupPosition == 0 || groupPosition == 2) {
                 childHolder.textAge.setTextColor(Color.parseColor("#e74e64"));
                 childHolder.textAddress.setTextColor(Color.parseColor("#e74e64"));
-            } else if (Integer.parseInt(String.valueOf(((PriceItemPeople) getChild(
-                    groupPosition, childPosition)).getincrease())) < 0) {
+                childHolder.textAge.setText(String.valueOf(((PriceItemPeople) getChild(
+                        groupPosition, childPosition)).getincrease()));
+                childHolder.textAddress.setText(((PriceItemPeople) getChild(groupPosition,
+                        childPosition)).getpercentage());
+            } else {
                 childHolder.textAge.setTextColor(Color.parseColor("#10ab95"));
                 childHolder.textAddress.setTextColor(Color.parseColor("#10ab95"));
+                childHolder.textAge.setText(String.valueOf(((PriceItemPeople) getChild(
+                        groupPosition, childPosition)).getincrease()));
+                childHolder.textAddress.setText(((PriceItemPeople) getChild(groupPosition,
+                        childPosition)).getpercentage());
             }
-            childHolder.textAge.setText(String.valueOf(((PriceItemPeople) getChild(
-                    groupPosition, childPosition)).getincrease()));
-            childHolder.textAddress.setText(((PriceItemPeople) getChild(groupPosition,
-                    childPosition)).getpercentage());
+
 
             return convertView;
         }

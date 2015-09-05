@@ -1144,7 +1144,7 @@
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:text="沪深1508"
+                        android:text="沪深1510"
                         android:textSize="14sp" />
 
                     <LinearLayout
@@ -1270,7 +1270,7 @@
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:text="上证1508"
+                        android:text="上证1510"
                         android:textSize="14sp" />
 
                     <LinearLayout
@@ -1400,7 +1400,7 @@
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:text="中证1508"
+                        android:text="中证1510"
                         android:textSize="14sp" />
 
                     <LinearLayout

@@ -35,19 +35,19 @@
                 android:orientation="horizontal">
 
                 <RadioButton
-                    android:id="@+id/main_tab_home"
-                    style="@style/MMTabButton"
-                    android:layout_weight="1.0"
-                    android:checked="true"
-                    android:drawableTop="@drawable/tab_home"
-                    android:text="私塾" />
-
-                <RadioButton
                     android:id="@+id/main_tab_hangqing"
                     style="@style/MMTabButton"
                     android:layout_weight="1.0"
+                    android:checked="true"
                     android:drawableTop="@drawable/tab_hangqing"
                     android:text="行情" />
+
+                <RadioButton
+                    android:id="@+id/main_tab_course"
+                    style="@style/MMTabButton"
+                    android:layout_weight="1.0"
+                    android:drawableTop="@drawable/tab_course"
+                    android:text="私塾" />
 
                 <RadioButton
                     android:id="@+id/main_tab_qinniu"

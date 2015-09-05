@@ -41,12 +41,12 @@ public class MainActivity extends TabActivity {
         Intent intent;
 
 //        下面几行酌情增加或修改，修改就改xxxxActivity为所需页面
-        intent = new Intent().setClass(this, CourseMainActivity.class);
-        spec = tabHost.newTabSpec("私塾").setIndicator("私塾").setContent(intent);
-        tabHost.addTab(spec);
-
         intent = new Intent().setClass(this, PriceActivity.class);
         spec = tabHost.newTabSpec("行情").setIndicator("行情").setContent(intent);
+        tabHost.addTab(spec);
+
+        intent = new Intent().setClass(this, CourseMainActivity.class);
+        spec = tabHost.newTabSpec("私塾").setIndicator("私塾").setContent(intent);
         tabHost.addTab(spec);
 
         intent = new Intent().setClass(this, QinniuActivity.class);
@@ -61,7 +61,7 @@ public class MainActivity extends TabActivity {
         spec = tabHost.newTabSpec("资讯").setIndicator("资讯").setContent(intent);
         tabHost.addTab(spec);
 
-        tabHost.setCurrentTabByTag("私塾");
+        tabHost.setCurrentTabByTag("行情");
 
 //        这个ID是radioGroup的ID，对于不同的group设置不同值，否则会崩溃
         RadioGroup radioGroup = (RadioGroup) this
@@ -71,11 +71,11 @@ public class MainActivity extends TabActivity {
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 // TODO Auto-generated method stub
                 switch (checkedId) {
-                    case R.id.main_tab_home:// 首页
-                        tabHost.setCurrentTabByTag("私塾");
-                        break;
                     case R.id.main_tab_hangqing:// 行情
                         tabHost.setCurrentTabByTag("行情");
+                        break;
+                    case R.id.main_tab_course:// 私塾
+                        tabHost.setCurrentTabByTag("私塾");
                         break;
                     case R.id.main_tab_qinniu:// 擒牛
                         tabHost.setCurrentTabByTag("擒牛");

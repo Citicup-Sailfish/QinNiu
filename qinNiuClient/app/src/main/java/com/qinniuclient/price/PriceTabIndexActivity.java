@@ -79,7 +79,15 @@ public class PriceTabIndexActivity extends ActionBarActivity {
     }
 
     private void initTblCell(String[] tar, int[] ids, int index) {
-        String[] info = tar[index+1].split(";");
+        String[] info = new String[4];
+        if (tar[index + 1].split(";").length == 0) {
+            System.out.println("haha");
+            for (int i = 0; i < 4; i++) {
+                info[i] = " ";
+            }
+        } else {
+            info = tar[index + 1].split(";");
+        }
         TextView tv;
         ImageView iv;
         tv = (TextView)findViewById(ids[0]);
