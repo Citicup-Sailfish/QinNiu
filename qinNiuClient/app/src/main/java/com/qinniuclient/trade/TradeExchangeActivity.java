@@ -44,10 +44,10 @@ public class TradeExchangeActivity extends TabActivity {
                 .setContent(intent);
         tabHost.addTab(spec);
 
-        intent = new Intent().setClass(this, ExchangeTabTransferActivity.class);
+        /*intent = new Intent().setClass(this, ExchangeTabTransferActivity.class);
         spec = tabHost.newTabSpec("转账").setIndicator("转账")
                 .setContent(intent);
-        tabHost.addTab(spec);
+        tabHost.addTab(spec);*/
 
         tabHost.setCurrentTabByTag("持仓");
 
@@ -69,9 +69,9 @@ public class TradeExchangeActivity extends TabActivity {
                     case R.id.ExchangeTabBarQuery:// 查询
                         tabHost.setCurrentTabByTag("查询");
                         break;
-                    case R.id.ExchangeTabBarTransfer:// 转账
+                    /*case R.id.ExchangeTabBarTransfer:// 转账
                         tabHost.setCurrentTabByTag("转账");
-                        break;
+                        break;*/
                     default:
                         break;
                 }

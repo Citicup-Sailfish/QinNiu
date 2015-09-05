@@ -26,19 +26,6 @@
                 android:textColor="#ffffff"
                 android:textSize="14sp" />
 
-            <Button
-                android:id="@+id/hangqing_guonei_more_button"
-                android:layout_width="60dp"
-                android:layout_height="40dp"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentTop="true"
-                android:background="#394264"
-                android:gravity="right|center_vertical"
-                android:paddingRight="10dp"
-                android:text="更多 >"
-                android:textSize="12sp" />
-
         </RelativeLayout>
 
         <!--分割线-->
@@ -466,18 +453,6 @@
                 android:textColor="#ffffff"
                 android:textSize="14sp" />
 
-            <Button
-                android:id="@+id/hangqing_qita_more_button"
-                android:layout_width="60dp"
-                android:layout_height="40dp"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentTop="true"
-                android:background="#394264"
-                android:gravity="right|center_vertical"
-                android:paddingRight="10dp"
-                android:text="更多 >"
-                android:textSize="12sp" />
 
         </RelativeLayout>
 
@@ -1099,18 +1074,6 @@
                 android:textColor="#ffffff"
                 android:textSize="14sp" />
 
-            <Button
-                android:id="@+id/hangqing_qihuo_more_button"
-                android:layout_width="60dp"
-                android:layout_height="40dp"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentTop="true"
-                android:background="#394264"
-                android:gravity="right|center_vertical"
-                android:paddingRight="10dp"
-                android:text="更多 >"
-                android:textSize="12sp" />
 
         </RelativeLayout>
 

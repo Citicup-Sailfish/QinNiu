@@ -49,11 +49,11 @@
                     style="@style/SimulationTabBar"
                     android:text="查询" />
 
-                <!--转账-->
+                <!--转账
                 <RadioButton
                     android:id="@+id/ExchangeTabBarTransfer"
                     style="@style/SimulationTabBar"
-                    android:text="转账" />
+                    android:text="转账" />-->
 
             </RadioGroup>
         </LinearLayout>
