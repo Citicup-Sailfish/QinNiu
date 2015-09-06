@@ -8,7 +8,7 @@
     <!--listview 用法参考 http://www.iteye.com/topic/540423-->
     <!--list iteam 布局文件名 activity_information_news_list_item-->
     <ListView
-        android:id="@+id/Information_news_Listview"
+        android:id="@+id/InformationNewsList"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"

@@ -1,38 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="#394264"
-    android:orientation="vertical">
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:background="#394264"
+              android:orientation="vertical">
 
 
     <!--显示几月几号-->
     <LinearLayout
-        android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:paddingLeft="24dp"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingLeft="24dp">
 
         <TextView
+            android:id="@+id/information_news_day_times"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="7月28日"
-            android:textSize="12sp"
-            android:textColor="#5fb7fa"
+            android:layout_alignParentTop="true"
             android:paddingBottom="10dp"
             android:paddingTop="10dp"
-            android:layout_alignParentTop="true"
-            android:id="@+id/information_news_day_times" />
+            android:text="7月28日"
+            android:textColor="#5fb7fa"
+            android:textSize="12sp"/>
 
     </LinearLayout>
     <!--一条分割线-->
     <ImageView
+        android:id="@+id/imageView2"
         android:layout_width="fill_parent"
         android:layout_height="0.5dp"
-        android:layout_marginRight="12dp"
         android:layout_marginLeft="12dp"
-        android:id="@+id/imageView2"
-        android:background="#ffffff" />
+        android:layout_marginRight="12dp"
+        android:background="#ffffff"/>
 
     <!--五个relative，代表五条新闻-->
 
@@ -40,64 +40,64 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:paddingRight="24dp"
-        android:paddingLeft="24dp">
+        android:paddingLeft="24dp"
+        android:paddingRight="24dp">
 
         <TextView
+            android:id="@+id/information_news_text0"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingLeft="12dp"
+            android:layout_alignParentTop="true"
+            android:layout_toEndOf="@+id/information_news_imageButton0"
+            android:layout_toRightOf="@+id/information_news_imageButton0"
+            android:ellipsize="end"
+            android:lines="2"
+            android:maxLength="30"
             android:paddingBottom="10dp"
+            android:paddingLeft="12dp"
             android:paddingTop="10dp"
             android:text="罗双平：罗双平：罗双平：罗双平：罗双平：罗双平：罗双平：罗双平：罗双平：罗双平：罗双平：罗双平："
-            android:lines="2"
-            android:ellipsize="end"
-            android:id="@+id/information_news_text0"
-            android:textSize="14sp"
             android:textColor="#ffffff"
-            android:maxLength="30"
-            android:layout_alignParentTop="true"
-            android:layout_toRightOf="@+id/information_news_imageButton0"
-            android:layout_toEndOf="@+id/information_news_imageButton0" />
+            android:textSize="14sp"/>
 
         <TextView
+            android:id="@+id/information_news_Newstime0"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="#aeb2b9"
-            android:text="13:30"
+            android:layout_above="@+id/information_news_text0"
+            android:layout_alignBottom="@+id/information_news_text0"
+            android:layout_alignEnd="@+id/information_news_text0"
+            android:layout_alignRight="@+id/information_news_text0"
             android:paddingBottom="1dp"
             android:paddingLeft="12dp"
-            android:textSize="12sp"
-            android:layout_above="@+id/information_news_text0"
-            android:id="@+id/information_news_Newstime0"
-            android:layout_alignBottom="@+id/information_news_text0"
-            android:layout_alignRight="@+id/information_news_text0"
-            android:layout_alignEnd="@+id/information_news_text0" />
+            android:text="13:30"
+            android:textColor="#aeb2b9"
+            android:textSize="12sp"/>
 
 
         <!--竖直分割线-->
-        <ImageView
+        <View
             android:layout_width="0.5dp"
             android:layout_height="60dp"
-            android:background="#ffffff"
             android:layout_alignBaseline="@+id/information_news_imageButton0"
             android:layout_alignParentTop="true"
             android:layout_marginLeft="25dp"
-            android:layout_marginStart="11dp" />
+            android:layout_marginStart="11dp"
+            android:background="#ffffff"/>
         <!--新闻图片-->
-        <ImageButton
+        <ImageView
+            android:id="@+id/information_news_imageButton0"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:clickable="false"
-            android:id="@+id/information_news_imageButton0"
             android:layout_centerVertical="true"
-            android:layout_gravity="center_horizontal" />
+            android:layout_gravity="center_horizontal"
+            android:clickable="false"/>
         <!--分割线-->
-        <ImageView
+        <View
             android:layout_width="fill_parent"
             android:layout_height="0.5dp"
-            android:background="#ffffff"
-            android:layout_alignParentBottom="true" />
+            android:layout_alignParentBottom="true"
+            android:background="#ffffff"/>
 
     </RelativeLayout>
 
@@ -106,64 +106,64 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:paddingRight="24dp"
-        android:paddingLeft="24dp">
+        android:paddingLeft="24dp"
+        android:paddingRight="24dp">
 
         <TextView
+            android:id="@+id/information_news_text1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingLeft="12dp"
+            android:layout_alignParentTop="true"
+            android:layout_toEndOf="@+id/information_news_imageButton1"
+            android:layout_toRightOf="@+id/information_news_imageButton1"
+            android:ellipsize="end"
+            android:lines="2"
+            android:maxLength="30"
             android:paddingBottom="10dp"
+            android:paddingLeft="12dp"
             android:paddingTop="10dp"
             android:text="罗双平：罗双平：罗双平：罗双平：罗双平：罗双平：罗双平：罗双平：罗双平：罗双平：罗双平：罗双平："
-            android:lines="2"
-            android:ellipsize="end"
-            android:id="@+id/information_news_text1"
-            android:textSize="14sp"
             android:textColor="#ffffff"
-            android:maxLength="30"
-            android:layout_alignParentTop="true"
-            android:layout_toRightOf="@+id/information_news_imageButton1"
-            android:layout_toEndOf="@+id/information_news_imageButton1" />
+            android:textSize="14sp"/>
 
         <TextView
+            android:id="@+id/information_news_Newstime1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="#aeb2b9"
-            android:text="13:30"
+            android:layout_above="@+id/information_news_text1"
+            android:layout_alignBottom="@+id/information_news_text1"
+            android:layout_alignEnd="@+id/information_news_text1"
+            android:layout_alignRight="@+id/information_news_text1"
             android:paddingBottom="1dp"
             android:paddingLeft="12dp"
-            android:textSize="12sp"
-            android:layout_above="@+id/information_news_text1"
-            android:id="@+id/information_news_Newstime1"
-            android:layout_alignBottom="@+id/information_news_text1"
-            android:layout_alignRight="@+id/information_news_text1"
-            android:layout_alignEnd="@+id/information_news_text1" />
+            android:text="13:30"
+            android:textColor="#aeb2b9"
+            android:textSize="12sp"/>
 
 
         <!--竖直分割线-->
-        <ImageView
+        <View
             android:layout_width="0.5dp"
             android:layout_height="60dp"
-            android:background="#ffffff"
-            android:layout_alignParentTop="true"
             android:layout_alignBaseline="@+id/information_news_imageButton1"
+            android:layout_alignParentTop="true"
             android:layout_marginLeft="25dp"
-            android:layout_marginStart="11dp" />
+            android:layout_marginStart="11dp"
+            android:background="#ffffff"/>
         <!--新闻图片-->
-        <ImageButton
+        <ImageView
+            android:id="@+id/information_news_imageButton1"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:clickable="false"
-            android:id="@+id/information_news_imageButton1"
             android:layout_centerVertical="true"
-            android:layout_gravity="center_horizontal" />
+            android:layout_gravity="center_horizontal"
+            android:clickable="false"/>
         <!--分割线-->
-        <ImageView
+        <View
             android:layout_width="fill_parent"
             android:layout_height="0.5dp"
-            android:background="#ffffff"
-            android:layout_alignParentBottom="true" />
+            android:layout_alignParentBottom="true"
+            android:background="#ffffff"/>
 
     </RelativeLayout>
 
@@ -171,64 +171,64 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:paddingRight="24dp"
-        android:paddingLeft="24dp">
+        android:paddingLeft="24dp"
+        android:paddingRight="24dp">
 
         <TextView
+            android:id="@+id/information_news_text2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingLeft="12dp"
+            android:layout_alignParentTop="true"
+            android:layout_toEndOf="@+id/information_news_imageButton2"
+            android:layout_toRightOf="@+id/information_news_imageButton2"
+            android:ellipsize="end"
+            android:lines="2"
+            android:maxLength="30"
             android:paddingBottom="10dp"
+            android:paddingLeft="12dp"
             android:paddingTop="10dp"
             android:text="罗双平：罗双平：罗双平：罗双平：罗双平：罗双平：罗双平：罗双平：罗双平：罗双平：罗双平：罗双平："
-            android:lines="2"
-            android:ellipsize="end"
-            android:id="@+id/information_news_text2"
-            android:textSize="14sp"
             android:textColor="#ffffff"
-            android:maxLength="30"
-            android:layout_alignParentTop="true"
-            android:layout_toRightOf="@+id/information_news_imageButton2"
-            android:layout_toEndOf="@+id/information_news_imageButton2" />
+            android:textSize="14sp"/>
 
         <TextView
+            android:id="@+id/information_news_Newstime2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="#aeb2b9"
-            android:text="13:30"
+            android:layout_above="@+id/information_news_text2"
+            android:layout_alignBottom="@+id/information_news_text2"
+            android:layout_alignEnd="@+id/information_news_text2"
+            android:layout_alignRight="@+id/information_news_text2"
             android:paddingBottom="1dp"
             android:paddingLeft="12dp"
-            android:textSize="12sp"
-            android:layout_above="@+id/information_news_text2"
-            android:id="@+id/information_news_Newstime2"
-            android:layout_alignBottom="@+id/information_news_text2"
-            android:layout_alignRight="@+id/information_news_text2"
-            android:layout_alignEnd="@+id/information_news_text2" />
+            android:text="13:30"
+            android:textColor="#aeb2b9"
+            android:textSize="12sp"/>
 
 
         <!--竖直分割线-->
-        <ImageView
+        <View
             android:layout_width="0.5dp"
             android:layout_height="60dp"
-            android:background="#ffffff"
             android:layout_alignBaseline="@+id/information_news_imageButton2"
             android:layout_alignParentTop="true"
             android:layout_marginLeft="25dp"
-            android:layout_marginStart="11dp" />
+            android:layout_marginStart="11dp"
+            android:background="#ffffff"/>
         <!--新闻图片-->
-        <ImageButton
+        <ImageView
+            android:id="@+id/information_news_imageButton2"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:id="@+id/information_news_imageButton2"
-            android:clickable="false"
             android:layout_centerVertical="true"
-            android:layout_gravity="center_horizontal" />
+            android:layout_gravity="center_horizontal"
+            android:clickable="false"/>
         <!--分割线-->
-        <ImageView
+        <View
             android:layout_width="fill_parent"
             android:layout_height="0.5dp"
-            android:background="#ffffff"
-            android:layout_alignParentBottom="true" />
+            android:layout_alignParentBottom="true"
+            android:background="#ffffff"/>
 
     </RelativeLayout>
 
@@ -236,64 +236,64 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:paddingRight="24dp"
-        android:paddingLeft="24dp">
+        android:paddingLeft="24dp"
+        android:paddingRight="24dp">
 
         <TextView
+            android:id="@+id/information_news_text3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingLeft="12dp"
+            android:layout_alignParentTop="true"
+            android:layout_toEndOf="@+id/information_news_imageButton3"
+            android:layout_toRightOf="@+id/information_news_imageButton3"
+            android:ellipsize="end"
+            android:lines="2"
+            android:maxLength="30"
             android:paddingBottom="10dp"
+            android:paddingLeft="12dp"
             android:paddingTop="10dp"
             android:text="罗双平：罗双平：罗双平：罗双平：罗双平：罗双平：罗双平：罗双平：罗双平：罗双平：罗双平：罗双平："
-            android:lines="2"
-            android:ellipsize="end"
-            android:id="@+id/information_news_text3"
-            android:textSize="14sp"
             android:textColor="#ffffff"
-            android:maxLength="30"
-            android:layout_alignParentTop="true"
-            android:layout_toRightOf="@+id/information_news_imageButton3"
-            android:layout_toEndOf="@+id/information_news_imageButton3" />
+            android:textSize="14sp"/>
 
         <TextView
+            android:id="@+id/information_news_Newstime3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="#aeb2b9"
-            android:text="13:30"
+            android:layout_above="@+id/information_news_text3"
+            android:layout_alignBottom="@+id/information_news_text3"
+            android:layout_alignEnd="@+id/information_news_text3"
+            android:layout_alignRight="@+id/information_news_text3"
             android:paddingBottom="1dp"
             android:paddingLeft="12dp"
-            android:textSize="12sp"
-            android:layout_above="@+id/information_news_text3"
-            android:id="@+id/information_news_Newstime3"
-            android:layout_alignBottom="@+id/information_news_text3"
-            android:layout_alignRight="@+id/information_news_text3"
-            android:layout_alignEnd="@+id/information_news_text3" />
+            android:text="13:30"
+            android:textColor="#aeb2b9"
+            android:textSize="12sp"/>
 
 
         <!--竖直分割线-->
-        <ImageView
+        <View
             android:layout_width="0.5dp"
             android:layout_height="60dp"
-            android:background="#ffffff"
             android:layout_alignBaseline="@+id/information_news_imageButton3"
             android:layout_alignParentTop="true"
             android:layout_marginLeft="25dp"
-            android:layout_marginStart="11dp" />
+            android:layout_marginStart="11dp"
+            android:background="#ffffff"/>
         <!--新闻图片-->
-        <ImageButton
+        <ImageView
+            android:id="@+id/information_news_imageButton3"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:clickable="false"
-            android:id="@+id/information_news_imageButton3"
             android:layout_centerVertical="true"
-            android:layout_gravity="center_horizontal" />
+            android:layout_gravity="center_horizontal"
+            android:clickable="false"/>
         <!--分割线-->
-        <ImageView
+        <View
             android:layout_width="fill_parent"
             android:layout_height="0.5dp"
-            android:background="#ffffff"
-            android:layout_alignParentBottom="true" />
+            android:layout_alignParentBottom="true"
+            android:background="#ffffff"/>
 
     </RelativeLayout>
 
@@ -301,64 +301,64 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:paddingRight="24dp"
-        android:paddingLeft="24dp">
+        android:paddingLeft="24dp"
+        android:paddingRight="24dp">
 
         <TextView
+            android:id="@+id/information_news_text4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingLeft="12dp"
+            android:layout_alignParentTop="true"
+            android:layout_toEndOf="@+id/information_news_imageButton4"
+            android:layout_toRightOf="@+id/information_news_imageButton4"
+            android:ellipsize="end"
+            android:lines="2"
+            android:maxLength="30"
             android:paddingBottom="10dp"
+            android:paddingLeft="12dp"
             android:paddingTop="10dp"
             android:text="罗双平：罗双平：罗双平：罗双平：罗双平：罗双平：罗双平：罗双平：罗双平：罗双平：罗双平：罗双平："
-            android:lines="2"
-            android:ellipsize="end"
-            android:id="@+id/information_news_text5"
-            android:textSize="14sp"
             android:textColor="#ffffff"
-            android:maxLength="30"
-            android:layout_alignParentTop="true"
-            android:layout_toRightOf="@+id/information_news_imageButton5"
-            android:layout_toEndOf="@+id/information_news_imageButton5" />
+            android:textSize="14sp"/>
 
         <TextView
+            android:id="@+id/information_news_Newstime4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="#aeb2b9"
-            android:text="13:30"
+            android:layout_above="@+id/information_news_text4"
+            android:layout_alignBottom="@+id/information_news_text4"
+            android:layout_alignEnd="@+id/information_news_text4"
+            android:layout_alignRight="@+id/information_news_text4"
             android:paddingBottom="1dp"
             android:paddingLeft="12dp"
-            android:textSize="12sp"
-            android:layout_above="@+id/information_news_text5"
-            android:id="@+id/information_news_Newstime5"
-            android:layout_alignBottom="@+id/information_news_text5"
-            android:layout_alignRight="@+id/information_news_text5"
-            android:layout_alignEnd="@+id/information_news_text5" />
+            android:text="13:30"
+            android:textColor="#aeb2b9"
+            android:textSize="12sp"/>
 
 
         <!--竖直分割线-->
-        <ImageView
+        <View
             android:layout_width="0.5dp"
             android:layout_height="60dp"
-            android:background="#ffffff"
-            android:layout_alignBaseline="@+id/information_news_imageButton5"
+            android:layout_alignBaseline="@+id/information_news_imageButton4"
             android:layout_alignParentTop="true"
             android:layout_marginLeft="25dp"
-            android:layout_marginStart="11dp" />
+            android:layout_marginStart="11dp"
+            android:background="#ffffff"/>
         <!--新闻图片-->
-        <ImageButton
+        <ImageView
+            android:id="@+id/information_news_imageButton4"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:id="@+id/information_news_imageButton5"
-            android:clickable="false"
             android:layout_centerVertical="true"
-            android:layout_gravity="center_horizontal" />
+            android:layout_gravity="center_horizontal"
+            android:clickable="false"/>
         <!--分割线-->
-        <ImageView
+        <View
             android:layout_width="fill_parent"
             android:layout_height="0.5dp"
-            android:background="#ffffff"
-            android:layout_alignParentBottom="true" />
+            android:layout_alignParentBottom="true"
+            android:background="#ffffff"/>
 
     </RelativeLayout>
 </LinearLayout>
