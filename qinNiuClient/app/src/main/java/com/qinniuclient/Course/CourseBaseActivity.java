@@ -13,13 +13,17 @@ import android.os.Parcelable;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
+import android.support.v7.internal.widget.AdapterViewCompat;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.ImageView.ScaleType;
+import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.RadioButton;
@@ -108,10 +112,41 @@ public class CourseBaseActivity extends Activity {
         //listview部分
         mycourselist = (GridView) findViewById(R.id.CourseBaseGridview);
         new MyAsyncTask().execute();
+        mycourselist.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            public void onItemClick(AdapterView<?> parent, View v,
+                                    int position, long id) {
+                HashMap<String, Object> item = (HashMap<String, Object>) parent.getItemAtPosition(position);
+                /*获取gridview的item里对应的课堂名称*/
+                String flag = item.get("GridItemName").toString();
+                /*评论数加一*/
+                TextView GridItemBrowseNum = (TextView) v.findViewById(R.id.GridItemBrowseNum);
+                TextView GridItemCommitNum = (TextView) v.findViewById(R.id.GridItemCommitNum);
+                /*点击一次加一*/
+                GridItemBrowseNum.setText(Integer.valueOf(Integer.valueOf(GridItemBrowseNum.getText().toString()) + 1).toString());
+                /*显示评论个数，暂时也是点击一次加一*/
+                GridItemCommitNum.setText(Integer.valueOf(Integer.valueOf(GridItemCommitNum.getText().toString()) + 1).toString());
+                /*传递item的课堂名称*/
+                Intent intent = new Intent();
+                intent.putExtra("text", flag);
+                intent.setClass(CourseBaseActivity.this, InformationCourseContentActivity.class);
+                startActivity(intent);
+
+            }
+        });
+
+        /*mycourselist.setOnItemClickListener(onItemClickListener);
+        OnItemClickListener onItemClickListener = new OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> arg0, View v, int position, long arg3) {
+
+            }
+        };*/
     }
 
+
+
     /*重写SimpleAdapter，实现课程的点击跳转，及浏览次数*/
-    private class MySimpleAdapter extends SimpleAdapter {
+    /*private class MySimpleAdapter extends SimpleAdapter {
 
         private TextView GridItemName;
         private TextView GridItemBrowseNum;
@@ -153,7 +188,7 @@ public class CourseBaseActivity extends Activity {
             this.mData = data;
             // TODO Auto-generated constructor stub
         }
-    }
+    }*/
 
 
     //listitem的数据来源 服务器
@@ -187,7 +222,7 @@ public class CourseBaseActivity extends Activity {
                         R.id.GridItemBrowseNum,
                         R.id.GridItemCommitNum
                         , R.id.GridItemImage};
-                MySimpleAdapter simpleAdapter = new MySimpleAdapter(
+                SimpleAdapter simpleAdapter = new SimpleAdapter(
                         CourseBaseActivity.this, getHoldPosInfo(result),
                         R.layout.activity_course_grid_item, keySet, toIds);
                 mycourselist.setAdapter(simpleAdapter);
@@ -227,8 +262,8 @@ public class CourseBaseActivity extends Activity {
         for (int i = 0; i < 6; i++) {
             /*String image = "精品课堂" + Integer.toString(i);*/
             String name = "罗双平：现代人力资源管理之岗位工资设计技术" + Integer.toString(i);
-            String number = "1";
-            String CommitNum = "1";
+            String number = Integer.valueOf(i).toString();
+            String CommitNum = Integer.valueOf(i).toString();
             map = new HashMap<String, Object>();
             map.put("GridItemImage",
                     R.drawable.simulation_infobar_user_icon);

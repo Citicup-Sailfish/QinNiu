@@ -26,7 +26,7 @@
     <RelativeLayout
         android:id="@+id/GridItemBrowse"
         android:layout_width="wrap_content"
-        android:layout_height="16dp"
+        android:layout_height="18dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_marginLeft="10dp">
@@ -43,9 +43,9 @@
         <TextView
             android:id="@+id/GridItemBrowseNum"
             android:layout_width="wrap_content"
-            android:layout_alignBaseline="@+id/GridItemBrowseIcon"
             android:layout_height="fill_parent"
             android:layout_marginLeft="4dp"
+            android:layout_marginBottom="1dp"
             android:layout_toRightOf="@id/GridItemBrowseIcon"
             android:gravity="center"
             android:textColor="#adacac"
@@ -56,7 +56,7 @@
     <RelativeLayout
         android:id="@+id/GridItemCommit"
         android:layout_width="wrap_content"
-        android:layout_height="16dp"
+        android:layout_height="18dp"
         android:layout_alignParentBottom="true"
         android:layout_marginLeft="30dp"
         android:layout_toRightOf="@id/GridItemBrowse">
@@ -74,8 +74,8 @@
             android:id="@+id/GridItemCommitNum"
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
-            android:layout_alignBaseline="@+id/GridItemCommitIcon"
             android:layout_marginLeft="4dp"
+            android:layout_marginBottom="1dp"
             android:layout_toRightOf="@id/GridItemCommitIcon"
             android:gravity="center"
             android:text="0"
