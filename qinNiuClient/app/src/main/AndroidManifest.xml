@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.qinniuclient" >
+<manifest
+    package="com.qinniuclient"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:icon="@mipmap/simulation_infobar_user_icon"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme" >
+        android:theme="@style/AppTheme">
         <activity
             android:name=".WeclomePage"
             android:label="@string/app_name"
-            android:screenOrientation="portrait" >
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -20,95 +21,73 @@
         </activity>
         <activity
             android:name=".MainActivity"
-            android:label="@string/title_activity_main" >
-        </activity>
+            android:label="@string/title_activity_main" />
         <activity
             android:name=".login.LoginActivity"
-            android:label="@string/title_activity_login" >
-        </activity>
+            android:label="@string/title_activity_login" />
         <activity
             android:name=".register.RegisterActivity"
-            android:label="@string/title_activity_register" >
-        </activity>
+            android:label="@string/title_activity_register" />
         <activity
             android:name=".register.RegisterTurnActivity"
-            android:label="@string/title_activity_register_turn" >
-        </activity>
+            android:label="@string/title_activity_register_turn" />
         <activity
             android:name=".price.PriceActivity"
-            android:label="@string/title_activity_price" >
-        </activity>
+            android:label="@string/title_activity_price" />
         <activity
             android:name=".price.PriceSearch"
             android:label="@string/title_activity_PriceSearch" />
         <activity
             android:name=".price.PricePriceActivity"
-            android:label="@string/title_activity_price_price" >
-        </activity>
+            android:label="@string/title_activity_price_price" />
         <activity
             android:name=".price.PriceOptionalActivity"
-            android:label="@string/title_activity_price_optional" >
-        </activity>
+            android:label="@string/title_activity_price_optional" />
         <activity
             android:name=".price.PriceTabIndexActivity"
-            android:label="@string/title_activity_price_tab_index" >
-        </activity>
+            android:label="@string/title_activity_price_tab_index" />
         <activity
             android:name=".price.PriceTabSelectorActivity"
-            android:label="@string/title_activity_price_tab_selector" >
-        </activity>
+            android:label="@string/title_activity_price_tab_selector" />
         <activity
             android:name=".price.PriceTabSHSZActivity"
-            android:label="@string/title_activity_price_tab_shsz" >
-        </activity>
+            android:label="@string/title_activity_price_tab_shsz" />
         <activity
             android:name=".MainpageActivity"
-            android:label="@string/title_activity_mainpage" >
-        </activity>
+            android:label="@string/title_activity_mainpage" />
         <activity
-            android:name=".QinniuActivity"
-            android:label="@string/title_activity_qinniu" >
-        </activity>
+            android:name=".qinNiu.QinniuActivity"
+            android:label="@string/title_activity_qinniu" />
         <activity
             android:name=".trade.SimulationTabPositionActivity"
-            android:label="@string/title_activity_simulation_tab_position" >
-        </activity>
+            android:label="@string/title_activity_simulation_tab_position" />
         <activity
             android:name=".trade.SimulationTabBuyActivity"
-            android:label="@string/title_activity_simulation_tab_buy" >
-        </activity>
+            android:label="@string/title_activity_simulation_tab_buy" />
         <activity
             android:name=".trade.SimulationTabQueryActivity"
-            android:label="@string/title_activity_simulation_tab_query" >
-        </activity>
+            android:label="@string/title_activity_simulation_tab_query" />
         <activity
             android:name=".trade.ExchangeTabPositionActivity"
-            android:label="@string/title_activity_exchange_tab_position" >
-        </activity>
+            android:label="@string/title_activity_exchange_tab_position" />
         <activity
             android:name=".trade.ExchangeTabBuyActivity"
-            android:label="@string/title_activity_exchange_tab_buy" >
-        </activity>
+            android:label="@string/title_activity_exchange_tab_buy" />
         <activity
             android:name=".trade.ExchangeTabQueryActivity"
-            android:label="@string/title_activity_exchange_tab_query" >
-        </activity>
+            android:label="@string/title_activity_exchange_tab_query" />
         <activity
             android:name=".trade.ExchangeTabTransferActivity"
-            android:label="@string/title_activity_exchange_tab_transfer" >
-        </activity>
+            android:label="@string/title_activity_exchange_tab_transfer" />
         <activity
             android:name=".price.PriceOptionalListItemActivity"
-            android:label="@string/title_activity_price_optional_list_item" >
-        </activity>
+            android:label="@string/title_activity_price_optional_list_item" />
         <activity
             android:name=".Course.CourseListviewItemActivity"
-            android:label="@string/title_activity_course_listview_item" >
-        </activity>
+            android:label="@string/title_activity_course_listview_item" />
         <activity
             android:name=".information.InformationActivity"
-            android:label="@string/title_activity_information" >
-        </activity>
+            android:label="@string/title_activity_information" />
         <!--
         <activity
             android:name=".Course.CourseMainActivity2"
@@ -117,44 +96,34 @@
         -->
         <activity
             android:name=".information.InformationNewsActivity"
-            android:label="@string/title_activity_information_news" >
-        </activity>
+            android:label="@string/title_activity_information_news" />
         <activity
             android:name=".information.InformationOptionalActivity"
-            android:label="@string/title_activity_information_optional" >
-        </activity>
+            android:label="@string/title_activity_information_optional" />
         <activity
             android:name=".information.InformationScrollActivity"
-            android:label="@string/title_activity_information_scroll" >
-        </activity>
+            android:label="@string/title_activity_information_scroll" />
         <activity
             android:name=".trade.TradeActivity"
-            android:label="@string/title_activity_trade" >
-        </activity>
+            android:label="@string/title_activity_trade" />
         <activity
             android:name=".trade.TradeExchangeActivity"
-            android:label="@string/title_activity_trade_exchange" >
-        </activity>
+            android:label="@string/title_activity_trade_exchange" />
         <activity
             android:name=".trade.TradeSimulationActivity"
-            android:label="@string/title_activity_trade_simulation" >
-        </activity>
+            android:label="@string/title_activity_trade_simulation" />
         <activity
             android:name=".Course.CourseMainActivity"
-            android:label="@string/title_activity_course_main">
-        </activity>
+            android:label="@string/title_activity_course_main" />
         <activity
             android:name=".Course.CourseBaseActivity"
-            android:label="@string/title_activity_course_base">
-        </activity>
+            android:label="@string/title_activity_course_base" />
         <activity
             android:name=".Course.CourseExtendActivity"
-            android:label="@string/title_activity_course_extend">
-        </activity>
+            android:label="@string/title_activity_course_extend" />
         <activity
             android:name=".Course.InformationCourseContentActivity"
-            android:label="@string/title_activity_information_course_content">
-        </activity>
+            android:label="@string/title_activity_information_course_content" />
     </application>
 
 </manifest>
