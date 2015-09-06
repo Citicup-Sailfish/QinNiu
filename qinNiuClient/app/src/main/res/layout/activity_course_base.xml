@@ -162,7 +162,7 @@
 
             </LinearLayout>
 
-            <com.qinniuclient.Course.MyGridView
+            <com.qinniuclient.util.MyGridView
                 android:id="@+id/CourseBaseGridview"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -174,7 +174,7 @@
                 android:numColumns="2"
                 android:verticalSpacing="10dp">
 
-            </com.qinniuclient.Course.MyGridView>
+            </com.qinniuclient.util.MyGridView>
             <!--用listView做课程界面，想法是用listview来显示每一个类型的课程，就是把三个课程当做一个list iteam-->
             <!--listview 用法参考 http://www.iteye.com/topic/540423-->
             <!--list iteam 布局文件名 activity_course_listview_item2-->
