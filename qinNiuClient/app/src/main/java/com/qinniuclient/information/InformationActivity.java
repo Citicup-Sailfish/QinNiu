@@ -24,32 +24,35 @@ public class InformationActivity extends TabActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
-//        这里改页面
+        //        这里改页面
         setContentView(R.layout.activity_information);
 
         tabHost = this.getTabHost();
         TabHost.TabSpec spec;
         Intent intent;
 
-//        下面几行酌情增加或修改，修改就改xxxxActivity为所需页面
-        intent = new Intent().setClass(this, InformationNewsActivity.class);
+        //        下面几行酌情增加或修改，修改就改xxxxActivity为所需页面
+        intent = new Intent().setClass(this, InformationNewsActivity.class)
+                .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         spec = tabHost.newTabSpec("要闻").setIndicator("要闻")
-                      .setContent(intent);
+                .setContent(intent);
         tabHost.addTab(spec);
 
-        intent = new Intent().setClass(this, InformationScrollActivity.class);
+        intent = new Intent().setClass(this, InformationScrollActivity.class)
+                .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         spec = tabHost.newTabSpec("滚动").setIndicator("滚动")
-                      .setContent(intent);
+                .setContent(intent);
         tabHost.addTab(spec);
 
-        intent = new Intent().setClass(this, InformationOptionalActivity.class);
+        intent = new Intent().setClass(this, InformationOptionalActivity.class)
+                .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         spec = tabHost.newTabSpec("自选股").setIndicator("自选股").setContent(intent);
         tabHost.addTab(spec);
 
 
         tabHost.setCurrentTabByTag("要闻");
 
-//        这个ID是radioGroup的ID，对于不同的group设置不同值，否则会崩溃
+        //        这个ID是radioGroup的ID，对于不同的group设置不同值，否则会崩溃
         RadioGroup radioGroup = (RadioGroup) this
                 .findViewById(R.id.information_ExchangeTabBar);
         radioGroup.setOnCheckedChangeListener(
