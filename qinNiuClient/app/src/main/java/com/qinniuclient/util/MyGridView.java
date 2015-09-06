@@ -1,4 +1,4 @@
-package com.qinniuclient.Course;
+package com.qinniuclient.util;
 
 import android.content.Context;
 import android.util.AttributeSet;
