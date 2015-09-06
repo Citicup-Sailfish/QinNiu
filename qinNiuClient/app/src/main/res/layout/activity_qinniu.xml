@@ -1,18 +1,129 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.qinniuclient.QinniuActivity">
+              android:orientation="vertical"
+              tools:context="com.qinniuclient.qinNiu.QinniuActivity"
+              android:background="#394264">
+    <!--顶部框，包括个人登录，查找-->
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="48dp"
+        android:background="#50597b"
+        android:baselineAligned="false">
 
-    <!-- 定义一个DatePicker组件 -->
-    <DatePicker
-        android:id="@+id/datePicker"
+        <Button
+            android:id="@+id/UserButton"
+            android:layout_width="27dp"
+            android:layout_height="27dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="12dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/iconmyself" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center"
+            android:text="擒牛"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="#ffffff"
+            android:textSize="18sp" />
+
+        <Button
+            android:id="@+id/UserButtonSearch"
+            android:layout_width="27dp"
+            android:layout_height="27dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:layout_gravity="right"
+            android:layout_marginBottom="10dp"
+            android:layout_marginRight="12dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/icon_search" />
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/QinniuTitle"
         android:layout_width="wrap_content"
-        android:layout_height="200dp"
-        android:layout_centerHorizontal="true"
-        android:calendarViewShown="false"
-        android:endYear="2015"
-        android:spinnersShown="true"
-        android:startYear="2013" />
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="18dp"
+        android:layout_marginTop="15dp"
+        android:text="2015年10月推荐股票"
+        android:textColor="#ffffff"
+        android:textSize="16sp" />
 
-</RelativeLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="25dp"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="排名"
+            android:textColor="#ffffff"
+            android:textSize="14sp" />
+
+        <TextView
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="股票名称"
+            android:textColor="#ffffff"
+            android:textSize="14sp" />
+
+        <TextView
+            android:layout_width="65dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="得分"
+            android:textColor="#ffffff"
+            android:textSize="14sp" />
+
+        <TextView
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="与上月比较"
+            android:textColor="#ffffff"
+            android:textSize="14sp" />
+    </LinearLayout>
+
+    <View
+        android:layout_marginTop="15dp"
+        android:layout_width="335dp"
+        android:layout_height="1px"
+        android:background="#6c738c"
+        android:layout_gravity="center_horizontal" />
+
+    <!--进度条，测试用-->
+    <com.qinniuclient.util.RoundProgressBar
+        android:layout_width="65dp"
+        android:layout_height="45dp" />
+
+    <ProgressBar
+        android:id="@+id/QinniuGrade"
+        android:layout_width="65dp"
+        android:layout_height="45dp" />
+
+    <ListView
+        android:id="@+id/QinniuRecommendList"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:paddingLeft="12.5dp"
+        android:paddingRight="12.5dp" />
+</LinearLayout>

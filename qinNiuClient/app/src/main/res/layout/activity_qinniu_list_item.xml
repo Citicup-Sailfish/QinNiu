@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="60dp"
+              android:orientation="horizontal"
+              android:gravity="center">
+
+    <!--名次-->
+    <ImageView
+        android:id="@+id/QinniuItemRank"
+        android:layout_width="50dp"
+        android:layout_height="32dp"
+        android:scaleType="centerInside"
+        android:src="@drawable/qinniu_rank_icon_1" />
+
+    <!--股票名称-->
+    <TextView
+        android:id="@+id/QinniuItemStock"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="股票名称\n066666"
+        android:textColor="#ffffff"
+        android:textSize="14sp" />
+
+    <!--得分-->
+    <ProgressBar
+        style="?android:progressBarStyleLargeInverse"
+        android:id="@+id/QinniuItemGrade"
+        android:layout_width="65dp"
+        android:layout_height="45dp"
+        android:max="100"
+        android:progress="100" />
+
+    <!--上月对比-->
+    <ImageView
+        android:id="@+id/QinniuItemCompare"
+        android:layout_width="70dp"
+        android:layout_height="16dp"
+        android:scaleType="centerInside"
+        android:paddingLeft="26.5dp"
+        android:paddingRight="26.5dp"
+        android:src="@drawable/qinniu_compare_icon_down" />
+</LinearLayout>
