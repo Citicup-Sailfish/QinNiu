@@ -43,6 +43,8 @@ public class InformationCourseContentActivity extends ActionBarActivity {
     private ArrayList<HashMap<String, Object>> mycommentlist;
     private ListView mycommentlistview;
     private TextView commentnum;
+    private TextView jingping_course_2_introduce;
+    private String thisresourceName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,21 +54,21 @@ public class InformationCourseContentActivity extends ActionBarActivity {
         commentBtn = (Button) findViewById(R.id.jingping_course_2_comment_button);
         commentContentEditText = (EditText) findViewById(R.id.jingping_course_2_comment_edit);
 
-        String flag = "   ";
 
         /*根据课堂名称判断上一级界面是点击哪一个课堂*/
+        String flag = "   ";
         Intent intent1 = this.getIntent();
-        flag = intent1.getStringExtra("text");
-        Log.e("mytest1", flag);
+        flag = intent1.getStringExtra("video");
+        thisresourceName = flag;
 
         /*设置标题的跑马灯*/
         TextView coursetittle = (TextView) findViewById(R.id.jingping_course_2_tittle);
-        coursetittle.setText(flag);
+        coursetittle.setText(intent1.getStringExtra("text"));
 
         /*视频代码*/
-        Uri uri = Uri.parse("http://forum.ea3w.com/coll_ea3w/attach/2008_10/12237832415.3gp");
-        uri = Uri.parse(HttpUtil.BASE_URL + "courseVideo/try.mp4");
-        //uri = Uri.parse("http://g3.letv.cn/27/9/3/letv-uts/2522159-AVC-1610564-AAC-123276-2196960-489820604-1b165c6eec261a12e925f48f7ca35892-1366904195636.flv");
+
+        /*Uri uri = Uri.parse(HttpUtil.BASE_URL + "courseVideo/try.mp4");*/
+        Uri uri = Uri.parse(HttpUtil.BASE_URL + "courseVideo/" + flag + ".mp4");
         VideoView videoView = (VideoView)this.findViewById(R.id.video);
         videoView.setMediaController(new MediaController(this));
         videoView.setVideoURI(uri);
@@ -141,13 +143,18 @@ public class InformationCourseContentActivity extends ActionBarActivity {
         @Override
         protected void onPostExecute(String result) {
             super.onPostExecute(result);
+
+            //
+            System.out.println(result);
             if (result != null &&
                     !result.equals("network anomaly") && !"".equals(result)) {
                 //--------------------------for test------------
-                System.out.println(result);
+                System.out.println("return :" + result);
                 //---------------------------------------------
                 String[] tar = result.split("\\+");
                 int commentNum = tar.length;
+                /*jingping_course_2_introduce = (TextView) findViewById(R.id.jingping_course_2_introduce);
+                jingping_course_2_introduce.setText(tar[0]);*/
                 commentnum = (TextView) findViewById(R.id.jingping_course_2_comment_number);
                 commentnum.setText("全部评论 (" + Integer.valueOf(commentNum).toString() + ")");
                 System.out.println("comment-length: " + commentNum);
@@ -186,7 +193,7 @@ public class InformationCourseContentActivity extends ActionBarActivity {
 
         @Override
         protected String doInBackground(Void... arg0) {
-            String resourceName = "fund_video_01";
+            String resourceName = thisresourceName;
             return query(resourceName);
         }
 
@@ -205,11 +212,13 @@ public class InformationCourseContentActivity extends ActionBarActivity {
                 //---------------------------------------------
                 String[] tar = result.split("\\+");
                 int commentNum = tar.length;
+                jingping_course_2_introduce = (TextView) findViewById(R.id.jingping_course_2_introduce);
+                jingping_course_2_introduce.setText(tar[0]);
                 commentnum = (TextView) findViewById(R.id.jingping_course_2_comment_number);
-                commentnum.setText("全部评论 (" + Integer.valueOf(commentNum).toString() + ")");
+                commentnum.setText("全部评论 (" + Integer.valueOf(commentNum - 1).toString() + ")");
                 System.out.println("comment-length: " + commentNum);
                 mycommentlist = new ArrayList<HashMap<String, Object>>();
-                for (int i = 0; i < commentNum; i++) {
+                for (int i = 1; i < commentNum; i++) {
                     HashMap<String, Object> mycommentmap = new HashMap<String, Object>();
                     mycommentmap.put("name", tar[i].split("@")[0]);
                     mycommentmap.put("time", tar[i].split("@")[1]);
@@ -241,7 +250,7 @@ public class InformationCourseContentActivity extends ActionBarActivity {
 
     private String commentUp() {
         String usrname = getCurrentUserName();
-        String resourceName = "fund_video_01";
+        String resourceName = thisresourceName;
         String commentContent = commentContentEditText.getText().toString().trim();
         return queryForUpload(resourceName, usrname, commentContent);
     }
