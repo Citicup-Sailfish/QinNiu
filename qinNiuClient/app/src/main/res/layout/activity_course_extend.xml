@@ -1,16 +1,169 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                xmlns:tools="http://schemas.android.com/tools"
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#394264"
+    android:orientation="vertical">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <!--类别筛选-->
+            <LinearLayout
+                android:layout_width="304dp"
+                android:layout_height="20dp"
+                android:layout_marginTop="12dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_marginRight="5dp"
+                    android:gravity="center"
+                    android:text="类别："
+                    android:textColor="#ffffff"
+                    android:textSize="14sp" />
+
+                <RadioGroup
+                    android:id="@+id/CourseExtendCategoryGroup"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_marginLeft="5dp"
+                    android:orientation="horizontal">
+
+                    <!--全部-->
+                    <RadioButton
+                        android:id="@+id/CourseExtendCategoryAll"
+                        style="@style/CourseRadioGroup"
+                        android:checked="true"
+                        android:text="全部" />
+
+                    <!--炒股基础-->
+                    <RadioButton
+                        android:id="@+id/CourseExtendCategoryBase"
+                        style="@style/CourseRadioGroup"
+                        android:text="经管课程" />
+
+                    <!--文本挖掘-->
+                    <RadioButton
+                        android:id="@+id/CourseExtendCategoryText"
+                        style="@style/CourseRadioGroup"
+                        android:text="国学" />
+
+                    <!--金融市场-->
+                    <RadioButton
+                        android:id="@+id/CourseExtendCategoryMarket"
+                        style="@style/CourseRadioGroup"
+                        android:text="生活点滴" />
+                </RadioGroup>
+            </LinearLayout>
+
+
+            <!--类型筛选-->
+            <LinearLayout
+                android:layout_width="304dp"
+                android:layout_height="20dp"
+                android:layout_marginTop="12dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_marginRight="5dp"
+                    android:gravity="center"
+                    android:text="类型："
+                    android:textColor="#ffffff"
+                    android:textSize="14sp" />
+
+                <RadioGroup
+                    android:id="@+id/CourseExtendTypeGroup"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_marginLeft="5dp"
+                    android:orientation="horizontal">
+
+                    <!--全部-->
+                    <RadioButton
+                        android:id="@+id/CourseExtendTypeAll"
+                        style="@style/CourseRadioGroup"
+                        android:checked="true"
+                        android:text="全部" />
+
+                    <!--视频-->
+                    <RadioButton
+                        android:id="@+id/CourseExtendTypeVideo"
+                        style="@style/CourseRadioGroup"
+                        android:text="视频" />
+
+                    <!--文档-->
+                    <RadioButton
+                        android:id="@+id/CourseExtendTypeDocument"
+                        style="@style/CourseRadioGroup"
+                        android:text="文档" />
+                </RadioGroup>
+            </LinearLayout>
+
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:paddingLeft="@dimen/activity_horizontal_margin"
-                android:paddingRight="@dimen/activity_horizontal_margin"
-                android:paddingTop="@dimen/activity_vertical_margin"
-                android:paddingBottom="@dimen/activity_vertical_margin"
-                tools:context="com.qinniuclient.Course.CourseExtendActivity">
+                android:layout_height="150dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="12dp"
+                android:orientation="vertical">
 
-    <TextView
-        android:text="@string/hello_world"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+                <include layout="@layout/activity_course_advertisement_banner" />
 
-</RelativeLayout>
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/CourseBaseNoDateInfo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:gravity="center"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginTop="30dp"
+                android:text="十分抱歉，暂无数据，Sailfish团队将尽快提供精彩课堂"
+                android:visibility="gone" />
+
+            <com.qinniuclient.util.MyGridView
+                android:id="@+id/CourseExtendGridview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginTop="20dp"
+                android:columnWidth="160dp"
+                android:horizontalSpacing="15dp"
+                android:numColumns="2"
+                android:verticalSpacing="10dp">
+
+            </com.qinniuclient.util.MyGridView>
+            <!--用listView做课程界面，想法是用listview来显示每一个类型的课程，就是把三个课程当做一个list iteam-->
+            <!--listview 用法参考 http://www.iteye.com/topic/540423-->
+            <!--list iteam 布局文件名 activity_course_listview_item2-->
+            <!--            <ListView
+                            android:id="@+id/jingping_course_listview"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:cacheColorHint="#00000000"
+                            android:clickable="false"
+                            android:divider="@null"
+                            android:focusable="false"
+                            android:listSelector="#00000000">
+                            &lt;!&ndash;每一天的iteam用linear来做&ndash;&gt;
+                            &lt;!&ndash;xml里有imagebutton的点击来跳转到精品课程的详细介绍页面，就是activity_course_2
+                            看了百度后发现listiteam会有itemClick的点击事件，不过在这里需要被屏蔽掉，
+                            理论上在item里设置了imagebutton后会自动屏蔽itemclick，但是不确定会不会，等调试时再看看
+                            找到一篇关于这个问题的文章
+                            http://blog.csdn.net/dalancon/article/details/17025339&ndash;&gt;
+                        </ListView>-->
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

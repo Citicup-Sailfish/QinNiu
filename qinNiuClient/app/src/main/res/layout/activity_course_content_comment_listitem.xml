@@ -25,7 +25,7 @@
             android:layout_toRightOf="@+id/jingping_course_2_commet_listitem_icon"
             android:text="我我我我我"
             android:textColor="#e9aa5a"
-            android:textSize="16dp" />
+            android:textSize="16sp" />
 
         <TextView
             android:id="@+id/jingping_course_2_commet_listitem_time"
@@ -34,7 +34,7 @@
             android:layout_marginLeft="10dp"
             android:layout_toRightOf="@+id/jingping_course_2_commet_listitem_username"
             android:text="12-12 10:12"
-            android:textSize="16dp" />
+            android:textSize="16sp" />
 
         <TextView
             android:id="@+id/jingping_course_2_commet_listitem_comment_edit"
@@ -44,9 +44,8 @@
             android:layout_marginLeft="15dp"
             android:layout_marginTop="5dp"
             android:layout_toRightOf="@+id/jingping_course_2_commet_listitem_icon"
-            android:text="求介绍女朋友，要求：只有能看上我就好
-            求介绍女朋友，要求：只有能看上我就好"
-            android:textSize="16dp" />
+            android:text="无评论"
+            android:textSize="16sp" />
 
     </RelativeLayout>
 

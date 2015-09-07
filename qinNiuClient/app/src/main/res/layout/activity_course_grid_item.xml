@@ -53,7 +53,8 @@
             android:textSize="16sp" />
     </RelativeLayout>
 
-    <RelativeLayout
+    <!--评论数不做-->
+    <!--<RelativeLayout
         android:id="@+id/GridItemCommit"
         android:layout_width="wrap_content"
         android:layout_height="18dp"
@@ -61,7 +62,7 @@
         android:layout_marginLeft="30dp"
         android:layout_toRightOf="@id/GridItemBrowse">
 
-        <!--评论-->
+        &lt;!&ndash;评论&ndash;&gt;
         <ImageView
             android:id="@+id/GridItemCommitIcon"
             android:layout_width="16dp"
@@ -69,7 +70,7 @@
             android:scaleType="centerInside"
             android:src="@drawable/course_grid_item_commit_icon"/>
 
-        <!--评论次数-->
+        &lt;!&ndash;评论次数&ndash;&gt;
         <TextView
             android:id="@+id/GridItemCommitNum"
             android:layout_width="wrap_content"
@@ -81,5 +82,5 @@
             android:text="0"
             android:textColor="#adacac"
             android:textSize="16sp" />
-    </RelativeLayout>
+    </RelativeLayout>-->
 </RelativeLayout>

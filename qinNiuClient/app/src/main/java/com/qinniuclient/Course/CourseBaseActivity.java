@@ -27,10 +27,12 @@ import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.koushikdutta.ion.Ion;
 import com.nostra13.universalimageloader.cache.disc.impl.UnlimitedDiscCache;
 import com.nostra13.universalimageloader.cache.memory.impl.LruMemoryCache;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
@@ -54,28 +56,21 @@ import java.util.concurrent.TimeUnit;
 public class CourseBaseActivity extends Activity {
 
     public static String IMAGE_CACHE_PATH = "imageloader/Cache"; // 图片缓存路径
-
     private ViewPager adViewPager;
     private List<ImageView> imageViews;// 滑动的图片集合
-
     private List<View> dots; // 图片标题正文的那些点
     private List<View> dotList;
-
     /*private TextView tv_date;
     private TextView tv_title;
     private TextView tv_topic_from;
     private TextView tv_topic;*/
     private int currentItem = 0; // 当前图片的索引号
-
     private ScheduledExecutorService scheduledExecutorService;
-
     // 异步加载图片
     private ImageLoader mImageLoader;
     private DisplayImageOptions options;
-
     // 轮播banner的数据
     private List<AdDomain> adList;
-
     private Handler handler = new Handler() {
         public void handleMessage(android.os.Message msg) {
             adViewPager.setCurrentItem(currentItem);
@@ -85,9 +80,11 @@ public class CourseBaseActivity extends Activity {
     };
 
 
-    //listview部分
+    //Gridview部分
     private GridView mycourselist;
     private ArrayList<HashMap<String, Object>> mylist;
+    private String[][] mycourserestult; //存课堂信息，方便排序
+    private String courseQueryrestult;
 
 
     @Override
@@ -116,33 +113,144 @@ public class CourseBaseActivity extends Activity {
             public void onItemClick(AdapterView<?> parent, View v,
                                     int position, long id) {
                 HashMap<String, Object> item = (HashMap<String, Object>) parent.getItemAtPosition(position);
-                /*获取gridview的item里对应的课堂名称*/
-                String flag = item.get("GridItemName").toString();
+
                 /*评论数加一*/
                 TextView GridItemBrowseNum = (TextView) v.findViewById(R.id.GridItemBrowseNum);
-                TextView GridItemCommitNum = (TextView) v.findViewById(R.id.GridItemCommitNum);
                 /*点击一次加一*/
+/*
                 GridItemBrowseNum.setText(Integer.valueOf(Integer.valueOf(GridItemBrowseNum.getText().toString()) + 1).toString());
-                /*显示评论个数，暂时也是点击一次加一*/
-                GridItemCommitNum.setText(Integer.valueOf(Integer.valueOf(GridItemCommitNum.getText().toString()) + 1).toString());
+*/
+
                 /*传递item的课堂名称*/
                 Intent intent = new Intent();
-                intent.putExtra("text", flag);
+                intent.putExtra("video", mycourserestult[position][0]);
+                intent.putExtra("text", item.get("GridItemName").toString());
                 intent.setClass(CourseBaseActivity.this, InformationCourseContentActivity.class);
                 startActivity(intent);
 
             }
         });
 
-        /*mycourselist.setOnItemClickListener(onItemClickListener);
-        OnItemClickListener onItemClickListener = new OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> arg0, View v, int position, long arg3) {
 
+        RadioGroup CourseBaseCategoryGroup = (RadioGroup) this.findViewById(R.id.CourseBaseCategoryGroup);
+        CourseBaseCategoryGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group,
+                                         int checkedId) {
+                // TODO Auto-generated method stub
+                switch (checkedId) {
+                    case R.id.CourseBaseCategoryAll:// 全部课程
+                        Corursechoose("All", 2);
+                        break;
+                    case R.id.CourseBaseCategoryBase:// 炒股基础
+                        Corursechoose("fun", 2);
+                        break;
+                    case R.id.CourseBaseCategoryText:// 文本挖掘
+                        Corursechoose("Text", 2);
+                        break;
+                    case R.id.CourseBaseCategoryMarket:// 金融市场
+                        Corursechoose("Market", 2);
+                        break;
+                    default:
+                        break;
+                }
             }
-        };*/
+        });
+
+        RadioGroup CourseBaseTypeGroup = (RadioGroup) this.findViewById(R.id.CourseBaseTypeGroup);
+        CourseBaseTypeGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group,
+                                         int checkedId) {
+                // TODO Auto-generated method stub
+                switch (checkedId) {
+                    case R.id.CourseBaseTypeAll:// 全部课程
+                        Corursechoose("All", 4);
+                        break;
+                    case R.id.CourseBaseTypeVideo:// 视频
+                        Corursechoose("v", 4);
+                        break;
+                    case R.id.CourseBaseTypeDocument:// 文档
+                        Corursechoose("t", 4);
+                        break;
+                    default:
+                        break;
+                }
+            }
+        });
     }
 
+
+    private void Corursechoose(String choose, int CorurseChooseinfoOfNewsPosition) {
+        if (courseQueryrestult != null && !courseQueryrestult.equals("network anomaly") &&
+                !courseQueryrestult.equals("")) {
+            //课堂类型 课堂名称
+            String[] keySet = {"GridItemName",
+                    "GridItemBrowseNum",
+                        /*"GridItemCommitNum",*/
+                    "GridItemImage"};
+            int[] toIds = {R.id.GridItemName,
+                    R.id.GridItemBrowseNum
+                        /*R.id.GridItemCommitNum*/
+                    , R.id.GridItemImage};
+
+            ArrayList<HashMap<String, Object>> list = new ArrayList<>();
+            HashMap<String, Object> map;
+
+        /* |字符需要转义 */
+            String[] tar = courseQueryrestult.split("\\|");
+            int infoOfNewsnum = tar[0].split(";").length;
+        /* 外层循环生成单个map, 内层循环处理5条新闻 */
+            for (int i = 0; i < tar.length; i++) {
+                map = new HashMap<>();
+                String[] infoOfNews = tar[i].split(";");
+                if (infoOfNews[CorurseChooseinfoOfNewsPosition].equals(choose) || choose == "All") {
+                /* 名称 */
+                    map.put(keySet[0], infoOfNews[1]);
+                /* 浏览数 */
+                    map.put(keySet[1], infoOfNews[3]);
+                /*图片*/
+                    map.put(keySet[2], infoOfNews[5]);
+                    list.add(map);
+                }
+            }
+
+            if (list.isEmpty()) {
+                TextView CourseBaseNoDateInfo = (TextView) findViewById(R.id.CourseBaseNoDateInfo);
+                CourseBaseNoDateInfo.setVisibility(View.VISIBLE);
+            } else {
+                TextView CourseBaseNoDateInfo = (TextView) findViewById(R.id.CourseBaseNoDateInfo);
+                CourseBaseNoDateInfo.setVisibility(View.GONE);
+
+            }
+            SimpleAdapter simpleAdapter = new SimpleAdapter(
+                    CourseBaseActivity.this, list,
+                    R.layout.activity_course_grid_item, keySet, toIds);
+            simpleAdapter.setViewBinder(new SimpleAdapter.ViewBinder() {
+                public boolean setViewValue(View view, Object data, String textRepresentation) {
+                    // 判断是否为我们要处理的对象
+                    if (view instanceof ImageView && data instanceof String) {
+                        ImageView iv = (ImageView) view;
+                        // 使用外部库载入图像
+                        Ion.with(iv).load((String) data);
+                        return true;
+                    }
+                    return false;
+                }
+            });
+            mycourselist.setAdapter(simpleAdapter);
+                /*setListViewHeightBasedOnChildren(mycourselist);*/
+        } else if (courseQueryrestult.equals("")) {
+            TextView CourseBaseNoDateInfo = (TextView) findViewById(R.id.CourseBaseNoDateInfo);
+            CourseBaseNoDateInfo.setVisibility(View.VISIBLE);
+
+        } else {
+            Toast toast = Toast.makeText(getApplicationContext(),
+                    "网络异常", Toast.LENGTH_SHORT);
+            toast.setGravity(Gravity.CENTER, 0, 0);
+            toast.show();
+        }
+    }
 
 
     /*重写SimpleAdapter，实现课程的点击跳转，及浏览次数*/
@@ -200,7 +308,7 @@ public class CourseBaseActivity extends Activity {
         @Override
         protected String doInBackground(Void... arg0) {
             //-------to be improved------------------
-            return query("tx");
+            return query(" ");
         }
 
         @Override
@@ -216,63 +324,40 @@ public class CourseBaseActivity extends Activity {
                 //课堂类型 课堂名称
                 String[] keySet = {"GridItemName",
                         "GridItemBrowseNum",
-                        "GridItemCommitNum",
+                        /*"GridItemCommitNum",*/
                         "GridItemImage"};
                 int[] toIds = {R.id.GridItemName,
-                        R.id.GridItemBrowseNum,
-                        R.id.GridItemCommitNum
+                        R.id.GridItemBrowseNum
+                        /*R.id.GridItemCommitNum*/
                         , R.id.GridItemImage};
                 SimpleAdapter simpleAdapter = new SimpleAdapter(
                         CourseBaseActivity.this, getHoldPosInfo(result),
                         R.layout.activity_course_grid_item, keySet, toIds);
+                simpleAdapter.setViewBinder(new SimpleAdapter.ViewBinder() {
+                    public boolean setViewValue(View view, Object data, String textRepresentation) {
+                        // 判断是否为我们要处理的对象
+                        if (view instanceof ImageView && data instanceof String) {
+                            ImageView iv = (ImageView) view;
+                            // 使用外部库载入图像
+                            Ion.with(iv).load((String) data);
+                            return true;
+                        }
+                        return false;
+                    }
+                });
                 mycourselist.setAdapter(simpleAdapter);
                 /*setListViewHeightBasedOnChildren(mycourselist);*/
             } else if (result.equals("")) {
-                Toast toast = Toast.makeText(getApplicationContext(),
-                        "暂无数据", Toast.LENGTH_SHORT);
-                toast.setGravity(Gravity.CENTER, 0, 0);
-                toast.show();
+                TextView CourseBaseNoDateInfo = (TextView) findViewById(R.id.CourseBaseNoDateInfo);
+                CourseBaseNoDateInfo.setVisibility(View.VISIBLE);
+
             } else {
-                /*无网络时的测试用数据*/
-                String[] keySet = {"GridItemName",
-                        "GridItemBrowseNum",
-                        "GridItemCommitNum",
-                        "GridItemImage"};
-                int[] toIds = {R.id.GridItemName,
-                        R.id.GridItemBrowseNum,
-                        R.id.GridItemCommitNum
-                        , R.id.GridItemImage};
-                SimpleAdapter simpleAdapter = new SimpleAdapter(
-                        CourseBaseActivity.this, mytest("te"),
-                        R.layout.activity_course_grid_item, keySet, toIds);
-                mycourselist.setAdapter(simpleAdapter);
-                /*setListViewHeightBasedOnChildren(mycourselist);*/
                 Toast toast = Toast.makeText(getApplicationContext(),
                         "网络异常", Toast.LENGTH_SHORT);
                 toast.setGravity(Gravity.CENTER, 0, 0);
                 toast.show();
             }
         }
-    }
-
-    /*无网络时的测试用数据*/
-    private List<HashMap<String, Object>> mytest(String result) {
-        mylist = new ArrayList<HashMap<String, Object>>();
-        HashMap<String, Object> map;
-        for (int i = 0; i < 6; i++) {
-            /*String image = "精品课堂" + Integer.toString(i);*/
-            String name = "罗双平：现代人力资源管理之岗位工资设计技术" + Integer.toString(i);
-            String number = Integer.valueOf(i).toString();
-            String CommitNum = Integer.valueOf(i).toString();
-            map = new HashMap<String, Object>();
-            map.put("GridItemImage",
-                    R.drawable.simulation_infobar_user_icon);
-            map.put("GridItemName", name);
-            map.put("GridItemBrowseNum", number);
-            map.put("GridItemCommitNum", CommitNum);
-            mylist.add(map);
-        }
-        return mylist;
     }
 
     /*send request to server and
@@ -285,18 +370,52 @@ public class CourseBaseActivity extends Activity {
 
     //服务器部分需要改
     private String query(String username) {
-        String queryString = "username=" + username;
+        /*String queryString = "username=" + username;
         String url = HttpUtil.BASE_URL + "GetUserSelfSelectServlet?" +
-                queryString;
-        return HttpUtil.queryStringForGet(url);
+                "CourseServlet";*/
+        String url = HttpUtil.BASE_URL + "CourseServlet";
+        courseQueryrestult = HttpUtil.queryStringForGet(url);
+        return courseQueryrestult;
     }
 
     /*服务器传数据过来了，参看mytest的数据格式，结合网络传输*/
     private List<HashMap<String, Object>> getHoldPosInfo(String result) {
         //for test
-        System.out.println(result);
+        /*System.out.println(result);*/
 
-        mylist = new ArrayList<HashMap<String, Object>>();
+        ArrayList<HashMap<String, Object>> list = new ArrayList<>();
+        HashMap<String, Object> map;
+        String[] keySet = {"GridItemName",
+                "GridItemBrowseNum",
+                /*"GridItemCommitNum",*/
+                "GridItemImage"};
+
+        /* 避免空指针 */
+        if (result == null) {
+            return list;
+        }
+        /* |字符需要转义 */
+        String[] tar = result.split("\\|");
+        int infoOfNewsnum = tar[0].split(";").length;
+        mycourserestult = new String[tar.length][infoOfNewsnum];
+        /* 外层循环生成单个map, 内层循环处理5条新闻 */
+        for (int i = 0; i < tar.length; i++) {
+            map = new HashMap<>();
+            String[] infoOfNews = tar[i].split(";");
+            for (int j = 0; j < infoOfNewsnum; j++) {
+                mycourserestult[i][j] = infoOfNews[j];
+            }
+                /* 名称 */
+            map.put(keySet[0], infoOfNews[1]);
+                /* 浏览数 */
+            map.put(keySet[1], infoOfNews[3]);
+            /*图片*/
+            map.put(keySet[2], infoOfNews[5]);
+            list.add(map);
+        }
+        return list;
+
+        /*mylist = new ArrayList<HashMap<String, Object>>();
         HashMap<String, Object> map;
         String[] tar = result.split("\\|");
         int itemNum = tar.length;
@@ -308,7 +427,7 @@ public class CourseBaseActivity extends Activity {
             map.put("GridItemCommitNum", infoOfStock[2]);
             mylist.add(map);
         }
-        return mylist;
+        return mylist;*/
     }
 
 
@@ -507,7 +626,7 @@ public class CourseBaseActivity extends Activity {
         /*adDomain.setDate("3月4日");
         adDomain.setTitle("我和令计划只是同姓");*/
         /*adDomain.setTopicFrom("阿宅");
-		adDomain.setTopic("我想知道令狐安和令计划有什么关系？");*/
+        adDomain.setTopic("我想知道令狐安和令计划有什么关系？");*/
         adDomain.setImgUrl(
                 "http://g.hiphotos.baidu.com/image/w%3D310/sign=bb99d6add2c8a786be2a4c0f5708c9c7/d50735fae6cd7b8900d74cd40c2442a7d9330e29.jpg");
         adDomain.setAd(false);

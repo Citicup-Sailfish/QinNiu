@@ -65,48 +65,6 @@
             </LinearLayout>
 
             <!--排序筛选-->
-            <LinearLayout
-                android:layout_width="304dp"
-                android:layout_height="20dp"
-                android:layout_marginTop="12dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="fill_parent"
-                    android:layout_marginRight="5dp"
-                    android:gravity="center"
-                    android:text="排序："
-                    android:textColor="#ffffff"
-                    android:textSize="14sp"/>
-
-                <RadioGroup
-                    android:id="@+id/CourseBaseSortGroup"
-                    android:layout_width="wrap_content"
-                    android:layout_height="fill_parent"
-                    android:layout_marginLeft="5dp"
-                    android:orientation="horizontal">
-
-                    <!--默认-->
-                    <RadioButton
-                        android:id="@+id/CourseBaseSortDefault"
-                        style="@style/CourseRadioGroup"
-                        android:checked="true"
-                        android:text="默认"/>
-
-                    <!--最新-->
-                    <RadioButton
-                        android:id="@+id/CourseBaseSortNew"
-                        style="@style/CourseRadioGroup"
-                        android:text="最新"/>
-
-                    <!--最热-->
-                    <RadioButton
-                        android:id="@+id/CourseBaseSortHot"
-                        style="@style/CourseRadioGroup"
-                        android:text="最热"/>
-
-                </RadioGroup>
-            </LinearLayout>
 
             <!--类型筛选-->
             <LinearLayout
@@ -162,6 +120,17 @@
 
             </LinearLayout>
 
+            <TextView
+                android:id="@+id/CourseBaseNoDateInfo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:gravity="center"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginTop="30dp"
+                android:text="十分抱歉，暂无数据，Sailfish团队将尽快提供精彩课堂"
+                android:visibility="gone" />
             <com.qinniuclient.util.MyGridView
                 android:id="@+id/CourseBaseGridview"
                 android:layout_width="wrap_content"
