@@ -108,7 +108,7 @@ public class PriceTabSHSZActivity extends Activity implements
         @Override
         protected void onPostExecute(String result) {
             super.onPostExecute(result);
-            if (result != null && !result.equals("network anomaly") && !result.equals("")) {
+            if (result != null && !result.equals("network anomaly+network anomaly") && !result.equals("")) {
                 initData(result);
 
                 adapter = new MyexpandableListAdapter(PriceTabSHSZActivity.this);

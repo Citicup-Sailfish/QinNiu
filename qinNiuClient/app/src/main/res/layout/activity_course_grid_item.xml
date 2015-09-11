@@ -8,7 +8,8 @@
     <ImageView
         android:id="@+id/GridItemImage"
         android:layout_width="fill_parent"
-        android:layout_height="90dp"/>
+        android:layout_height="90dp"
+        android:scaleType="fitXY"/>
 
     <!--标题-->
     <TextView

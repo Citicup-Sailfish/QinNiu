@@ -49,23 +49,10 @@
                     android:layout_centerVertical="true"
                     android:layout_gravity="center_horizontal"
                     android:gravity="center"
-                    android:text="精品课堂"
+                    android:text="私塾"
                     android:textAppearance="?android:attr/textAppearanceSmall"
                     android:textColor="#ffffff"
                     android:textSize="18sp"/>
-
-                <Button
-                    android:id="@+id/UserButtonSearch"
-                    android:layout_width="27dp"
-                    android:layout_height="27dp"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentRight="true"
-                    android:layout_alignParentTop="true"
-                    android:layout_gravity="right"
-                    android:layout_marginBottom="10dp"
-                    android:layout_marginRight="12dp"
-                    android:layout_marginTop="10dp"
-                    android:background="@drawable/icon_search"/>
 
             </RelativeLayout>
 

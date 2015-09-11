@@ -15,7 +15,7 @@
             android:id="@+id/jingping_course_2_commet_listitem_icon"
             android:layout_width="60dp"
             android:layout_height="60dp"
-            android:background="@drawable/simulation_infobar_user_icon" />
+            android:background="@drawable/jingping_course_2_commet_listitem_icon" />
 
         <TextView
             android:id="@+id/jingping_course_2_commet_listitem_username"

@@ -6,6 +6,7 @@ import android.content.Context;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -123,7 +124,7 @@ public class PriceTabSelectorActivity extends Activity implements
                 expandableListView.setOnChildClickListener(PriceTabSelectorActivity.this);
                 expandableListView.setOnGroupClickListener(PriceTabSelectorActivity.this);
                 stickyLayout.setOnGiveUpTouchEventListener(PriceTabSelectorActivity.this);
-            } else if (result.equals("")) {
+            } else if ("".equals(result)) {
                 Toast toast = Toast.makeText(getApplicationContext(),
                         "暂无数据", Toast.LENGTH_SHORT);
                 toast.setGravity(Gravity.CENTER, 0, 0);
@@ -139,6 +140,7 @@ public class PriceTabSelectorActivity extends Activity implements
 
     private String query() {
         String url1 = HttpUtil.BASE_URL + "SectorInfoServlet";
+        Log.e("url", HttpUtil.queryStringForGet(url1));
         return HttpUtil.queryStringForGet(url1);
     }
 

@@ -252,53 +252,6 @@ public class CourseBaseActivity extends Activity {
         }
     }
 
-
-    /*重写SimpleAdapter，实现课程的点击跳转，及浏览次数*/
-    /*private class MySimpleAdapter extends SimpleAdapter {
-
-        private TextView GridItemName;
-        private TextView GridItemBrowseNum;
-        private TextView GridItemCommitNum;
-        private List<? extends Map<String, ?>> mData;
-
-        @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
-            // TODO Auto-generated method stub
-            View v = super.getView(position, convertView, parent);
-
-
-            final int myposition;
-            myposition = position;
-
-
-            GridItemName.setTag(position);
-            GridItemBrowseNum.setTag(position);
-            GridItemCommitNum.setTag(position);
-
-            GridItemName = (TextView) v
-                    .findViewById(R.id.GridItemBrowseNum);
-
-            GridItemBrowseNum = (TextView) v
-                    .findViewById(R.id.GridItemBrowseNum);
-
-            GridItemCommitNum = (TextView) v
-                    .findViewById(R.id.GridItemCommitNum);
-
-
-
-            return v;
-        }
-
-        public MySimpleAdapter(Context context,
-                               List<? extends Map<String, ?>> data,
-                               int resource, String[] from, int[] to) {
-            super(context, data, resource, from, to);
-            this.mData = data;
-            // TODO Auto-generated constructor stub
-        }
-    }*/
-
-
     //listitem的数据来源 服务器
     public class MyAsyncTask extends AsyncTask<Void, Integer, String> {
         @Override

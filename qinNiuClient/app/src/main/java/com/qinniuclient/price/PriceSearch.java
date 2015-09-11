@@ -43,12 +43,11 @@ public class PriceSearch extends Activity {
                     String restule = act.getText().toString();
                     /*从数组里面把文字部分加入到要显示的textview*/
                     if (restule.length() == 6) {
-                        temp.setVisibility(View.VISIBLE);
-                        butn1.setVisibility(View.VISIBLE);
                         /*Log.e("string", restule);
                         Log.e("len", String.valueOf(province.length));
                         Log.e("string2", province[3]);*/
-                        for (int i = 0; i < province.length; i++) {
+                        int i = 0;
+                        for (i = 0; i < province.length; i++) {
                             String stringcom = province[i].substring(0, 6);
                             int com1 = Integer.parseInt(stringcom);
                             int com2 = Integer.parseInt(restule);
@@ -59,9 +58,16 @@ public class PriceSearch extends Activity {
                                 break;
                             }
                         }
-                        temp.setText(restule);
+                        if (i < province.length) {
+                            temp.setVisibility(View.VISIBLE);
+                            butn1.setVisibility(View.VISIBLE);
+                            temp.setText(restule);
+                        } else {
+                            Toast.makeText(PriceSearch.this, "股票代号不存在",
+                                    Toast.LENGTH_SHORT).show();
+                        }
                     } else {
-                        Toast.makeText(PriceSearch.this, "请输入6位股票代号",
+                        Toast.makeText(PriceSearch.this, "输入错误，请输入6位股票代号",
                                 Toast.LENGTH_SHORT).show();
                     }
                 }

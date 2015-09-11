@@ -74,7 +74,7 @@ public class InformationOptionalActivity extends ActionBarActivity {
                         R.id.information_news_imageButton4, R.id.information_news_text4,
                         R.id.information_news_Newstime4};
                 //----the firt para "MainActivity.this" should be repair!------------------
-                ListView newsList = (ListView) findViewById(R.id.InformationNewsList);
+                ListView newsList = (ListView) findViewById(R.id.Information_news_Listview);
                 /* 设置adapter */
                 SimpleAdapter adapter = new SimpleAdapter(InformationOptionalActivity.this,
                         getHoldPosInfo(result),
@@ -151,27 +151,5 @@ public class InformationOptionalActivity extends ActionBarActivity {
             list.add(map);
         }
         return list;
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_information_optional, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
     }
 }
