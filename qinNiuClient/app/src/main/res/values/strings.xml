@@ -47,4 +47,5 @@
     <string name="title_activity_course_main">CourseMainActivity</string>
     <string name="title_activity_course_base">CourseBaseActivity</string>
     <string name="title_activity_course_extend">CourseExtendActivity</string>
+    <string name="title_activity_qinniu_content">QinniuContentActivity</string>
 </resources>

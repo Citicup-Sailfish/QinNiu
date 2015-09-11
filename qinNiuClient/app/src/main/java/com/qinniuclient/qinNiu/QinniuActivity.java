@@ -1,10 +1,12 @@
 package com.qinniuclient.qinNiu;
 
+import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
 
 import com.qinniuclient.R;
 
@@ -39,5 +41,18 @@ public class QinniuActivity extends ActionBarActivity {
             ((ViewGroup) ((ViewGroup) dp.getChildAt(0)).getChildAt(0)).getChildAt(2)
                     .setVisibility(View.GONE);
         }*/
+        TextView tv = (TextView) findViewById(R.id.QinniuTitle);
+        tv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Context ct = getBaseContext();
+
+                //启动activity
+                Intent intent = new Intent();
+                intent.setClass(QinniuActivity.this, QinniuContentActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
     }
 }

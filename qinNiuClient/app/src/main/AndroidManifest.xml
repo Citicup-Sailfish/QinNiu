@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest
-    package="com.qinniuclient"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          package="com.qinniuclient">
 
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -124,6 +123,9 @@
         <activity
             android:name=".Course.InformationCourseContentActivity"
             android:label="@string/title_activity_information_course_content" />
+        <activity
+            android:name=".qinNiu.QinniuContentActivity"
+            android:label="@string/title_activity_qinniu_content"></activity>
     </application>
 
 </manifest>

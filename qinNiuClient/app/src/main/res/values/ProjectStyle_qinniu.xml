@@ -10,4 +10,31 @@
         </item>
         <!--<item name="android:progressDrawable">@drawable/shape_progressbar_mini</item>-->
     </style>
+
+    <style name="QinniuContentScoreText">
+        <item name="android:layout_width">77.5dp</item>
+        <item name="android:layout_height">fill_parent</item>
+        <item name="android:layout_alignParentLeft">true</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:textColor">#ffffff</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="QinniuContentScoreContent">
+        <item name="android:layout_width">132.5dp</item>
+        <item name="android:layout_height">fill_parent</item>
+        <item name="android:layout_alignParentRight">true</item>
+        <item name="android:background">@drawable/shape_qinniu_content_score</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">#ffffff</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="QinniuContentScoreHint">
+        <item name="android:layout_width">6dp</item>
+        <item name="android:layout_height">6dp</item>
+        <item name="android:layout_marginRight">16dp</item>
+        <item name="android:layout_marginTop">4dp</item>
+        <item name="android:background">@drawable/shape_qinniu_content_hint</item>
+    </style>
 </resources>

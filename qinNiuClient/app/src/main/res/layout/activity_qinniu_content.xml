@@ -1,0 +1,175 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="#394264"
+              android:orientation="vertical"
+              tools:context="com.qinniuclient.qinNiu.QinniuContentActivity">
+
+    <!--顶部框，包括个人登录，查找-->
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="48dp"
+        android:background="#50597b"
+        android:baselineAligned="false">
+
+        <Button
+            android:id="@+id/UserButton"
+            android:layout_width="27dp"
+            android:layout_height="27dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="12dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/iconmyself" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center"
+            android:text="擒牛"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="#ffffff"
+            android:textSize="18sp" />
+    </RelativeLayout>
+
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+            <!--股票圆环-->
+            <LinearLayout
+                android:layout_width="145dp"
+                android:layout_height="145dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/shape_qinniu_content_radius"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+
+                <!--股票名称-->
+                <TextView
+                    android:id="@+id/QinniuContentStockName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="股票名称"
+                    android:textColor="#ffffff"
+                    android:textSize="14sp" />
+
+                <!--股票代码-->
+                <TextView
+                    android:id="@+id/QinniuContentStockCode"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="000000"
+                    android:textColor="#ffffff"
+                    android:textSize="14sp" />
+
+                <!--本月排名-->
+                <TextView
+                    android:id="@+id/QinniuContentStockRank"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="本月排名: 2"
+                    android:textColor="#ffffff"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <!--综合得分-->
+            <RelativeLayout
+                android:layout_width="210dp"
+                android:layout_height="25dp"
+                android:layout_marginTop="15dp"
+                android:gravity="center_vertical">
+
+                <!--得分-->
+                <TextView
+                    style="@style/QinniuContentScoreText"
+                    android:text="综合得分  : " />
+
+                <!--综合得分-->
+                <TextView
+                    android:id="@+id/QinniuContentSynthesisScore"
+                    style="@style/QinniuContentScoreContent"
+                    android:text="99.9572296142" />
+            </RelativeLayout>
+
+            <!--全景得分-->
+            <RelativeLayout
+                android:layout_width="210dp"
+                android:layout_height="25dp"
+                android:layout_marginTop="7.5dp"
+                android:gravity="center_vertical">
+
+                <!--得分-->
+                <TextView
+                    style="@style/QinniuContentScoreText"
+                    android:text="全景得分  : " />
+
+                <!--全景得分-->
+                <TextView
+                    android:id="@+id/QinniuContentP5WScore"
+                    style="@style/QinniuContentScoreContent"
+                    android:text="99.9572296142" />
+
+                <!--提示小红点-->
+                <View
+                    android:id="@+id/QinniuContentP5WHint"
+                    style="@style/QinniuContentScoreHint"
+                    android:layout_toLeftOf="@id/QinniuContentP5WScore" />
+            </RelativeLayout>
+
+            <!--雪球得分-->
+            <RelativeLayout
+                android:layout_width="210dp"
+                android:layout_height="25dp"
+                android:layout_marginTop="7.5dp"
+                android:gravity="center_vertical">
+
+                <!--得分-->
+                <TextView
+                    style="@style/QinniuContentScoreText"
+                    android:text="雪球得分  : " />
+
+                <!--雪球得分-->
+                <TextView
+                    android:id="@+id/QinniuContentXueqiuScore"
+                    style="@style/QinniuContentScoreContent"
+                    android:text="99.9572296142" />
+
+                <!--提示小红点-->
+                <View
+                    android:id="@+id/QinniuContentXueqiuHint"
+                    style="@style/QinniuContentScoreHint"
+                    android:layout_toLeftOf="@id/QinniuContentXueqiuScore" />
+            </RelativeLayout>
+
+            <!--统计图-->
+            <ImageView
+                android:id="@+id/QinniuContentDiagram"
+                android:layout_width="320dp"
+                android:layout_height="259dp"
+                android:layout_marginTop="25dp" />
+
+            <DatePicker
+                android:id="@+id/QinniuContentDatePicker"
+                android:layout_width="240dp"
+                android:layout_height="90dp"
+                android:calendarViewShown="false"
+                android:maxDate="11/01/2015"
+                android:minDate="06/01/2013" />
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>
