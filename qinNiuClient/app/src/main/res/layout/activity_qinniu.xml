@@ -115,7 +115,5 @@
         android:id="@+id/QinniuRecommendList"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:paddingLeft="27.5dp"
-        android:paddingRight="27.5dp" />
+        android:layout_marginTop="5dp" />
 </LinearLayout>

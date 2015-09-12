@@ -1,9 +1,11 @@
 package com.qinniuclient.qinNiu;
 
+import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Gravity;
@@ -11,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
@@ -30,15 +33,13 @@ import java.util.Map;
 
 public class QinniuActivity extends ActionBarActivity {
     // 股票排名 + 股票信息(名称+代码) + 股票评分
-    final private String[] keySet = {"QinniuItemRank", "QinniuItemStock", "QinniuItemGrade"};
+    final private String[] keySet =
+            {"QinniuItemRankNum", "QinniuItemStock", "QinniuItemGrade"};
 
     /* qinniu_rank_icon_1到qinniu_rank_icon_10 */
     final private int[] rankIDs = {
             R.drawable.qinniu_rank_icon_1, R.drawable.qinniu_rank_icon_2,
-            R.drawable.qinniu_rank_icon_3, R.drawable.qinniu_rank_icon_1,
-            R.drawable.qinniu_rank_icon_2, R.drawable.qinniu_rank_icon_3,
-            R.drawable.qinniu_rank_icon_1, R.drawable.qinniu_rank_icon_2,
-            R.drawable.qinniu_rank_icon_3, R.drawable.qinniu_rank_icon_1
+            R.drawable.qinniu_rank_icon_3
     };
 
     /* 偶数下标item背景色为backgroundColors[0]，奇数为[1] */
@@ -85,6 +86,8 @@ public class QinniuActivity extends ActionBarActivity {
                 /*传递item的课堂名称*/
                 Intent intent = new Intent();
                 intent.putExtra("stockCode", stock.split("\\n")[1]);
+                intent.putExtra("stockRank", Integer.toString(
+                        (Integer) item.get("QinniuItemRankNum")));
                 intent.putExtra("date", new SimpleDateFormat("yyyy-MM").format(queryDate));
                 intent.setClass(v.getContext(), QinniuContentActivity.class);
                 //                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -127,7 +130,8 @@ public class QinniuActivity extends ActionBarActivity {
         protected void onPostExecute(String result) {
             super.onPostExecute(result);
             if (result != null && !result.equals("network anomaly") && !result.equals("")) {
-                int[] toIds = {R.id.QinniuItemRank, R.id.QinniuItemStock, R.id.QinniuItemGrade};
+                int[] toIds = {R.id.QinniuItemRankNum, R.id.QinniuItemStock,
+                        R.id.QinniuItemGrade};
                 MySimpleAdapter simpleAdapter =
                         new MySimpleAdapter(QinniuActivity.this, getHoldPosInfo(result),
                                 R.layout.activity_qinniu_list_item, keySet, toIds);
@@ -174,27 +178,30 @@ public class QinniuActivity extends ActionBarActivity {
         private TextView text0;
         private List<? extends Map<String, ?>> mData;
 
+        @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
             // TODO Auto-generated method stub
             View v = super.getView(position, convertView, parent);
-
-/*            text0 = (TextView) v
-                    .findViewById(R.id.hangqing_zixuan_zuixinjia);
-            text0.setTag(position);
-
-            text1 = (TextView) v
-                    .findViewById(R.id.hangqing_zixuan_deizhangfu);
-            text1.setTag(position);
-
-            if (text1.getText().toString().charAt(0) == '-') {
-                text0.setTextColor(Color.parseColor("#10ab95"));
-                text1.setTextColor(Color.parseColor("#10ab95"));
+            if ((position & 1) == 0) {
+                v.setBackgroundColor(Color.parseColor("#40496b"));
             } else {
-                text0.setTextColor(Color.parseColor("#e74e64"));
-                text1.setTextColor(Color.parseColor("#e74e64"));
-            }*/
+                v.setBackgroundColor(Color.parseColor("#3c4567"));
+            }
 
+            TextView tv = (TextView) v.findViewById(R.id.QinniuItemRankNum);
+            ImageView iv = (ImageView) v.findViewById(R.id.QinniuItemRankImage);
+            tv.setText(Integer.toString(position + 1));
+            // 判断是否为我们要处理的对象
+            if (position < 3) {
+                tv.setVisibility(View.INVISIBLE);
+                iv.setVisibility(View.VISIBLE);
+
+                iv.setImageResource(rankIDs[position]);
+            } else {
+                tv.setVisibility(View.VISIBLE);
+                iv.setVisibility(View.INVISIBLE);
+            }
             return v;
         }
 
@@ -227,7 +234,7 @@ public class QinniuActivity extends ActionBarActivity {
         for (int i = 0; i < tar.length; i++) {
             String[] infoOfStock = tar[i].split(";");
             map = new HashMap<String, Object>();
-            map.put(keySet[0], rankIDs[Integer.parseInt(infoOfStock[0]) - 1]);
+            map.put(keySet[0], i + 1);
             map.put(keySet[1], infoOfStock[2] + '\n' + infoOfStock[1]);
             map.put(keySet[2], Integer.toString(i + 1) + ";" + infoOfStock[3].substring(0, 5));
             // map.put(keySet[3], compareIDs[Integer.parseInt(infoOfStock[0]) - 1]);
