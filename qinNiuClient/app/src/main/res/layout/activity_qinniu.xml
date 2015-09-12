@@ -99,12 +99,12 @@
     <!--进度条，测试用-->
     <com.qinniuclient.util.RoundProgressBar
         android:layout_width="65dp"
-        android:layout_height="45dp" />
+        android:layout_height="65dp" />
 
-    <ProgressBar
-        android:id="@+id/QinniuGrade"
-        android:layout_width="65dp"
-        android:layout_height="45dp" />
+    <!--<ProgressBar-->
+        <!--android:id="@+id/QinniuGrade"-->
+        <!--android:layout_width="65dp"-->
+        <!--android:layout_height="45dp" />-->
 
     <ListView
         android:id="@+id/QinniuRecommendList"

@@ -4,8 +4,10 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.LinearGradient;
 import android.graphics.Paint;
 import android.graphics.RectF;
+import android.graphics.Shader;
 import android.graphics.Typeface;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -89,11 +91,11 @@ public class RoundProgressBar extends View {
                 R.styleable.RoundProgressBar);
 
         //获取自定义属性和默认值
-        roundColor = mTypedArray.getColor(R.styleable.RoundProgressBar_roundColor, Color.RED);
+        roundColor = mTypedArray.getColor(R.styleable.RoundProgressBar_roundColor, Color.BLACK);
         roundProgressColor =
                 mTypedArray.getColor(R.styleable.RoundProgressBar_roundProgressColor, Color.GREEN);
-        textColor = mTypedArray.getColor(R.styleable.RoundProgressBar_textColor, Color.GREEN);
-        textSize = mTypedArray.getDimension(R.styleable.RoundProgressBar_textSize, 15);
+        textColor = mTypedArray.getColor(R.styleable.RoundProgressBar_textColor, Color.WHITE);
+        textSize = mTypedArray.getDimension(R.styleable.RoundProgressBar_textSize, 18);
         roundWidth = mTypedArray.getDimension(R.styleable.RoundProgressBar_roundWidth, 5);
         max = mTypedArray.getInteger(R.styleable.RoundProgressBar_max, 100);
         textIsDisplayable =
@@ -130,10 +132,10 @@ public class RoundProgressBar extends View {
         paint.setTypeface(Typeface.DEFAULT_BOLD); //设置字体
         int percent =
                 (int) (((float) progress / (float) max) * 100);  //中间的进度百分比，先转换成float在进行除法运算，不然都为0
-        float textWidth = paint.measureText(percent + "%");   //测量字体宽度，我们需要根据字体的宽度设置在圆环中间
+        float textWidth = paint.measureText(percent + "分");   //测量字体宽度，我们需要根据字体的宽度设置在圆环中间
 
         if (textIsDisplayable && percent != 0 && style == STROKE) {
-            canvas.drawText(percent + "%", centre - textWidth / 2, centre + textSize / 2,
+            canvas.drawText(percent + "分", centre - textWidth / 2, centre + textSize / 2,
                     paint); //画出进度百分比
         }
 
@@ -145,26 +147,28 @@ public class RoundProgressBar extends View {
         //设置进度是实心还是空心
         paint.setStrokeWidth(roundWidth); //设置圆环的宽度
         paint.setColor(roundProgressColor);  //设置进度的颜色
-        RectF oval = new RectF(centre - radius, centre - radius, centre
-                + radius, centre + radius);  //用于定义的圆弧的形状和大小的界限
+        RectF oval = new RectF(centre - radius, centre - radius,
+                centre + radius, centre + radius);  //用于定义的圆弧的形状和大小的界限
 
-        switch (style) {
-            case STROKE: {
-                paint.setStyle(Paint.Style.STROKE);
-                canvas.drawArc(oval, 0, 360 * progress / max, false, paint);  //根据进度画圆弧
-                break;
-            }
-            case FILL: {
-                paint.setStyle(Paint.Style.FILL_AND_STROKE);
-                if (progress != 0) {
-                    canvas.drawArc(oval, 0, 360 * progress / max, true, paint);  //根据进度画圆弧
-                }
-                break;
-            }
-        }
+        // gradient effect
+        LinearGradient lg = new LinearGradient(centre - radius, centre,
+                centre + radius, centre, Color.rgb(130, 230, 220),
+                Color.rgb(210, 210, 140), Shader.TileMode.MIRROR);
+        paint.setShader(lg);
 
+        paint.setStyle(Paint.Style.STROKE); // hollow circle
+        canvas.drawArc(oval, 270, -(360 * (float) progress / max), false, paint);  // anti-clockwise
+
+        Paint p = new Paint();
+        p.setColor(Color.WHITE);
+        p.setStyle(Paint.Style.FILL_AND_STROKE); //设置实心
+        p.setStrokeWidth(roundWidth); //设置圆环的宽度
+        p.setAntiAlias(true);  //消除锯齿
+        float angle = 360 * (float)progress / max; // calculate the angle
+        float x = centre - (float)(Math.sin(Math.PI * angle / 180)) * radius;
+        float y = centre - (float)(Math.cos(Math.PI * angle / 180)) * radius;
+        canvas.drawCircle(x, y, 3, p); // draw the end point
     }
-
 
     public synchronized int getMax() {
         return max;
@@ -250,6 +254,4 @@ public class RoundProgressBar extends View {
     public void setRoundWidth(float roundWidth) {
         this.roundWidth = roundWidth;
     }
-
-
 }
