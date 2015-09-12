@@ -261,7 +261,7 @@ public class CourseBaseActivity extends Activity {
         @Override
         protected String doInBackground(Void... arg0) {
             //-------to be improved------------------
-            return query(" ");
+            return query("0");
         }
 
         @Override
@@ -322,12 +322,11 @@ public class CourseBaseActivity extends Activity {
     */
 
     //服务器部分需要改
-    private String query(String username) {
-        /*String queryString = "username=" + username;
-        String url = HttpUtil.BASE_URL + "GetUserSelfSelectServlet?" +
-                "CourseServlet";*/
-        String url = HttpUtil.BASE_URL + "CourseServlet";
+    private String query(String type) {
+        String queryString = "?type=" + type;
+        String url = HttpUtil.BASE_URL + "CourseServlet" + queryString;
         courseQueryrestult = HttpUtil.queryStringForGet(url);
+        System.out.println(courseQueryrestult);
         return courseQueryrestult;
     }
 

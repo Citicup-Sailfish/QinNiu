@@ -63,7 +63,7 @@ public class QinniuHistoryActivity extends ActionBarActivity {
         QinniuHistoryQuery.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                curDateStr = String.valueOf(QinniuHistoryDatePicker.getYear()) + "-" + String.valueOf(QinniuHistoryDatePicker.getMonth());
+                curDateStr = String.valueOf(QinniuHistoryDatePicker.getYear()) + "-" + String.valueOf(QinniuHistoryDatePicker.getMonth() + 1);
                 new MyAsyncTask().execute();
             }
         });

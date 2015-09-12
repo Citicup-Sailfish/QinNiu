@@ -140,14 +140,14 @@ public class CourseExtendActivity extends Activity {
                     case R.id.CourseExtendCategoryAll:// 全部课程
                         Corursechoose("All", 2);
                         break;
-                    case R.id.CourseExtendCategoryBase:// 炒股基础
-                        Corursechoose("fun", 2);
+                    case R.id.CourseExtendCategoryBase:// 商海推荐
+                        Corursechoose("sctj", 2);
                         break;
-                    case R.id.CourseExtendCategoryText:// 文本挖掘
-                        Corursechoose("Text", 2);
+                    case R.id.CourseExtendCategoryText:// 国学
+                        Corursechoose("gxjt", 2);
                         break;
-                    case R.id.CourseExtendCategoryMarket:// 金融市场
-                        Corursechoose("Market", 2);
+                    case R.id.CourseExtendCategoryMarket:// 生活点滴
+                        Corursechoose("shdd", 2);
                         break;
                     default:
                         break;
@@ -251,51 +251,6 @@ public class CourseExtendActivity extends Activity {
     }
 
 
-    /*重写SimpleAdapter，实现课程的点击跳转，及浏览次数*/
-    /*private class MySimpleAdapter extends SimpleAdapter {
-
-        private TextView GridItemName;
-        private TextView GridItemBrowseNum;
-        private TextView GridItemCommitNum;
-        private List<? extends Map<String, ?>> mData;
-
-        @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
-            // TODO Auto-generated method stub
-            View v = super.getView(position, convertView, parent);
-
-
-            final int myposition;
-            myposition = position;
-
-
-            GridItemName.setTag(position);
-            GridItemBrowseNum.setTag(position);
-            GridItemCommitNum.setTag(position);
-
-            GridItemName = (TextView) v
-                    .findViewById(R.id.GridItemBrowseNum);
-
-            GridItemBrowseNum = (TextView) v
-                    .findViewById(R.id.GridItemBrowseNum);
-
-            GridItemCommitNum = (TextView) v
-                    .findViewById(R.id.GridItemCommitNum);
-
-
-
-            return v;
-        }
-
-        public MySimpleAdapter(Context context,
-                               List<? extends Map<String, ?>> data,
-                               int resource, String[] from, int[] to) {
-            super(context, data, resource, from, to);
-            this.mData = data;
-            // TODO Auto-generated constructor stub
-        }
-    }*/
-
 
     //listitem的数据来源 服务器
     public class MyAsyncTask extends AsyncTask<Void, Integer, String> {
@@ -306,7 +261,7 @@ public class CourseExtendActivity extends Activity {
         @Override
         protected String doInBackground(Void... arg0) {
             //-------to be improved------------------
-            return query(" ");
+            return query("1");
         }
 
         @Override
@@ -367,12 +322,11 @@ public class CourseExtendActivity extends Activity {
     */
 
     //服务器部分需要改
-    private String query(String username) {
-        /*String queryString = "username=" + username;
-        String url = HttpUtil.BASE_URL + "GetUserSelfSelectServlet?" +
-                "CourseServlet";*/
-        String url = HttpUtil.BASE_URL + "CourseServlet";
+    private String query(String type) {
+        String queryString = "?type=" + type;
+        String url = HttpUtil.BASE_URL + "CourseServlet" + queryString;
         courseQueryrestult = HttpUtil.queryStringForGet(url);
+        System.out.println(courseQueryrestult);
         return courseQueryrestult;
     }
 
