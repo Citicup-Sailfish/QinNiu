@@ -22,6 +22,11 @@ import com.qinniuclient.R;
  */
 public class RoundProgressBar extends View {
     /**
+     * 文字
+     */
+    private String mText;
+
+    /**
      * 画笔对象的引用
      */
     private Paint paint;
@@ -101,7 +106,6 @@ public class RoundProgressBar extends View {
         textIsDisplayable =
                 mTypedArray.getBoolean(R.styleable.RoundProgressBar_textIsDisplayable, true);
         style = mTypedArray.getInt(R.styleable.RoundProgressBar_style, 0);
-
         mTypedArray.recycle();
     }
 
@@ -111,34 +115,45 @@ public class RoundProgressBar extends View {
         super.onDraw(canvas);
 
         /**
-         * 画最外层的大圆环
+         * 指定圆心及半径
          */
         int centre = getWidth() / 2; //获取圆心的x坐标
         int radius = (int) (centre - roundWidth / 2); //圆环的半径
-        paint.setColor(roundColor); //设置圆环的颜色
-        paint.setStyle(Paint.Style.STROKE); //设置空心
-        paint.setStrokeWidth(roundWidth); //设置圆环的宽度
-        paint.setAntiAlias(true);  //消除锯齿
-        canvas.drawCircle(centre, centre, radius, paint); //画出圆环
-
-        Log.e("log", centre + "");
 
         /**
          * 画进度百分比
          */
-        paint.setStrokeWidth(0);
-        paint.setColor(textColor);
-        paint.setTextSize(textSize);
-        paint.setTypeface(Typeface.DEFAULT_BOLD); //设置字体
-        int percent =
-                (int) (((float) progress / (float) max) * 100);  //中间的进度百分比，先转换成float在进行除法运算，不然都为0
-        float textWidth = paint.measureText(percent + "分");   //测量字体宽度，我们需要根据字体的宽度设置在圆环中间
+        Paint textPaint = new Paint();
+        textPaint.setStrokeWidth(0);
+        textPaint.setColor(textColor);
+        textPaint.setTextSize(textSize);
+        textPaint.setTypeface(Typeface.DEFAULT_BOLD); //设置字体
+        String percent = mText;
+        float textWidth = textPaint.measureText(percent + "分");   //测量字体宽度，我们需要根据字体的宽度设置在圆环中间
 
-        if (textIsDisplayable && percent != 0 && style == STROKE) {
+        if (textIsDisplayable && percent != null && style == STROKE) {
             canvas.drawText(percent + "分", centre - textWidth / 2, centre + textSize / 2,
-                    paint); //画出进度百分比
+                    textPaint); //画出进度百分比
         }
 
+        /**
+         * 进度为0，退出
+         */
+        if (progress == 0) {
+            return;
+        }
+
+        /**
+         * 画最外层的大圆环
+         */
+        Paint bigCirclePaint = new Paint();
+        bigCirclePaint.setColor(roundColor); //设置圆环的颜色
+        bigCirclePaint.setStyle(Paint.Style.STROKE); //设置空心
+        bigCirclePaint.setStrokeWidth(roundWidth); //设置圆环的宽度
+        bigCirclePaint.setAntiAlias(true);  //消除锯齿
+        canvas.drawCircle(centre, centre, radius, bigCirclePaint); //画出圆环
+
+        Log.e("log", centre + "");
 
         /**
          * 画圆弧 ，画圆环的进度
@@ -164,10 +179,10 @@ public class RoundProgressBar extends View {
         p.setStyle(Paint.Style.FILL_AND_STROKE); //设置实心
         p.setStrokeWidth(roundWidth); //设置圆环的宽度
         p.setAntiAlias(true);  //消除锯齿
-        float angle = 360 * (float)progress / max; // calculate the angle
-        float x = centre - (float)(Math.sin(Math.PI * angle / 180)) * radius;
-        float y = centre - (float)(Math.cos(Math.PI * angle / 180)) * radius;
-        canvas.drawCircle(x, y, 3, p); // draw the end point
+        float angle = 360 * (float) progress / max; // calculate the angle
+        float x = centre - (float) (Math.sin(Math.PI * angle / 180)) * radius;
+        float y = centre - (float) (Math.cos(Math.PI * angle / 180)) * radius;
+        canvas.drawCircle(x, y, 2, p); // draw the end point
     }
 
     public synchronized int getMax() {
@@ -253,5 +268,13 @@ public class RoundProgressBar extends View {
 
     public void setRoundWidth(float roundWidth) {
         this.roundWidth = roundWidth;
+    }
+
+    public void setText(String text) {
+        mText = text;
+    }
+
+    public String getText() {
+        return mText;
     }
 }

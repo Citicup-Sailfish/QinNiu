@@ -17,6 +17,7 @@ import android.widget.Toast;
 
 import com.qinniuclient.R;
 import com.qinniuclient.util.HttpUtil;
+import com.qinniuclient.util.RoundProgressBar;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -32,7 +33,10 @@ public class QinniuActivity extends ActionBarActivity {
     /* qinniu_rank_icon_1到qinniu_rank_icon_10 */
     final private int[] rankIDs = {
             R.drawable.qinniu_rank_icon_1, R.drawable.qinniu_rank_icon_2,
-            R.drawable.qinniu_rank_icon_3
+            R.drawable.qinniu_rank_icon_3, R.drawable.qinniu_rank_icon_1,
+            R.drawable.qinniu_rank_icon_2, R.drawable.qinniu_rank_icon_3,
+            R.drawable.qinniu_rank_icon_1, R.drawable.qinniu_rank_icon_2,
+            R.drawable.qinniu_rank_icon_3, R.drawable.qinniu_rank_icon_1
     };
 
     /* 偶数下标item背景色为backgroundColors[0]，奇数为[1] */
@@ -63,12 +67,10 @@ public class QinniuActivity extends ActionBarActivity {
                 Object item = parent.getItemAtPosition(position);
 
                 String stock = ((TextView) findViewById(R.id.QinniuItemStock)).getText().toString();
-                String stockInfo[] = stock.split("\\n");
 
                 /*传递item的课堂名称*/
                 Intent intent = new Intent();
-                intent.putExtra("stockName", stockInfo[0]);
-                intent.putExtra("stockCode", stockInfo[1]);
+                intent.putExtra("stockCode", stock.split("\\n")[1]);
                 intent.setClass(v.getContext(), QinniuContentActivity.class);
                 startActivity(intent);
             }
@@ -103,6 +105,28 @@ public class QinniuActivity extends ActionBarActivity {
                 MySimpleAdapter simpleAdapter =
                         new MySimpleAdapter(QinniuActivity.this, getHoldPosInfo(result),
                                 R.layout.activity_qinniu_list_item, keySet, toIds);
+
+                /* 设置binder */
+                simpleAdapter.setViewBinder(new SimpleAdapter.ViewBinder() {
+                    public boolean setViewValue(View view, Object data, String textRepresentation) {
+                        // 判断是否为我们要处理的对象
+                        if (view instanceof RoundProgressBar && data instanceof String) {
+                            RoundProgressBar rpb = (RoundProgressBar) view;
+                            /* attrs={"rank", "float"} */
+                            String attrs[] = ((String) data).split(";");
+                            rpb.setText(attrs[1]);
+
+                            if (Integer.valueOf(attrs[0]) <= 3) {
+                                rpb.setProgress((int) Float.parseFloat(attrs[1]));
+                            } else {
+                                rpb.setProgress(0);
+                            }
+                            return true;
+                        }
+                        return false;
+                    }
+                });
+
                 QinniuList.setAdapter(simpleAdapter);
             } else if ("".equals(result)) {
                 Toast toast = Toast.makeText(getApplicationContext(),
@@ -174,12 +198,12 @@ public class QinniuActivity extends ActionBarActivity {
         ArrayList<HashMap<String, Object>> list = new ArrayList<HashMap<String, Object>>();
         HashMap<String, Object> map;
         String[] tar = result.split("\\|");
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < tar.length; i++) {
             String[] infoOfStock = tar[i].split(";");
             map = new HashMap<String, Object>();
             map.put(keySet[0], rankIDs[Integer.parseInt(infoOfStock[0]) - 1]);
             map.put(keySet[1], infoOfStock[2] + '\n' + infoOfStock[1]);
-            map.put(keySet[2], infoOfStock[3].substring(0, 5));
+            map.put(keySet[2], Integer.toString(i + 1) + ";" + infoOfStock[3].substring(0, 5));
             // map.put(keySet[3], compareIDs[Integer.parseInt(infoOfStock[0]) - 1]);
             list.add(map);
         }
