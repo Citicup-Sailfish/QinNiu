@@ -47,13 +47,14 @@
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
             android:orientation="vertical">
+
             <!--股票圆环-->
             <LinearLayout
                 android:layout_width="145dp"
                 android:layout_height="145dp"
                 android:layout_marginTop="20dp"
                 android:background="@drawable/shape_qinniu_content_radius"
-                android:gravity="center_horizontal"
+                android:gravity="center"
                 android:orientation="vertical">
 
                 <!--股票名称-->
@@ -62,18 +63,17 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="股票名称"
-                    android:textColor="#ffffff"
-                    android:textSize="14sp" />
+                    android:textColor="#f2dc7e"
+                    android:textSize="18sp" />
 
                 <!--股票代码-->
                 <TextView
                     android:id="@+id/QinniuContentStockCode"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
                     android:gravity="center"
-                    android:text="000000"
-                    android:textColor="#ffffff"
+                    android:textColor="#f4f5f9"
                     android:textSize="14sp" />
 
                 <!--本月排名-->
@@ -81,9 +81,9 @@
                     android:id="@+id/QinniuContentStockRank"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
                     android:gravity="center"
-                    android:text="本月排名: 2"
-                    android:textColor="#ffffff"
+                    android:textColor="#f4f5f9"
                     android:textSize="14sp" />
             </LinearLayout>
 
@@ -96,14 +96,14 @@
 
                 <!--得分-->
                 <TextView
+                    android:id="@+id/QinniuContentSynthesisText"
                     style="@style/QinniuContentScoreText"
                     android:text="综合得分  : " />
 
                 <!--综合得分-->
                 <TextView
                     android:id="@+id/QinniuContentSynthesisScore"
-                    style="@style/QinniuContentScoreContent"
-                    android:text="99.9572296142" />
+                    style="@style/QinniuContentScoreContent" />
             </RelativeLayout>
 
             <!--全景得分-->
@@ -115,14 +115,14 @@
 
                 <!--得分-->
                 <TextView
+                    android:id="@+id/QinniuContentP5WText"
                     style="@style/QinniuContentScoreText"
                     android:text="全景得分  : " />
 
                 <!--全景得分-->
                 <TextView
                     android:id="@+id/QinniuContentP5WScore"
-                    style="@style/QinniuContentScoreContent"
-                    android:text="99.9572296142" />
+                    style="@style/QinniuContentScoreContent" />
 
                 <!--提示小红点-->
                 <View
@@ -140,14 +140,14 @@
 
                 <!--得分-->
                 <TextView
+                    android:id="@+id/QinniuContentXueqiuText"
                     style="@style/QinniuContentScoreText"
                     android:text="雪球得分  : " />
 
                 <!--雪球得分-->
                 <TextView
                     android:id="@+id/QinniuContentXueqiuScore"
-                    style="@style/QinniuContentScoreContent"
-                    android:text="99.9572296142" />
+                    style="@style/QinniuContentScoreContent" />
 
                 <!--提示小红点-->
                 <View
@@ -169,7 +169,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:calendarViewShown="false"
-                android:maxDate="11/01/2015"
                 android:minDate="06/01/2013" />
 
             <!--按钮-->

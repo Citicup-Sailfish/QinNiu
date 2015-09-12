@@ -19,6 +19,7 @@ import android.widget.Toast;
 import com.qinniuclient.R;
 import com.qinniuclient.util.HttpUtil;
 import com.qinniuclient.util.RoundProgressBar;
+import com.qinniuclient.util.UserButtonOnClickListener;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -47,6 +48,8 @@ public class QinniuActivity extends ActionBarActivity {
 
     private ListView QinniuList;
 
+    private Date queryDate;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,24 +58,36 @@ public class QinniuActivity extends ActionBarActivity {
         Date currentDate = new Date();
         curDateStr = new SimpleDateFormat("yyyy-MM").format(currentDate);
 
+        queryDate = new Date(115, 5, 1);
         TextView Title = (TextView) findViewById(R.id.QinniuTitle);
-        Title.setText(new SimpleDateFormat("yyyy年MM月推荐股票").format(currentDate));
+        Title.setText(new SimpleDateFormat("yyyy年MM月推荐股票").format(queryDate));
 
         QinniuList = (ListView) findViewById(R.id.QinniuRecommendList);
 
         new MyAsyncTask().execute();
 
+        /*登录button的跳转 TX*/
+        Button userButton = (Button) findViewById(R.id.UserButton);
+        userButton.setOnClickListener(new UserButtonOnClickListener() {
+            @Override
+            public void onClick(View v) {
+                super.onClick(v);
+            }
+        });
+
         QinniuList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View v,
                                     int position, long id) {
-                Object item = parent.getItemAtPosition(position);
+                HashMap<String, Object> item =
+                        (HashMap<String, Object>) parent.getItemAtPosition(position);
 
-                String stock = ((TextView) findViewById(R.id.QinniuItemStock)).getText().toString();
-
+                String stock = (String) item.get("QinniuItemStock");
                 /*传递item的课堂名称*/
                 Intent intent = new Intent();
                 intent.putExtra("stockCode", stock.split("\\n")[1]);
+                intent.putExtra("date", new SimpleDateFormat("yyyy-MM").format(queryDate));
                 intent.setClass(v.getContext(), QinniuContentActivity.class);
+                //                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
             }
         });
