@@ -112,13 +112,17 @@ public class PriceTabIndexActivity extends ActionBarActivity {
 
     private void initGuoNeiTbl(String[] tar) {
         int[][] idMatrix = {
+                {R.id.hangqing_kaipanjiao0, R.id.hangqing_image0, R.id.hangqing_diezhangzhi0, R.id.hangqing_diezhanglv0},
+                {R.id.hangqing_kaipanjiao1, R.id.hangqing_image1, R.id.hangqing_diezhangzhi1, R.id.hangqing_diezhanglv1},
+                {R.id.hangqing_kaipanjiao2, R.id.hangqing_image2, R.id.hangqing_diezhangzhi2, R.id.hangqing_diezhanglv2},
                 {R.id.hangqing_guonei_kaipanjiao0, R.id.hangqing_guonei_image0, R.id.hangqing_guonei_diezhangzhi0, R.id.hangqing_guonei_diezhanglv0},
                 {R.id.hangqing_guonei_kaipanjiao1, R.id.hangqing_guonei_image1, R.id.hangqing_guonei_diezhangzhi1, R.id.hangqing_guonei_diezhanglv1},
                 {R.id.hangqing_guonei_kaipanjiao2, R.id.hangqing_guonei_image2, R.id.hangqing_guonei_diezhangzhi2, R.id.hangqing_guonei_diezhanglv2},
                 {R.id.hangqing_guonei_kaipanjiao3, R.id.hangqing_guonei_image3, R.id.hangqing_guonei_diezhangzhi3, R.id.hangqing_guonei_diezhanglv3},
                 {R.id.hangqing_guonei_kaipanjiao4, R.id.hangqing_guonei_image4, R.id.hangqing_guonei_diezhangzhi4, R.id.hangqing_guonei_diezhanglv4},
+                {R.id.hangqing_guonei_kaipanjiao5, R.id.hangqing_guonei_image5, R.id.hangqing_guonei_diezhangzhi5, R.id.hangqing_guonei_diezhanglv5}
         };
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < 9; i++) {
             initTblCell(tar, idMatrix[i], i);
         }
     }

@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="com.qinniuclient">
+    package="com.qinniuclient" >
 
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:icon="@mipmap/app_icon"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme" >
         <activity
             android:name=".WeclomePage"
             android:label="@string/app_name"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -125,10 +125,14 @@
             android:label="@string/title_activity_information_course_content" />
         <activity
             android:name=".qinNiu.QinniuContentActivity"
-            android:label="@string/title_activity_qinniu_content"></activity>
+            android:label="@string/title_activity_qinniu_content" />
         <activity
             android:name=".qinNiu.QinniuHistoryActivity"
-            android:label="@string/title_activity_qinniu_history"></activity>
+            android:label="@string/title_activity_qinniu_history" />
+        <activity
+            android:name=".information.InformationWebView"
+            android:label="@string/title_activity_information_web_view" >
+        </activity>
     </application>
 
 </manifest>

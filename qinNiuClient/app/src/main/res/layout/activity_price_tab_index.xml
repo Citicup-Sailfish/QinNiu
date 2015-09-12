@@ -108,7 +108,7 @@
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:text="上证指数"
+                        android:text="深证成指"
                         android:textSize="14sp" />
 
                     <LinearLayout
@@ -181,7 +181,7 @@
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:text="上证指数"
+                        android:text="创业板指"
                         android:textSize="14sp" />
 
                     <LinearLayout
@@ -285,7 +285,7 @@
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:text="上证指数"
+                        android:text="沪深300"
                         android:textSize="14sp" />
 
                     <LinearLayout
@@ -349,7 +349,7 @@
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:text="深证指数"
+                        android:text="中小板指"
                         android:textSize="14sp" />
 
                     <LinearLayout
@@ -413,7 +413,7 @@
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:text="创业版指"
+                        android:text="深证综指"
                         android:textSize="14sp" />
 
                     <LinearLayout
@@ -481,7 +481,7 @@
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:text="沪深300"
+                        android:text="Ａ股指数"
                         android:textSize="14sp" />
 
                     <LinearLayout
@@ -545,7 +545,7 @@
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:text="中小板指"
+                        android:text="B股指数"
                         android:textSize="14sp" />
 
                     <LinearLayout
@@ -599,8 +599,9 @@
 
                 <LinearLayout
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="15dp"
-                    android:layout_marginTop="15dp"
+                    android:paddingTop="15dp"
+                    android:paddingBottom="15dp"
+                    android:background="#525d83"
                     android:layout_weight="1"
                     android:orientation="vertical">
 
@@ -608,7 +609,7 @@
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:text="@null"
+                        android:text="上证50"
                         android:textSize="14sp" />
 
                     <LinearLayout
@@ -618,12 +619,14 @@
                         android:orientation="horizontal">
 
                         <ImageView
+                            android:id="@+id/hangqing_guonei_image5"
                             android:layout_width="5dp"
                             android:layout_height="5dp"
                             android:layout_gravity="center_vertical"
                             android:visibility="invisible" />
 
                         <TextView
+                            android:id="@+id/hangqing_guonei_kaipanjiao5"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="3dp"
@@ -639,6 +642,7 @@
                         android:orientation="horizontal">
 
                         <TextView
+                            android:id="@+id/hangqing_guonei_diezhangzhi5"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="10dp"
@@ -646,6 +650,7 @@
                             android:textSize="12sp" />
 
                         <TextView
+                            android:id="@+id/hangqing_guonei_diezhanglv5"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="6dp"

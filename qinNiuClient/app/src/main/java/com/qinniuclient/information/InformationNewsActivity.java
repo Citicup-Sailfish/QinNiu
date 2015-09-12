@@ -1,5 +1,7 @@
 package com.qinniuclient.information;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
@@ -8,9 +10,12 @@ import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.koushikdutta.ion.Ion;
@@ -20,6 +25,7 @@ import com.qinniuclient.util.HttpUtil;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class InformationNewsActivity extends ActionBarActivity {
     /* 日期+(图片URL+标题+时间)*5 */
@@ -27,13 +33,22 @@ public class InformationNewsActivity extends ActionBarActivity {
             "ItemImage1", "ItemTitle1", "ItemTime1", "ItemImage2", "ItemTitle2", "ItemTime2",
             "ItemImage3", "ItemTitle3", "ItemTime3", "ItemImage4", "ItemTitle4", "ItemTime4",
             "ItemImage5", "ItemTitle5", "ItemTime5"};
+    private ListView newsList;
+    private String[] MyURL;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_information_news);
-
         new MyAsyncTask().execute();
+        /*newsList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent();
+                intent.setClass(InformationNewsActivity.this, InformationWebView.class);
+                startActivity(intent);
+            }
+        });*/
     }
 
     /**
@@ -74,9 +89,9 @@ public class InformationNewsActivity extends ActionBarActivity {
                         R.id.information_news_imageButton4, R.id.information_news_text4,
                         R.id.information_news_Newstime4};
                 //----the firt para "MainActivity.this" should be repair!------------------
-                ListView newsList = (ListView) findViewById(R.id.InformationNewsList);
+                newsList  = (ListView) findViewById(R.id.InformationNewsList);
                 /* 设置adapter */
-                SimpleAdapter adapter = new SimpleAdapter(InformationNewsActivity.this,
+                MySimpleAdapter adapter = new MySimpleAdapter(InformationNewsActivity.this,
                         getHoldPosInfo(result),
                         R.layout.activity_information_news_listitem,
                         keySet,
@@ -133,7 +148,9 @@ public class InformationNewsActivity extends ActionBarActivity {
         }
         /* |字符需要转义 */
         String[] tar = result.split("\\|");
+        int urlnum = 0;
         int listItemLength = 6;
+        MyURL = new String[(tar.length / listItemLength) * 5];
         /* 外层循环生成单个map, 内层循环处理5条新闻 */
         for (int i = 0; i < tar.length / listItemLength; i++) {
             map = new HashMap<>();
@@ -147,9 +164,100 @@ public class InformationNewsActivity extends ActionBarActivity {
                 map.put(keySet[baseNum - 1], infoOfNews[1]);
                 /* 时间 */
                 map.put(keySet[baseNum], infoOfNews[2]);
+                /*MyURL[urlnum] = infoOfNews[3];
+                urlnum++;*/
             }
             list.add(map);
         }
         return list;
     }
+
+    /*重写SimpleAdapter，实现课程的点击跳转，及浏览次数*/
+    private class MySimpleAdapter extends SimpleAdapter {
+
+        private TextView text0;
+        private TextView text1;
+        private TextView text2;
+        private TextView text3;
+        private TextView text4;
+        private TextView text5;
+        private List<? extends Map<String, ?>> mData;
+
+        @Override
+        public View getView(final int position, View convertView, ViewGroup parent) {
+            // TODO Auto-generated method stub
+            View v = super.getView(position, convertView, parent);
+
+            text0 = (TextView) v.findViewById(R.id.information_news_text0);
+            text0.setTag(position);
+            text0.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent();
+                    intent.putExtra("url", MyURL[position * 5]);
+                    intent.setClass(InformationNewsActivity.this, InformationWebView.class);
+                    startActivity(intent);
+                }
+            });
+
+            text1 = (TextView) v.findViewById(R.id.information_news_text1);
+            text1.setTag(position);
+            text1.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent();
+                    intent.putExtra("url", MyURL[position * 5] + 1);
+                    intent.setClass(InformationNewsActivity.this, InformationWebView.class);
+                    startActivity(intent);
+                }
+            });
+
+            text2 = (TextView) v.findViewById(R.id.information_news_text2);
+            text2.setTag(position);
+            text2.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent();
+                    intent.putExtra("url", MyURL[position * 5] + 2);
+                    intent.setClass(InformationNewsActivity.this, InformationWebView.class);
+                    startActivity(intent);
+                }
+            });
+
+            text3 = (TextView) v.findViewById(R.id.information_news_text3);
+            text3.setTag(position);
+            text3.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent();
+                    intent.putExtra("url", MyURL[position * 5] + 3);
+                    intent.setClass(InformationNewsActivity.this, InformationWebView.class);
+                    startActivity(intent);
+                }
+            });
+
+            text4 = (TextView) v.findViewById(R.id.information_news_text4);
+            text4.setTag(position);
+            text4.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent();
+                    intent.putExtra("url", MyURL[position * 5] + 4);
+                    intent.setClass(InformationNewsActivity.this, InformationWebView.class);
+                    startActivity(intent);
+                }
+            });
+
+            return v;
+        }
+
+        public MySimpleAdapter(Context context,
+                               List<? extends Map<String, ?>> data,
+                               int resource, String[] from, int[] to) {
+            super(context, data, resource, from, to);
+            this.mData = data;
+            // TODO Auto-generated constructor stub
+        }
+    }
+
 }
