@@ -2,13 +2,14 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:layout_width="match_parent"
               android:layout_height="60dp"
+              android:gravity="center_vertical"
               android:orientation="horizontal"
-              android:gravity="center">
+              android:paddingLeft="40dp">
 
     <!--名次-->
     <ImageView
         android:id="@+id/QinniuItemRank"
-        android:layout_width="50dp"
+        android:layout_width="60dp"
         android:layout_height="32dp"
         android:scaleType="centerInside"
         android:src="@drawable/qinniu_rank_icon_1" />
@@ -24,21 +25,14 @@
         android:textSize="14sp" />
 
     <!--得分-->
-    <ProgressBar
-        style="?android:progressBarStyleLargeInverse"
+    <!--style="?android:progressBarStyleLargeInverse"-->
+    <!--android:max="100"-->
+    <!--android:progress="100"-->
+    <TextView
         android:id="@+id/QinniuItemGrade"
-        android:layout_width="65dp"
+        android:layout_width="85dp"
         android:layout_height="45dp"
-        android:max="100"
-        android:progress="100" />
-
-    <!--上月对比-->
-    <ImageView
-        android:id="@+id/QinniuItemCompare"
-        android:layout_width="70dp"
-        android:layout_height="16dp"
-        android:scaleType="centerInside"
-        android:paddingLeft="26.5dp"
-        android:paddingRight="26.5dp"
-        android:src="@drawable/qinniu_compare_icon_down" />
+        android:gravity="center"
+        android:textColor="#ffffff"
+        android:textSize="14sp" />
 </LinearLayout>

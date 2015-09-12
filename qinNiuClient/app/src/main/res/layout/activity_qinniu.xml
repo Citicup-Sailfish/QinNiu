@@ -1,10 +1,10 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="#394264"
               android:orientation="vertical"
-              tools:context="com.qinniuclient.qinNiu.QinniuActivity"
-              android:background="#394264">
+              tools:context="com.qinniuclient.qinNiu.QinniuActivity">
     <!--顶部框，包括个人登录，查找-->
     <RelativeLayout
         android:layout_width="fill_parent"
@@ -35,29 +35,50 @@
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:textColor="#ffffff"
             android:textSize="18sp" />
-
     </RelativeLayout>
 
-    <TextView
-        android:id="@+id/QinniuTitle"
-        android:layout_width="wrap_content"
+    <RelativeLayout
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="18dp"
         android:layout_marginTop="15dp"
-        android:text="2015年10月推荐股票"
-        android:textColor="#ffffff"
-        android:textSize="16sp" />
+        android:paddingLeft="18dp"
+        android:paddingRight="18dp">
+
+        <TextView
+            android:id="@+id/QinniuTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:text="2015年10月推荐股票"
+            android:textColor="#ffffff"
+            android:textSize="16sp" />
+
+        <!--转账按钮-->
+        <!--android:drawableRight="@drawable/simulation_buy_infobar_button"-->
+        <Button
+            android:id="@+id/QinniuHistoryRankButton"
+            android:layout_width="wrap_content"
+            android:layout_height="16dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:background="@null"
+            android:gravity="center"
+            android:includeFontPadding="false"
+            android:text="历史排名 >"
+            android:textColor="#ffffff"
+            android:textSize="16sp" />
+    </RelativeLayout>
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
+        android:layout_marginLeft="40dp"
         android:layout_marginTop="25dp"
         android:gravity="center_horizontal"
         android:orientation="horizontal">
 
         <TextView
-            android:layout_width="50dp"
+            android:layout_width="60dp"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="排名"
@@ -73,44 +94,30 @@
             android:textSize="14sp" />
 
         <TextView
-            android:layout_width="65dp"
+            android:layout_width="85dp"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="得分"
-            android:textColor="#ffffff"
-            android:textSize="14sp" />
-
-        <TextView
-            android:layout_width="70dp"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="与上月比较"
+            android:text="综合得分"
             android:textColor="#ffffff"
             android:textSize="14sp" />
     </LinearLayout>
 
     <View
-        android:layout_marginTop="15dp"
         android:layout_width="335dp"
         android:layout_height="1px"
-        android:background="#6c738c"
-        android:layout_gravity="center_horizontal" />
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="15dp"
+        android:background="#6c738c" />
 
     <!--进度条，测试用-->
-    <com.qinniuclient.util.RoundProgressBar
-        android:layout_width="65dp"
-        android:layout_height="65dp" />
 
-    <!--<ProgressBar-->
-        <!--android:id="@+id/QinniuGrade"-->
+    <!--<com.qinniuclient.util.RoundProgressBar-->
         <!--android:layout_width="65dp"-->
-        <!--android:layout_height="45dp" />-->
+        <!--android:layout_height="65dp" />-->
 
     <ListView
         android:id="@+id/QinniuRecommendList"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:paddingLeft="12.5dp"
-        android:paddingRight="12.5dp" />
+        android:layout_marginTop="5dp" />
 </LinearLayout>
