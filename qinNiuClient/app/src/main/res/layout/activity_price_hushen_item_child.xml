@@ -8,7 +8,7 @@
     android:descendantFocusability="blocksDescendants"
     android:gravity="center_vertical"
     android:orientation="horizontal"
-    android:padding="10dp"
+    android:padding="5dp"
     android:paddingRight="24dp">
     <!-- android:background="@drawable/selector_item" 从上面linearlayout删去 -->
     <TextView

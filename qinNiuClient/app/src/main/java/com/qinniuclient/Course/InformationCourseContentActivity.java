@@ -37,7 +37,6 @@ import java.util.List;
 
 public class InformationCourseContentActivity extends ActionBarActivity {
 
-    private VideoView video;
     private Button commentBtn;
     private EditText commentContentEditText;
     private ArrayList<HashMap<String, Object>> mycommentlist;

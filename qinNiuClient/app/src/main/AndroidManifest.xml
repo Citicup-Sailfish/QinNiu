@@ -126,6 +126,9 @@
         <activity
             android:name=".qinNiu.QinniuContentActivity"
             android:label="@string/title_activity_qinniu_content"></activity>
+        <activity
+            android:name=".qinNiu.QinniuHistoryActivity"
+            android:label="@string/title_activity_qinniu_history"></activity>
     </application>
 
 </manifest>

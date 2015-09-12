@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="60dp"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:paddingLeft="40dp">
+
+    <!--名次-->
+    <TextView
+        android:id="@+id/QinniuHisttoryItemRank"
+        android:layout_width="60dp"
+        android:layout_height="32dp"
+        android:gravity="center"
+        android:textSize="14sp"/>
+
+    <!--股票名称-->
+    <TextView
+        android:id="@+id/QinniuHisttoryItemStock"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="股票名称\n066666"
+        android:textColor="#ffffff"
+        android:textSize="14sp" />
+
+    <!--得分-->
+    <!--style="?android:progressBarStyleLargeInverse"-->
+    <!--android:max="100"-->
+    <!--android:progress="100"-->
+    <TextView
+        android:id="@+id/QinniuHisttoryItemGrade"
+        android:layout_width="wrap_content"
+        android:layout_height="45dp"
+        android:singleLine="true"
+        android:gravity="center"
+        android:textColor="#ffffff"
+        android:textSize="14sp" />
+</LinearLayout>

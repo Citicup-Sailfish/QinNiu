@@ -239,7 +239,7 @@ public class PriceTabSHSZActivity extends Activity implements
             if (convertView == null) {
                 childHolder = new ChildHolder();
                 convertView = inflater.inflate(R.layout.activity_price_hushen_item_child, null);
-
+                /*System.out.println(" num " + groupPosition +  " " + childPosition);*/
                 childHolder.textName = (TextView) convertView
                         .findViewById(R.id.price_shsz_name);
                 childHolder.textAge = (TextView) convertView
@@ -260,6 +260,12 @@ public class PriceTabSHSZActivity extends Activity implements
                 convertView.setTag(childHolder);
             } else {
                 childHolder = (ChildHolder) convertView.getTag();
+            }
+
+            if (childPosition % 2 == 0 ) {
+                convertView.setBackgroundColor(Color.parseColor("#40496b"));
+            } else {
+                convertView.setBackgroundColor(Color.parseColor("#3c4567"));
             }
 
             childHolder.textName.setText(((PriceItemPeople) getChild(groupPosition,

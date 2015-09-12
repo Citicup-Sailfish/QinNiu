@@ -262,6 +262,12 @@ public class PriceTabSelectorActivity extends Activity implements
                 childHolder = (ChildHolder) convertView.getTag();
             }
 
+            if (childPosition % 2 == 0 ) {
+                convertView.setBackgroundColor(Color.parseColor("#40496b"));
+            } else {
+                convertView.setBackgroundColor(Color.parseColor("#3c4567"));
+            }
+
             childHolder.textName.setText(((PriceItemPeople) getChild(groupPosition,
                     childPosition)).getName());
 

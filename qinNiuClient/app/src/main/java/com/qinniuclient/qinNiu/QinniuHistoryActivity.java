@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
@@ -18,7 +19,6 @@ import android.widget.Toast;
 
 import com.qinniuclient.R;
 import com.qinniuclient.util.HttpUtil;
-import com.qinniuclient.util.RoundProgressBar;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -27,17 +27,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class QinniuActivity extends ActionBarActivity {
+public class QinniuHistoryActivity extends ActionBarActivity {
     // 股票排名 + 股票信息(名称+代码) + 股票评分
     final private String[] keySet = {"QinniuItemRank", "QinniuItemStock", "QinniuItemGrade"};
 
     /* qinniu_rank_icon_1到qinniu_rank_icon_10 */
     final private int[] rankIDs = {
             R.drawable.qinniu_rank_icon_1, R.drawable.qinniu_rank_icon_2,
-            R.drawable.qinniu_rank_icon_3, R.drawable.qinniu_rank_icon_1,
-            R.drawable.qinniu_rank_icon_2, R.drawable.qinniu_rank_icon_3,
-            R.drawable.qinniu_rank_icon_1, R.drawable.qinniu_rank_icon_2,
-            R.drawable.qinniu_rank_icon_3, R.drawable.qinniu_rank_icon_1
+            R.drawable.qinniu_rank_icon_3
     };
 
     /* 偶数下标item背景色为backgroundColors[0]，奇数为[1] */
@@ -46,44 +43,28 @@ public class QinniuActivity extends ActionBarActivity {
     String curDateStr;
 
     private ListView QinniuList;
+    private DatePicker QinniuHistoryDatePicker;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_qinniu);
+        setContentView(R.layout.activity_qinniu_history);
+        /*Intent intent = this.getIntent();
+        curDateStr = intent.getStringExtra("date");*/
 
         Date currentDate = new Date();
         curDateStr = new SimpleDateFormat("yyyy-MM").format(currentDate);
-
-        TextView Title = (TextView) findViewById(R.id.QinniuTitle);
-        Title.setText(new SimpleDateFormat("yyyy年MM月推荐股票").format(currentDate));
-
-        QinniuList = (ListView) findViewById(R.id.QinniuRecommendList);
-
         new MyAsyncTask().execute();
 
-        QinniuList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            public void onItemClick(AdapterView<?> parent, View v,
-                                    int position, long id) {
-                Object item = parent.getItemAtPosition(position);
+        QinniuList = (ListView) findViewById(R.id.QinniuHistoryRecommendList);
 
-                String stock = ((TextView) findViewById(R.id.QinniuItemStock)).getText().toString();
-
-                /*传递item的课堂名称*/
-                Intent intent = new Intent();
-                intent.putExtra("stockCode", stock.split("\\n")[1]);
-                intent.setClass(v.getContext(), QinniuContentActivity.class);
-                startActivity(intent);
-            }
-        });
-
-        Button QinniuHistoryRankButton = (Button) findViewById(R.id.QinniuHistoryRankButton);
-        QinniuHistoryRankButton.setOnClickListener(new View.OnClickListener() {
+        QinniuHistoryDatePicker = (DatePicker) findViewById(R.id.QinniuHistoryDatePicker);
+        Button QinniuHistoryQuery = (Button) findViewById(R.id.QinniuHistoryQuery);
+        QinniuHistoryQuery.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent1 = new Intent();
-                intent1.setClass(QinniuActivity.this, QinniuHistoryActivity.class);
-                startActivity(intent1);
+                curDateStr = String.valueOf(QinniuHistoryDatePicker.getYear()) + "-" + String.valueOf(QinniuHistoryDatePicker.getMonth());
+                new MyAsyncTask().execute();
             }
         });
     }
@@ -100,7 +81,7 @@ public class QinniuActivity extends ActionBarActivity {
         @Override
         protected String doInBackground(Void... arg0) {
             //-------to be improved------------------
-            return query("2015-06");
+            return query(curDateStr);
         }
 
         @Override
@@ -112,32 +93,10 @@ public class QinniuActivity extends ActionBarActivity {
         protected void onPostExecute(String result) {
             super.onPostExecute(result);
             if (result != null && !result.equals("network anomaly") && !result.equals("")) {
-                int[] toIds = {R.id.QinniuItemRank, R.id.QinniuItemStock, R.id.QinniuItemGrade};
+                int[] toIds = {R.id.QinniuHisttoryItemRank, R.id.QinniuHisttoryItemStock, R.id.QinniuHisttoryItemGrade};
                 MySimpleAdapter simpleAdapter =
-                        new MySimpleAdapter(QinniuActivity.this, getHoldPosInfo(result),
-                                R.layout.activity_qinniu_list_item, keySet, toIds);
-
-                /* 设置binder */
-                simpleAdapter.setViewBinder(new SimpleAdapter.ViewBinder() {
-                    public boolean setViewValue(View view, Object data, String textRepresentation) {
-                        // 判断是否为我们要处理的对象
-                        if (view instanceof RoundProgressBar && data instanceof String) {
-                            RoundProgressBar rpb = (RoundProgressBar) view;
-                            /* attrs={"rank", "float"} */
-                            String attrs[] = ((String) data).split(";");
-                            rpb.setText(attrs[1]);
-
-                            if (Integer.valueOf(attrs[0]) <= 3) {
-                                rpb.setProgress((int) Float.parseFloat(attrs[1]));
-                            } else {
-                                rpb.setProgress(0);
-                            }
-                            return true;
-                        }
-                        return false;
-                    }
-                });
-
+                        new MySimpleAdapter(QinniuHistoryActivity.this, getHoldPosInfo(result),
+                                R.layout.activity_qinniu_history_list_item, keySet, toIds);
                 QinniuList.setAdapter(simpleAdapter);
             } else if ("".equals(result)) {
                 Toast toast = Toast.makeText(getApplicationContext(),
@@ -163,23 +122,11 @@ public class QinniuActivity extends ActionBarActivity {
         public View getView(int position, View convertView, ViewGroup parent) {
             // TODO Auto-generated method stub
             View v = super.getView(position, convertView, parent);
-
-/*            text0 = (TextView) v
-                    .findViewById(R.id.hangqing_zixuan_zuixinjia);
-            text0.setTag(position);
-
-            text1 = (TextView) v
-                    .findViewById(R.id.hangqing_zixuan_deizhangfu);
-            text1.setTag(position);
-
-            if (text1.getText().toString().charAt(0) == '-') {
-                text0.setTextColor(Color.parseColor("#10ab95"));
-                text1.setTextColor(Color.parseColor("#10ab95"));
+            if (position % 2 == 0 ) {
+                v.setBackgroundColor(Color.parseColor("#40496b"));
             } else {
-                text0.setTextColor(Color.parseColor("#e74e64"));
-                text1.setTextColor(Color.parseColor("#e74e64"));
-            }*/
-
+                v.setBackgroundColor(Color.parseColor("#3c4567"));
+            }
             return v;
         }
 
@@ -212,9 +159,9 @@ public class QinniuActivity extends ActionBarActivity {
         for (int i = 0; i < tar.length; i++) {
             String[] infoOfStock = tar[i].split(";");
             map = new HashMap<String, Object>();
-            map.put(keySet[0], rankIDs[Integer.parseInt(infoOfStock[0]) - 1]);
+            map.put(keySet[0], infoOfStock[0]);
             map.put(keySet[1], infoOfStock[2] + '\n' + infoOfStock[1]);
-            map.put(keySet[2], Integer.toString(i + 1) + ";" + infoOfStock[3].substring(0, 5));
+            map.put(keySet[2], infoOfStock[3]);
             // map.put(keySet[3], compareIDs[Integer.parseInt(infoOfStock[0]) - 1]);
             list.add(map);
         }

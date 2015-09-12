@@ -1,0 +1,115 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#394264"
+    android:orientation="vertical"
+    tools:context="com.qinniuclient.qinNiu.QinniuHistoryActivity">
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="48dp"
+        android:background="#50597b"
+        android:baselineAligned="false">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center"
+            android:text="历史数据"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="#ffffff"
+            android:textSize="18sp" />
+    </RelativeLayout>
+
+
+    <DatePicker
+        android:id="@+id/QinniuHistoryDatePicker"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:calendarViewShown="false"
+        android:maxDate="11/01/2015"
+        android:minDate="06/01/2013" />
+
+    <!--按钮-->
+    <Button
+        android:id="@+id/QinniuHistoryQuery"
+        android:layout_width="120dp"
+        android:layout_height="25dp"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/selector_login_register_button"
+        android:layout_gravity="center_horizontal"
+        android:text="点击查询历史得分"
+        android:textColor="@color/login_register_button"
+        android:textSize="14sp" />
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="25dp"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="排名"
+            android:textColor="#ffffff"
+            android:textSize="14sp" />
+
+        <TextView
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="股票名称"
+            android:textColor="#ffffff"
+            android:textSize="14sp" />
+
+        <TextView
+            android:layout_width="85dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="综合得分"
+            android:textColor="#ffffff"
+            android:textSize="14sp" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="15dp"
+        android:background="#6c738c" />
+
+    <!--进度条，测试用-->
+    <!--    <com.qinniuclient.util.RoundProgressBar
+            android:layout_width="65dp"
+            android:layout_height="45dp" />
+
+        <ProgressBar
+            android:id="@+id/QinniuGrade"
+            android:layout_width="65dp"
+            android:layout_height="45dp" />-->
+
+    <ListView
+        android:id="@+id/QinniuHistoryRecommendList"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:cacheColorHint="#00000000"
+        android:clickable="false"
+        android:divider="@null"
+        android:focusable="false"
+        android:listSelector="#00000000"
+        android:layout_marginTop="5dp" />
+</LinearLayout>

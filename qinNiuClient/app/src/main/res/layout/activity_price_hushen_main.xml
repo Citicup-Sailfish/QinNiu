@@ -40,10 +40,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:cacheColorHint="@null"
-                android:childDivider="@drawable/hamgqing_hushen_item_child_bg"
                 android:childIndicatorLeft="24dp"
-                android:divider="@color/Grey"
-                android:dividerHeight="0.01dp"
                 android:groupIndicator="@null"
                 android:scrollbarAlwaysDrawHorizontalTrack="false" >
             </com.qinniuclient.price.expandableui.PinnedHeaderExpandableListView>
