@@ -41,7 +41,7 @@ public class InformationScrollActivity extends ActionBarActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 System.out.println(MyURL[position] + "  " + position);
                 Intent intent = new Intent();
-                intent.putExtra("url", MyURL[position]);
+                intent.putExtra("url", MyURL[position + 1]);
                 intent.setClass(InformationScrollActivity.this, InformationWebView.class);
                 startActivity(intent);
             }

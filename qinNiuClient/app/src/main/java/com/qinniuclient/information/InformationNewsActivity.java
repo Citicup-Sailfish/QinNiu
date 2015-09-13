@@ -41,14 +41,6 @@ public class InformationNewsActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_information_news);
         new MyAsyncTask().execute();
-        /*newsList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent();
-                intent.setClass(InformationNewsActivity.this, InformationWebView.class);
-                startActivity(intent);
-            }
-        });*/
     }
 
     /**
@@ -172,7 +164,6 @@ public class InformationNewsActivity extends ActionBarActivity {
         return list;
     }
 
-    /*重写SimpleAdapter，实现课程的点击跳转，及浏览次数*/
     private class MySimpleAdapter extends SimpleAdapter {
 
         private TextView text0;
