@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="match_parent"
-    android:layout_height="160dp"
+                android:layout_height="160dp"
                 android:background="#fdfafa">
 
     <!--图-->
@@ -9,7 +9,7 @@
         android:id="@+id/GridItemImage"
         android:layout_width="fill_parent"
         android:layout_height="90dp"
-        android:scaleType="fitXY"/>
+        android:scaleType="fitXY" />
 
     <!--标题-->
     <TextView
@@ -17,17 +17,17 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/GridItemImage"
-        android:layout_marginLeft="10dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="8dp"
         android:text=":test"
         android:textColor="#111111"
-        android:textSize="14sp"/>
+        android:textSize="14sp" />
 
     <RelativeLayout
         android:id="@+id/GridItemBrowse"
         android:layout_width="wrap_content"
-        android:layout_height="18dp"
+        android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_marginLeft="10dp">
@@ -37,51 +37,23 @@
             android:id="@+id/GridItemBrowseIcon"
             android:layout_width="16dp"
             android:layout_height="16dp"
+            android:layout_centerVertical="true"
             android:scaleType="centerInside"
-            android:src="@drawable/course_grid_item_browse_icon"/>
+            android:src="@drawable/course_grid_item_browse_icon" />
 
         <!--浏览次数-->
         <TextView
             android:id="@+id/GridItemBrowseNum"
             android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
-            android:layout_marginLeft="4dp"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
             android:layout_marginBottom="1dp"
+            android:layout_marginLeft="4dp"
             android:layout_toRightOf="@id/GridItemBrowseIcon"
             android:gravity="center"
-            android:textColor="#adacac"
+            android:includeFontPadding="false"
             android:text="0"
+            android:textColor="#adacac"
             android:textSize="16sp" />
     </RelativeLayout>
-
-    <!--评论数不做-->
-    <!--<RelativeLayout
-        android:id="@+id/GridItemCommit"
-        android:layout_width="wrap_content"
-        android:layout_height="18dp"
-        android:layout_alignParentBottom="true"
-        android:layout_marginLeft="30dp"
-        android:layout_toRightOf="@id/GridItemBrowse">
-
-        &lt;!&ndash;评论&ndash;&gt;
-        <ImageView
-            android:id="@+id/GridItemCommitIcon"
-            android:layout_width="16dp"
-            android:layout_height="16dp"
-            android:scaleType="centerInside"
-            android:src="@drawable/course_grid_item_commit_icon"/>
-
-        &lt;!&ndash;评论次数&ndash;&gt;
-        <TextView
-            android:id="@+id/GridItemCommitNum"
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
-            android:layout_marginLeft="4dp"
-            android:layout_marginBottom="1dp"
-            android:layout_toRightOf="@id/GridItemCommitIcon"
-            android:gravity="center"
-            android:text="0"
-            android:textColor="#adacac"
-            android:textSize="16sp" />
-    </RelativeLayout>-->
 </RelativeLayout>

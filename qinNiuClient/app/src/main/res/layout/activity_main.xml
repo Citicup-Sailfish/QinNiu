@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TabHost xmlns:android="http://schemas.android.com/apk/res/android"
+<TabHost
     android:id="@android:id/tabhost"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent">
 
@@ -38,6 +39,7 @@
                     android:id="@+id/main_tab_hangqing"
                     style="@style/MMTabButton"
                     android:layout_weight="1.0"
+                    android:background="@drawable/main_tab_price_background"
                     android:checked="true"
                     android:drawableTop="@drawable/tab_hangqing"
                     android:text="行情" />
@@ -46,6 +48,7 @@
                     android:id="@+id/main_tab_course"
                     style="@style/MMTabButton"
                     android:layout_weight="1.0"
+                    android:background="@drawable/main_tab_course_background"
                     android:drawableTop="@drawable/tab_course"
                     android:text="私塾" />
 
@@ -53,6 +56,7 @@
                     android:id="@+id/main_tab_qinniu"
                     style="@style/MMTabButton"
                     android:layout_weight="1.0"
+                    android:background="@drawable/main_tab_qinniu_background"
                     android:drawableTop="@drawable/tab_qinniu"
                     android:text="擒牛" />
 
@@ -60,6 +64,7 @@
                     android:id="@+id/main_tab_jiaoyi"
                     style="@style/MMTabButton"
                     android:layout_weight="1.0"
+                    android:background="@drawable/main_tab_trade_background"
                     android:drawableTop="@drawable/tab_jiaoyi"
                     android:text="交易" />
 
@@ -67,6 +72,7 @@
                     android:id="@+id/main_tab_zixun"
                     style="@style/MMTabButton"
                     android:layout_weight="1.0"
+                    android:background="@drawable/main_tab_info_background"
                     android:drawableTop="@drawable/tab_zixun"
                     android:text="资讯" />
             </RadioGroup>

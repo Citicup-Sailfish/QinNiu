@@ -211,9 +211,6 @@ public class QinniuActivity extends ActionBarActivity {
     }
 
     private class MySimpleAdapter extends SimpleAdapter {
-
-        private TextView text1;
-        private TextView text0;
         private List<? extends Map<String, ?>> mData;
 
         @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
@@ -222,9 +219,9 @@ public class QinniuActivity extends ActionBarActivity {
             // TODO Auto-generated method stub
             View v = super.getView(position, convertView, parent);
             if ((position & 1) == 0) {
-                v.setBackgroundColor(Color.parseColor("#40496b"));
-            } else {
                 v.setBackgroundColor(Color.parseColor("#3c4567"));
+            } else {
+                v.setBackgroundColor(Color.parseColor("#40496b"));
             }
 
             TextView tv = (TextView) v.findViewById(R.id.QinniuItemRankNum);
@@ -270,17 +267,16 @@ public class QinniuActivity extends ActionBarActivity {
         System.out.println(result);
 
         ArrayList<HashMap<String, Object>> list =
-                new ArrayList<HashMap<String, Object>>();
+                new ArrayList<>();
         HashMap<String, Object> map;
         String[] tar = result.split("\\|");
         for (int i = 0; i < tar.length; i++) {
             String[] infoOfStock = tar[i].split(";");
-            map = new HashMap<String, Object>();
+            map = new HashMap<>();
             map.put(keySet[0], i + 1);
             map.put(keySet[1], infoOfStock[2] + '\n' + infoOfStock[1]);
             map.put(keySet[2], Integer.toString(i + 1) + ";" +
                     infoOfStock[3].substring(0, 5));
-            // map.put(keySet[3], compareIDs[Integer.parseInt(infoOfStock[0]) - 1]);
             list.add(map);
         }
         return list;

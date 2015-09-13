@@ -3,7 +3,6 @@ package com.qinniuclient.Course;
 /*这个类使用了网络上的一个图片轮播demo，所以代码有点长，但是关于listview部分的大多参看行情自选的网路数据传输方式*/
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.AsyncTask;
@@ -13,8 +12,6 @@ import android.os.Parcelable;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
-import android.support.v7.internal.widget.AdapterViewCompat;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -23,10 +20,6 @@ import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.ImageView.ScaleType;
-import android.widget.AdapterView.OnItemLongClickListener;
-import android.widget.ListAdapter;
-import android.widget.ListView;
-import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
@@ -47,7 +40,6 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
@@ -109,80 +101,92 @@ public class CourseBaseActivity extends Activity {
         //listview部分
         mycourselist = (GridView) findViewById(R.id.CourseBaseGridview);
         new MyAsyncTask().execute();
-        mycourselist.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            public void onItemClick(AdapterView<?> parent, View v,
-                                    int position, long id) {
-                HashMap<String, Object> item = (HashMap<String, Object>) parent.getItemAtPosition(position);
+        mycourselist
+                .setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    public void onItemClick(AdapterView<?> parent, View v,
+                                            int position, long id) {
+                        HashMap<String, Object> item =
+                                (HashMap<String, Object>) parent
+                                        .getItemAtPosition(position);
 
                 /*评论数加一*/
-                TextView GridItemBrowseNum = (TextView) v.findViewById(R.id.GridItemBrowseNum);
+                        TextView GridItemBrowseNum = (TextView) v
+                                .findViewById(R.id.GridItemBrowseNum);
                 /*点击一次加一*/
 /*
                 GridItemBrowseNum.setText(Integer.valueOf(Integer.valueOf(GridItemBrowseNum.getText().toString()) + 1).toString());
 */
 
                 /*传递item的课堂名称*/
-                Intent intent = new Intent();
-                intent.putExtra("video", mycourserestult[position][0]);
-                intent.putExtra("text", item.get("GridItemName").toString());
-                intent.setClass(CourseBaseActivity.this, InformationCourseContentActivity.class);
-                startActivity(intent);
+                        Intent intent = new Intent();
+                        intent.putExtra("video", mycourserestult[position][0]);
+                        intent.putExtra("text",
+                                item.get("GridItemName").toString());
+                        intent.setClass(CourseBaseActivity.this,
+                                InformationCourseContentActivity.class);
+                        startActivity(intent);
 
-            }
-        });
+                    }
+                });
 
 
-        RadioGroup CourseBaseCategoryGroup = (RadioGroup) this.findViewById(R.id.CourseBaseCategoryGroup);
-        CourseBaseCategoryGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup group,
-                                         int checkedId) {
-                // TODO Auto-generated method stub
-                switch (checkedId) {
-                    case R.id.CourseBaseCategoryAll:// 全部课程
-                        Corursechoose("All", 2);
-                        break;
-                    case R.id.CourseBaseCategoryBase:// 炒股基础
-                        Corursechoose("fun", 2);
-                        break;
-                    case R.id.CourseBaseCategoryText:// 文本挖掘
-                        Corursechoose("Text", 2);
-                        break;
-                    case R.id.CourseBaseCategoryMarket:// 金融市场
-                        Corursechoose("Market", 2);
-                        break;
-                    default:
-                        break;
-                }
-            }
-        });
+        RadioGroup CourseBaseCategoryGroup =
+                (RadioGroup) this.findViewById(R.id.CourseBaseCategoryGroup);
+        CourseBaseCategoryGroup.setOnCheckedChangeListener(
+                new RadioGroup.OnCheckedChangeListener() {
+                    @Override
+                    public void onCheckedChanged(RadioGroup group,
+                                                 int checkedId) {
+                        // TODO Auto-generated method stub
+                        switch (checkedId) {
+                            case R.id.CourseBaseCategoryAll:// 全部课程
+                                Corursechoose("All", 2);
+                                break;
+                            case R.id.CourseBaseCategoryBase:// 炒股基础
+                                Corursechoose("fun", 2);
+                                break;
+                            case R.id.CourseBaseCategoryText:// 文本挖掘
+                                Corursechoose("Text", 2);
+                                break;
+                            case R.id.CourseBaseCategoryMarket:// 金融市场
+                                Corursechoose("Market", 2);
+                                break;
+                            default:
+                                break;
+                        }
+                    }
+                });
 
-        RadioGroup CourseBaseTypeGroup = (RadioGroup) this.findViewById(R.id.CourseBaseTypeGroup);
-        CourseBaseTypeGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup group,
-                                         int checkedId) {
-                // TODO Auto-generated method stub
-                switch (checkedId) {
-                    case R.id.CourseBaseTypeAll:// 全部课程
-                        Corursechoose("All", 4);
-                        break;
-                    case R.id.CourseBaseTypeVideo:// 视频
-                        Corursechoose("v", 4);
-                        break;
-                    case R.id.CourseBaseTypeDocument:// 文档
-                        Corursechoose("t", 4);
-                        break;
-                    default:
-                        break;
-                }
-            }
-        });
+        RadioGroup CourseBaseTypeGroup =
+                (RadioGroup) this.findViewById(R.id.CourseBaseTypeGroup);
+        CourseBaseTypeGroup.setOnCheckedChangeListener(
+                new RadioGroup.OnCheckedChangeListener() {
+                    @Override
+                    public void onCheckedChanged(RadioGroup group,
+                                                 int checkedId) {
+                        // TODO Auto-generated method stub
+                        switch (checkedId) {
+                            case R.id.CourseBaseTypeAll:// 全部课程
+                                Corursechoose("All", 4);
+                                break;
+                            case R.id.CourseBaseTypeVideo:// 视频
+                                Corursechoose("v", 4);
+                                break;
+                            case R.id.CourseBaseTypeDocument:// 文档
+                                Corursechoose("t", 4);
+                                break;
+                            default:
+                                break;
+                        }
+                    }
+                });
     }
 
 
-    private void Corursechoose(String choose, int CorurseChooseinfoOfNewsPosition) {
-        if (courseQueryrestult != null && !courseQueryrestult.equals("network anomaly") &&
+    private void Corursechoose(String choose,
+                               int CorurseChooseinfoOfNewsPosition) {
+        if (courseQueryrestult != null &&
+                !courseQueryrestult.equals("network anomaly") &&
                 !courseQueryrestult.equals("")) {
             //课堂类型 课堂名称
             String[] keySet = {"GridItemName",
@@ -199,12 +203,12 @@ public class CourseBaseActivity extends Activity {
 
         /* |字符需要转义 */
             String[] tar = courseQueryrestult.split("\\|");
-            int infoOfNewsnum = tar[0].split(";").length;
-        /* 外层循环生成单个map, 内层循环处理5条新闻 */
-            for (int i = 0; i < tar.length; i++) {
+            /* 外层循环生成单个map, 内层循环处理5条新闻 */
+            for (String aTar : tar) {
                 map = new HashMap<>();
-                String[] infoOfNews = tar[i].split(";");
-                if (infoOfNews[CorurseChooseinfoOfNewsPosition].equals(choose) || choose == "All") {
+                String[] infoOfNews = aTar.split(";");
+                if (infoOfNews[CorurseChooseinfoOfNewsPosition]
+                        .equals(choose) || "All".equals(choose)) {
                 /* 名称 */
                     map.put(keySet[0], infoOfNews[1]);
                 /* 浏览数 */
@@ -216,10 +220,12 @@ public class CourseBaseActivity extends Activity {
             }
 
             if (list.isEmpty()) {
-                TextView CourseBaseNoDateInfo = (TextView) findViewById(R.id.CourseBaseNoDateInfo);
+                TextView CourseBaseNoDateInfo =
+                        (TextView) findViewById(R.id.CourseBaseNoDateInfo);
                 CourseBaseNoDateInfo.setVisibility(View.VISIBLE);
             } else {
-                TextView CourseBaseNoDateInfo = (TextView) findViewById(R.id.CourseBaseNoDateInfo);
+                TextView CourseBaseNoDateInfo =
+                        (TextView) findViewById(R.id.CourseBaseNoDateInfo);
                 CourseBaseNoDateInfo.setVisibility(View.GONE);
 
             }
@@ -227,7 +233,8 @@ public class CourseBaseActivity extends Activity {
                     CourseBaseActivity.this, list,
                     R.layout.activity_course_grid_item, keySet, toIds);
             simpleAdapter.setViewBinder(new SimpleAdapter.ViewBinder() {
-                public boolean setViewValue(View view, Object data, String textRepresentation) {
+                public boolean setViewValue(View view, Object data,
+                                            String textRepresentation) {
                     // 判断是否为我们要处理的对象
                     if (view instanceof ImageView && data instanceof String) {
                         ImageView iv = (ImageView) view;
@@ -240,8 +247,9 @@ public class CourseBaseActivity extends Activity {
             });
             mycourselist.setAdapter(simpleAdapter);
                 /*setListViewHeightBasedOnChildren(mycourselist);*/
-        } else if (courseQueryrestult.equals("")) {
-            TextView CourseBaseNoDateInfo = (TextView) findViewById(R.id.CourseBaseNoDateInfo);
+        } else if ("".equals(courseQueryrestult)) {
+            TextView CourseBaseNoDateInfo =
+                    (TextView) findViewById(R.id.CourseBaseNoDateInfo);
             CourseBaseNoDateInfo.setVisibility(View.VISIBLE);
 
         } else {
@@ -287,9 +295,11 @@ public class CourseBaseActivity extends Activity {
                         CourseBaseActivity.this, getHoldPosInfo(result),
                         R.layout.activity_course_grid_item, keySet, toIds);
                 simpleAdapter.setViewBinder(new SimpleAdapter.ViewBinder() {
-                    public boolean setViewValue(View view, Object data, String textRepresentation) {
+                    public boolean setViewValue(View view, Object data,
+                                                String textRepresentation) {
                         // 判断是否为我们要处理的对象
-                        if (view instanceof ImageView && data instanceof String) {
+                        if (view instanceof ImageView &&
+                                data instanceof String) {
                             ImageView iv = (ImageView) view;
                             // 使用外部库载入图像
                             Ion.with(iv).load((String) data);
@@ -300,8 +310,9 @@ public class CourseBaseActivity extends Activity {
                 });
                 mycourselist.setAdapter(simpleAdapter);
                 /*setListViewHeightBasedOnChildren(mycourselist);*/
-            } else if (result.equals("")) {
-                TextView CourseBaseNoDateInfo = (TextView) findViewById(R.id.CourseBaseNoDateInfo);
+            } else if ("".equals(result)) {
+                TextView CourseBaseNoDateInfo =
+                        (TextView) findViewById(R.id.CourseBaseNoDateInfo);
                 CourseBaseNoDateInfo.setVisibility(View.VISIBLE);
 
             } else {
@@ -354,9 +365,8 @@ public class CourseBaseActivity extends Activity {
         for (int i = 0; i < tar.length; i++) {
             map = new HashMap<>();
             String[] infoOfNews = tar[i].split(";");
-            for (int j = 0; j < infoOfNewsnum; j++) {
-                mycourserestult[i][j] = infoOfNews[j];
-            }
+            System.arraycopy(infoOfNews, 0, mycourserestult[i], 0,
+                    infoOfNewsnum);
                 /* 名称 */
             map.put(keySet[0], infoOfNews[1]);
                 /* 浏览数 */
@@ -407,11 +417,11 @@ public class CourseBaseActivity extends Activity {
         // 广告数据
         adList = getBannerAd();
 
-        imageViews = new ArrayList<ImageView>();
+        imageViews = new ArrayList<>();
 
         // 点
-        dots = new ArrayList<View>();
-        dotList = new ArrayList<View>();
+        dots = new ArrayList<>();
+        dotList = new ArrayList<>();
         View dot0 = findViewById(R.id.v_dot0);
         View dot1 = findViewById(R.id.v_dot1);
         View dot2 = findViewById(R.id.v_dot2);
@@ -586,9 +596,9 @@ public class CourseBaseActivity extends Activity {
 
         AdDomain adDomain2 = new AdDomain();
         adDomain2.setId("108078");
-		/*adDomain2.setDate("3月5日");
-		adDomain2.setTitle("我和令计划只是同姓");*/
-		/*adDomain2.setTopicFrom("小巫");
+        /*adDomain2.setDate("3月5日");
+        adDomain2.setTitle("我和令计划只是同姓");*/
+        /*adDomain2.setTopicFrom("小巫");
 		adDomain2.setTopic("“我想知道令狐安和令计划有什么关系？”");*/
         adDomain2
                 .setImgUrl(

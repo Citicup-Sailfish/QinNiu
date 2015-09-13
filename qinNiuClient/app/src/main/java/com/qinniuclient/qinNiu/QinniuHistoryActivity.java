@@ -118,10 +118,10 @@ public class QinniuHistoryActivity extends ActionBarActivity {
         public View getView(int position, View convertView, ViewGroup parent) {
             // TODO Auto-generated method stub
             View v = super.getView(position, convertView, parent);
-            if (position % 2 == 0 ) {
-                v.setBackgroundColor(Color.parseColor("#40496b"));
-            } else {
+            if ((position & 1) == 0) {
                 v.setBackgroundColor(Color.parseColor("#3c4567"));
+            } else {
+                v.setBackgroundColor(Color.parseColor("#40496b"));
             }
             return v;
         }
