@@ -47,6 +47,13 @@ public class QinniuHistoryActivity extends ActionBarActivity {
         QinniuList = (ListView) findViewById(R.id.QinniuHistoryRecommendList);
 
         QinniuHistoryDatePicker = (DatePicker) findViewById(R.id.QinniuHistoryDatePicker);
+                /* 时间轮 */
+        QinniuHistoryDatePicker.setMaxDate(new Date().getTime());
+        if (QinniuHistoryDatePicker != null) {
+            // 最后一个getChildAt中，0表示年，1表示月，2表示日
+            ((ViewGroup) ((ViewGroup) QinniuHistoryDatePicker.getChildAt(0)).getChildAt(0))
+                    .getChildAt(2).setVisibility(View.GONE);
+        }
         Button QinniuHistoryQuery = (Button) findViewById(R.id.QinniuHistoryQuery);
         QinniuHistoryQuery.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -46,6 +46,7 @@ public class QinniuActivity extends ActionBarActivity {
             R.drawable.qinniu_rank_icon_3
     };
 
+
     String curDateStr;
 
     private ListView QinniuList;
