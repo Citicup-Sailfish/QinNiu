@@ -1,12 +1,15 @@
 package com.qinniuclient.information;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
@@ -23,17 +26,25 @@ import java.util.List;
 
 public class InformationOptionalActivity extends ActionBarActivity {
     /* 日期+(图片URL+标题+时间)*5 */
-    private String[] keySet = {"ItemDate",
-            "ItemImage1", "ItemTitle1", "ItemTime1", "ItemImage2", "ItemTitle2", "ItemTime2",
-            "ItemImage3", "ItemTitle3", "ItemTime3", "ItemImage4", "ItemTitle4", "ItemTime4",
-            "ItemImage5", "ItemTitle5", "ItemTime5"};
-
+    private String[] keySet = {"ItemTitle1", "ItemTime1", "Itemname"};
+    private String[] MyURL;
+    private ListView newsList;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_information_optional);
-
+        setContentView(R.layout.activity_information_news);
         new MyAsyncTask().execute();
+        newsList = (ListView) findViewById(R.id.InformationNewsList);
+        newsList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                System.out.println(MyURL[position] + "  " + position);
+                Intent intent = new Intent();
+                intent.putExtra("url", MyURL[position]);
+                intent.setClass(InformationOptionalActivity.this, InformationWebView.class);
+                startActivity(intent);
+            }
+        });
     }
 
     /**
@@ -62,40 +73,16 @@ public class InformationOptionalActivity extends ActionBarActivity {
             if (result != null && !result.equals("network anomaly") &&
                     !"".equals(result)) {
                 //----
-                int[] toIds = {R.id.information_news_day_times,
-                        R.id.information_news_imageButton0, R.id.information_news_text0,
-                        R.id.information_news_Newstime0,
-                        R.id.information_news_imageButton1, R.id.information_news_text1,
-                        R.id.information_news_Newstime1,
-                        R.id.information_news_imageButton2, R.id.information_news_text2,
-                        R.id.information_news_Newstime2,
-                        R.id.information_news_imageButton3, R.id.information_news_text3,
-                        R.id.information_news_Newstime3,
-                        R.id.information_news_imageButton4, R.id.information_news_text4,
-                        R.id.information_news_Newstime4};
-                //----the firt para "MainActivity.this" should be repair!------------------
-                ListView newsList = (ListView) findViewById(R.id.Information_news_Listview);
+                int[] toIds = {
+                        R.id.information_optional_text0, R.id.information_optional_Newsname,R.id.information_optional_Newstime0};
+                //----the firt para "MainActivity.this" should be repair!------
                 /* 设置adapter */
                 SimpleAdapter adapter = new SimpleAdapter(InformationOptionalActivity.this,
                         getHoldPosInfo(result),
-                        R.layout.activity_information_news_listitem,
+                        R.layout.activity_information_optional_listitem,
                         keySet,
                         toIds);
-                /* 设置binder */
-                adapter.setViewBinder(new SimpleAdapter.ViewBinder() {
-                    public boolean setViewValue(View view, Object data, String textRepresentation) {
-                        // 判断是否为我们要处理的对象
-                        if (view instanceof ImageView && data instanceof String) {
-                            ImageView iv = (ImageView) view;
-                            // 使用外部库载入图像
-                            Ion.with(iv).load((String) data);
-                            return true;
-                        }
-                        return false;
-                    }
-                });
                 newsList.setAdapter(adapter);
-
             } else if ("".equals(result)) {
                 Toast toast = Toast.makeText(getApplicationContext(),
                         "暂无数据", Toast.LENGTH_SHORT);
@@ -133,21 +120,14 @@ public class InformationOptionalActivity extends ActionBarActivity {
         }
         /* |字符需要转义 */
         String[] tar = result.split("\\|");
-        int listItemLength = 6;
-        /* 外层循环生成单个map, 内层循环处理5条新闻 */
-        for (int i = 0; i < tar.length / listItemLength; i++) {
-            map = new HashMap<>();
-            map.put(keySet[0], tar[i * listItemLength]);
-            for (int j = 1; j < listItemLength; j++) {
-                String[] infoOfNews = tar[i * listItemLength + j].split(";");
-                int baseNum = j * 3;
-                /* 图片 */
-                map.put(keySet[baseNum - 2], infoOfNews[0]);
-                /* 标题 */
-                map.put(keySet[baseNum - 1], infoOfNews[1]);
-                /* 时间 */
-                map.put(keySet[baseNum], infoOfNews[2]);
-            }
+        MyURL = new String[tar.length];
+        for (int i = 0; i < tar.length; i++) {
+            String[] infoOfStock = tar[i].split(";");
+            map = new HashMap<String, Object>();
+            map.put("ItemTitle1", infoOfStock[0]);
+            map.put("Itemname", infoOfStock[2]);
+            map.put("ItemTime1", infoOfStock[1]);
+            MyURL[i] = infoOfStock[3];
             list.add(map);
         }
         return list;

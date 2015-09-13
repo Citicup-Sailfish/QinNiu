@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#394264"
+    android:orientation="vertical">
+
+    <!--一条分割线-->
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="fill_parent"
+        android:layout_height="0.5dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp"
+        android:background="#ffffff"/>
+
+    <!--五个relative，代表五条新闻-->
+
+    <!--第一条新闻-->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:paddingLeft="24dp"
+        android:paddingRight="24dp">
+
+        <TextView
+            android:id="@+id/information_scroll_text0"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_toEndOf="@+id/information_scroll_imageButton0"
+            android:layout_toRightOf="@+id/information_scroll_imageButton0"
+            android:ellipsize="end"
+            android:lines="2"
+            android:maxLength="30"
+            android:paddingBottom="10dp"
+            android:paddingLeft="12dp"
+            android:paddingTop="10dp"
+            android:text="罗双平：罗双平：罗双平：罗双平：罗双平：罗双平：罗双平：罗双平：罗双平：罗双平：罗双平：罗双平："
+            android:textColor="#ffffff"
+            android:textSize="14sp"/>
+
+        <TextView
+            android:id="@+id/information_scroll_Newstime0"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/information_scroll_text0"
+            android:layout_alignBottom="@+id/information_scroll_text0"
+            android:layout_alignEnd="@+id/information_scroll_text0"
+            android:layout_alignRight="@+id/information_scroll_text0"
+            android:paddingBottom="1dp"
+            android:paddingLeft="12dp"
+            android:text="13:30"
+            android:textColor="#aeb2b9"
+            android:textSize="12sp"/>
+
+
+        <!--竖直分割线-->
+        <View
+            android:layout_width="0.5dp"
+            android:layout_height="60dp"
+            android:layout_alignBaseline="@+id/information_scroll_imageButton0"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="25dp"
+            android:layout_marginStart="11dp"
+            android:background="#ffffff"/>
+        <!--新闻图片-->
+        <ImageView
+            android:id="@+id/information_scroll_imageButton0"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center_horizontal"
+            android:clickable="false"/>
+
+    </RelativeLayout>
+</LinearLayout>

@@ -164,8 +164,8 @@ public class InformationNewsActivity extends ActionBarActivity {
                 map.put(keySet[baseNum - 1], infoOfNews[1]);
                 /* 时间 */
                 map.put(keySet[baseNum], infoOfNews[2]);
-                /*MyURL[urlnum] = infoOfNews[3];
-                urlnum++;*/
+                MyURL[urlnum] = infoOfNews[3];
+                urlnum++;
             }
             list.add(map);
         }
@@ -206,7 +206,7 @@ public class InformationNewsActivity extends ActionBarActivity {
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent();
-                    intent.putExtra("url", MyURL[position * 5] + 1);
+                    intent.putExtra("url", MyURL[position * 5 + 1]);
                     intent.setClass(InformationNewsActivity.this, InformationWebView.class);
                     startActivity(intent);
                 }
@@ -218,7 +218,7 @@ public class InformationNewsActivity extends ActionBarActivity {
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent();
-                    intent.putExtra("url", MyURL[position * 5] + 2);
+                    intent.putExtra("url", MyURL[position * 5 + 2]);
                     intent.setClass(InformationNewsActivity.this, InformationWebView.class);
                     startActivity(intent);
                 }
@@ -230,7 +230,7 @@ public class InformationNewsActivity extends ActionBarActivity {
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent();
-                    intent.putExtra("url", MyURL[position * 5] + 3);
+                    intent.putExtra("url", MyURL[position * 5 + 3]);
                     intent.setClass(InformationNewsActivity.this, InformationWebView.class);
                     startActivity(intent);
                 }
@@ -242,7 +242,7 @@ public class InformationNewsActivity extends ActionBarActivity {
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent();
-                    intent.putExtra("url", MyURL[position * 5] + 4);
+                    intent.putExtra("url", MyURL[position * 5 + 4]);
                     intent.setClass(InformationNewsActivity.this, InformationWebView.class);
                     startActivity(intent);
                 }

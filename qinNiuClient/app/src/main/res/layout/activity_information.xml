@@ -79,7 +79,8 @@
                 <RadioButton
                     android:id="@+id/information_ExchangeTabBar_zixuangu"
                     style="@style/information_ExchangeTabBar"
-                    android:text="自选股"/>
+                    android:text="其他"
+                    android:checked="false" />
             </RadioGroup>
         </LinearLayout>
 
