@@ -30,16 +30,6 @@ import java.util.Map;
 public class QinniuHistoryActivity extends ActionBarActivity {
     // 股票排名 + 股票信息(名称+代码) + 股票评分
     final private String[] keySet = {"QinniuItemRank", "QinniuItemStock", "QinniuItemGrade"};
-
-    /* qinniu_rank_icon_1到qinniu_rank_icon_10 */
-    final private int[] rankIDs = {
-            R.drawable.qinniu_rank_icon_1, R.drawable.qinniu_rank_icon_2,
-            R.drawable.qinniu_rank_icon_3
-    };
-
-    /* 偶数下标item背景色为backgroundColors[0]，奇数为[1] */
-    final private int[] backgroundColors = {Color.rgb(57, 66, 100), Color.rgb(60, 69, 102)};
-
     String curDateStr;
 
     private ListView QinniuList;
@@ -49,8 +39,6 @@ public class QinniuHistoryActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_qinniu_history);
-        /*Intent intent = this.getIntent();
-        curDateStr = intent.getStringExtra("date");*/
 
         Date currentDate = new Date();
         curDateStr = new SimpleDateFormat("yyyy-MM").format(currentDate);
@@ -162,7 +150,6 @@ public class QinniuHistoryActivity extends ActionBarActivity {
             map.put(keySet[0], infoOfStock[0]);
             map.put(keySet[1], infoOfStock[2] + '\n' + infoOfStock[1]);
             map.put(keySet[2], infoOfStock[3]);
-            // map.put(keySet[3], compareIDs[Integer.parseInt(infoOfStock[0]) - 1]);
             list.add(map);
         }
         return list;

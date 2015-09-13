@@ -42,9 +42,6 @@ public class QinniuActivity extends ActionBarActivity {
             R.drawable.qinniu_rank_icon_3
     };
 
-    /* 偶数下标item背景色为backgroundColors[0]，奇数为[1] */
-    final private int[] backgroundColors = {Color.rgb(57, 66, 100), Color.rgb(60, 69, 102)};
-
     String curDateStr;
 
     private ListView QinniuList;
