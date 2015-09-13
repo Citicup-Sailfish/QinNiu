@@ -37,83 +37,90 @@
             android:textSize="18sp" />
     </RelativeLayout>
 
-    <RelativeLayout
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:paddingLeft="18dp"
-        android:paddingRight="18dp">
-
-        <TextView
-            android:id="@+id/QinniuTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:text="2015年10月推荐股票"
-            android:textColor="#ffffff"
-            android:textSize="16sp" />
-
-        <!--转账按钮-->
-        <!--android:drawableRight="@drawable/simulation_buy_infobar_button"-->
-        <Button
-            android:id="@+id/QinniuHistoryRankButton"
-            android:layout_width="wrap_content"
-            android:layout_height="16dp"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:background="@null"
-            android:gravity="center"
-            android:includeFontPadding="false"
-            android:text="历史排名 >"
-            android:textColor="#ffffff"
-            android:textSize="16sp" />
-    </RelativeLayout>
-
     <LinearLayout
+        android:id="@+id/QinniuMain"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="25dp"
-        android:gravity="center_horizontal"
-        android:orientation="horizontal"
-        android:paddingLeft="27.5dp"
-        android:paddingRight="27.5dp">
+        android:orientation="vertical">
 
-        <TextView
-            android:layout_width="80dp"
+        <RelativeLayout
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="排名"
-            android:textColor="#ffffff"
-            android:textSize="14sp" />
+            android:layout_marginTop="15dp"
+            android:paddingLeft="18dp"
+            android:paddingRight="18dp">
 
-        <TextView
-            android:layout_width="120dp"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="股票名称"
-            android:textColor="#ffffff"
-            android:textSize="14sp" />
+            <TextView
+                android:id="@+id/QinniuTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:text="2015年10月推荐股票"
+                android:textColor="#ffffff"
+                android:textSize="16sp" />
 
-        <TextView
-            android:layout_width="105dp"
+            <!--排名按钮-->
+            <!--android:drawableRight="@drawable/simulation_buy_infobar_button"-->
+            <Button
+                android:id="@+id/QinniuHistoryRankButton"
+                android:layout_width="wrap_content"
+                android:layout_height="16dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:background="@null"
+                android:gravity="center"
+                android:includeFontPadding="false"
+                android:text="历史排名 >"
+                android:textColor="#ffffff"
+                android:textSize="16sp" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="综合得分"
-            android:textColor="#ffffff"
-            android:textSize="14sp" />
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="25dp"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal"
+            android:paddingLeft="27.5dp"
+            android:paddingRight="27.5dp">
+
+            <TextView
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="排名"
+                android:textColor="#ffffff"
+                android:textSize="14sp" />
+
+            <TextView
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="股票名称"
+                android:textColor="#ffffff"
+                android:textSize="14sp" />
+
+            <TextView
+                android:layout_width="105dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="综合得分"
+                android:textColor="#ffffff"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="335dp"
+            android:layout_height="1px"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="15dp"
+            android:background="#6c738c" />
+
+        <ListView
+            android:id="@+id/QinniuRecommendList"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp" />
     </LinearLayout>
-
-    <View
-        android:layout_width="335dp"
-        android:layout_height="1px"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="15dp"
-        android:background="#6c738c" />
-
-    <ListView
-        android:id="@+id/QinniuRecommendList"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp" />
 </LinearLayout>
