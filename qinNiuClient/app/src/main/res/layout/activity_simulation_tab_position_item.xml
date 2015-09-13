@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
-    android:paddingBottom="10dp"
-    android:paddingTop="12dp">
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="10dp"
+                android:paddingTop="12dp">
     <!--股票名称&代码（空格隔开）-->
     <TextView
         android:id="@+id/ItemTitle"
@@ -181,7 +181,6 @@
         android:layout_alignParentRight="true"
         android:background="@drawable/simulation_content_button"
         android:gravity="center"
-        android:onClick="ItemSaleButtonclick"
         android:text="卖出"
         android:textColor="#d2d2d2"
         android:textSize="14dp" />

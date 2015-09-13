@@ -16,7 +16,6 @@ import android.widget.Toast;
 import com.koushikdutta.ion.Ion;
 import com.qinniuclient.R;
 import com.qinniuclient.util.HttpUtil;
-import com.qinniuclient.util.UserButtonOnClickListener;
 
 import java.util.Date;
 
@@ -50,18 +49,9 @@ public class QinniuContentActivity extends AppCompatActivity {
         dp.setMaxDate(new Date().getTime());
         if (dp != null) {
             // 最后一个getChildAt中，0表示年，1表示月，2表示日
-            ((ViewGroup) ((ViewGroup) dp.getChildAt(0)).getChildAt(0)).getChildAt(2)
-                    .setVisibility(View.GONE);
+            ((ViewGroup) ((ViewGroup) dp.getChildAt(0)).getChildAt(0))
+                    .getChildAt(2).setVisibility(View.GONE);
         }
-
-        /* 登录button的跳转 TX */
-        Button userButton = (Button) findViewById(R.id.UserButton);
-        userButton.setOnClickListener(new UserButtonOnClickListener() {
-            @Override
-            public void onClick(View v) {
-                super.onClick(v);
-            }
-        });
 
         /* 查询按钮监听 */
         Button queryButton = (Button) findViewById(R.id.QinniuContentQuery);
@@ -126,15 +116,22 @@ public class QinniuContentActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(String result) {
             super.onPostExecute(result);
-            if (result != null && !result.equals("network anomaly") && !result.equals("")) {
+            if (result != null && !result.equals("network anomaly") &&
+                    !result.equals("")) {
                 /* 获取View */
-                TextView stockNameTV = (TextView) findViewById(R.id.QinniuContentStockName);
-                TextView stockCodeTV = (TextView) findViewById(R.id.QinniuContentStockCode);
-                TextView stockRankTV = (TextView) findViewById(R.id.QinniuContentStockRank);
+                TextView stockNameTV =
+                        (TextView) findViewById(R.id.QinniuContentStockName);
+                TextView stockCodeTV =
+                        (TextView) findViewById(R.id.QinniuContentStockCode);
+                TextView stockRankTV =
+                        (TextView) findViewById(R.id.QinniuContentStockRank);
                 TextView SynthesisScoreTV =
-                        (TextView) findViewById(R.id.QinniuContentSynthesisScore);
-                TextView P5WScoreTV = (TextView) findViewById(R.id.QinniuContentP5WScore);
-                TextView XueqiuScoreTV = (TextView) findViewById(R.id.QinniuContentXueqiuScore);
+                        (TextView) findViewById(
+                                R.id.QinniuContentSynthesisScore);
+                TextView P5WScoreTV =
+                        (TextView) findViewById(R.id.QinniuContentP5WScore);
+                TextView XueqiuScoreTV =
+                        (TextView) findViewById(R.id.QinniuContentXueqiuScore);
 
                 /* 拆分 */
                 String stockInfo[] = result.split(";");
@@ -189,13 +186,17 @@ public class QinniuContentActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(String result) {
             super.onPostExecute(result);
-            if (result != null && !result.equals("network anomaly") && !result.equals("")) {
+            if (result != null && !result.equals("network anomaly") &&
+                    !result.equals("")) {
                 /* 获取View */
                 TextView SynthesisScoreTV =
-                        (TextView) findViewById(R.id.QinniuContentSynthesisScoreHistory);
-                TextView P5WScoreTV = (TextView) findViewById(R.id.QinniuContentP5WScoreHistory);
+                        (TextView) findViewById(
+                                R.id.QinniuContentSynthesisScoreHistory);
+                TextView P5WScoreTV = (TextView) findViewById(
+                        R.id.QinniuContentP5WScoreHistory);
                 TextView XueqiuScoreTV =
-                        (TextView) findViewById(R.id.QinniuContentXueqiuScoreHistory);
+                        (TextView) findViewById(
+                                R.id.QinniuContentXueqiuScoreHistory);
 
                 /* 拆分 */
                 String stockInfo[] = result.split(";");
@@ -273,7 +274,8 @@ public class QinniuContentActivity extends AppCompatActivity {
     private String query(String queryDate) {
         String dateSplit[] = queryDate.split("\\-");
         String queryString =
-                "year=" + dateSplit[0] + "&month=" + Integer.valueOf(dateSplit[1]).toString() +
+                "year=" + dateSplit[0] + "&month=" +
+                        Integer.valueOf(dateSplit[1]).toString() +
                         "&stockcode=" + stockCode;
         String url = HttpUtil.BASE_URL + "StockScoreServlet?" + queryString;
         return HttpUtil.queryStringForGet(url);

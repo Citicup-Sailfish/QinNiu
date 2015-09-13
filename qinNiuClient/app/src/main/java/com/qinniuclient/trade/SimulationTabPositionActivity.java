@@ -1,14 +1,11 @@
 package com.qinniuclient.trade;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Gravity;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListAdapter;
@@ -18,7 +15,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.qinniuclient.R;
-import com.qinniuclient.login.LoginActivity;
 import com.qinniuclient.util.HttpUtil;
 
 import java.util.ArrayList;
@@ -44,25 +40,21 @@ public class SimulationTabPositionActivity extends ActionBarActivity {
         if (sp == null) {
             return;
         }
-        TextView userName = (TextView) findViewById(R.id.SimulationInfoBarUserName);
+        TextView userName =
+                (TextView) findViewById(R.id.SimulationInfoBarUserName);
         if (!sp.getBoolean("loginState", false)) {
             userName.setText("unLogin");
-            Intent i = new Intent(SimulationTabPositionActivity.this,
-                    LoginActivity.class);
-            // 启动
-            startActivity(i);
         } else {
             userName.setText(sp.getString("USERNAME", "Error"));
         }
-        SimulationContentList = (ListView) findViewById(R.id.SimulationContentList);
+        SimulationContentList =
+                (ListView) findViewById(R.id.SimulationContentList);
         new MyAsyncTask().execute();
     }
 
     /**
-     * 定义一个类，让其继承AsyncTask这个类,实现异步
-     * Params: String类型，表示传递给异步任务的参数类型是String，通常指定的是URL路径,这里用void
-     * Progress: Integer类型，进度条的单位通常都是Integer类型
-     * Result：boolean，是否登陆成功
+     * 定义一个类，让其继承AsyncTask这个类,实现异步 Params: String类型，表示传递给异步任务的参数类型是String，通常指定的是URL路径,这里用void
+     * Progress: Integer类型，进度条的单位通常都是Integer类型 Result：boolean，是否登陆成功
      */
     public class MyAsyncTask extends AsyncTask<Void, Integer, String> {
         @Override
@@ -121,12 +113,9 @@ public class SimulationTabPositionActivity extends ActionBarActivity {
     }
 
     /**
-     * send request to server and
-     * get the response(may be null)
-     * or string:"network anomaly"
-     * response format:
-     * "username;stockname stockcode;currentprice;
-     * buyInPrice;profit;marketPrice;holdPositionNum;buyableNum|..."
+     * send request to server and get the response(may be null) or
+     * string:"network anomaly" response format: "username;stockname
+     * stockcode;currentprice; buyInPrice;profit;marketPrice;holdPositionNum;buyableNum|..."
      */
     private String query(String username) {
         String queryString = "username=" + username;

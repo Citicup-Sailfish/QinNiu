@@ -9,8 +9,6 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Gravity;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
@@ -37,6 +35,14 @@ public class PriceOptionalActivity extends ActionBarActivity {
         setContentView(R.layout.activity_price_optional);
 
         sp = getSharedPreferences("userInfo", Activity.MODE_PRIVATE);
+        if (!sp.getBoolean("loginState", false)) {
+            findViewById(R.id.hangqing_zixuan_Listview)
+                    .setVisibility(View.INVISIBLE);
+            Intent i = new Intent(PriceOptionalActivity.this,
+                    LoginActivity.class);
+            // 启动
+            startActivity(i);
+        }
     }
 
     @Override
@@ -48,20 +54,20 @@ public class PriceOptionalActivity extends ActionBarActivity {
             return;
         }
         if (!sp.getBoolean("loginState", false)) {
-            Intent i = new Intent(PriceOptionalActivity.this,
-                    LoginActivity.class);
-            // 启动
-            startActivity(i);
+            findViewById(R.id.hangqing_zixuan_Listview)
+                    .setVisibility(View.INVISIBLE);
+        } else {
+            findViewById(R.id.hangqing_zixuan_Listview)
+                    .setVisibility(View.VISIBLE);
         }
-        PriceOptionalContentList = (ListView) findViewById(R.id.hangqing_zixuan_Listview);
+        PriceOptionalContentList =
+                (ListView) findViewById(R.id.hangqing_zixuan_Listview);
         new MyAsyncTask().execute();
     }
 
     /**
-     * 定义一个类，让其继承AsyncTask这个类,实现异步
-     * Params: String类型，表示传递给异步任务的参数类型是String，通常指定的是URL路径,这里用void
-     * Progress: Integer类型，进度条的单位通常都是Integer类型
-     * Result：boolean，是否登陆成功
+     * 定义一个类，让其继承AsyncTask这个类,实现异步 Params: String类型，表示传递给异步任务的参数类型是String，通常指定的是URL路径,这里用void
+     * Progress: Integer类型，进度条的单位通常都是Integer类型 Result：boolean，是否登陆成功
      */
     public class MyAsyncTask extends AsyncTask<Void, Integer, String> {
         @Override
@@ -85,15 +91,22 @@ public class PriceOptionalActivity extends ActionBarActivity {
         @Override
         protected void onPostExecute(String result) {
             super.onPostExecute(result);
-            if (result != null && !result.equals("network anomaly") && !result.equals("")) {
+            if (result != null && !result.equals("network anomaly") &&
+                    !result.equals("")) {
                 //股票名称 + 代码 + 现价 + 跌涨率
-                String[] keySet = {"hangqing_zixuan_socket_name", "hangqing_zixuan_socket_code",
-                        "hangqing_zixuan_zuixinjia", "hangqing_zixuan_deizhangfu"};
-                int[] toIds = {R.id.hangqing_zixuan_socket_name, R.id.hangqing_zixuan_socket_code,
-                        R.id.hangqing_zixuan_zuixinjia, R.id.hangqing_zixuan_deizhangfu};
+                String[] keySet = {"hangqing_zixuan_socket_name",
+                        "hangqing_zixuan_socket_code",
+                        "hangqing_zixuan_zuixinjia",
+                        "hangqing_zixuan_deizhangfu"};
+                int[] toIds = {R.id.hangqing_zixuan_socket_name,
+                        R.id.hangqing_zixuan_socket_code,
+                        R.id.hangqing_zixuan_zuixinjia,
+                        R.id.hangqing_zixuan_deizhangfu};
                 MySimpleAdapter simpleAdapter =
-                        new MySimpleAdapter(PriceOptionalActivity.this, getHoldPosInfo(result),
-                                R.layout.activity_price_optional_list_item, keySet, toIds);
+                        new MySimpleAdapter(PriceOptionalActivity.this,
+                                getHoldPosInfo(result),
+                                R.layout.activity_price_optional_list_item,
+                                keySet, toIds);
                 PriceOptionalContentList.setAdapter(simpleAdapter);
             } else if ("".equals(result)) {
                 Toast toast = Toast.makeText(getApplicationContext(),
@@ -120,7 +133,7 @@ public class PriceOptionalActivity extends ActionBarActivity {
             // TODO Auto-generated method stub
             View v = super.getView(position, convertView, parent);
 
-            if (position % 2 == 0 ) {
+            if (position % 2 == 0) {
                 v.setBackgroundColor(Color.parseColor("#40496b"));
             } else {
                 v.setBackgroundColor(Color.parseColor("#3c4567"));
@@ -167,7 +180,8 @@ public class PriceOptionalActivity extends ActionBarActivity {
     */
     private String query(String username) {
         String queryString = "username=" + username;
-        String url = HttpUtil.BASE_URL + "GetUserSelfSelectServlet?" + queryString;
+        String url =
+                HttpUtil.BASE_URL + "GetUserSelfSelectServlet?" + queryString;
         return HttpUtil.queryStringForGet(url);
     }
 
@@ -175,7 +189,8 @@ public class PriceOptionalActivity extends ActionBarActivity {
         //for test
         System.out.println(result);
 
-        ArrayList<HashMap<String, Object>> list = new ArrayList<HashMap<String, Object>>();
+        ArrayList<HashMap<String, Object>> list =
+                new ArrayList<HashMap<String, Object>>();
         HashMap<String, Object> map;
         String[] tar = result.split("\\|");
         int itemNum = tar.length;

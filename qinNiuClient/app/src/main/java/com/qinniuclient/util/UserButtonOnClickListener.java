@@ -7,9 +7,8 @@ import android.content.SharedPreferences;
 import android.view.View;
 import android.widget.Toast;
 
+import com.qinniuclient.information.InformationActivity;
 import com.qinniuclient.login.LoginActivity;
-import com.qinniuclient.price.PriceActivity;
-import com.qinniuclient.trade.TradeActivity;
 
 public class UserButtonOnClickListener implements View.OnClickListener {
     @Override
@@ -27,13 +26,13 @@ public class UserButtonOnClickListener implements View.OnClickListener {
             editor.putBoolean("loginState", false);
             editor.apply();
             Toast.makeText(currentActivity, "注销成功", Toast.LENGTH_SHORT).show();
-            if (!(currentActivity instanceof PriceActivity) &&
-                    !(currentActivity instanceof TradeActivity)) {
+            if (currentActivity instanceof InformationActivity) {
                 return;
             }
         }
         Intent i = new Intent(currentActivity, LoginActivity.class);
         // 启动
+
         currentActivity.startActivity(i);
     }
 }
