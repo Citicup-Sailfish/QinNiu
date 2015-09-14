@@ -105,9 +105,10 @@ public class QinniuContentActivity extends AppCompatActivity {
                 }
                 AlertDialog.Builder builder =
                         new AlertDialog.Builder(QinniuContentActivity.this);
-                builder.setTitle("雪球分数的构建")
-                        .setMessage(
-                                "反映的是散户情绪。自建一个情感词库，包含正面词库和负面词库，（这里可以附加那个excel），用ansj对每个雪球评论进行分词，之后统计其中正面词汇个数pos和负面词汇neg，将pos-neg作为该评论对该股票的态度。对每个月所有在雪球上有评论的股票，按此指标进行月度平均作为月度总得分，然后排序，得到百分制的序号分数。分数越大，表明股票情感越正面，累计回报率越低。")
+                builder.setTitle("雪球分数的构建").setMessage(
+                        "反映的是散户情绪。" +
+                                "自建一个情感词库，包含正面词库和负面词库，对每个雪球评论进行分词，之后统计其中正面词汇个数pos和负面词汇neg，将pos-neg作为该评论对该股票的态度。" +
+                                "对每个月所有在雪球上有评论的股票，按此指标进行月度平均作为月度总得分，然后排序，得到百分制的序号分数。分数越大，表明股票情感越正面，累计回报率越低。")
                         .setCancelable(false)
                         .setPositiveButton("确定",
                                 new DialogInterface.OnClickListener() {

@@ -25,9 +25,14 @@ public class PriceSearch extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_price_search);
-        province = getResources().getStringArray(R.array.autocomplete_hint_array);
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getApplicationContext(), R.layout.activity_price_search_autoitem_style, R.id.zixuan_search_contentTextView, province);
-        act = (AutoCompleteTextView) findViewById(R.id.search_autocomplete_zixuangu);
+        province =
+                getResources().getStringArray(R.array.autocomplete_hint_array);
+        ArrayAdapter<String> adapter =
+                new ArrayAdapter<String>(getApplicationContext(),
+                        R.layout.activity_price_search_autoitem_style,
+                        R.id.zixuan_search_contentTextView, province);
+        act = (AutoCompleteTextView) findViewById(
+                R.id.search_autocomplete_zixuangu);
         act.setAdapter(adapter);
 
         temp = (TextView) findViewById(R.id.hangqing_search_result_text);
@@ -36,9 +41,12 @@ public class PriceSearch extends Activity {
 
             /*判断键盘的键盘的搜索按钮是否被按下，并且潘盾输入是否合法，然后将搜索结果显示在搜索框下方*/
             @Override
-            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+            public boolean onEditorAction(TextView v, int actionId,
+                                          KeyEvent event) {
 
-                if (actionId == EditorInfo.IME_ACTION_SEARCH || (event != null && event.getKeyCode() == KeyEvent.KEYCODE_ENTER)) {
+                if (actionId == EditorInfo.IME_ACTION_SEARCH ||
+                        (event != null &&
+                                event.getKeyCode() == KeyEvent.KEYCODE_ENTER)) {
 
                     String restule = act.getText().toString();
                     /*从数组里面把文字部分加入到要显示的textview*/
@@ -98,8 +106,10 @@ public class PriceSearch extends Activity {
         } else {
             stockcode = "sh" + stockcode;
         }
-        String queryString = "username=" + username + "&&stockcode=" + stockcode;
-        String url = HttpUtil.BASE_URL + "AddUserSelfSelectServlet?" + queryString;
+        String queryString =
+                "username=" + username + "&&stockcode=" + stockcode;
+        String url =
+                HttpUtil.BASE_URL + "AddUserSelfSelectServlet?" + queryString;
         return HttpUtil.queryStringForGet(url);
     }
 
@@ -136,7 +146,8 @@ public class PriceSearch extends Activity {
 
     boolean addSelfSelect() {
         //-------to be improve------------------
-        String username = "tx";
+        String username = getSharedPreferences("userInfo", MODE_PRIVATE)
+                .getString("USERNAME", "Error");
         String stockcode = act.getText().toString();
         String res = query(username, stockcode);
         if (res != null && res.equals("1")) {
@@ -145,5 +156,4 @@ public class PriceSearch extends Activity {
             return false;
         }
     }
-
 }
