@@ -9,8 +9,6 @@ import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -26,7 +24,7 @@ import java.util.List;
 
 
 public class RegisterActivity extends ActionBarActivity {
-    private EditText usrEditTest, pwdEditTest;
+    private EditText usrEditTest, pwdEditTest, pwdAgainEditTest;
     private ProgressDialog progressDialog;
 
     @Override
@@ -38,6 +36,8 @@ public class RegisterActivity extends ActionBarActivity {
         Button cancelBtn = (Button) findViewById(R.id.ActionBarBackButton);
         usrEditTest = (EditText) findViewById(R.id.RegisterUsernameBarInput);
         pwdEditTest = (EditText) findViewById(R.id.RegisterPasswordBarInput);
+        pwdAgainEditTest =
+                (EditText) findViewById(R.id.RegisterConfirmBarInput);
 
         progressDialog = new ProgressDialog(RegisterActivity.this);
         progressDialog.setTitle("提示信息");
@@ -65,10 +65,8 @@ public class RegisterActivity extends ActionBarActivity {
     }
 
     /**
-     * 定义一个类，让其继承AsyncTask这个类
-     * Params: String类型，表示传递给异步任务的参数类型是String，通常指定的是URL路径,这里用void
-     * Progress: Integer类型，进度条的单位通常都是Integer类型
-     * Result：boolean，是否登陆成功
+     * 定义一个类，让其继承AsyncTask这个类 Params: String类型，表示传递给异步任务的参数类型是String，通常指定的是URL路径,这里用void
+     * Progress: Integer类型，进度条的单位通常都是Integer类型 Result：boolean，是否登陆成功
      */
     public class MyAsyncTask extends AsyncTask<Void, Integer, Boolean> {
         @Override
@@ -93,11 +91,12 @@ public class RegisterActivity extends ActionBarActivity {
             if (result) {
                 showDialog("注册成功！");
                 // 成功后自动登录
-                SharedPreferences sp = getSharedPreferences("userInfo", Activity.MODE_PRIVATE);
+                SharedPreferences sp =
+                        getSharedPreferences("userInfo", Activity.MODE_PRIVATE);
                 sp.edit().putBoolean("loginState", true);
-//                启动activity
+                //                启动activity
                 Intent intent = new Intent(RegisterActivity.this,
-                                           RegisterTurnActivity.class);
+                        RegisterTurnActivity.class);
                 startActivities(new Intent[]{intent});
                 RegisterActivity.this.finish();
             } else {
@@ -118,6 +117,13 @@ public class RegisterActivity extends ActionBarActivity {
             showDialog("密码必须填");
             return false;
         }
+        String pwdAgain = pwdAgainEditTest.getText().toString();
+        if (!pwd.equals(pwdAgain)) {
+            showDialog("密码不匹配");
+            pwdEditTest.setText("");
+            pwdAgainEditTest.setText("");
+            return false;
+        }
         return true;
     }
 
@@ -125,11 +131,11 @@ public class RegisterActivity extends ActionBarActivity {
     private void showDialog(String msg) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setMessage(msg)
-               .setCancelable(false)
-               .setPositiveButton("确定", new DialogInterface.OnClickListener() {
-                   public void onClick(DialogInterface dialog, int id) {
-                   }
-               });
+                .setCancelable(false)
+                .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                    }
+                });
         AlertDialog alert = builder.create();
         alert.show();
     }
@@ -143,9 +149,9 @@ public class RegisterActivity extends ActionBarActivity {
 
         url = HttpUtil.BASE_URL + "RegisterServlet";
         NameValuePair paraUsername = new BasicNameValuePair("username",
-                                                            username);
+                username);
         NameValuePair paraPassword = new BasicNameValuePair("password",
-                                                            password);
+                password);
         List<NameValuePair> para = new ArrayList<NameValuePair>();
         para.add(paraPassword);
         para.add(paraUsername);
